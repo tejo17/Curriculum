@@ -15,10 +15,9 @@ class DatabaseSeeder extends Seeder
     	Model::unguard();
         $this->call(OurUsersSeeder::class);
         $this->call(ProvinceSeeder::class);
-        $this->call(CitySeeder::class);
+        $this->call(CitiesSeeder::class);
         $this->call(WorkCentersSeeder::class);
         $this->call(CyclesProfFamiliesSeeder::class);
-        //$this->call(InformaticaSeeder::class);
         $this->call(TagsSeeder::class);
         $this->call(JobOffersSeeder::class);
         $this->call(OfferTagsSeeder::class);
@@ -29,7 +28,15 @@ class DatabaseSeeder extends Seeder
         $this->call(SubcriptionsSeeder::class);
         $this->call(SentEmailsSeeder::class);
         $this->call(CommentsSeeder::class);
-        $this->call(VerifiedSeeder::class);
+        $this->call(VerifiedSeeder::class);       
+        $this->call(LanguagesSeeder::class);
+        $this->call(StudentLanguagesSeeder::class);
+        $this->call(DrivingLicensesSeeder::class);
+        $this->call(StudentDrivingLicensesSeeder::class);
+        $this->call(PersonalSitesSeeder::class);
+        $this->call(AptitudesSeeder::class);
+        $this->call(StudentPersonalSitesSeeder::class);
+        $this->call(CertificationsSeeder::class);
     	Model::reguard();
     }
 }

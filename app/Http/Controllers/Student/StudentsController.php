@@ -155,4 +155,8 @@ class StudentsController extends UsersController
         }
         return false; // devuelvo false (temporal) debo devolver los errores
     } // createStudentCycle()
+    public function buscar(){
+        echo 'mierda';
+    }
+    
 }

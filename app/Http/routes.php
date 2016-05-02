@@ -24,7 +24,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::get(config('routes.registro.registroProfesor'), 'Teacher\TeachersController@index');
     Route::get(config('routes.registro.registroEstudiante'), 'Student\StudentsController@index');
     Route::get(config('routes.registro.registroEmpresa'), 'Enterprise\EnterprisesController@index');
-
 });
 
 // Ruta para pruebas

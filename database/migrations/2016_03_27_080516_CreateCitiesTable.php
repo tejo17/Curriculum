@@ -16,6 +16,7 @@ class CreateCitiesTable extends Migration
             $table->increments('id', 10)->comment('Identificador de la ciudad');
             $table->string('name', 200)->comment('Nombre de la ciudad');
             $table->integer('state_id')->comment('Identificador de la comunidad autonoma a la que pertenece la ciudad')->unsigned();
+            $table->integer('postalCode')->comment('Codigo Postal a la que pertenece la ciudad')->unsigned();
             $table->foreign('state_id')->references('id')->on('states')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
