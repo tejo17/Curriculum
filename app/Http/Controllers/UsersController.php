@@ -258,4 +258,32 @@ class UsersController extends Controller
 
     } // sendEmail()
 
+    /**
+    * @param Request $request
+    * @return Response
+    */
+    protected function buscarCodPostal(Request $request){
+        
+        $postal = new User();
+        $postales = array();
+        $codPostal = $request->input('codPostal');
+        $codPostalstate =  substr($codPostal,0,2);
+        $state = \DB::table('states')->where('id',$codPostalstate)->value('name');
+        $postal->provincia = $state;
+        
+        if (strlen($codPostal) == 5) {
+            
+       $cities = \DB::table('cities')->where('postalCode',$codPostal)->lists('name');
+       foreach ($cities as $title) {
+       array_push($postales, $title);
+            }
+            
+        }
+         return response()->json([
+            'provincia' => $state,
+            'ciudades' => $postales,
+        ]);
+
+    }
+
 }// fin del controlador

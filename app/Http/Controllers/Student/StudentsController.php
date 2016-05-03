@@ -28,7 +28,7 @@ class StudentsController extends UsersController
             'road'              => 'required',
             'address'           => 'required|between:6,225',
             'curriculum'        => 'required|mimes:pdf',
-
+            'codPostal'         => 'digits:5',
             // El nombre es debido a datepicker
             'birthdate_submit'  => 'required|date',
 
@@ -155,8 +155,5 @@ class StudentsController extends UsersController
         }
         return false; // devuelvo false (temporal) debo devolver los errores
     } // createStudentCycle()
-    public function buscar(){
-        echo 'mierda';
-    }
     
 }

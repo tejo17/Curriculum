@@ -91,7 +91,7 @@
             <div class="input-field col-md-12">
                 <i class="material-icons prefix">person_pin_circle</i>
                 {{ Form::label('address', 'Dirección') }}
-                {{ Form::text('address', null, ['class' => 'form-control']) }}
+                {{ Form::text('address', null, ['class' => 'form-control-static']) }}
             </div>
         </div>
         @if ($errors->has('address'))
@@ -108,18 +108,18 @@
                 {{ Form::text('postalCode', null, ['class' => 'form-control']) }}
             </div>
         </div>
-        @if ($errors->has('postalCode'))s
+        @if ($errors->has('postalCode'))
             <span class="help-block">
                 <strong>{{ $errors->first('postalCode') }}</strong>
             </span>
         @endif
     </div>    
-    <div class="col-md-4 control-group{{ $errors->has('state') ? ' has-error' : '' }}">
+    <div class="col-md-4 {{ $errors->has('state') ? ' has-error' : '' }}">
         <div class="row">
             <div class="input-field col-md-12">
                 <i class="material-icons prefix">person_pin_circle</i>
                 {{ Form::label('state', 'Provincia') }}
-                {{ Form::text('state', null, ['class' => 'form-control']) }}
+                <input id="state" type="text" >
             </div>
         </div>
         @if ($errors->has('state'))
@@ -128,12 +128,13 @@
             </span>
         @endif
     </div>
-        <div class="col-md-4 control-group{{ $errors->has('city') ? ' has-error' : '' }}">
+        <div class="col-md-4 form-group{{ $errors->has('city') ? ' has-error' : '' }}">
         <div class="row">
-            <div class="input-field col-md-12">
+            <div class="col-md-5">
                 <i class="material-icons prefix">person_pin_circle</i>
                 {{ Form::label('city', 'Población') }}
-                {{ Form::text('city', null, ['class' => 'form-control']) }}
+                {{ Form::select('city', [], null,['class' => 'form-control ',  'style'=> 'border:solid 1px lightgrey;', 'id' => 'city']) }}
+               
             </div>
         </div>
         @if ($errors->has('city'))
@@ -142,7 +143,8 @@
             </span>
         @endif
     </div>
-            <div style="text-align: center;"class="col-md-12" id="resultado"></div>
+
+            
    </fieldset>
 
 

@@ -11,39 +11,9 @@
 
     {{-- Incluimos lo necesario para la peticion Ajax --}}
     <script src="/js/ajax/cycles.js" charset="utf-8"></script>
-    <script>
-    $(document).ready(function(){
-                                
-        var consulta;
-                                                                          
-         //hacemos focus al campo de búsqueda
-        $("#postalCode").focus();
-                                                                                                    
-        //comprobamos si se pulsa una tecla
-        $("#postalCode").keyup(function(e){
-               e.preventDefault();                      
-              //obtenemos el texto introducido en el campo de búsqueda
-              consulta = $("#postalCode").val();
-              console.log(consulta);                                                             
-              //hace la búsqueda
-                                                                                
-               $.ajax({
-                data:  consulta,
-                url:   'buscar',
-                type:  'post',
-                dataType:'json',
-                beforeSend: function () {
-                        $("#resultado").html("Procesando, espere por favor...");
-                },
-                success:  function (data) {
-                $("#cities").html(data.states);
-                }
-        });
-                                                                                  
-                                                                           
-        });
-                                                                   
-});</script>
+    <script src="/js/buscadorCP.js" charset="utf-8"></script>
+  
+
 @endsection
 @section('content')
 @include('partials.nav.navEstudiante')

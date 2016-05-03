@@ -139,3 +139,4 @@ Route::group(['prefix' => 'uso', 'middleware' => 'web', 'namespace' => 'Uso'], f
     Route::resource(config('routes.index'), 'UsoController');
 
 });
+Route::post('buscarCodPostal','Student\StudentsController@buscarCodPostal');
