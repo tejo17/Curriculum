@@ -27,7 +27,6 @@ class StudentsController extends UsersController
             'dni'               => 'required',
             'nre'               => 'digits:7',
             'phone'             => 'required|digits_between:9,13',
-            'road'              => 'required',
             'address'           => 'required|between:6,225',
             'codPostal'         => 'digits:5',
             // El nombre es debido a datepicker
