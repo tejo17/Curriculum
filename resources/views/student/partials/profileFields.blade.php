@@ -28,20 +28,6 @@
                 </span>
             @endif
     </div>
-     <div class=" col-md-6 control-group{{ $errors->has('nationality') ? ' has-error' : '' }}">
-        <div class="row">
-            <div class="input-field col-md-12">
-                <i class="material-icons prefix">account_circle</i>
-                {{ Form::text('nationality', null,['id' => "nationality"]) }}
-                {{ Form::label('nationality', 'Nacionalidad') }}
-            </div>
-        </div>
-            @if ($errors->has('nationality'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('nationality') }}</strong>
-                </span>
-            @endif
-    </div>
     <div class="col-md-6 control-group{{ $errors->has('dni') ? ' has-error' : '' }}">
         <div class="row">
             <div class="input-field col-md-12">
@@ -98,8 +84,7 @@
             </span>
         @endif
     </div>
-
-     <fieldset style="clear:both">    
+     <fieldset>    
     <legend style="width:auto;">Direccion</legend>
     <div class="control-group{{ $errors->has('address') ? ' has-error' : '' }}">
         <div class="row">
@@ -115,7 +100,7 @@
             </span>
         @endif
     </div>
-    <div class="col-md-4 control-group{{ $errors->has('postalCode') ? ' has-error' : '' }}"style="margin-left:-15px;">
+    <div class="col-md-4 control-group{{ $errors->has('postalCode') ? ' has-error' : '' }}">
         <div class="row">
             <div class="input-field col-md-12">
                 <i class="material-icons prefix">person_pin_circle</i>
@@ -131,13 +116,12 @@
     </div>    
     <div class="col-md-4 {{ $errors->has('state') ? ' has-error' : '' }}">
         <div class="row">
-            
             <div class="input-field col-md-12">
-          <input placeholder="" id="state" type="text" class="validate" readonly>
-          <label for="state">Provincia</label>
+                <i class="material-icons prefix">person_pin_circle</i>
+                {{ Form::label('state', 'Provincia') }}
+                <input id="state" type="text" >
+            </div>
         </div>
-        </div>
-
         @if ($errors->has('state'))
             <span class="help-block">
                 <strong>{{ $errors->first('state') }}</strong>
@@ -147,7 +131,7 @@
         <div class="col-md-4 form-group{{ $errors->has('city') ? ' has-error' : '' }}">
         <div class="row">
             <div class="col-md-12">
-                
+                <i class="material-icons prefix">person_pin_circle</i>
                 {{ Form::label('city', 'Población') }}
                 {{ Form::select('city', [], null,['class' => 'form-control ',  'style'=> 'border:solid 1px lightgrey;', 'id' => 'city']) }}
                

@@ -181,7 +181,7 @@ return [
        Intervention\Image\ImageServiceProvider::class,
 
         // Librerías barra de debug
-       Barryvdh\Debugbar\ServiceProvider::class,
+      // Barryvdh\Debugbar\ServiceProvider::class,
 
     ],
 
@@ -241,6 +241,7 @@ return [
 
         'Form'      => Collective\Html\FormFacade::class,
         'Html'      => Collective\Html\HtmlFacade::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
 ];

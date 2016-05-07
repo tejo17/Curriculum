@@ -2,9 +2,6 @@ $(document).ready(function() {
 
     var consulta;
 
-    //hacemos focus al campo de búsqueda
-    $("#postalCode").focus();
-
 
     //comprobamos si se pulsa una tecla
     $("#postalCode").keyup(function(e) {
@@ -30,15 +27,18 @@ $(document).ready(function() {
 
                 $("#state").val(data.provincia);
                 if (($("#postalCode").val()).length == 5) {
-                    $("#state").focus();
+                    
                     for (var i = 0; i < data.ciudades.length; i++) {
 
                         $("#city").append('<option "value="' + data.ciudades[i] + '"selected>' + data.ciudades[i] + '</option>');
                     }
-                    $("#postalCode").change(function() {});
-                    $("#city").focus();
-                    $("#resultado").html("");
-                } 
+                    $("#postalCode").keyup(function() {
+                        $("#city").empty();
+                    });
+                   
+                } /*else {
+                    $("#city").empty();
+                }*/
 
             }
 

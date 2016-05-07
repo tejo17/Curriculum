@@ -86,7 +86,7 @@ class AuthController extends Controller
                                         ->first();
             
             // Si no esta verificado ...
-            if(!$verifiedStudent){
+            if($verifiedStudent){
                 dd('No estas verificado estudiante');
                 // Rellenar si el estudiante no esta validado
             }
