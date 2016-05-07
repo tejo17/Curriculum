@@ -22,20 +22,12 @@ class CreateStudentsTable extends Migration
             $table->string('address', 255)->comment('Direccion del estudiante');
             $table->string('curriculum', 255)->comment('Ruta del curriculum del estudiante');
             $table->date('birthdate','Y-m-d')->comment('Fecha de nacimiento del estudiante');
-
-            // Campo de los estudiantes que será el
-            // que permita la actualización del perfil
-            // de forma que cuando ellos hagan click en el enlace
-            // nosotros actualizaremos este campo sumandoles 1 número más
-            // lo cual modificará el registro y actualizara
-            // la fecha de modificado, la cual tomaremos como referencia
-            // para calcular el tope de 5 años de inactividad.
-            // Este campo también nos permite saber cuantas veces el
-            // alumno a querido actualizar el perfil por cuenta propia.
-            $table->integer('updates')->comment('Numero de veces que el alumno ha actualizado un perfil')->unsigned()->default(0);
-            $table->integer('city_id',10)->comment('Identificador de los datos de usuario del estudiante')->unsigned();
+            $table->string('nationality', 20)->comment('Nacionalidad del estudiante, por si el curriculum es para estudiar en el extranjero');
             $table->integer('user_id')->comment('Identificador de los datos de usuario del estudiante')->unsigned();
+            $table->integer('city_id')->comment('Identificador de la ciudad del estudiante')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            
+            $table->foreign('city_id')->references('id')->on('cities')->onUpdate('cascade');
             $table->timestamps();
             $table->softDeletes();
         });
