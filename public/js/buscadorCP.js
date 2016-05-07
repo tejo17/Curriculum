@@ -38,9 +38,7 @@ $(document).ready(function() {
                     $("#postalCode").change(function() {});
                     $("#city").focus();
                     $("#resultado").html("");
-                } else {
-                    $("#city").empty();
-                }
+                } 
 
             }
 
