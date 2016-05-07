@@ -19,7 +19,6 @@ class CreateStudentsTable extends Migration
             $table->string('dni', 9)->comment('DNI/NIE del estudiante')->unique();
             $table->string('nre', 10)->comment('NRE del estudiante')->unique()->nullable();
             $table->string('phone', 12)->comment('Telefono del estudiante');
-            $table->enum('road', ['Alameda','Alto','Avenida','Bulevar','Camino','Calle','Carrera','Callejon','Corredera','Costanilla','Cuesta','Carretera','Paseo','Pista','Pasaje','Rambla','Rinconada','Ronda','Senda','Travesia','Via','Glorieta','Plaza','Plazoleta','Plazuela','Rotonda'])->comment('Tipo de via de residencia del estudiante');
             $table->string('address', 255)->comment('Direccion del estudiante');
             $table->string('curriculum', 255)->comment('Ruta del curriculum del estudiante');
             $table->date('birthdate','Y-m-d')->comment('Fecha de nacimiento del estudiante');
@@ -34,7 +33,7 @@ class CreateStudentsTable extends Migration
             // Este campo también nos permite saber cuantas veces el
             // alumno a querido actualizar el perfil por cuenta propia.
             $table->integer('updates')->comment('Numero de veces que el alumno ha actualizado un perfil')->unsigned()->default(0);
-
+            $table->integer('city_id',10)->comment('Identificador de los datos de usuario del estudiante')->unsigned();
             $table->integer('user_id')->comment('Identificador de los datos de usuario del estudiante')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();

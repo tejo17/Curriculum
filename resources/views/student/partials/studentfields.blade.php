@@ -130,7 +130,7 @@
     </div>
         <div class="col-md-4 form-group{{ $errors->has('city') ? ' has-error' : '' }}">
         <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-12">
                 <i class="material-icons prefix">person_pin_circle</i>
                 {{ Form::label('city', 'Población') }}
                 {{ Form::select('city', [], null,['class' => 'form-control ',  'style'=> 'border:solid 1px lightgrey;', 'id' => 'city']) }}

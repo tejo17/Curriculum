@@ -16,7 +16,7 @@ class CreateProfessionalExperiencesTable extends Migration
             $table->increments('id', 10)->comment('Identificador del oficio del usuario');
             $table->string('enterprise', 200)->comment('Empresa en la que trabaja o ha trabajado el usuario');
             $table->text('description')->comment('Descripcion del oficio realizado')->nullable(); 
-            $table->string('job', 5)->comment('Nombre del empleo'); 
+            $table->string('job', 100)->comment('Nombre del empleo'); 
             $table->date('from', 'Ymd')->comment('Fecha de inicio del empleo');
             $table->date('to', 'Ymd')->comment('Fecha fin del empleo')->nullable();
             $table->integer('city_id')->unsigned()->comment('Identificador de la ciudad en la que obtuvo el curso el usuario'); 

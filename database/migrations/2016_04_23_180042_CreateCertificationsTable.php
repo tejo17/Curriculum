@@ -16,8 +16,6 @@ class CreateCertificationsTable extends Migration
             $table->increments('id', 10)->comment('Identificador de la certificacion del usuario');
             $table->string('certification', 200)->comment('Nombre de la certificacion obtenida por el usuario');
             $table->string('description', 250)->comment('Breve descripcion de la certificacion')->nullable(); 
-            $table->string('credits', 5)->comment('Creditos obtenidos por la certificacion del usuario')->nullable(); 
-            $table->string('duration', 4)->comment('Duracion de la certificacion del usuario')->nullable();
             $table->string('institution', 200)->comment('Institucion en la que obtiene la certificacion el usuario');   
             $table->integer('city_id')->unsigned()->comment('Identificador de la ciudad en la que obtuvo el curso el usuario'); 
             $table->integer('state_id')->unsigned()->comment('Identificador de la provincia en la que obtuvo el curso el usuarioo');  
