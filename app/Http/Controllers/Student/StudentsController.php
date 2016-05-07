@@ -111,12 +111,12 @@ class StudentsController extends UsersController
            
 
             $arrayDatos["postalCode"] = "";
-             //var_dump($arrayDatos);
+           
             $arrayDatos["city_id"] = "$city_id";
             var_dump($arrayDatos);
 
-            //var_dump($arrayDatos);
             $insert = Student::create($arrayDatos);
+            
         } catch(\PDOException $e){
             //dd($e);
             abort(500);
