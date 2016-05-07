@@ -510,16 +510,17 @@ class OurUsersSeeder extends Seeder
 
         // Inserción de Student1 (student)
         $student_id = \DB::table('students')->insertGetId([
-        	'firstName' => mb_strtolower('Eduardo Student'),
+        	'firstName' => mb_strtolower('Edu Student'),
         	'lastName' => mb_strtolower('López Pardo'),
         	'dni' => mb_strtoupper('13195649C'),
         	'nre' => '1234567',
         	'phone' => '666666673',
-        	'road' => 'Alto',
         	'address' => 'Rio Ring, 3',
         	'curriculum' => '/storage/app/curriculums/eduardo-' . date('d-m-Y') . '/curriculum1-' . date('dmY') . '.pdf',
         	'birthdate' => '1995-11-09',
+            'nationality' => 'español',
         	'user_id' => $user_ids[12],
+            'city_id' => 12,
             'created_at' => date('YmdHms'),
             'updated_at' => date('YmdHms'),
         ]);
@@ -533,11 +534,12 @@ class OurUsersSeeder extends Seeder
         	'dni' => mb_strtoupper('74053121K'),
         	'nre' => '2345678',
         	'phone' => '666666674',
-        	'road' => 'Rambla',
         	'address' => 'Santa Maria, 1 1ºC Escalera sur',
         	'curriculum' => '/storage/app/curriculums/emmanuel-' . date('d-m-Y') . '/curriculum21-' . date('dmY') . '.pdf',
         	'birthdate' => '1992-06-09',
-        	'user_id' => $user_ids[13],
+            'nationality' => 'español',
+            'user_id' => $user_ids[13],
+            'city_id' => 13,
             'created_at' => date('YmdHms'),
             'updated_at' => date('YmdHms')
         ]);
@@ -551,11 +553,12 @@ class OurUsersSeeder extends Seeder
         	'dni' => mb_strtoupper('85381923N'),
         	'nre' => '3456789',
         	'phone' => '666666675',
-        	'road' => 'Camino',
         	'address' => 'Constitucion, 4 4ºA escalera norte',
         	'curriculum' => '/storage/app/curriculums/pedro-' . date('d-m-Y') . '/curriculum31-' . date('dmY') . '.pdf',
         	'birthdate' => '1992-04-17',
+            'nationality' => 'español',
         	'user_id' => $user_ids[14],
+            'city_id' => 14,
             'created_at' => date('YmdHms'),
             'updated_at' => date('YmdHms')
         ]);
@@ -569,11 +572,12 @@ class OurUsersSeeder extends Seeder
         	'dni' => mb_strtoupper('04084612L'),
         	'nre' => '4567890',
         	'phone' => '666666676',
-        	'road' => 'Alameda',
         	'address' => 'Girona, 3 4ºC',
         	'curriculum' => '/storage/app/curriculums/fernando-' . date('d-m-Y') . '/curriculum41-' . date('dmY') . '.pdf',
         	'birthdate' => '1987-08-20',
+            'nationality' => 'español',
         	'user_id' => $user_ids[15],
+            'city_id' => 129,
             'created_at' => date('YmdHms'),
             'updated_at' => date('YmdHms')
         ]);
@@ -587,11 +591,12 @@ class OurUsersSeeder extends Seeder
         	'dni' => mb_strtoupper('05493598W'),
         	'nre' => '5678901',
         	'phone' => '666666677',
-        	'road' => 'Bulevar',
         	'address' => 'Rio Pisuerga, 8 1ºB',
         	'curriculum' => '/storage/app/curriculums/abel-' . date('d-m-Y') . '/curriculum5-' . date('dmY') . '.pdf',
         	'birthdate' => '1984-11-17',
+            'nationality' => 'rumano',
         	'user_id' => $user_ids[16],
+            'city_id' => 122,
             'created_at' => date('YmdHms'),
             'updated_at' => date('YmdHms')
         ]);
@@ -605,11 +610,12 @@ class OurUsersSeeder extends Seeder
         	'dni' => mb_strtoupper('15915280Q'),
         	'nre' => '6789012',
         	'phone' => '666666678',
-        	'road' => 'Plazuela',
         	'address' => 'Marques de rozalejo, 9',
         	'curriculum' => '/storage/app/curriculums/carlos-' . date('d-m-Y') . '/curriculum6-' . date('dmY') . '.pdf',
         	'birthdate' => '1990-01-06',
+            'nationality' => 'español',
         	'user_id' => $user_ids[17],
+            'city_id' => 121,
             'created_at' => date('YmdHms'),
             'updated_at' => date('YmdHms')
         ]);
@@ -792,721 +798,5 @@ class OurUsersSeeder extends Seeder
         $enterprise_ids[$cont_enterprise] = $enterprise_id;
         $cont_enterprise++;
 
-/*
- * <<<<<<------------------------------------------------>>>>>>
- * <<<<<<-INSERCION DE USUARIOS VERIFICADOS Y NO ACTIVOS->>>>>>
- * <<<<<<------------------------------------------------>>>>>>
- */
-
-		$verifiedEmail = true;
-        $active = false;
-        $rol = 'administrador';
-
-        // Inserción del usuario Admin7 (Pendiente de activacion)
-        $user_id = \DB::table('users')->insertGetId([
-        	'email' => mb_strtolower('Prueba1@admin.com'),
-        	'password' => \Hash::make($pass),
-        	'code' => $code_generated[$cont_user],
-        	'verifiedEmail' => $verifiedEmail,
-        	'rol' => $rol,
-            'image' => $faker->randomElement(['default_1.png', 'default_2.png', 'default_3.png', 'default_4.png', 'default_5.png', 'default_6.png', 'default_7.png', 'default_8.png', 'default_9.png', 'default_10.png', 'default_11.png']),
-            'carpeta' => $code_generated[$cont_user],
-        	'active' => $active,
-            'created_at' => date('YmdHms')
-        ]);
-        $user_ids[$cont_user] = $user_id;
-        $cont_user++;
-
-        // Inserción del usuario Admin8 (Pendiente de activacion)
-        $user_id = \DB::table('users')->insertGetId([
-        	'email' => mb_strtolower('Prueba2@admin.com'),
-        	'password' => \Hash::make($pass),
-        	'code' => $code_generated[$cont_user],
-        	'verifiedEmail' => $verifiedEmail,
-        	'rol' => $rol,
-            'image' => $faker->randomElement(['default_1.png', 'default_2.png', 'default_3.png', 'default_4.png', 'default_5.png', 'default_6.png', 'default_7.png', 'default_8.png', 'default_9.png', 'default_10.png', 'default_11.png']),
-            'carpeta' => $code_generated[$cont_user],
-        	'active' => $active,
-            'created_at' => date('YmdHms')
-        ]);
-        $user_ids[$cont_user] = $user_id;
-        $cont_user++;
-
-        // Inserción del usuario Admin9 (Pendiente de activacion)
-        $user_id = \DB::table('users')->insertGetId([
-        	'email' => mb_strtolower('Prueba3@admin.com'),
-        	'password' => \Hash::make($pass),
-        	'code' => $code_generated[$cont_user],
-        	'verifiedEmail' => $verifiedEmail,
-        	'rol' => $rol,
-            'image' => $faker->randomElement(['default_1.png', 'default_2.png', 'default_3.png', 'default_4.png', 'default_5.png', 'default_6.png', 'default_7.png', 'default_8.png', 'default_9.png', 'default_10.png', 'default_11.png']),
-            'carpeta' => $code_generated[$cont_user],
-        	'active' => $active,
-            'created_at' => date('YmdHms')
-        ]);
-        $user_ids[$cont_user] = $user_id;
-        $cont_user++;
-
-        // Inserción de Admin7 (admin)
-        $teacher_id = \DB::table('teachers')->insertGetId([
-        	'firstName' => mb_strtolower('Prueba1 Admin'),
-        	'lastName' => mb_strtolower('Uno sin activar'),
-        	'dni' => mb_strtoupper('82562226T'),
-        	'phone' => '666666679',
-        	'user_id' => $user_ids[24],
-            'created_at' => date('YmdHms')
-        ]);
-        $teacher_ids[$cont_teacher] = $teacher_id;
-        $cont_teacher++;
-
-        // Inserción de Admin8 (admin)
-        $teacher_id = \DB::table('teachers')->insertGetId([
-        	'firstName' => mb_strtolower('Prueba2 Admin'),
-        	'lastName' => mb_strtolower('Dos sin activar'),
-        	'dni' => mb_strtoupper('98962211L'),
-        	'phone' => '666666680',
-        	'user_id' => $user_ids[25],
-            'created_at' => date('YmdHms')
-        ]);
-        $teacher_ids[$cont_teacher] = $teacher_id;
-        $cont_teacher++;
-
-        // Inserción de Admin9 (admin)
-        $teacher_id = \DB::table('teachers')->insertGetId([
-        	'firstName' => mb_strtolower('Prueba3 Admin'),
-        	'lastName' => mb_strtolower('Tres sin activar'),
-        	'dni' => mb_strtoupper('68999560C'),
-        	'phone' => '666666681',
-        	'user_id' => $user_ids[26],
-            'created_at' => date('YmdHms')
-        ]);
-        $teacher_ids[$cont_teacher] = $teacher_id;
-        $cont_teacher++;
-
-        $rol = 'profesor';
-
-        // Inserción del usuario Teacher7 (Pendiente de activacion)
-        $user_id = \DB::table('users')->insertGetId([
-        	'email' => mb_strtolower('Prueba1@teacher.com'),
-        	'password' => \Hash::make($pass),
-        	'code' => $code_generated[$cont_user],
-        	'verifiedEmail' => $verifiedEmail,
-        	'rol' => $rol,
-            'image' => $faker->randomElement(['default_1.png', 'default_2.png', 'default_3.png', 'default_4.png', 'default_5.png', 'default_6.png', 'default_7.png', 'default_8.png', 'default_9.png', 'default_10.png', 'default_11.png']),
-            'carpeta' => $code_generated[$cont_user],
-        	'active' => $active,
-            'created_at' => date('YmdHms')
-        ]);
-        $user_ids[$cont_user] = $user_id;
-        $cont_user++;
-
-        // Inserción del usuario Teacher8 (Pendiente de activacion)
-        $user_id = \DB::table('users')->insertGetId([
-        	'email' => mb_strtolower('Prueba2@teacher.com'),
-        	'password' => \Hash::make($pass),
-        	'code' => $code_generated[$cont_user],
-        	'verifiedEmail' => $verifiedEmail,
-        	'rol' => $rol,
-            'image' => $faker->randomElement(['default_1.png', 'default_2.png', 'default_3.png', 'default_4.png', 'default_5.png', 'default_6.png', 'default_7.png', 'default_8.png', 'default_9.png', 'default_10.png', 'default_11.png']),
-            'carpeta' => $code_generated[$cont_user],
-        	'active' => $active,
-            'created_at' => date('YmdHms')
-        ]);
-        $user_ids[$cont_user] = $user_id;
-        $cont_user++;
-
-        // Inserción del usuario Teacher9 (Pendiente de activacion)
-        $user_id = \DB::table('users')->insertGetId([
-        	'email' => mb_strtolower('Prueba3@teacher.com'),
-        	'password' => \Hash::make($pass),
-        	'code' => $code_generated[$cont_user],
-        	'verifiedEmail' => $verifiedEmail,
-        	'rol' => $rol,
-            'image' => $faker->randomElement(['default_1.png', 'default_2.png', 'default_3.png', 'default_4.png', 'default_5.png', 'default_6.png', 'default_7.png', 'default_8.png', 'default_9.png', 'default_10.png', 'default_11.png']),
-            'carpeta' => $code_generated[$cont_user],
-        	'active' => $active,
-            'created_at' => date('YmdHms')
-        ]);
-        $user_ids[$cont_user] = $user_id;
-        $cont_user++;
-
-        // Inserción de Teacher7 (teacher)
-        $teacher_id = \DB::table('teachers')->insertGetId([
-        	'firstName' => mb_strtolower('Prueba1 Teacher'),
-        	'lastName' => mb_strtolower('Uno sin activar'),
-        	'dni' => mb_strtoupper('63163636R'),
-        	'phone' => '666666682',
-        	'user_id' => $user_ids[27],
-            'created_at' => date('YmdHms')
-        ]);
-        $teacher_ids[$cont_teacher] = $teacher_id;
-        $cont_teacher++;
-
-        // Inserción de Teacher8 (teacher)
-        $teacher_id = \DB::table('teachers')->insertGetId([
-        	'firstName' => mb_strtolower('Prueba2 Teacher'),
-        	'lastName' => mb_strtolower('Dos sin activar'),
-        	'dni' => mb_strtoupper('54529857P'),
-        	'phone' => '666666683',
-        	'user_id' => $user_ids[28],
-            'created_at' => date('YmdHms')
-        ]);
-        $teacher_ids[$cont_teacher] = $teacher_id;
-        $cont_teacher++;
-
-        // Inserción de Teacher9 (teacher)
-        $teacher_id = \DB::table('teachers')->insertGetId([
-        	'firstName' => mb_strtolower('Prueba3 Teacher'),
-        	'lastName' => mb_strtolower('Tres sin activar'),
-        	'dni' => mb_strtoupper('19927079V'),
-        	'phone' => '666666684',
-        	'user_id' => $user_ids[29],
-            'created_at' => date('YmdHms')
-        ]);
-        $teacher_ids[$cont_teacher] = $teacher_id;
-        $cont_teacher++;
-
-        $rol = 'estudiante';
-
-        // Inserción del usuario Student7 (Pendiente de activacion)
-        $user_id = \DB::table('users')->insertGetId([
-        	'email' => mb_strtolower('Prueba1@Student.com'),
-        	'password' => \Hash::make($pass),
-        	'code' => $code_generated[$cont_user],
-        	'verifiedEmail' => $verifiedEmail,
-        	'rol' => $rol,
-            'image' => $faker->randomElement(['default_1.png', 'default_2.png', 'default_3.png', 'default_4.png', 'default_5.png', 'default_6.png', 'default_7.png', 'default_8.png', 'default_9.png', 'default_10.png', 'default_11.png']),
-            'carpeta' => $code_generated[$cont_user],
-        	'active' => $active,
-            'created_at' => date('YmdHms')
-        ]);
-        $user_ids[$cont_user] = $user_id;
-        $cont_user++;
-
-        // Inserción del usuario Student8 (Pendiente de activacion)
-        $user_id = \DB::table('users')->insertGetId([
-        	'email' => mb_strtolower('Prueba2@Student.com'),
-        	'password' => \Hash::make($pass),
-        	'code' => $code_generated[$cont_user],
-        	'verifiedEmail' => $verifiedEmail,
-        	'rol' => $rol,
-            'image' => $faker->randomElement(['default_1.png', 'default_2.png', 'default_3.png', 'default_4.png', 'default_5.png', 'default_6.png', 'default_7.png', 'default_8.png', 'default_9.png', 'default_10.png', 'default_11.png']),
-            'carpeta' => $code_generated[$cont_user],
-        	'active' => $active,
-            'created_at' => date('YmdHms')
-        ]);
-        $user_ids[$cont_user] = $user_id;
-        $cont_user++;
-
-        // Inserción del usuario Student9 (Pendiente de activacion)
-        $user_id = \DB::table('users')->insertGetId([
-        	'email' => mb_strtolower('Prueba3@Student.com'),
-        	'password' => \Hash::make($pass),
-        	'code' => $code_generated[$cont_user],
-        	'verifiedEmail' => $verifiedEmail,
-        	'rol' => $rol,
-            'image' => $faker->randomElement(['default_1.png', 'default_2.png', 'default_3.png', 'default_4.png', 'default_5.png', 'default_6.png', 'default_7.png', 'default_8.png', 'default_9.png', 'default_10.png', 'default_11.png']),
-            'carpeta' => $code_generated[$cont_user],
-        	'active' => $active,
-            'created_at' => date('YmdHms')
-        ]);
-        $user_ids[$cont_user] = $user_id;
-        $cont_user++;
-
-		// Inserción de Student7 (student)
-        $student_id = \DB::table('students')->insertGetId([
-        	'firstName' => mb_strtolower('Prueba1 Student'),
-        	'lastName' => mb_strtolower('Uno sin activar'),
-        	'dni' => mb_strtoupper('68815938F'),
-        	'nre' => '7890123',
-        	'phone' => '666666685',
-        	'road' => 'Pasaje',
-        	'address' => 'Mariano Sanz, S/N 3ºB',
-        	'curriculum' => '/storage/app/curriculums/prueba1-' . date('d-m-Y') . '/curriculum7-' . date('dmY') . '.pdf',
-        	'birthdate' => '1974-07-19',
-        	'user_id' => $user_ids[30],
-            'created_at' => date('YmdHms'),
-            'updated_at' => date('YmdHms')
-        ]);
-        $student_ids[$cont_student] = $student_id;
-        $cont_student++;
-
-        // Inserción de Student8 (student)
-        $student_id = \DB::table('students')->insertGetId([
-        	'firstName' => mb_strtolower('Prueba2 Student'),
-        	'lastName' => mb_strtolower('Dos sin activar'),
-        	'dni' => mb_strtoupper('02460255Z'),
-        	'nre' => '8901234',
-        	'phone' => '666666686',
-        	'road' => 'Pista',
-        	'address' => 'Don Federico Trujillo, 125 10ºD',
-        	'curriculum' => '/storage/app/curriculums/prueba2-' . date('d-m-Y') . '/curriculum81-' . date('dmY') . '.pdf',
-        	'birthdate' => '1966-11-17',
-        	'user_id' => $user_ids[31],
-            'created_at' => date('YmdHms'),
-            'updated_at' => date('YmdHms')
-        ]);
-        $student_ids[$cont_student] = $student_id;
-        $cont_student++;
-
-        // Inserción de Student9 (student)
-        $student_id = \DB::table('students')->insertGetId([
-        	'firstName' => mb_strtolower('Prueba3 Student'),
-        	'lastName' => mb_strtolower('Tres sin activar'),
-        	'dni' => mb_strtoupper('98554069N'),
-        	'nre' => '9012345',
-        	'phone' => '666666687',
-        	'road' => 'Paseo',
-        	'address' => 'Mi casa de campo, 16',
-        	'curriculum' => '/storage/app/curriculums/prueba3-' . date('d-m-Y') . '/curriculum91-' . date('dmY') . '.pdf',
-        	'birthdate' => '1978-08-10',
-        	'user_id' => $user_ids[32],
-            'created_at' => date('YmdHms'),
-            'updated_at' => date('YmdHms')
-        ]);
-        $student_ids[$cont_student] = $student_id;
-        $cont_student++;
-
-        $rol = 'empresa';
-
-        // Inserción del usuario Enterprise7 (Pendiente de activacion)
-        $user_id = \DB::table('users')->insertGetId([
-        	'email' => mb_strtolower('Prueba1@enterprise.com'),
-        	'password' => \Hash::make($pass),
-        	'code' => $code_generated[$cont_user],
-        	'verifiedEmail' => $verifiedEmail,
-        	'rol' => $rol,
-            'image' => $faker->randomElement(['default_1.png', 'default_2.png', 'default_3.png', 'default_4.png', 'default_5.png', 'default_6.png', 'default_7.png', 'default_8.png', 'default_9.png', 'default_10.png', 'default_11.png']),
-            'carpeta' => $code_generated[$cont_user],
-        	'active' => $active,
-            'created_at' => date('YmdHms')
-        ]);
-        $user_ids[$cont_user] = $user_id;
-        $cont_user++;
-
-        // Inserción del usuario Enterprise8 (Pendiente de activacion)
-        $user_id = \DB::table('users')->insertGetId([
-        	'email' => mb_strtolower('Prueba2@enterprise.com'),
-        	'password' => \Hash::make($pass),
-        	'code' => $code_generated[$cont_user],
-        	'verifiedEmail' => $verifiedEmail,
-        	'rol' => $rol,
-            'image' => $faker->randomElement(['default_1.png', 'default_2.png', 'default_3.png', 'default_4.png', 'default_5.png', 'default_6.png', 'default_7.png', 'default_8.png', 'default_9.png', 'default_10.png', 'default_11.png']),
-            'carpeta' => $code_generated[$cont_user],
-        	'active' => $active,
-            'created_at' => date('YmdHms')
-        ]);
-        $user_ids[$cont_user] = $user_id;
-        $cont_user++;
-
-        // Inserción del usuario Enterprise9 (Pendiente de activacion)
-        $user_id = \DB::table('users')->insertGetId([
-        	'email' => mb_strtolower('Prueba3@enterprise.com'),
-        	'password' => \Hash::make($pass),
-        	'code' => $code_generated[$cont_user],
-        	'verifiedEmail' => $verifiedEmail,
-        	'rol' => $rol,
-            'image' => $faker->randomElement(['default_1.png', 'default_2.png', 'default_3.png', 'default_4.png', 'default_5.png', 'default_6.png', 'default_7.png', 'default_8.png', 'default_9.png', 'default_10.png', 'default_11.png']),
-            'carpeta' => $code_generated[$cont_user],
-        	'active' => $active,
-            'created_at' => date('YmdHms')
-        ]);
-        $user_ids[$cont_user] = $user_id;
-        $cont_user++;
-
-		// Inserción de Enterprise7 (enterprise)
-        $enterprise_id = \DB::table('enterprises')->insertGetId([
-        	'name' => mb_strtolower('La pensión de prueba1'),
-        	'cif' => mb_strtoupper('S6420524H'),
-        	'web' => 'http://www.pensionprueba1.com/',
-        	'description' => 'Pensión de pobre para los pobres.',
-        	'user_id' => $user_ids[33],
-            'created_at' => date('YmdHms')
-        ]);
-        $enterprise_ids[$cont_enterprise] = $enterprise_id;
-        $cont_enterprise++;
-
-        // Inserción de Enterprise8 (enterprise)
-        $enterprise_id = \DB::table('enterprises')->insertGetId([
-        	'name' => mb_strtolower('La heladería de prueba2'),
-        	'cif' => mb_strtoupper('D81320566'),
-        	'web' => 'http://www.heladosamontones.com/',
-        	'description' => 'Todo tipo de helados ¡sólo en invierno!',
-           	'user_id' => $user_ids[34],
-            'created_at' => date('YmdHms')
-        ]);
-        $enterprise_ids[$cont_enterprise] = $enterprise_id;
-        $cont_enterprise++;
-
-        // Inserción de Enterprise9 (enterprise)
-        $enterprise_id = \DB::table('enterprises')->insertGetId([
-        	'name' => mb_strtolower('El asador de prueba3'),
-        	'cif' => mb_strtoupper('J1260117E'),
-        	'web' => 'https://www.elasador.es/',
-        	'description' => 'Asamos todo tipo de carnes (oso, búfalo, spetec marca mercadona... ).',
-        	'user_id' => $user_ids[35],
-            'created_at' => date('YmdHms')
-        ]);
-        $enterprise_ids[$cont_enterprise] = $enterprise_id;
-        $cont_enterprise++;
-
-/*
- * <<<<<<------------------------------------------------>>>>>>
- * <<<<<<-INSERCION DE USUARIOS SIN VERIFICAR NI ACTIVAR->>>>>>
- * <<<<<<------------------------------------------------>>>>>>
- */
-
-		$verifiedEmail = false;
-        $active = false;
-        $rol = 'administrador';
-
-        // Inserción del usuario Admin10 (Pendiente de validación de email y activación)
-        $user_id = \DB::table('users')->insertGetId([
-        	'email' => mb_strtolower('iescierva_daw37@hotmail.com'),
-        	'password' => \Hash::make($pass),
-        	'code' => $code_generated[$cont_user],
-        	'verifiedEmail' => $verifiedEmail,
-        	'rol' => $rol,
-            'image' => $faker->randomElement(['default_1.png', 'default_2.png', 'default_3.png', 'default_4.png', 'default_5.png', 'default_6.png', 'default_7.png', 'default_8.png', 'default_9.png', 'default_10.png', 'default_11.png']),
-            'carpeta' => $code_generated[$cont_user],
-        	'active' => $active,
-            'created_at' => date('YmdHms')
-        ]);
-        $user_ids[$cont_user] = $user_id;
-        $cont_user++;
-
-        // Inserción del usuario Admin11 (Pendiente de validación de email y activación)
-        $user_id = \DB::table('users')->insertGetId([
-        	'email' => mb_strtolower('iescierva_daw38@hotmail.com'),
-        	'password' => \Hash::make($pass),
-        	'code' => $code_generated[$cont_user],
-        	'verifiedEmail' => $verifiedEmail,
-        	'rol' => $rol,
-            'image' => $faker->randomElement(['default_1.png', 'default_2.png', 'default_3.png', 'default_4.png', 'default_5.png', 'default_6.png', 'default_7.png', 'default_8.png', 'default_9.png', 'default_10.png', 'default_11.png']),
-            'carpeta' => $code_generated[$cont_user],
-        	'active' => $active,
-            'created_at' => date('YmdHms')
-        ]);
-        $user_ids[$cont_user] = $user_id;
-        $cont_user++;
-
-        // Inserción del usuario Admin12 (Pendiente de validación de email y activación)
-        $user_id = \DB::table('users')->insertGetId([
-        	'email' => mb_strtolower('iescierva_daw39@hotmail.com'),
-        	'password' => \Hash::make($pass),
-        	'code' => $code_generated[$cont_user],
-        	'verifiedEmail' => $verifiedEmail,
-        	'rol' => $rol,
-            'image' => $faker->randomElement(['default_1.png', 'default_2.png', 'default_3.png', 'default_4.png', 'default_5.png', 'default_6.png', 'default_7.png', 'default_8.png', 'default_9.png', 'default_10.png', 'default_11.png']),
-            'carpeta' => $code_generated[$cont_user],
-        	'active' => $active,
-            'created_at' => date('YmdHms')
-        ]);
-        $user_ids[$cont_user] = $user_id;
-        $cont_user++;
-
-        // Inserción de Admin10 (admin)
-        $teacher_id = \DB::table('teachers')->insertGetId([
-        	'firstName' => mb_strtolower('Prueba4 Admin'),
-        	'lastName' => mb_strtolower('Cuatro sin verificar ni activar'),
-        	'dni' => mb_strtoupper('63721866K'),
-        	'phone' => '666666688',
-        	'user_id' => $user_ids[36],
-            'created_at' => date('YmdHms')
-        ]);
-        $teacher_ids[$cont_teacher] = $teacher_id;
-        $cont_teacher++;
-
-        // Inserción de Admin11 (admin)
-        $teacher_id = \DB::table('teachers')->insertGetId([
-        	'firstName' => mb_strtolower('Prueba5 Admin'),
-        	'lastName' => mb_strtolower('Cinco sin verificar ni activar'),
-        	'dni' => mb_strtoupper('95373581X'),
-        	'phone' => '666666689',
-        	'user_id' => $user_ids[37],
-            'created_at' => date('YmdHms')
-        ]);
-        $teacher_ids[$cont_teacher] = $teacher_id;
-        $cont_teacher++;
-
-        // Inserción de Admin12 (admin)
-        $teacher_id = \DB::table('teachers')->insertGetId([
-        	'firstName' => mb_strtolower('Prueba6 Admin'),
-        	'lastName' => mb_strtolower('Seis sin verificar ni activar'),
-        	'dni' => mb_strtoupper('73823872J'),
-        	'phone' => '666666690',
-        	'user_id' => $user_ids[38],
-            'created_at' => date('YmdHms')
-        ]);
-        $teacher_ids[$cont_teacher] = $teacher_id;
-        $cont_teacher++;
-
-        $rol = 'profesor';
-
-        // Inserción del usuario Teacher10 (Pendiente de validación de email y activación)
-        $user_id = \DB::table('users')->insertGetId([
-        	'email' => mb_strtolower('iescierva_daw40@hotmail.com'),
-        	'password' => \Hash::make($pass),
-        	'code' => $code_generated[$cont_user],
-        	'verifiedEmail' => $verifiedEmail,
-        	'rol' => $rol,
-            'image' => $faker->randomElement(['default_1.png', 'default_2.png', 'default_3.png', 'default_4.png', 'default_5.png', 'default_6.png', 'default_7.png', 'default_8.png', 'default_9.png', 'default_10.png', 'default_11.png']),
-            'carpeta' => $code_generated[$cont_user],
-        	'active' => $active,
-            'created_at' => date('YmdHms')
-        ]);
-        $user_ids[$cont_user] = $user_id;
-        $cont_user++;
-
-        // Inserción del usuario Teacher11 (Pendiente de validación de email y activación)
-        $user_id = \DB::table('users')->insertGetId([
-        	'email' => mb_strtolower('iescierva_daw41@hotmail.com'),
-        	'password' => \Hash::make($pass),
-        	'code' => $code_generated[$cont_user],
-        	'verifiedEmail' => $verifiedEmail,
-        	'rol' => $rol,
-            'image' => $faker->randomElement(['default_1.png', 'default_2.png', 'default_3.png', 'default_4.png', 'default_5.png', 'default_6.png', 'default_7.png', 'default_8.png', 'default_9.png', 'default_10.png', 'default_11.png']),
-            'carpeta' => $code_generated[$cont_user],
-        	'active' => $active,
-            'created_at' => date('YmdHms')
-        ]);
-        $user_ids[$cont_user] = $user_id;
-        $cont_user++;
-
-        // Inserción del usuario Teacher12 (Pendiente de validación de email y activación)
-        $user_id = \DB::table('users')->insertGetId([
-        	'email' => mb_strtolower('iescierva_daw42@hotmail.com'),
-        	'password' => \Hash::make($pass),
-        	'code' => $code_generated[$cont_user],
-        	'verifiedEmail' => $verifiedEmail,
-        	'rol' => $rol,
-            'image' => $faker->randomElement(['default_1.png', 'default_2.png', 'default_3.png', 'default_4.png', 'default_5.png', 'default_6.png', 'default_7.png', 'default_8.png', 'default_9.png', 'default_10.png', 'default_11.png']),
-            'carpeta' => $code_generated[$cont_user],
-        	'active' => $active,
-            'created_at' => date('YmdHms')
-        ]);
-        $user_ids[$cont_user] = $user_id;
-        $cont_user++;
-
-        // Inserción de Teacher10 (teacher)
-        $teacher_id = \DB::table('teachers')->insertGetId([
-        	'firstName' => mb_strtolower('Prueba4 Teacher'),
-        	'lastName' => mb_strtolower('Cuatro sin verificar ni activar'),
-        	'dni' => mb_strtoupper('41234333W'),
-        	'phone' => '666666691',
-        	'user_id' => $user_ids[39],
-            'created_at' => date('YmdHms')
-        ]);
-        $teacher_ids[$cont_teacher] = $teacher_id;
-        $cont_teacher++;
-
-        // Inserción de Teacher11 (teacher)
-        $teacher_id = \DB::table('teachers')->insertGetId([
-        	'firstName' => mb_strtolower('Prueba5 Teacher'),
-        	'lastName' => mb_strtolower('Cinco sin verificar ni activar'),
-        	'dni' => mb_strtoupper('40779802C'),
-        	'phone' => '666666692',
-        	'user_id' => $user_ids[40],
-            'created_at' => date('YmdHms')
-        ]);
-        $teacher_ids[$cont_teacher] = $teacher_id;
-        $cont_teacher++;
-
-        // Inserción de Teacher12 (teacher)
-        $teacher_id = \DB::table('teachers')->insertGetId([
-        	'firstName' => mb_strtolower('Prueba6 Teacher'),
-        	'lastName' => mb_strtolower('Seis sin verificar ni activar'),
-        	'dni' => mb_strtoupper('21516193S'),
-        	'phone' => '666666693',
-        	'user_id' => $user_ids[41],
-            'created_at' => date('YmdHms')
-        ]);
-        $teacher_ids[$cont_teacher] = $teacher_id;
-        $cont_teacher++;
-
-        $rol = 'estudiante';
-
-        // Inserción del usuario Student10 (Pendiente de validación de email y activación)
-        $user_id = \DB::table('users')->insertGetId([
-        	'email' => mb_strtolower('iescierva_daw43@hotmail.com'),
-        	'password' => \Hash::make($pass),
-        	'code' => $code_generated[$cont_user],
-        	'verifiedEmail' => $verifiedEmail,
-        	'rol' => $rol,
-            'image' => $faker->randomElement(['default_1.png', 'default_2.png', 'default_3.png', 'default_4.png', 'default_5.png', 'default_6.png', 'default_7.png', 'default_8.png', 'default_9.png', 'default_10.png', 'default_11.png']),
-            'carpeta' => $code_generated[$cont_user],
-        	'active' => $active,
-            'created_at' => date('YmdHms')
-        ]);
-        $user_ids[$cont_user] = $user_id;
-        $cont_user++;
-
-        // Inserción del usuario Student11 (Pendiente de validación de email y activación)
-        $user_id = \DB::table('users')->insertGetId([
-        	'email' => mb_strtolower('iescierva_daw44@hotmail.com'),
-        	'password' => \Hash::make($pass),
-        	'code' => $code_generated[$cont_user],
-        	'verifiedEmail' => $verifiedEmail,
-        	'rol' => $rol,
-            'image' => $faker->randomElement(['default_1.png', 'default_2.png', 'default_3.png', 'default_4.png', 'default_5.png', 'default_6.png', 'default_7.png', 'default_8.png', 'default_9.png', 'default_10.png', 'default_11.png']),
-            'carpeta' => $code_generated[$cont_user],
-        	'active' => $active,
-            'created_at' => date('YmdHms')
-        ]);
-        $user_ids[$cont_user] = $user_id;
-        $cont_user++;
-
-        // Inserción del usuario Student12 (Pendiente de validación de email y activación)
-        $user_id = \DB::table('users')->insertGetId([
-        	'email' => mb_strtolower('iescierva_daw45@hotmail.com'),
-        	'password' => \Hash::make($pass),
-        	'code' => $code_generated[$cont_user],
-        	'verifiedEmail' => $verifiedEmail,
-        	'rol' => $rol,
-            'image' => $faker->randomElement(['default_1.png', 'default_2.png', 'default_3.png', 'default_4.png', 'default_5.png', 'default_6.png', 'default_7.png', 'default_8.png', 'default_9.png', 'default_10.png', 'default_11.png']),
-            'carpeta' => $code_generated[$cont_user],
-        	'active' => $active,
-            'created_at' => date('YmdHms')
-        ]);
-        $user_ids[$cont_user] = $user_id;
-        $cont_user++;
-
-		// Inserción de Student10 (student)
-        $student_id = \DB::table('students')->insertGetId([
-        	'firstName' => mb_strtolower('Prueba4 Student'),
-        	'lastName' => mb_strtolower('Cuatro sin verificar ni activar'),
-        	'dni' => mb_strtoupper('97020295Q'),
-        	'nre' => '0123456',
-        	'phone' => '666666694',
-        	'road' => 'Senda',
-        	'address' => 'Miguel Hernandez, 17 3ºF',
-        	'curriculum' => '/storage/app/curriculums/iescierva_daw43-' . date('d-m-Y') . '/curriculum10-' . date('dmY') . '.pdf',
-        	'birthdate' => '1979-05-03',
-        	'user_id' => $user_ids[42],
-            'created_at' => date('YmdHms'),
-            'updated_at' => date('YmdHms')
-        ]);
-        $student_ids[$cont_student] = $student_id;
-        $cont_student++;
-
-        // Inserción de Student11 (student)
-        $student_id = \DB::table('students')->insertGetId([
-        	'firstName' => mb_strtolower('Prueba5 Student'),
-        	'lastName' => mb_strtolower('Cinco sin verificar ni activar'),
-        	'dni' => mb_strtoupper('61342252X'),
-        	'nre' => '0234567',
-        	'phone' => '666666695',
-        	'road' => 'Via',
-        	'address' => 'Plaza Españolita, 10',
-        	'curriculum' => '/storage/app/curriculums/iescierva_daw44-' . date('d-m-Y') . '/curriculum11-' . date('dmY') . '.pdf',
-        	'birthdate' => '1982-04-27',
-        	'user_id' => $user_ids[43],
-            'created_at' => date('YmdHms'),
-            'updated_at' => date('YmdHms')
-        ]);
-        $student_ids[$cont_student] = $student_id;
-        $cont_student++;
-
-        // Inserción de Student12 (student)
-        $student_id = \DB::table('students')->insertGetId([
-        	'firstName' => mb_strtolower('Prueba6 Student'),
-        	'lastName' => mb_strtolower('Seis sin verificar ni activar'),
-        	'dni' => mb_strtoupper('49500203V'),
-        	'nre' => '0345678',
-        	'phone' => '666666696',
-        	'road' => 'Travesia',
-        	'address' => 'Condado de Rozas, 12 1ºC',
-        	'curriculum' => '/storage/app/curriculums/iescierva_daw45-' . date('d-m-Y') . '/curriculum12-' . date('dmY') . '.pdf',
-        	'birthdate' => '1993-07-30',
-        	'user_id' => $user_ids[44],
-            'created_at' => date('YmdHms'),
-            'updated_at' => date('YmdHms')
-        ]);
-        $student_ids[$cont_student] = $student_id;
-        $cont_student++;
-
-        $rol = 'empresa';
-
-        // Inserción del usuario Enterprise10 (Pendiente de validación de email y activación)
-        $user_id = \DB::table('users')->insertGetId([
-        	'email' => mb_strtolower('iescierva_daw46@hotmail.com'),
-        	'password' => \Hash::make($pass),
-        	'code' => $code_generated[$cont_user],
-        	'verifiedEmail' => $verifiedEmail,
-        	'rol' => $rol,
-            'image' => $faker->randomElement(['default_1.png', 'default_2.png', 'default_3.png', 'default_4.png', 'default_5.png', 'default_6.png', 'default_7.png', 'default_8.png', 'default_9.png', 'default_10.png', 'default_11.png']),
-            'carpeta' => $code_generated[$cont_user],
-        	'active' => $active,
-            'created_at' => date('YmdHms')
-        ]);
-        $user_ids[$cont_user] = $user_id;
-        $cont_user++;
-
-        // Inserción del usuario Enterprise11 (Pendiente de validación de email y activación)
-        $user_id = \DB::table('users')->insertGetId([
-        	'email' => mb_strtolower('iescierva_daw47@hotmail.com'),
-        	'password' => \Hash::make($pass),
-        	'code' => $code_generated[$cont_user],
-        	'verifiedEmail' => $verifiedEmail,
-        	'rol' => $rol,
-            'image' => $faker->randomElement(['default_1.png', 'default_2.png', 'default_3.png', 'default_4.png', 'default_5.png', 'default_6.png', 'default_7.png', 'default_8.png', 'default_9.png', 'default_10.png', 'default_11.png']),
-            'carpeta' => $code_generated[$cont_user],
-        	'active' => $active,
-            'created_at' => date('YmdHms')
-        ]);
-        $user_ids[$cont_user] = $user_id;
-        $cont_user++;
-
-        // Inserción del usuario Enterprise12 (Pendiente de validación de email y activación)
-        $user_id = \DB::table('users')->insertGetId([
-        	'email' => mb_strtolower('iescierva_daw48@hotmail.com'),
-        	'password' => \Hash::make($pass),
-        	'code' => $code_generated[$cont_user],
-        	'verifiedEmail' => $verifiedEmail,
-        	'rol' => $rol,
-            'image' => $faker->randomElement(['default_1.png', 'default_2.png', 'default_3.png', 'default_4.png', 'default_5.png', 'default_6.png', 'default_7.png', 'default_8.png', 'default_9.png', 'default_10.png', 'default_11.png']),
-            'carpeta' => $code_generated[$cont_user],
-        	'active' => $active,
-            'created_at' => date('YmdHms')
-        ]);
-        $user_ids[$cont_user] = $user_id;
-        $cont_user++;
-
-		// Inserción de Enterprise10 (enterprise)
-        $enterprise_id = \DB::table('enterprises')->insertGetId([
-        	'name' => mb_strtolower('La peluqueria de prueba4'),
-        	'cif' => mb_strtoupper('J3593030D'),
-        	'web' => 'http://www.peluquerosdeprueba4.com/',
-        	'description' => 'Cortamos el pelo a todo aquel que pague.',
-        	'user_id' => $user_ids[45],
-            'created_at' => date('YmdHms')
-        ]);
-        $enterprise_ids[$cont_enterprise] = $enterprise_id;
-        $cont_enterprise++;
-
-        // Inserción de Enterprise11 (enterprise)
-        $enterprise_id = \DB::table('enterprises')->insertGetId([
-        	'name' => mb_strtolower('Clinica dental prueba5'),
-        	'cif' => mb_strtoupper('V1639094J'),
-        	'web' => 'https://www.dientesprueba5.com/',
-        	'description' => 'Clinica abierta desde 1703.',
-           	'user_id' => $user_ids[46],
-            'created_at' => date('YmdHms')
-        ]);
-        $enterprise_ids[$cont_enterprise] = $enterprise_id;
-        $cont_enterprise++;
-
-        // Inserción de Enterprise12 (enterprise)
-        $enterprise_id = \DB::table('enterprises')->insertGetId([
-        	'name' => mb_strtolower('Panaderia de prueba6'),
-        	'cif' => mb_strtoupper('N2786048E'),
-        	'web' => 'https://www.panespan.es/',
-        	'description' => 'El pan nos sale muy rico, y lo sabes.',
-        	'user_id' => $user_ids[47],
-            'created_at' => date('YmdHms')
-        ]);
-        $enterprise_ids[$cont_enterprise] = $enterprise_id;
-        $cont_enterprise++;
-
-    } // run()
-} // OurUsersSeeder
+    }
+}

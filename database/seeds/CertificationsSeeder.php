@@ -18,17 +18,13 @@ class CertificationsSeeder extends Seeder
         	'description' => 'Título de inglés',
         	'institution' => 'Escuela Superior de idiomas',
             'student_id' => 4,
-            'city_id' => 2,
-            'state_id' => 10,
             'created_at' => date('YmdHms')
         ]);
          \DB::table('certifications')->insert([
         	'certification' => 'C1 Inglés Cambridge',
-        	'description' => '',
-        	'institution' => '',
+        	'description' => 'Título de inglés',
+        	'institution' => 'Escuela Superior de idiomas',
             'student_id' => 5,
-            'city_id' => 4,
-            'state_id' => 16,
             'created_at' => date('YmdHms')
         ]);
          $faker = Faker::create('es_ES');
@@ -37,17 +33,13 @@ class CertificationsSeeder extends Seeder
         	'description' => 'Título de inglés',
         	'institution' => 'Escuela Superior de idiomas',
             'student_id' => 4,
-            'city_id' => 3,
-            'state_id' => 18,
             'created_at' => date('YmdHms')
         ]);
          \DB::table('certifications')->insert([
         	'certification' => 'B1 Frances',
-        	'description' => '',
-        	'institution' => '',
+        	'description' => 'Título de francés',
+        	'institution' => 'Escuela Superior de idiomas',
             'student_id' => 5,
-            'city_id' => 6,
-            'state_id' => 22,
             'created_at' => date('YmdHms')
         ]);
         
