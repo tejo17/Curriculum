@@ -15,8 +15,8 @@ class Student extends Model
 	use SoftDeletes;
 
 	protected $fillable = [
-       'firstName', 'lastName', 'dni', 'nre', 'phone', 'road',
-       'address', /*'curriculum',*/ 'birthdate', 'user_id',
+       'firstName', 'lastName', 'dni', 'nre', 'phone',
+       'address', /*'curriculum',*/ 'birthdate', 'nationality', 'user_id','city_id'
     ];
 
     // Relaciones one to one

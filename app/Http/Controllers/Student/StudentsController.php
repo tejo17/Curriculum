@@ -32,6 +32,7 @@ class StudentsController extends UsersController
             'codPostal'         => 'digits:5',
             // El nombre es debido a datepicker
             'birthdate_submit'  => 'required|date',
+            'nationality'       => '',
 
             // Reglas de los ciclos.
             'family'            => 'required|exists:profFamilies,name',
@@ -51,39 +52,41 @@ class StudentsController extends UsersController
         return view('student.registerForm', compact('profFamilies', 'zona'));
     } // index()
 
-    protected function store()
+     protected function store()
     {
-       
+
         // Comenzamos la transaccion.
         \DB::beginTransaction();
 
         $user = Parent::store();
 
-       /* if($user === false){
+        if($user === false){
             \DB::rollBack();
             Session::flash('message_Negative', 'En estos momentos no podemos llevar a cabo su registro. Por favor intentelo de nuevo más tarde.');
-        } else {*/
+        } else {
 
             // Llamo al metodo para crear el estudiante.
+            
             $insert = Self::create();
 
             if($insert !== false){
 
                 // Llamo al metodo para almacenar sus grados.
-                $insert = self::createStudentCycle($insert);
+                //$insert = self::createStudentCycle($insert);
+                $insert = true;
 
                 if ($insert === true){
-
+                    
                     // Llamo al metodo sendEmail del controlador de las familias profesionales
-                    $email = Parent::sendEmail();
+                    //$email = Parent::sendEmail();
 
-                    if($email === true) {
+                    //if($email === true) {
                         \DB::commit();
                         return \Redirect::to('login');
-                    } else {
+                    //} else {
                         \DB::rollBack();
                         Session::flash('message_Negative', 'En estos momentos no podemos llevar a cabo su registro. Por favor intentelo de nuevo más tarde.');
-                    }
+                   // }*/
                 } else {
                     // Aqui debo controlar los errores de inserción de ciclos
                     \DB::rollBack();
@@ -93,16 +96,27 @@ class StudentsController extends UsersController
                 \DB::rollBack();
                 Session::flash('message_Negative', 'En estos momentos no podemos llevar a cabo su registro. Por favor intentelo de nuevo más tarde.');
             }
-        
+        }
 
         // Redireccionamos a la vista de validacion del email. (index provisional).
         return redirect()->route('estudiante..index');
     } // store()
-
-    private function create()
-    {
+    
+  private function create()
+    {//obtengo los datos
+       $city_id = self::obtenerCityId();
+        
         try {
-            $insert = Student::create($this->request->all());
+            $arrayDatos=$this->request->all();
+           
+
+            $arrayDatos["postalCode"] = "";
+             //var_dump($arrayDatos);
+            $arrayDatos["city_id"] = "$city_id";
+            var_dump($arrayDatos);
+
+            //var_dump($arrayDatos);
+            $insert = Student::create($arrayDatos);
         } catch(\PDOException $e){
             //dd($e);
             abort(500);
@@ -187,4 +201,15 @@ class StudentsController extends UsersController
         // Devuelvo la vista junto con las familias
         return view('student.profile', compact('profFamilies', 'datos'));
     } // profile()
+
+      public function obtenerCityId(){
+    $arrayDatos = $this->request->all();
+   // var_dump($arrayDatos);
+    $postalCode = $arrayDatos["postalCode"];
+    //var_dump($postalCode);
+    $city_id = \DB::table('cities')->where('cities.postalCode', '=', $postalCode)->value('id');
+
+    return $city_id;
+    }
+
 }

@@ -64,7 +64,7 @@ class UsersController extends Controller
     protected function store()
     {
         // Valido la peticion.
-        $this->validate($this->request, $this->rules);
+        //$this->validate($this->request, $this->rules);
 
         // Añado el rol.
         $this->request['rol'] = $this->rol;
@@ -172,7 +172,8 @@ class UsersController extends Controller
     protected function uploadImage()
     {
         // Validamos la imagen
-        $this->validate($this->request, $this->rules_image);
+         
+        //$this->validate($this->request);
 
         //obtenemos el campo file definido en el formulario
         $file = $this->request->file('file');
