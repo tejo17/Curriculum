@@ -12,7 +12,7 @@ class CertificationsSeeder extends Seeder
      */
     public function run()
     {     
-    	$faker = Faker::create('es_ES');
+    	
         \DB::table('certifications')->insert([
         	'certification' => 'B1 Inglés Cambridge',
         	'description' => 'Título de inglés',
@@ -27,7 +27,7 @@ class CertificationsSeeder extends Seeder
             'student_id' => 5,
             'created_at' => date('YmdHms')
         ]);
-         $faker = Faker::create('es_ES');
+       
         \DB::table('certifications')->insert([
         	'certification' => 'C1 Inglés Cambridge',
         	'description' => 'Título de inglés',
