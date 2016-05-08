@@ -59,7 +59,7 @@
                                 @include('generic.terms')
                             <div class="form-group">
                                 <div class="col-md-12 text-center">
-                                    <button type="submit" class="btn btn-primary btn-login-media waves-effect waves-light" id="submit">
+                                    <button type="submit" class="btn btn-primary btn-login-media waves-effect waves-light" id="submit" >
                                         <div class="show-responsive">
                                             <i class="fa fa-user-plus" aria-hidden="true"></i>
                                         </div>

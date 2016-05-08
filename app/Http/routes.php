@@ -140,3 +140,9 @@ Route::group(['prefix' => 'uso', 'middleware' => 'web', 'namespace' => 'Uso'], f
 
 });
 Route::post('buscarCodPostal','Student\StudentsController@buscarCodPostal');
+
+Route::group(['prefix' => 'perfil', 'middleware' => ['auth']], function(){
+    
+    //Route::post('autolocal','ProfileController@autolocal');
+    Route::post('autocomplete','ProfileController@autocomplete');
+});

@@ -3,17 +3,55 @@
     @include('keyword.student.registerFormKeywords')
 @endsection
 @section('scripts')
-    {{-- Incluimos los scripts de validaciones --}}
-    <script src="/js/validaciones/facada.js" charset="utf-8"></script>
+<script src="/js/jquery-ui.js" ></script>
 
-    {{-- Incluimos lo necesario para añadir familias profesionales --}}
-    <script src="/js/funcionalidad/addFamilyCycles.js" charset="utf-8"></script>
+    <script>
+  $('#exp').on('shown.bs.modal', function (e) {
+        var checkbox = $('#now');
+         
+       // modificaciones con el evento click
+            checkbox.on( 'click', function() {
+            if(checkbox.is(':checked') ){
+                $('#to').css('display','none');
+            } else {
+                 $('#to').css('display','block');
+                }
+             }) 
 
-    {{-- Incluimos lo necesario para la peticion Ajax --}}
-    <script src="/js/ajax/cycles.js" charset="utf-8"></script>
-    <script src="/js/buscadorCP.js" charset="utf-8"></script>
-  
+$(function()
+{
+     $( "#state" ).autocomplete({
+      source: "perfil/autocomplete",
+      minLength: 1,
+      select: function(event, ui) {
+        $('#q').val(ui.item.value);
+      }
+    });
+});
+   /*       var consulta = $("#state").val();
+        $('#state').focusout(function(e){
+        //hace la búsqueda
+        var consulta = {
+            ciudad: $("#state").val()
+        };
 
+        $.ajax({
+            data: consulta,
+            url: '/autolocal',
+            type: 'post',
+            
+            success: function(data) {
+
+                for (var i = 0; i < data.ciudades.length; i++) {
+
+                    $("#city").append('<option "value="' + data.ciudades[i] + '"selected>' + data.ciudades[i] + '</option>');
+                    }
+       }
+    })
+    });*/
+        });
+      
+   </script>
 @endsection
 @section('content')
 @include('partials.nav.navEstudiante')
@@ -30,27 +68,30 @@
                     </div>
 
                     <div class="panel-body ancho">
- @if(Session::has('message'))
+                    @if(Session::has('message'))
                     <p class="alert alert-success">{{Session::get('message')}}</p>
                     @endif
-                         {{ Form::open(['route' => 'estudiante..store', 'method' => 'POST', 'files' => 'true', 'id' => 'student-register-form']) }}
+                         {{ Form::open(['url' => 'estudiante/perfil', 'method' => 'POST', 'files' => 'true']) }}
                             {!! csrf_field() !!}
                             <fieldset>
                                 <legend style="width:auto;">Información Personal</legend>
                                 <div style="text-align: center;">
+                                 <img src="{{ url('/img/imgUser/' . \Auth::user()->carpeta . '/' .  \Auth::user()->image) }}" class="img-responsive img-circle img-navegador">
                                   <h5 style="text-transform: capitalize;">{{ session('lastName') }},{{ session('firstName') }}<h5>
                                   <h6><i class="material-icons">location_on</i>{{ session('address') }},{{ session('postalCode') }},{{ session('city') }},({{ session('state') }})</h6>
                                   <h6><i class="material-icons">phone</i>{{ session('phone') }}</h6>
-                                </div>
-
-                               
+                                </div>             
                             </fieldset>
-                            
                             <fieldset>
-                                <legend style="width: auto;">Usuario</legend>
-                                @include('generic.userfields')
+                             <legend style="width:auto;">Experiencia Profesional</legend>
+                             @include('student.partials.profExperience')
                             </fieldset>
-                               
+                            <fieldset>
+                             <legend style="width:auto;">Idiomas</legend>
+                            </fieldset>
+                            <fieldset>
+                             <legend style="width:auto;">Permiso de Conducir</legend>
+                            </fieldset>
                             <div class="form-group">
                                 <div class="col-md-12 text-center">
                                     <button type="submit" class="btn btn-primary btn-login-media waves-effect waves-light" id="guardar">

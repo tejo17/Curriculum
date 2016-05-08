@@ -3640,7 +3640,8 @@ a {
 
 html {
   line-height: 1.5;
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto",
+ sans-serif;
   font-weight: normal;
   color: rgba(0, 0, 0, 0.87);
 }
@@ -11152,8 +11153,8 @@ form p:last-child {
   top: 0px;
   width: 20px;
   height: 20px;
-  border: 2px solid #aa66cc;
-  background-color: #aa66cc;
+  border: 2px solid #5a95f5;
+  background-color: #5a95f5;
   z-index: 0;
 }
 
