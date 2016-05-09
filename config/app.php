@@ -178,10 +178,10 @@ return [
         Collective\Html\HtmlServiceProvider::class,
 
         // Librería que permite hacer thumnails
-       Intervention\Image\ImageServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
         // Librerías barra de debug
-      // Barryvdh\Debugbar\ServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
 
     ],
 

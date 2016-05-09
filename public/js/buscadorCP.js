@@ -1,8 +1,5 @@
 $(document).ready(function() {
 
-    var consulta;
-
-
     //comprobamos si se pulsa una tecla
     $("#postalCode").keyup(function(e) {
         e.preventDefault();
@@ -27,7 +24,7 @@ $(document).ready(function() {
 
                 $("#state").val(data.provincia);
                 if (($("#postalCode").val()).length == 5) {
-                    
+
                     for (var i = 0; i < data.ciudades.length; i++) {
 
                         $("#city").append('<option "value="' + data.ciudades[i] + '"selected>' + data.ciudades[i] + '</option>');
@@ -35,11 +32,8 @@ $(document).ready(function() {
                     $("#postalCode").keyup(function() {
                         $("#city").empty();
                     });
-                   
-                } /*else {
-                    $("#city").empty();
-                }*/
 
+                }
             }
 
         });

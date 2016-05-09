@@ -3,8 +3,7 @@
     @include('keyword.student.registerFormKeywords')
 @endsection
 @section('scripts')
-<script src="/js/jquery-ui.js" ></script>
-
+<script src="/js/jquery-ui.js"></script>
     <script>
   $('#exp').on('shown.bs.modal', function (e) {
         var checkbox = $('#now');
@@ -16,45 +15,46 @@
             } else {
                  $('#to').css('display','block');
                 }
-             }) 
+             });
 
-$(function()
-{
-     $( "#state" ).autocomplete({
-      source: "perfil/autocomplete",
-      minLength: 1,
-      select: function(event, ui) {
-        $('#q').val(ui.item.value);
-      }
-    });
-});
-   /*       var consulta = $("#state").val();
+
+      $('#state').autocomplete({
+            source: "autocompletado"
+        });
+      $( "#state" ).autocomplete( "option", "appendTo", ".eventInsForm" );
+
+
+       
         $('#state').focusout(function(e){
         //hace la búsqueda
         var consulta = {
             ciudad: $("#state").val()
         };
-
-        $.ajax({
+            $.ajax({
             data: consulta,
-            url: '/autolocal',
+            headers: {'X-CSRF-Token': $('input[name="_token"]').val()},
+            url: 'autolocal',
             type: 'post',
-            
             success: function(data) {
 
-                for (var i = 0; i < data.ciudades.length; i++) {
+            for (var i = 0; i < data.ciudades.length; i++) {
 
-                    $("#city").append('<option "value="' + data.ciudades[i] + '"selected>' + data.ciudades[i] + '</option>');
-                    }
-       }
-    })
-    });*/
+                        $("#city").append('<option "value="' + data.ciudades[i] + '"selected>' + data.ciudades[i] + '</option>');
+                  }
+             $('#state').focus(function(){
+              $("#city").empty();
+             })     
+            }
+
         });
+    });
+});
       
    </script>
 @endsection
 @section('content')
 @include('partials.nav.navEstudiante')
+
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1 sin-margen">
@@ -71,8 +71,9 @@ $(function()
                     @if(Session::has('message'))
                     <p class="alert alert-success">{{Session::get('message')}}</p>
                     @endif
-                         {{ Form::open(['url' => 'estudiante/perfil', 'method' => 'POST', 'files' => 'true']) }}
-                            {!! csrf_field() !!}
+                         {{ Form::open(['url' => 'estudiante/perfil', 'method' => 'POST','class'=>'form-horizontal']) }}
+                            {{ csrf_field() }}
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}"> 
                             <fieldset>
                                 <legend style="width:auto;">Información Personal</legend>
                                 <div style="text-align: center;">
