@@ -89,9 +89,12 @@
                             </fieldset>
                             <fieldset>
                              <legend style="width:auto;">Idiomas</legend>
+                             @include('student.partials.languages')
                             </fieldset>
                             <fieldset>
                              <legend style="width:auto;">Permiso de Conducir</legend>
+                             @include('student.partials.drivingLicenses')
+                             
                             </fieldset>
                             <div class="form-group">
                                 <div class="col-md-12 text-center">

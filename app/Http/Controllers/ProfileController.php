@@ -21,7 +21,7 @@ public function autolocal(Request $request){
         
         
             
-       $cities = \DB::table('cities')->where('state_id',$state)->orderBy('name')->lists('name');
+       $cities = \DB::table('cities')->where('state_id',$state)->orderBy('name')->distinct()->lists('name');
        foreach ($cities as $title) {
        array_push($postales, $title);
             }

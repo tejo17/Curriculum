@@ -1,9 +1,6 @@
 <!--Modal: subscription form-->
     <!--Button-->
-  
-  
-}</script>
-@endsection    
+
     <a href="#" class="btn btn-primary btn-lg waves-effect waves-light" data-toggle="modal" data-target="#hp-newsletter"><i class="material-icons left">star</i>Añadir</a>
     <!-- Modal -->
     <div class="modal fade" id="hp-newsletter" role="dialog">
