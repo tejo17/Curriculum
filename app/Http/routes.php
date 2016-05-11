@@ -144,4 +144,6 @@ Route::post('buscarCodPostal','Student\StudentsController@buscarCodPostal');
 Route::group(['prefix' => '/estudiante', 'middleware' => ['web','auth']], function(){
     Route::get('autocompletado','ProfileController@autocomplete');
     Route::post('autolocal','ProfileController@autolocal');
+    Route::post('cargaSites','SitesController@getName');
+    Route::resource('sites','SitesController');
 });

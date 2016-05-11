@@ -6,6 +6,7 @@
 <script src="/js/jquery-ui.js"></script>
     <script>
   $('#exp').on('shown.bs.modal', function (e) {
+       
         var checkbox = $('#now');
          
        // modificaciones con el evento click
@@ -17,14 +18,15 @@
                 }
              });
 
-
+      //Script AutoComplete
       $('#state').autocomplete({
             source: "autocompletado"
         });
       $( "#state" ).autocomplete( "option", "appendTo", ".eventInsForm" );
+      //Fin Script Autocomplete
 
 
-       
+       //Script buscar Localidad
         $('#state').focusout(function(e){
         //hace la búsqueda
         var consulta = {
@@ -43,12 +45,33 @@
                   }
              $('#state').focus(function(){
               $("#city").empty();
-             })     
+             });    
             }
 
         });
-    });
+    });//Fin Script buscar localidad
 });
+     //Script cargar Tipos de Mensajeria
+       $('#sites').on('show.bs.modal', function (e) {
+        
+            $.ajax({
+            headers: {'X-CSRF-Token': $('input[name="_token"]').val()},
+            url: 'cargaSites',
+            type: 'post',
+            success: function(data) {
+
+            for (var i = 0; i < data.length; i++) {
+                        $("#site").append('<option "value="' + data[i].value + '"selected>' + data[i].value + '</option>');
+                  }
+             $('#sites').on('hide.bs.modal', function (e) {
+              $("#site").empty();
+                
+                });
+            }
+      
+        });   
+    });
+
       
    </script>
 @endsection
@@ -95,6 +118,14 @@
                              <legend style="width:auto;">Permiso de Conducir</legend>
                              @include('student.partials.drivingLicenses')
                              
+                            </fieldset>
+                            <fieldset>
+                             <legend style="width:auto;">Mensajeria Instantanea</legend>
+                             @include('student.partials.personalSites')
+                            </fieldset>
+                            <fieldset>
+                             <legend style="width:auto;">Aptitudes</legend>
+                             @include('student.partials.aptitudes')
                             </fieldset>
                             <div class="form-group">
                                 <div class="col-md-12 text-center">

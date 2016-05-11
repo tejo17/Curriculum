@@ -14,7 +14,8 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <form class="col-md-12">
+                        <form action="sites" method="POST" class="col-md-12">
+                            <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
 							<br>
                             
                             <div class="col-md-5">
@@ -27,11 +28,11 @@
                                 {{ Form::label('personalsite', 'Sitio Personal') }}
                             </div>
                             
+                             <div class="text-center">
+                                <button type="submit" class="btn btn-success btn-lg waves-effect waves-light">Guardar</button>
+                             </div>
                         </form>
                         <!--Footer-->
-                 <div class="text-center">
-                    <button type="button" class="btn btn-success btn-lg waves-effect waves-light">Sign up</button>
-                 </div>
                 
                 <!--/.Footer-->
                     </div>

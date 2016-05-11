@@ -10,9 +10,7 @@ use Response;
 class ProfileController extends Controller
 {
 
-public function autolocal(Request $request){
-        
-    
+public function autolocal(Request $request){  
         $postales = array();
         $codPostal = $request->input('ciudad');
       
@@ -32,8 +30,6 @@ public function autolocal(Request $request){
         ]);
     
 }
-
-
     public function autocomplete(Request $req){
         $term =  $req->input('term');
     
@@ -51,3 +47,5 @@ public function autolocal(Request $request){
     }
 
 }
+
+
