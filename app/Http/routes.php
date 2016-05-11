@@ -145,5 +145,7 @@ Route::group(['prefix' => '/estudiante', 'middleware' => ['web','auth']], functi
     Route::get('autocompletado','ProfileController@autocomplete');
     Route::post('autolocal','ProfileController@autolocal');
     Route::post('cargaSites','SitesController@getName');
+     Route::post('cargaLanguages','LanguagesController@getLanguage');
     Route::resource('sites','SitesController');
+    Route::resource('languages','LanguagesController');
 });

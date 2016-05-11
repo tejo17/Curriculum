@@ -72,6 +72,27 @@
         });   
     });
 
+           //Script cargar Idiomas
+       $('#languages').on('show.bs.modal', function (e) {
+        
+            $.ajax({
+            headers: {'X-CSRF-Token': $('input[name="_token"]').val()},
+            url: 'cargaLanguages',
+            type: 'post',
+            success: function(data) {
+
+            for (var i = 0; i < data.length; i++) {
+                        $("#language").append('<option "value="' + data[i].value + '"selected>' + data[i].value + '</option>');
+                  }
+             $('#languages').on('hide.bs.modal', function (e) {
+              $("#language").empty();
+                
+                });
+            }
+      
+        });   
+    });
+
       
    </script>
 @endsection
