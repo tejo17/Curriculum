@@ -42,12 +42,12 @@
                             <div class="input-field col-md-12">
                                 <i class="material-icons prefix">today</i>
                                     {{ Form::label('from', 'Desde', ['class' => 'labelpicker']) }}
-                                    {{ Form::text('from',null, ['class' => 'datepicker', 'id' => 'picker']) }}
+                                    {{ Form::text('from',null, ['class' => 'datepicker', 'id' => 'picker1']) }}
                             </div>
                             <div class="input-field col-md-12" id="to">
                                 <i class="material-icons prefix">today</i>
                                     {{ Form::label('to', 'Hasta', ['class' => 'labelpicker']) }}
-                                    {{ Form::text('to',null, ['class' => 'datepicker', 'id' => 'picker']) }}
+                                    {{ Form::text('to',null, ['class' => 'datepicker', 'id' => 'picker2']) }}
                             </div>
                             <div class="input-field col-md-12" id="to">
                             {{ Form::checkbox('now', '', false, ['id' => 'now', 'class' => 'filled-in']) }}

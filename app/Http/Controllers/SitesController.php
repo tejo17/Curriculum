@@ -5,6 +5,7 @@ use App\PersonalSite;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Response;
+use Auth;
 
 class SitesController extends Controller
 {
@@ -31,18 +32,29 @@ class SitesController extends Controller
         return Response::json($results);
    }
    public function store(Request $request){
-           $sites = $request->input('personalsite');
-//dd($sites);
-    //INSERT
-   try {
-    //$queries = \DB::table('personalsites')->insert(['site' => $sites]);
-   }
-   catch(\PDOException $e) {
-    
-   }
-    //print_r($queries);
+          $account = $request->input('personalsite');
+          $site = $request->input('site');
+          $user_id = Auth::user()->id;
+          $site_id = \DB::table('personalsites')->where('site' , $site)->value('id');
+          $student_id = \DB::table('students')->where('user_id' , $user_id)->value('id');
+ 
 
-    //$queries = 1 -- TODO BIEN
+    try {
+            $queries = \DB::table('studentpersonalsites')
+    ->join('personalsites','studentpersonalsites.site_id','=','personalsites.id')
+    ->join('students','studentpersonalsites.student_id','=','students.id')
+    ->where('student_id',$student_id)
+    ->insert(['personalSite' => $account,
+             'site_id' => $site_id,
+             'student_id' => $student_id]);
+    
+    } catch (\Exception $e) {
+      echo "Registro duplicado";
+    }
+      
+       
+
+
 
     return view('student.profile');
    }

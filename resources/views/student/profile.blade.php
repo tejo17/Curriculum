@@ -8,7 +8,7 @@
   $('#exp').on('shown.bs.modal', function (e) {
        
         var checkbox = $('#now');
-         
+        
        // modificaciones con el evento click
             checkbox.on( 'click', function() {
             if(checkbox.is(':checked') ){
@@ -94,7 +94,7 @@
                     @if(Session::has('message'))
                     <p class="alert alert-success">{{Session::get('message')}}</p>
                     @endif
-                         {{ Form::open(['url' => 'estudiante/perfil', 'method' => 'POST','class'=>'form-horizontal']) }}
+                         {{ Form::open(['url' => 'estudiante/perfil', 'method' => 'POST','class'=>'form-horizontal','id' => 'student-register-form']) }}
                             {{ csrf_field() }}
                             <input type="hidden" name="_token" value="{{ csrf_token() }}"> 
                             <fieldset>

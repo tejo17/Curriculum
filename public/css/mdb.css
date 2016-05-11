@@ -14676,3 +14676,8 @@ button.picker__close:focus {
 #modalIns {
     width: 500px;
 }
+
+#state {
+    box-shadow: none;
+    border-color: gray;
+}
