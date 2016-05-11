@@ -11,13 +11,9 @@
             <!-- Modal content-->
             <div class="modal-content">
                 <!--Header-->
-
                 <div class="modal-header text-center">
-                    <div class="modal-footer">
-                    
-                   
-                </div>
-                   <button type="submit" class="btn btn-default btn-danger pull-right" data-dismiss="modal">X</button> <h4><i class="fa fa-car"></i> Licencias de conducir. </h4>
+  
+                   <button type="submit" class="btn btn-default btn-danger pull-right" data-dismiss="modal">X</button> <h4 style="clear:both"><i class="fa fa-car"></i> Licencias de conducir. </h4>
                    
                 </div>
                 <!--/.Header-->

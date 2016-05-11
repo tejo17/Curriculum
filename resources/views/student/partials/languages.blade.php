@@ -10,7 +10,7 @@
             <!-- Modal content-->
             <div class="modal-content" >
                 <div class="modal-header">
-                   <button type="submit" class="btn btn-default btn-danger pull-right" data-dismiss="modal">X</button> <h4 style="text-align:center"><i class="material-icons prefix">language</i> Idiomas</h4>
+                   <button type="submit" class="btn btn-default btn-danger pull-right" data-dismiss="modal">X</button> <h4 style="text-align:center; clear:both"><i class="material-icons prefix">language</i> Idiomas</h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -18,12 +18,12 @@
                             <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
                             <br>
                             
-                            <div class="col-md-4" style="color:black">
+                            <div class="col-md-4" style="color:black;">
                                     {{ Form::label('language', 'Idioma') }}
                                     {{ Form::select('language', [], null,['class' => 'form-control ',  'style'=> 'border:solid 1px lightgrey;', 'id' => 'language']) }}
                             </div>
                             <div class="col-md-12" style="border-top:1px lightgrey solid; border-bottom:1px lightgrey solid; margin-top:40px">
-                                <h5>Nivel</h5>
+                                <h5 style='text-align:center'>Nivel</h5>
                             </div>
                             <div class="col-md-4" style="clear:both; margin-top:20px">
                                     {{ Form::label('readingComprehension', 'Comprensión lectora') }}

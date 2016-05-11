@@ -10,8 +10,8 @@
             <!-- Modal content-->
             <div class="modal-content" >
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title h4,responsive">Experiencia Profesional</h4>
+                     <button type="submit" class="btn btn-default btn-danger pull-right" data-dismiss="modal">X</button>
+                    <h4 class="modal-title h4,responsive" style="text-align:center; clear:both"><i class="material-icons prefix">account_circle</i>Experiencia Profesional</h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -34,29 +34,34 @@
                                     {{ Form::label('city', 'Población') }}
                                     {{ Form::select('city', [], null,['class' => 'form-control ',  'style'=> 'border:solid 1px lightgrey;', 'id' => 'city']) }}
                             </div>
-                            <div class="input-field col-md-12">
-                            <i class="material-icons prefix">description</i>                                
-                                 <label for="comment">Descripcion</label>
-                                <textarea class="form-control" rows="4" id="description"></textarea>
+                             <div class="input-field col-md-12">
+                                <p style="color:#9e9e9e; font-weight:400">Descripción</p>
+                                <textarea style="border:1px lightgrey solid" class="form-control" rows="5" id="description"></textarea>
+                                <br>
+                                
                             </div>
-                            <div class="input-field col-md-12">
+                            <div class="input-field col-md-6">
                                 <i class="material-icons prefix">today</i>
                                     {{ Form::label('from', 'Desde', ['class' => 'labelpicker']) }}
                                     {{ Form::text('from',null, ['class' => 'datepicker', 'id' => 'picker1']) }}
                             </div>
-                            <div class="input-field col-md-12" id="to">
+                            <div class="input-field col-md-6" id="to">
                                 <i class="material-icons prefix">today</i>
                                     {{ Form::label('to', 'Hasta', ['class' => 'labelpicker']) }}
                                     {{ Form::text('to',null, ['class' => 'datepicker', 'id' => 'picker2']) }}
                             </div>
-                            <div class="input-field col-md-12" id="to">
+                            <div class="input-field col-md-12" id="to" style="margin-bottom:20px">
                             {{ Form::checkbox('now', '', false, ['id' => 'now', 'class' => 'filled-in']) }}
                             {{ Form::label('now', 'Cursando actualmente', ['for' => 'now']) }}
                             </div>
-                        </form>
-                        <div class="text-center">
-                            <button type="button" class="btn btn-primary waves-effect waves-light">Guardar</button>
+
+                            <div class="text-center" style="clear:both;">
+                            <button type="button" class="btn btn-success btn-lg waves-effect waves-light">Guardar</button>
                         </div>
+                        </form>
+                       
+
+                        
                     </div>
                 </div>
                 

@@ -10,7 +10,7 @@
             <!-- Modal content-->
             <div class="modal-content" >
                 <div class="modal-header">
-                   <button type="submit" class="btn btn-default btn-danger pull-right" data-dismiss="modal">X</button> <h4 style="text-align:center"><i class="material-icons prefix"></i> Aptitudes</h4>
+                   <button type="submit" class="btn btn-default btn-danger pull-right" data-dismiss="modal">X</button> <h4 style="text-align:center; clear:both"><i class="material-icons prefix"></i> Aptitudes</h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">
