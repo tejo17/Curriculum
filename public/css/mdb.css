@@ -14681,3 +14681,26 @@ button.picker__close:focus {
     box-shadow: none;
     border-color: gray;
 }
+
+table tr,
+table th,
+caption {
+    text-align: center;
+}
+
+.selector:hover {
+    border: solid 1px orange;
+}
+
+.boton_borrar {
+    visibility: hidden;
+    float: right;
+    background-color: orange;
+    color: white;
+}
+
+.selector:hover > .boton_borrar {
+    visibility: visible;
+    background-color: white;
+    color: orange;
+}

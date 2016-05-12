@@ -9,16 +9,6 @@ use Auth;
 
 class SitesController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-  /*  public function sites()
-    {
-    	$sites = PersonalSites::lists('site', 'id');
-    	return $sites;
-    }*/
 
        public function getName()
     {
@@ -46,7 +36,9 @@ class SitesController extends Controller
     ->where('student_id',$student_id)
     ->insert(['personalSite' => $account,
              'site_id' => $site_id,
-             'student_id' => $student_id]);
+             'student_id' => $student_id,
+             'created_at' => date('YmdHms'),
+             ]);
     
     } catch (\Exception $e) {
       echo "Registro duplicado";

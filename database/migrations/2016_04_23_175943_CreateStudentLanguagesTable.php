@@ -14,6 +14,7 @@ class CreateStudentLanguagesTable extends Migration
     {
         Schema::create('studentLanguages', function (Blueprint $table) {
             $table->increments('id', 10)->comment('Identificador del idioma del usuario');
+            $table->unique(['language_id', 'student_id']);
             $table->enum('readingComprehension', ['Bajo', 'Medio', 'Alto'])->comment('Nivel de lectura');
             $table->enum('WrittedExpression', ['Bajo', 'Medio', 'Alto'])->comment('Nivel de escritura');
             $table->enum('listeningComprehension', ['Bajo', 'Medio', 'Alto'])->comment('Nivel auditivo');
