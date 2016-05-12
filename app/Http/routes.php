@@ -149,4 +149,5 @@ Route::group(['prefix' => '/estudiante', 'middleware' => ['web','auth']], functi
     Route::post('listlanguages','languagesController@listlanguagesuser');
     Route::resource('sites','SitesController');
     Route::resource('languages','LanguagesController');
+    Route::resource('certifications','CertificationsController');
 });

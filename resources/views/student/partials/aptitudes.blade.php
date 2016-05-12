@@ -16,8 +16,10 @@
                     <div class="row">
                         <form class="col-md-12">	
 							 <div class="input-field col-md-12">
-                                <textarea style="border:1px lightgrey solid" class="form-control" rows="5" id="aptitudes"></textarea>
-                                <br>
+                                <p style="color:#9e9e9e; font-weight:400">Descripción</p>
+                                {{ Form::textarea('aptitudes', null, ['class' => 'form-control', 'id' => 'aptitudes', 'maxlength' => '250', 'style' => 'border:1px lightgrey solid; padding-left:10px; padding-top:10px;', 'rows' => '5']) }}
+                                <span class="pull-right">Máximo 250 caracteres.</span>
+                            </div>
                                 <p style="font-size:90%">Ej: Experto en programación Java, o cualquier competencia referida a la oferta.</p>
                             </div>
 							<!--
