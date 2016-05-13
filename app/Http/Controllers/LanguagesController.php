@@ -43,14 +43,15 @@ class LanguagesController extends Controller
                'oralExpression' => $language['oralExpression'],
                'language_id' => $language_id,
                'student_id' => $student_id,
-               'created_at' => date('YmdHms')]);
-     
+               'created_at' => date('YmdHms')]);     
      }
    catch(\PDOException $e) {
     
    }
-    return view('student.profile');
-   }
+  return view('student.profile');
+}
+
+
 
    public function listlanguagesuser(){
     $user_id = \Auth::user()->id;
@@ -80,4 +81,20 @@ class LanguagesController extends Controller
       //DELETE $lang
       return $lang;
     } 
+
+
+    public function update($lang){
+        $user_id = \Auth::user()->id;
+     $student_id = \DB::table('students')->where('user_id' , $user_id)->value('id');
+     $language_id = \DB::table('languages')->where('language',$lang)->value('id');
+
+     $update = \DB::table('studentlanguages')
+      ->join('languages','studentlanguages.language_id','=','languages.id')
+      ->join('students','studentlanguages.student_id','=','students.id')
+      ->where('student_id',$student_id)
+      ->where('language_id',$language_id)
+      ->select('language','WrittedExpression','listeningComprehension','oralExpression','readingComprehension')
+      ->get();
+    return Response::json($update);
+    }
 }

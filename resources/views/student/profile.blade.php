@@ -57,6 +57,10 @@
                              <legend style="width:auto;">Mensajeria Instantanea</legend>
                              @include('student.partials.personalSites')
                             </fieldset>
+                              <fieldset>
+                             <legend style="width:auto;">Certificaciones</legend>
+                             @include('student.partials.certifications')
+                            </fieldset>
                             <fieldset>
                              <legend style="width:auto;">Aptitudes</legend>
                              @include('student.partials.aptitudes')
