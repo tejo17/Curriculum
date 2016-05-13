@@ -185,6 +185,9 @@ return [
         // Librerías barra de debug
         Barryvdh\Debugbar\ServiceProvider::class,
 
+        //Librería DOM Pdf
+        Barryvdh\DomPDF\ServiceProvider::class,
+
     ],
 
     /*
