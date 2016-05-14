@@ -12,7 +12,7 @@
 
             // Ocultamos el clear del datepiker por problemas con el label
             $('.picker__clear').addClass('hidden');
-          },
+        },
 
 
         selectMonths: true, // Creates a dropdown to control month
@@ -23,19 +23,20 @@
 
         // Rango de años que se mostraran
         selectYears: 1000,
-        min: [1916,01,01],
+        min: [1916, 01, 01],
         max: true,
         darktheme: true,
     });
 
     // Cuando se haga click en el campo input se abra el datepicker
-    $('.datepicker').on('click', function(){
+    $('.datepicker').on('click', function() {
+
         $('div.picker').addClass('picker--opened');
 
     });
 
     // Cuando se haga click en el campo input se abra el datepicker
-    $('.labelpicker').on('click', function(){
+    $('.labelpicker').on('click', function() {
         $('div.picker').addClass('picker--opened');
 
     });

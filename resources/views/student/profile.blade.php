@@ -5,6 +5,7 @@
 @section('scripts')
 <script src="/js/jquery-ui.js"></script>
 <script src="/js/profilejquery.js"></script>  
+<script src="/js/datepicker/datepickerConfig.js"></script> 
 @endsection
 @section('content')
 @include('partials.nav.navEstudiante')

@@ -21,6 +21,7 @@
                             <div class="col-md-4" style="color:black;">
                                     {{ Form::label('language', 'Idioma') }}
                                     {{ Form::select('language', [], null,['class' => 'form-control ',  'style'=> 'border:solid 1px lightgrey;', 'id' => 'language']) }}
+                                     {{ Form::hidden('id', null,['id' => "ocultolanguage"]) }}                        
                             </div>
                             <div class="col-md-12" style="border-top:1px lightgrey solid; border-bottom:1px lightgrey solid; margin-top:40px">
                                 <h5 style='text-align:center'>Nivel</h5>
@@ -40,7 +41,7 @@
                             <div class="col-md-4" style="margin-bottom:15px; margin-top:10px">
                                     {{ Form::label('oralExpression', 'Expresión Oral') }}
                                     {{ Form::select('oralExpression', ['bajo' => 'Bajo', 'medio' => 'Medio', 'alto' => 'Alto'], null,['class' => 'form-control ',  'style'=> 'border:solid 1px lightgrey;', 'id' => 'oralExpression']) }}
-                            </div>                           
+                            </div>   
                              <div class="text-center" style="clear:both;">
                                 <button type="submit" class="btn btn-success btn-lg waves-effect waves-light">Guardar</button>
                              </div>

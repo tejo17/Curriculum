@@ -3,6 +3,7 @@ var campo1;
 var campo2;
 var campo3;
 var campo4;
+var ocultolanguage = 0;
 
 $('#exp').on('shown.bs.modal', function(e) {
 
@@ -79,7 +80,6 @@ $('#languages').on('show.bs.modal', function(e) {
         url: 'cargaLanguages',
         type: 'post',
         success: function(data) {
-
             for (var i = 0; i < data.length; i++) {
                 if (i == 31) {
                     $("#language").append('<option selected value=' + data[i].value + '>' + data[i].value + '</option>');
@@ -97,7 +97,7 @@ $('#languages').on('show.bs.modal', function(e) {
             $("#WrittedExpression option:contains('" + campo2 + "')").prop('selected', true);
             $("#listeningComprehension option:contains('" + campo3 + "')").prop('selected', true);
             $("#oralExpression option:contains('" + campo4 + "')").prop('selected', true);
-
+            $("#ocultolanguage").val(ocultolanguage);
             if (lang.length == 0) {
                 $("#language option:contains('Español')").prop('selected', true);
             }
@@ -130,6 +130,9 @@ $('#languages').on('show.bs.modal', function(e) {
 
 }); //Fin script cargar Idiomas
 
+$('#languages').on('hide.bs.modal', function(e) {
+    ocultolanguage = 0;
+});
 //Funciones a cargar cuando se cargue la pagina
 $(function() {
     $.ajax({
@@ -138,9 +141,11 @@ $(function() {
         type: 'post',
         success: function(data) {
 
-            for (var i = 0; i < data.length; i++) {
 
-                $('#divlanguage').append("<div class='selector'><a onclick='borrarItem(this)'; class='material-icons boton_borrar'>delete</a><a class='boton_editar' data-toggle='modal' data-target='#languages' onclick='editarItem(this)';><i class='material-icons'>mode_edit</i><span class='subirtexto'>Editar</span></a><table class='table table-striped'><caption class='title'>" + data[i].language + "</caption><tr><th>Comprensión de lectura</th><th>Comprensión auditiva</th><th>Expresión Oral</th><th>Expresión Escrita</th></thead><tbody><tr><td class='campo1'>" + data[i].readingComprehension + "</td><td class='campo2'>" + data[i].listeningComprehension + "</td><td class='campo3'>" + data[i].oralExpression + "</td><td class='campo4'>" + data[i].WrittedExpression + "</td></tr></table></div>");
+            for (var i = 0; i < data.length; i++) {
+                //
+
+                $('#divlanguage').append("<div class='selector table-container'><input id=id_language type='hidden' value=" + data[i].id + "></input><a onclick='borrarItem(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#languages' onclick='editarItem(this)';><i class='material-icons'>mode_edit</i></a><table class='table table-striped'><h5 style='text-align:center;font-weight:bold;'>" + data[i].language + "</h5><thead><tr><th>Comprensión de lectura</th><th>Comprensión auditiva</th><th>Expresión Oral</th><th>Expresión Escrita</th></tr></thead><tbody><tr><td class='campo1'>" + data[i].readingComprehension + "</td><td class='campo2'>" + data[i].listeningComprehension + "</td><td class='campo3'>" + data[i].oralExpression + "</td><td class='campo4'>" + data[i].WrittedExpression + "</td></tr></tbody></table></div>");
 
 
             }
@@ -150,6 +155,8 @@ $(function() {
 });
 
 function editarItem(item) {
+    ocultolanguage = $(item).parent().children('input')[0].value;
+
     var table = $(item).next();
     lang = table.children('.title').text();
     campo1 = table.children('tbody').children('tr').children('.campo1').text();
@@ -168,8 +175,6 @@ function editarItem(item) {
     if ((campo4 != "Alto") && (campo4 != "Medio") && ("Bajo")) {
         campo4 = "Bajo";
     }
-    //Comprobacion 3 datos
-    //Update
 }
 
 function borrarItem(item) {

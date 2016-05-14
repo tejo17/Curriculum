@@ -26,11 +26,14 @@ class LanguagesController extends Controller
         return Response::json($results);
    }
    
-   public function store(Request $request){
-          $language = $request->input();
+   public function store(Request $request)
+   {
+    $id_query = $request->input('id');
           $user_id = \Auth::user()->id;
           $student_id = \DB::table('students')->where('user_id' , $user_id)->value('id');
+      $language = $request->input();
           $language_id = \DB::table('languages')->where('language' , $language['language'])->value('id');
+    if ($id_query == 0) {
            
     try {
       $queries = \DB::table('studentlanguages')
@@ -46,21 +49,35 @@ class LanguagesController extends Controller
                'created_at' => date('YmdHms')]);     
      }
    catch(\PDOException $e) {
-    
+     
    }
+ }else{
+  $queries = \DB::table('studentlanguages')
+      ->join('languages','studentlanguages.language_id','=','languages.id')
+      ->join('students','studentlanguages.student_id','=','students.id')
+      ->where('student_id',$student_id)
+      ->where('studentlanguages.id',$id_query)
+      ->update(['readingComprehension' => $language['readingComprehension'],
+               'WrittedExpression' => $language['WrittedExpression'],
+               'listeningComprehension' => $language['listeningComprehension'],
+               'oralExpression' => $language['oralExpression'],
+               'language_id' => $language_id,
+               'student_id' => $student_id]);
+ }
   return view('student.profile');
 }
 
 
 
-   public function listlanguagesuser(){
+   public function listlanguagesuser()
+   {
     $user_id = \Auth::user()->id;
     $student_id = \DB::table('students')->where('user_id' , $user_id)->value('id');
      
      $queries = \DB::table('studentlanguages')
     ->join('languages','studentlanguages.language_id','=','languages.id')
     ->join('students','studentlanguages.student_id','=','students.id')
-    ->select('language','readingComprehension','WrittedExpression','listeningComprehension','oralExpression')
+    ->select('studentlanguages.id','language','readingComprehension','WrittedExpression','listeningComprehension','oralExpression')
     ->where('student_id',$student_id)
     ->get();
 
@@ -72,7 +89,8 @@ class LanguagesController extends Controller
      * @param  String $lang 
      */
 
-    public function destroy($lang) {
+    public function destroy($lang) 
+    {
        $user_id = \Auth::user()->id;
      $student_id = \DB::table('students')->where('user_id' , $user_id)->value('id');
      $language_id = \DB::table('languages')->where('language',$lang)->value('id');
@@ -81,20 +99,4 @@ class LanguagesController extends Controller
       //DELETE $lang
       return $lang;
     } 
-
-
-    public function update($lang){
-        $user_id = \Auth::user()->id;
-     $student_id = \DB::table('students')->where('user_id' , $user_id)->value('id');
-     $language_id = \DB::table('languages')->where('language',$lang)->value('id');
-
-     $update = \DB::table('studentlanguages')
-      ->join('languages','studentlanguages.language_id','=','languages.id')
-      ->join('students','studentlanguages.student_id','=','students.id')
-      ->where('student_id',$student_id)
-      ->where('language_id',$language_id)
-      ->select('language','WrittedExpression','listeningComprehension','oralExpression','readingComprehension')
-      ->get();
-    return Response::json($update);
-    }
 }
