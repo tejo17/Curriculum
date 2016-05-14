@@ -10,7 +10,7 @@ use Auth;
 class SitesController extends Controller
 {
 
-       public function getName()
+    public function getName()
     {
         $queries = \DB::table('personalsites')
             ->get();
@@ -21,22 +21,20 @@ class SitesController extends Controller
         }
         return Response::json($results);
    }
-   public function store(Request $request){
+   public function store(Request $request)
+   {
           $account = $request->input('personalsite');
           $site = $request->input('site');
-          $user_id = Auth::user()->id;
           $site_id = \DB::table('personalsites')->where('site' , $site)->value('id');
-          $student_id = \DB::table('students')->where('user_id' , $user_id)->value('id');
- 
 
     try {
             $queries = \DB::table('studentpersonalsites')
     ->join('personalsites','studentpersonalsites.site_id','=','personalsites.id')
     ->join('students','studentpersonalsites.student_id','=','students.id')
-    ->where('student_id',$student_id)
+    ->where('student_id',$this->student_id)
     ->insert(['personalSite' => $account,
              'site_id' => $site_id,
-             'student_id' => $student_id,
+             'student_id' => $this->student_id,
              'created_at' => date('YmdHms'),
              ]);
     
@@ -44,10 +42,35 @@ class SitesController extends Controller
       echo "Registro duplicado";
     }
       
-       
-
-
-
     return view('student.profile');
    }
+
+
+    public function listSitesUsers(){
+    
+     $queries = \DB::table('studentPersonalSites')
+    ->join('personalSites','studentPersonalSites.site_id','=','personalSites.id')
+    ->join('students','studentPersonalSites.student_id','=','students.id')
+    ->select('personalSite')
+    ->where('student_id',$this->student_id)
+    ->get();
+
+    return Response::json($queries);
+    
+   }
+
+    /**
+     * @param  String $site 
+     */
+
+    public function destroy($site)
+    {
+
+       $queries = \DB::table('personalSites')
+       ->where('student_id',$this->student_id)
+       ->delete();
+
+      //DELETE $site
+      return $site;
+    } 
 }

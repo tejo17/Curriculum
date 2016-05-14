@@ -28,16 +28,13 @@ class AptitudesController extends Controller
    
    public function store(Request $request){
           $aptitude = $request->input();
-          $user_id = \Auth::user()->id;
-          $student_id = \DB::table('students')->where('user_id' , $user_id)->value('id');
-   
            
     try {
       $queries = \DB::table('aptitudes')
       ->join('students','aptitudes.student_id','=','students.id')
-      ->where('student_id',$student_id)
+      ->where('student_id',$this->student_id)
       ->insert(['aptitude' => $aptitude['aptitude'],
-               'student_id' => $student_id,
+               'student_id' => $this->student_id,
                'created_at' => date('YmdHms')]);     
      }
    catch(\PDOException $e) {
@@ -48,14 +45,12 @@ class AptitudesController extends Controller
 
 
 
-   public function listAptitudesUser(){
-    $user_id = \Auth::user()->id;
-    $student_id = \DB::table('students')->where('user_id' , $user_id)->value('id');
-     
+   public function listAptitudesUser()
+   {
      $queries = \DB::table('aptitudes')
     ->join('students','aptitudes.student_id','=','students.id')
     ->select('aptitude')
-    ->where('student_id',$student_id)
+    ->where('student_id',$this->student_id)
     ->get();
 
     return Response::json($queries);
@@ -66,10 +61,13 @@ class AptitudesController extends Controller
      * @param  String $aptitude 
      */
 
-    public function destroy($lang) {
-       $user_id = \Auth::user()->id;
-      $student_id = \DB::table('students')->where('user_id' , $user_id)->value('id');
-      $queries = \DB::table('aptitudes')->where('language_id',$language_id)->where('student_id',$student_id)->delete();
+    public function destroy($lang)
+    {
+      
+      $queries = \DB::table('aptitudes')
+      ->where('language_id',$language_id)
+      ->where('student_id',$this->student_id)
+      ->delete();
 
       //DELETE $aptitude
       return $lang;

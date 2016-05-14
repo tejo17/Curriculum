@@ -11,21 +11,19 @@ class OtherGradesController extends Controller
 {
 
      
-   public function store(Request $request){
+   public function store(Request $request)
+   {
           $grade = $request->input();
-          $user_id = Auth::user()->id;
-          $student_id = \DB::table('students')->where('user_id' , $user_id)->value('id');
- 
-
+         
     try {
             $queries = \DB::table('otherGrades')
     ->join('students','otherGrades.student_id','=','students.id')
-    ->where('student_id',$student_id)
+    ->where('student_id',$this->student_id)
     ->insert(['grade' => $grade['grade'],
     		  'description' => $grade['description'],
     		  'duration' => $grade['duration'],
     		  'institution' => $grade['institution'],
-              'student_id' => $student_id,
+              'student_id' => $this->student_id,
               'created_at' => date('YmdHms'),
              ]);
     
@@ -35,14 +33,13 @@ class OtherGradesController extends Controller
     return view('student.profile');
    }
 
-   public function listOtherGrades(){
-    $user_id = \Auth::user()->id;
-    $student_id = \DB::table('students')->where('user_id' , $user_id)->value('id');
+   public function listOtherGrades()
+   {
      
      $queries = \DB::table('otherGrades')
     ->join('students','otherGrades.student_id','=','students.id')
     ->select('grade','description','duration','institution')
-    ->where('student_id',$student_id)
+    ->where('student_id',$this->student_id)
     ->get();
 
     return Response::json($queries);
@@ -50,13 +47,15 @@ class OtherGradesController extends Controller
    }
 
    /**
-     * @param  String $lang 
+     * @param  String $grade 
      */
 
-    public function destroy($grade) {
-       $user_id = \Auth::user()->id;
-       $student_id = \DB::table('students')->where('user_id' , $user_id)->value('id');
-       $queries = \DB::table('otherGrades')->where('student_id',$student_id)->delete();
+    public function destroy($grade)
+    {
+
+       $queries = \DB::table('otherGrades')
+       ->where('student_id',$this->student_id)
+       ->delete();
 
       //DELETE $grade
       return $grade;
