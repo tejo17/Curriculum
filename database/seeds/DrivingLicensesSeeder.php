@@ -31,6 +31,11 @@ class DrivingLicensesSeeder extends Seeder
         	'drivingLicense' => 'A',
             'created_at' => date('YmdHms')
         ]);
+
+        \DB::table('drivingLicenses')->insert([
+          'drivingLicense' => 'B1',
+            'created_at' => date('YmdHms')
+        ]);
        
           \DB::table('drivingLicenses')->insert([
         	'drivingLicense' => 'B',
@@ -39,6 +44,11 @@ class DrivingLicensesSeeder extends Seeder
        
           \DB::table('drivingLicenses')->insert([
         	'drivingLicense' => 'BE',
+            'created_at' => date('YmdHms')
+        ]);
+
+         \DB::table('drivingLicenses')->insert([
+          'drivingLicense' => 'BTP',
             'created_at' => date('YmdHms')
         ]);
        
@@ -82,10 +92,7 @@ class DrivingLicensesSeeder extends Seeder
             'created_at' => date('YmdHms')
         ]);
        
-          \DB::table('drivingLicenses')->insert([
-        	'drivingLicense' => 'btp',
-            'created_at' => date('YmdHms')
-        ]);
+         
        
        
     }

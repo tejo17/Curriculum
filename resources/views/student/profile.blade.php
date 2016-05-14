@@ -11,19 +11,15 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-10 col-md-offset-1 sin-margen">
+        <div class="col-md-10 col-md-offset-1 sin-margen" >
             <div class="panel panel-default">
                 <div class="modal-content">
                     <div class="modal-header text-center">
-
-                 
-
                         <h4><i class="fa fa-graduation-cap"></i>Datos Personales</h4>
                     </div>
-
                     <div class="panel-body ancho">
-                    @if(Session::has('message'))
-                    <p class="alert alert-success">{{Session::get('message')}}</p>
+                    @if(Session::has('fail'))
+                    <p class="alert alert-danger">{{Session::get('fail')}}</p>
                     @endif
                          {{ Form::open(['url' => 'estudiante/perfil', 'method' => 'POST','class'=>'form-horizontal','id' => 'student-register-form']) }}
                             {{ csrf_field() }}
@@ -35,7 +31,8 @@
                                   <h5 style="text-transform: capitalize;">{{ session('lastName') }},{{ session('firstName') }}<h5>
                                   <h6><i class="material-icons">location_on</i>{{ session('address') }},{{ session('postalCode') }},{{ session('city') }},({{ session('state') }})</h6>
                                   <h6><i class="material-icons">phone</i>{{ session('phone') }}</h6>
-                                </div>             
+                                </div>   
+                                @include('student.partials.personalInformation')
                             </fieldset>
                             <fieldset>
                              <legend style="width:auto;">Experiencia Profesional</legend>
@@ -43,7 +40,7 @@
                             </fieldset>
                             <fieldset>
                              <legend style="width:auto;">Idiomas</legend>
-                             <div id="divlanguage">
+                             <div id="divlanguage" class="col-md-12">
                                
                              </div>
                              @include('student.partials.languages')
@@ -61,10 +58,17 @@
                              <legend style="width:auto;">Certificaciones</legend>
                              @include('student.partials.certifications')
                             </fieldset>
-                            <fieldset>
+                              <fieldset>
+                             <legend style="width:auto;">Otros Cursos</legend>
+                             @include('student.partials.otherGrades')
+                            </fieldset>
+                              <fieldset>
                              <legend style="width:auto;">Aptitudes</legend>
                              @include('student.partials.aptitudes')
                             </fieldset>
+                        
+
+                         
                             <div class="form-group">
                                 <div class="col-md-12 text-center">
                                     <button type="submit" class="btn btn-primary btn-login-media waves-effect waves-light" id="guardar">
