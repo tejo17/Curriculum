@@ -14,33 +14,23 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <form class="col-md-12">	
+                        <form class="col-md-12" action="aptitudes" method="POST">	
+                             <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
 							 <div class="input-field col-md-12">
-                                <p style="color:#9e9e9e; font-weight:400">Descripción</p>
-                                {{ Form::textarea('aptitudes', null, ['class' => 'form-control', 'id' => 'aptitudes', 'maxlength' => '250', 'style' => 'border:1px lightgrey solid; padding-left:10px; padding-top:10px;', 'rows' => '5']) }}
                                 <span class="pull-right">Máximo 250 caracteres.</span>
+                                {{ Form::textarea('aptitude', null, ['class' => 'form-control', 'id' => 'aptitude', 'maxlength' => '250', 'style' => 'border:1px lightgrey solid; padding-left:10px; padding-top:10px;', 'rows' => '5']) }}
+                                
                             </div>
                                 <p style="font-size:90%">Ej: Experto en programación Java, o cualquier competencia referida a la oferta.</p>
-                            </div>
-							<!--
-							 <div class="input-field col-md-9">
-                            <i class="material-icons prefix">account_circle</i>
-                                {{ Form::text('aptitud', null,['id' => "aptitud"]) }}
-                                {{ Form::label('aptitud', 'Aptitud') }}
-                            </div>
-                           <div class="col-md-3">
-                                    {{ Form::label('level', 'Nivel') }}
-                                    {{ Form::select('level', ['1' => 'Bajo', '2' =>'Medio', '3' => 'Alto'], null,['class' => 'form-control ',  'style'=> 'border:solid 1px lightgrey;', 'id' => 'site']) }}
-                            </div>
-                           -->
+                            <br>
+                            <!--Footer-->
+                             <div class="text-center">
+                                <button type="submit" class="btn btn-success btn-lg waves-effect waves-light">Sign up</button>
+                             </div>
+                            
+                             <!--/.Footer-->
                         </form>
-                        <br>
-                        <!--Footer-->
-                 <div class="text-center">
-                    <button type="button" class="btn btn-success btn-lg waves-effect waves-light">Sign up</button>
-                 </div>
-                
-                <!--/.Footer-->
+                        
                     </div>
                 </div>
                 

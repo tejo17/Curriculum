@@ -164,6 +164,6 @@
    </fieldset>
 
 
-    @include('partials.upload.dragDropCurriculum')
+    <br>
     @include('partials.upload.dragDrop')
 </div>

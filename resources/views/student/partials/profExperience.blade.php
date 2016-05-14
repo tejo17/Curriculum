@@ -41,7 +41,7 @@
                             </div>
                                 <br>
                                 
-                            </div>
+                        
                             <div class="input-field col-md-6">
                                 <i class="material-icons prefix">today</i>
                                     {{ Form::label('from', 'Desde', ['class' => 'labelpicker']) }}
@@ -59,7 +59,7 @@
 
                             <div class="text-center" style="clear:both;">
                             <button type="button" class="btn btn-success btn-lg waves-effect waves-light">Guardar</button>
-                        </div>
+                            </div>
                         </form>
                        
 

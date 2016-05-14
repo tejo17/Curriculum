@@ -15,8 +15,7 @@ class CreateOtherGradesTable extends Migration
         Schema::create('otherGrades', function (Blueprint $table) {
             $table->increments('id', 10)->comment('Identificador del curso del usuario');
             $table->string('grade', 200)->comment('Curso del usuario');
-            $table->string('description', 250)->comment('Breve descripcion del curso')->nullable(); 
-            $table->string('credits', 5)->comment('Creditos del curso del usuario')->nullable(); 
+            $table->string('description', 250)->comment('Breve descripcion del curso')->nullable();
             $table->string('duration', 10)->comment('Duracion del curso del usuario')->nullable();  
             $table->string('institution', 200)->comment('Insitucion donde se obtiene el curso')->nullable();  
             $table->integer('student_id')->unsigned()->comment('Identificador del estudiante'); 

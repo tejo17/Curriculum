@@ -10,4 +10,17 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    public $student_id;
+
+	public function __construct()
+	{
+	  $this->student_id = self::getId();
+	}
+   	public function getId(){
+
+   		$user_id = \Auth::user()->id;
+        $student_id = \DB::table('students')->where('user_id' , $user_id)->value('id');
+        return $student_id;
+   	}
 }

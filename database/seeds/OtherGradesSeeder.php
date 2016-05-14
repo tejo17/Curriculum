@@ -16,7 +16,6 @@ class OtherGradesSeeder extends Seeder
         \DB::table('otherGrades')->insert([
         	'grade' => 'Curso de repostería',
         	'description' => 'Tartas de la abuela y tartas de queso',
-        	'credits' => '',
         	'duration' => '40 horas',
         	'institution' => 'Escuela de repostería de mi casa',
             'student_id' => 4,
@@ -25,7 +24,6 @@ class OtherGradesSeeder extends Seeder
          \DB::table('otherGrades')->insert([
         	'grade' => 'Curso de higiene bucodental',
         	'description' => '',
-        	'credits' => '30',
         	'duration' => '40 horas',
         	'institution' => 'Escuela de repostería de mi casa',
             'student_id' => 4,
@@ -34,7 +32,6 @@ class OtherGradesSeeder extends Seeder
           \DB::table('otherGrades')->insert([
         	'grade' => 'Curso de pelador de mariscos con caparazón',
         	'description' => 'pelador profesional de gambas y langostinos',
-        	'credits' => '25',
         	'duration' => '40 horas',
         	'institution' => 'Escuela de repostería de mi casa',
             'student_id' => 5,
@@ -43,7 +40,6 @@ class OtherGradesSeeder extends Seeder
            \DB::table('otherGrades')->insert([
         	'grade' => 'Curso de buzo',
         	'description' => 'Inmersiones a más de 4000 metros de profundidad',
-        	'credits' => '',
         	'duration' => '400 horas',
         	'institution' => 'Escuela de repostería de mi casa',
             'student_id' => 5,

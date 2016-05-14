@@ -150,6 +150,8 @@ Route::group(['prefix' => '/estudiante', 'middleware' => ['web','auth']], functi
     Route::resource('sites','SitesController');
     Route::resource('languages','LanguagesController');
     Route::resource('certifications','CertificationsController');
+    Route::resource('otherGrades','OtherGradesController');
+    Route::resource('aptitudes','AptitudesController');
 });
 
 Route::get('pdf', 'PdfController@invoice');

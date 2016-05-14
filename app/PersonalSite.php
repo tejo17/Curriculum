@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PersonalSite extends Model
 {
-    protected $table = 'personalsites';
+    use SoftDeletes;
+    protected $table = 'personalSites';
     protected $fillable = ['site'];
 }
