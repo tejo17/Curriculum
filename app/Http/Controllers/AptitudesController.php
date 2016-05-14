@@ -13,7 +13,7 @@ class AptitudesController extends Controller
      *
      * @return void
      */
-        public function getAptitude()
+    public function getAptitude()
     {
         $queries = \DB::table('aptitudes')
         	->orderBy('aptitude')
@@ -24,7 +24,7 @@ class AptitudesController extends Controller
             $results[] = [ 'id' => $query->id, 'value' => $query->aptitude];
         }
         return Response::json($results);
-   }
+    }
    
    public function store(Request $request){
           $aptitude = $request->input();

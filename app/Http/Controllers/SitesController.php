@@ -28,9 +28,9 @@ class SitesController extends Controller
           $site_id = \DB::table('personalsites')->where('site' , $site)->value('id');
 
     try {
-            $queries = \DB::table('studentpersonalsites')
-    ->join('personalsites','studentpersonalsites.site_id','=','personalsites.id')
-    ->join('students','studentpersonalsites.student_id','=','students.id')
+            $queries = \DB::table('studentPersonalSites')
+    ->join('personalSites','studentPersonalSites.site_id','=','personalSites.id')
+    ->join('students','studentPersonalSites.student_id','=','students.id')
     ->where('student_id',$this->student_id)
     ->insert(['personalSite' => $account,
              'site_id' => $site_id,

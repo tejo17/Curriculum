@@ -41,7 +41,7 @@ class UsersController extends Controller
      * Constructor del Controlador de usuarios
      * @param Request $request obtenemos la petición
      */
-    protected function __construct(Request $request)
+    public function __construct(Request $request)
     {
         //$this->middleware('auth');
 
