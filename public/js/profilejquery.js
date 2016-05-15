@@ -4,6 +4,9 @@ var campo2;
 var campo3;
 var campo4;
 var ocultolanguage = 0;
+var ocultolicense = 0;
+
+var checkboxs;
 
 $('#exp').on('shown.bs.modal', function(e) {
 
@@ -130,11 +133,20 @@ $('#languages').on('show.bs.modal', function(e) {
 
 }); //Fin script cargar Idiomas
 
+//Acciones al salir de los modales
 $('#languages').on('hide.bs.modal', function(e) {
     ocultolanguage = 0;
 });
+
+$('#licenses').on('hide.bs.modal', function(e) {
+    ocultolicense = 0;
+    $('#ocultolicense').val(ocultolicense);
+
+});
+//Fin acciones salir de los modales
 //Funciones a cargar cuando se cargue la pagina
 $(function() {
+    //Carga por ajax listado modal lenguajes
     $.ajax({
         headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
         url: 'listlanguages',
@@ -143,12 +155,29 @@ $(function() {
 
 
             for (var i = 0; i < data.length; i++) {
-                //
 
                 $('#divlanguage').append("<div class='selector table-container'><input id=id_language type='hidden' value=" + data[i].id + "></input><a onclick='borrarItem(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#languages' onclick='editarItem(this)';><i class='material-icons'>mode_edit</i></a><table class='table table-striped'><h5 style='text-align:center;font-weight:bold;'>" + data[i].language + "</h5><thead><tr><th>Comprensión de lectura</th><th>Comprensión auditiva</th><th>Expresión Oral</th><th>Expresión Escrita</th></tr></thead><tbody><tr><td class='campo1'>" + data[i].readingComprehension + "</td><td class='campo2'>" + data[i].listeningComprehension + "</td><td class='campo3'>" + data[i].oralExpression + "</td><td class='campo4'>" + data[i].WrittedExpression + "</td></tr></tbody></table></div>");
-
-
             }
+        }
+
+    });
+    //Carga por ajax listado modal licencias
+    
+    $.ajax({
+
+        headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
+        url: 'listLicenses',
+        type: 'post',
+        success: function(data) {
+
+            for (var i = 0; i <= data.length; i++) {
+                $('#namelicenses').append(data[i].drivingLicense);               
+                if (i < data.length-1) {
+                    $('#namelicenses').append(' , ');
+                }
+                $('#id_license').val(data[i].id);
+                $('#ocultolicense').val(ocultolicense);
+             }
         }
 
     });
@@ -176,7 +205,10 @@ function editarItem(item) {
         campo4 = "Bajo";
     }
 }
-
+function editarItemlicense(item){
+    ocultolicense = $(item).parent().children('input')[0].value;
+    $('#ocultolicense').val(ocultolicense);
+}
 function borrarItem(item) {
     var table = $(item).next();
     var lang = table.children('.title').text();

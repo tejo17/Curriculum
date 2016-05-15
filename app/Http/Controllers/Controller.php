@@ -15,7 +15,9 @@ class Controller extends BaseController
 
 	public function __construct()
 	{
+    if (\Auth::user() !== null) {
 	  $this->student_id = self::getId();
+    }
 	}
    	public function getId(){
 

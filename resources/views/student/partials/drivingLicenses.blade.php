@@ -27,7 +27,7 @@
                                <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
                                 <!--MOTOS-->
                                 <div class="input-field col-md-3">
-                              
+                               {{ Form::text('id', null,['id' => "ocultolicense"]) }}
                                 {{ HTML::image('img/sprite/am.png', 'alt', array( 'width' => 70, 'height' => 50 )) }}
                                <br>
 
