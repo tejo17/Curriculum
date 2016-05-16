@@ -6,7 +6,7 @@ var campo4;
 var ocultolanguage = 0;
 var ocultolicense = 0;
 
-var checkboxs;
+var checkboxs = new Array();
 
 $('#exp').on('shown.bs.modal', function(e) {
 
@@ -141,6 +141,7 @@ $('#languages').on('hide.bs.modal', function(e) {
 $('#licenses').on('hide.bs.modal', function(e) {
     ocultolicense = 0;
     $('#ocultolicense').val(ocultolicense);
+    console.log($('ocultolicense').parent());
 
 });
 //Fin acciones salir de los modales
@@ -162,7 +163,7 @@ $(function() {
 
     });
     //Carga por ajax listado modal licencias
-    
+
     $.ajax({
 
         headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
@@ -170,14 +171,17 @@ $(function() {
         type: 'post',
         success: function(data) {
 
-            for (var i = 0; i <= data.length; i++) {
-                $('#namelicenses').append(data[i].drivingLicense);               
-                if (i < data.length-1) {
+            for (var i = 0; i < data.length; i++) {
+                checkboxs.push(data[i].drivingLicense);
+                $('#namelicenses').append(data[i].drivingLicense);
+                if (i < data.length - 1) {
                     $('#namelicenses').append(' , ');
                 }
                 $('#id_license').val(data[i].id);
                 $('#ocultolicense').val(ocultolicense);
-             }
+
+            }
+            
         }
 
     });
@@ -205,10 +209,15 @@ function editarItem(item) {
         campo4 = "Bajo";
     }
 }
-function editarItemlicense(item){
+
+function editarItemlicense(item) {
     ocultolicense = $(item).parent().children('input')[0].value;
     $('#ocultolicense').val(ocultolicense);
+    for (var i = 0; i < checkboxs.length; i++) {
+        $("#"+checkboxs[i]+"").prop("checked","checked");
+    }
 }
+
 function borrarItem(item) {
     var table = $(item).next();
     var lang = table.children('.title').text();

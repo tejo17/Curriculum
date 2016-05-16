@@ -1,7 +1,7 @@
 
  
  <!--Button-->
-    <a href="#" class="btn btn-primary btn-lg waves-effect waves-light" data-toggle="modal" data-target="#licenses"><i class="material-icons left">add</i>Añadir</a>
+    <a href="#" class="btn btn-primary btn-lg waves-effect waves-light" data-toggle="modal" data-target="#licenses"> <i class="material-icons left">add</i>Añadir</a>
     <!-- Modal -->
 
     <!-- Modal -->
@@ -127,7 +127,7 @@
                               
                                  <!--Footer-->
                              <div class="text-center" style="clear:both">
-                                <button type="submit" class="btn btn-success btn-lg waves-effect waves-light">Guardar</button>
+                                <button type="submit" class="btn btn-success btn-lg waves-effect waves-light ">Guardar</button>
                              </div>
                             
                             <!--/.Footer-->
