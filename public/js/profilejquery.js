@@ -5,7 +5,8 @@ var campo3;
 var campo4;
 var ocultolanguage = 0;
 var ocultolicense = 0;
-
+var licencias;
+var listalicencias = ([AM,A1,A2,A,B1,B,BE,BTP,C1,C,C1E,CE,D1,D,D1E,DE]);
 var checkboxs = new Array();
 
 $('#exp').on('shown.bs.modal', function(e) {
@@ -141,10 +142,13 @@ $('#languages').on('hide.bs.modal', function(e) {
 $('#licenses').on('hide.bs.modal', function(e) {
     ocultolicense = 0;
     $('#ocultolicense').val(ocultolicense);
-    console.log($('ocultolicense').parent());
+    
+   for (var i = 0; i < listalicencias.length; i++) {
+        $(listalicencias[i]).prop("checked","");    }
 
-});
-//Fin acciones salir de los modales
+});//Fin acciones salir de los modales
+
+
 //Funciones a cargar cuando se cargue la pagina
 $(function() {
     //Carga por ajax listado modal lenguajes
@@ -170,9 +174,9 @@ $(function() {
         url: 'listLicenses',
         type: 'post',
         success: function(data) {
-
+           
+                licencias = data.drivingLicense;
             for (var i = 0; i < data.length; i++) {
-                checkboxs.push(data[i].drivingLicense);
                 $('#namelicenses').append(data[i].drivingLicense);
                 if (i < data.length - 1) {
                     $('#namelicenses').append(' , ');
@@ -190,8 +194,8 @@ $(function() {
 function editarItem(item) {
     ocultolanguage = $(item).parent().children('input')[0].value;
 
-    var table = $(item).next();
-    lang = table.children('.title').text();
+    var table = $(item).parent().children('table');
+    var lang = table.parent().children('h5').text();
     campo1 = table.children('tbody').children('tr').children('.campo1').text();
     campo2 = table.children('tbody').children('tr').children('.campo2').text();
     campo3 = table.children('tbody').children('tr').children('.campo3').text();
@@ -213,20 +217,35 @@ function editarItem(item) {
 function editarItemlicense(item) {
     ocultolicense = $(item).parent().children('input')[0].value;
     $('#ocultolicense').val(ocultolicense);
+    licencias = $('#namelicenses').text();
+    console.log(licencias);
+    checkboxs = licencias.split(',');
+
     for (var i = 0; i < checkboxs.length; i++) {
         $("#"+checkboxs[i]+"").prop("checked","checked");
     }
 }
 
 function borrarItem(item) {
-    var table = $(item).next();
-    var lang = table.children('.title').text();
+    var table = $(item).parent().children('table');
+    var lang = table.parent().children('h5').text();
     $.ajax({
         headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
         url: '/estudiante/languages/' + lang,
-        type: 'DELETE',
+        type: 'delete',
         success: function(result) {
-            table.parent().remove();
+           table.parent().remove();
+        }
+    });
+}
+function borrarItemLicense(item) {
+    var licenseid = $('#license_id').val();
+    $.ajax({
+        headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
+        url: '/estudiante/drivingLicenses/' + licenseid,
+        type: 'delete',
+        success: function(result) {
+           $('#divlicenses').children().remove();
         }
     });
 }

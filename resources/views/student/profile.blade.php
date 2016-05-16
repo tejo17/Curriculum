@@ -50,8 +50,8 @@
                          <div id="divlicenses" class="col-md-12"> 
                             <div class='selector'>
                             Permiso de Conducir
-                               <input id=id_license  value=""></input>
-                               <a onclick='borrarItem(this)'; class='material-icons boton_borrar pull-right'>delete</a>
+                               <input id=id_license  value="" type="hidden"></input>
+                               <a onclick='borrarItemLicense(this)'; class='material-icons boton_borrar pull-right'>delete</a>
                                <a class='boton_editar pull-right' data-toggle='modal' data-target='#licenses' onclick='editarItemlicense(this)';><i class='material-icons'>mode_edit</i></a>
                                <p id="namelicenses"></p>                 
                            </div>

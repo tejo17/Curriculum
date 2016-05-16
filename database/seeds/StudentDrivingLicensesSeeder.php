@@ -14,24 +14,16 @@ class StudentDrivingLicensesSeeder extends Seeder
     	
         \DB::table('StudentDrivingLicenses')->insert([
             'student_id' => 4,
-            'license_id' => 1,
+            'drivingLicense' => ('A,A1,B'),
             'created_at' => date('YmdHms')
         ]);
-         \DB::table('StudentDrivingLicenses')->insert([
-            'student_id' => 4,
-            'license_id' => 5,
-            'created_at' => date('YmdHms')
-        ]);
+
           \DB::table('StudentDrivingLicenses')->insert([
             'student_id' => 5,
-            'license_id' => 2,
+            'drivingLicense' => ('BTP,C,B1'),
             'created_at' => date('YmdHms')
         ]);
-           \DB::table('StudentDrivingLicenses')->insert([
-            'student_id' => 5,
-            'license_id' => 9,
-            'created_at' => date('YmdHms')
-        ]);
+
     }
 }
 

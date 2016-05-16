@@ -33,7 +33,6 @@ class DatabaseSeeder extends Seeder
         $this->call(VerifiedSeeder::class);
         $this->call(LanguagesSeeder::class);
         $this->call(StudentLanguagesSeeder::class);
-        $this->call(DrivingLicensesSeeder::class);
         $this->call(StudentDrivingLicensesSeeder::class);
         $this->call(PersonalSitesSeeder::class);
         $this->call(StudentPersonalSitesSeeder::class);

@@ -13,33 +13,40 @@ class DrivingLicensesController extends Controller
 
  public function store(Request $request)
  {
-    $id = $request->input('id');   
-  $license_id = $request->input('drivingLicense');
- 
-/*  if($id == 0 && $license_id != null ){
-*/   foreach ($license_id as $key => $value) {
-  try { 
+  $student = \DB::table('studentDrivingLicenses')->where('student_id', $this->student_id)->first();
+  $id = $request->input('id');   
+  $drivingLicense = $request->input('drivingLicense');
 
-     $queries = \DB::table('studentDrivingLicenses')
-     ->join('drivingLicenses','studentDrivingLicenses.license_id','=','drivingLicenses.id')
-     ->join('students','studentDrivingLicenses.student_id','=','students.id')
-     ->where('student_id',$this->student_id)
-     ->where('license_id',$license_id)
-     ->insert(['license_id' => $value,
-      'student_id' => $this->student_id,
-      'created_at' => date('YmdHms'),
-      ]);
-    }catch(Exception $e) {
-  dd('Seleccione al menos un campo');  
+ if($id == 0 ){
+  if ($drivingLicense != null) {
+    if ($student == null) {
+  $licenses = implode(",", $drivingLicense);
+          $queries = \DB::table('studentDrivingLicenses')
+          ->join('students','studentDrivingLicenses.student_id','=','students.id')
+          ->where('student_id',$this->student_id)
+          ->insert(['drivingLicense' => $licenses,
+                   'student_id' => $this->student_id,
+                   'created_at' => date('YmdHms'),
+                   ]);       
+      
+    }else{
+          Session::flash('fail','Este estudiante ya tiene un registro de permisos');
+
     }
-   }
+  }else{
+    Session::flash('fail','Debes marcar un permiso de conducir');
+  }
 
+}else{
+  $licenses = implode(",", $drivingLicense);
 
- /*}else{
-
-  dd('Campo editado');  
-
-}*/
+  $queries = \DB::table('studentDrivingLicenses')
+          ->join('students','studentDrivingLicenses.student_id','=','students.id')
+          ->where('student_id',$this->student_id)
+          ->update(['drivingLicense' => $licenses,
+                   'student_id' => $this->student_id,
+                   ]);
+  }
 return view('student.profile');
 }
 
@@ -47,7 +54,6 @@ return view('student.profile');
 public function listLicenses(){
     
       $queries = \DB::table('studentDrivingLicenses')
-     ->join('drivingLicenses','studentDrivingLicenses.license_id','=','drivingLicenses.id')
      ->join('students','studentDrivingLicenses.student_id','=','students.id')
      ->where('student_id',$this->student_id)
      ->select('studentDrivingLicenses.id','drivingLicense','student_id')

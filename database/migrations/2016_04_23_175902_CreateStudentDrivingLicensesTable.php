@@ -14,11 +14,8 @@ class CreateStudentDrivingLicensesTable extends Migration
     {
         Schema::create('studentDrivingLicenses', function (Blueprint $table) {
             $table->increments('id', 10)->comment('Identificador del carnet de conducir del usuario');
-            $table->unique(['license_id','student_id']);
-            $table->integer('license_id')->unsigned()->comment('Identificador del carnet de conducir del usuario');   
-            $table->integer('student_id')->unsigned()->comment('Identificador del usuario');
-            $table->foreign('license_id')->references('id')->on('drivingLicenses')->onUpdate('cascade');
-            $table->foreign('student_id')->references('id')->on('students')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('drivingLicense', 50)->comment('Licencia de conducir');  
+            $table->integer('student_id')->unsigned()->comment('Identificador del usuario')->unique();            
             $table->timestamps();
             $table->softDeletes();
         });

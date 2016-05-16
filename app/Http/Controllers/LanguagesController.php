@@ -13,6 +13,8 @@ class LanguagesController extends Controller
      *
      * @return void
      */
+    
+
         public function getLanguage()
     {
         $queries = \DB::table('languages')
@@ -91,12 +93,13 @@ class LanguagesController extends Controller
 
     public function destroy($lang) 
     {
-       $user_id = \Auth::user()->id;
+      
+      $user_id = \Auth::user()->id;
      $student_id = \DB::table('students')->where('user_id' , $user_id)->value('id');
      $language_id = \DB::table('languages')->where('language',$lang)->value('id');
       $queries = \DB::table('studentlanguages')->where('language_id',$language_id)->where('student_id',$student_id)->delete();
 
       //DELETE $lang
-      return $lang;
+      
     } 
 }
