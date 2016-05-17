@@ -11,6 +11,10 @@ use Session;
 class DrivingLicensesController extends Controller
 {
 
+public function index(){
+         return view('student.profile');   
+       }
+
  public function store(Request $request)
  {
   $student = \DB::table('studentDrivingLicenses')->where('student_id', $this->student_id)->first();
@@ -27,14 +31,18 @@ class DrivingLicensesController extends Controller
           ->insert(['drivingLicense' => $licenses,
                    'student_id' => $this->student_id,
                    'created_at' => date('YmdHms'),
-                   ]);       
+                   ]);      
+                   Session::put('type',"success");
+     Session::put('insert', "Registro permiso de conducir insertado"); 
       
     }else{
-          Session::flash('fail','Este estudiante ya tiene un registro de permisos');
-
+    Session::put('type',"danger");
+     Session::put('insert', "Este estudiante ya tiene un registro de permisos");
     }
   }else{
-    Session::flash('fail','Debes marcar un permiso de conducir');
+   
+    Session::put('type',"danger");
+     Session::put('insert', "Debes marcar un permiso de conducir");
   }
 
 }else{
@@ -46,6 +54,8 @@ class DrivingLicensesController extends Controller
           ->update(['drivingLicense' => $licenses,
                    'student_id' => $this->student_id,
                    ]);
+          Session::put('type',"success");
+     Session::put('insert', "Registro permiso de conducir actualizado");
   }
 return view('student.profile');
 }
@@ -71,7 +81,8 @@ public function listLicenses(){
      $queries = \DB::table('studentDrivingLicenses')
      ->where('student_id',$this->student_id)
      ->delete();
-
+      Session::put('type',"warning");
+     Session::put('insert', "Registro permiso de conducir eliminado");
       //DELETE $drivingLicense
      return $drivingLicense;
    } 

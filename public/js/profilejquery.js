@@ -102,6 +102,7 @@ $('#languages').on('show.bs.modal', function(e) {
             $("#listeningComprehension option:contains('" + campo3 + "')").prop('selected', true);
             $("#oralExpression option:contains('" + campo4 + "')").prop('selected', true);
             $("#ocultolanguage").val(ocultolanguage);
+            
             if (lang.length == 0) {
                 $("#language option:contains('Español')").prop('selected', true);
             }
@@ -149,8 +150,42 @@ $('#licenses').on('hide.bs.modal', function(e) {
 });//Fin acciones salir de los modales
 
 
+function notification(message, type) {
+    var icon;
+    var message;
+    var type;
+    if(type == "success") {
+        icon= 'glyphicon glyphicon-ok';
+        message= message;
+    } 
+    if (type == "warning"){
+         icon= 'glyphicon glyphicon-trash';
+         message=message;
+    }
+    if(type == "danger"){
+        icon="glyphicon glyphicon-warning-sign";
+        message = message;
+    }
+    if (message != "") {
+        
+   $.notify({
+    // options
+    icon:icon,
+    message: message 
+},{
+    // settings
+    type: type,
+    placement: {
+        from: "top",
+        align: "center"
+    },
+});
+    }
+}
+
 //Funciones a cargar cuando se cargue la pagina
 $(function() {
+
     //Carga por ajax listado modal lenguajes
     $.ajax({
         headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
@@ -161,7 +196,7 @@ $(function() {
 
             for (var i = 0; i < data.length; i++) {
 
-                $('#divlanguage').append("<div class='selector table-container'><input id=id_language type='hidden' value=" + data[i].id + "></input><a onclick='borrarItem(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#languages' onclick='editarItem(this)';><i class='material-icons'>mode_edit</i></a><table class='table table-striped'><h5 style='text-align:center;font-weight:bold;'>" + data[i].language + "</h5><thead><tr><th>Comprensión de lectura</th><th>Comprensión auditiva</th><th>Expresión Oral</th><th>Expresión Escrita</th></tr></thead><tbody><tr><td class='campo1'>" + data[i].readingComprehension + "</td><td class='campo2'>" + data[i].listeningComprehension + "</td><td class='campo3'>" + data[i].oralExpression + "</td><td class='campo4'>" + data[i].WrittedExpression + "</td></tr></tbody></table></div>");
+                $('#divlanguage').append("<div class='selector table-container'><input id=id_language type='hidden' value=" + data[i].id + "></input><a href='/estudiante/languages' data-method='DELETE' onclick='borrarItem(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#languages' onclick='editarItem(this)';><i class='material-icons'>mode_edit</i></a><table class='table table-striped'><h5 style='text-align:center;font-weight:bold;'>" + data[i].language + "</h5><thead><tr><th>Comprensión de lectura</th><th>Comprensión auditiva</th><th>Expresión Oral</th><th>Expresión Escrita</th></tr></thead><tbody><tr><td class='campo1'>" + data[i].readingComprehension + "</td><td class='campo2'>" + data[i].listeningComprehension + "</td><td class='campo3'>" + data[i].oralExpression + "</td><td class='campo4'>" + data[i].WrittedExpression + "</td></tr></tbody></table></div>");
             }
         }
 
@@ -195,7 +230,8 @@ function editarItem(item) {
     ocultolanguage = $(item).parent().children('input')[0].value;
 
     var table = $(item).parent().children('table');
-    var lang = table.parent().children('h5').text();
+    lang = table.parent().children('h5').text();
+
     campo1 = table.children('tbody').children('tr').children('.campo1').text();
     campo2 = table.children('tbody').children('tr').children('.campo2').text();
     campo3 = table.children('tbody').children('tr').children('.campo3').text();
@@ -232,7 +268,7 @@ function borrarItem(item) {
     $.ajax({
         headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
         url: '/estudiante/languages/' + lang,
-        type: 'delete',
+        type: 'DELETE',
         success: function(result) {
            table.parent().remove();
         }

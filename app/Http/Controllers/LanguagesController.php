@@ -5,6 +5,7 @@ use App\Language;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Response;
+use Session;
 
 class LanguagesController extends Controller
 {
@@ -14,7 +15,12 @@ class LanguagesController extends Controller
      * @return void
      */
     
-
+      public function index(){
+         return view('student.profile');   
+       }
+       public function show(){
+         return view('student.profile');   
+       }
         public function getLanguage()
     {
         $queries = \DB::table('languages')
@@ -48,12 +54,24 @@ class LanguagesController extends Controller
                'oralExpression' => $language['oralExpression'],
                'language_id' => $language_id,
                'student_id' => $student_id,
-               'created_at' => date('YmdHms')]);     
+               'created_at' => date('YmdHms')]);  
+      Session::put('type',"success");
+         Session::put("insert","Registro de lenguaje insertado");
+
+
+
      }
    catch(\PDOException $e) {
-     
+    if($e->getCode() == 2002) {
+     Session::put('type',"danger");
+     Session::put('insert', "No se ha podido insertar un lenguaje.");
+    } else {
+     Session::put("insert","");
+
+    }
    }
  }else{
+  try {
   $queries = \DB::table('studentlanguages')
       ->join('languages','studentlanguages.language_id','=','languages.id')
       ->join('students','studentlanguages.student_id','=','students.id')
@@ -65,8 +83,20 @@ class LanguagesController extends Controller
                'oralExpression' => $language['oralExpression'],
                'language_id' => $language_id,
                'student_id' => $student_id]);
+Session::put('type',"success");
+     Session::put('insert', "Modificado el registro de permisos");
+
+ }   catch(\PDOException $e) {
+    if($e->getCode() == 2002) {
+     Session::put('type',"danger");
+     Session::put('insert', "No se ha podido insertar un lenguaje debido a un problema de comunicación.");
+    } else {
+     Session::put("insert","");
+
+    }
+   }
  }
-  return view('student.profile');
+ return view('student.profile');   
 }
 
 
@@ -93,13 +123,12 @@ class LanguagesController extends Controller
 
     public function destroy($lang) 
     {
-      
       $user_id = \Auth::user()->id;
      $student_id = \DB::table('students')->where('user_id' , $user_id)->value('id');
      $language_id = \DB::table('languages')->where('language',$lang)->value('id');
-      $queries = \DB::table('studentlanguages')->where('language_id',$language_id)->where('student_id',$student_id)->delete();
-
-      //DELETE $lang
-      
+      $queries = \DB::table('studentlanguages')->where('language_id',$language_id)->where('student_id',$student_id)->delete();   
+   Session::put('type',"success");
+     Session::put('insert', "Registro Lenguaje eliminado.");
+      return view('student.profile');  
     } 
 }

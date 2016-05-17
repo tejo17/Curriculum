@@ -4,7 +4,9 @@
 @endsection
 @section('scripts')
 <script src="/js/jquery-ui.js"></script>
+<script src="/js/bootstrap-notify.min.js"></script>  
 <script src="/js/profilejquery.js"></script>  
+<script>notification('{{session("insert")}}', '{{session("type")}}');</script>
 <script src="/js/datepicker/datepickerConfig.js"></script> 
 @endsection
 @section('content')
@@ -18,6 +20,7 @@
                     <div class="modal-header text-center">
                         <h4><i class="fa fa-graduation-cap"></i>Datos Personales</h4>
                     </div>
+
                     <div class="panel-body ancho">
                         @if(Session::has('fail'))
                         <p class="alert alert-danger">{{Session::get('fail')}}</p>
@@ -51,7 +54,7 @@
                             <div class='selector'>
                             Permiso de Conducir
                                <input id=id_license  value="" type="hidden"></input>
-                               <a onclick='borrarItemLicense(this)'; class='material-icons boton_borrar pull-right'>delete</a>
+                               <a href="/estudiante/drivingLicenses" onclick='borrarItemLicense(this)'; class='material-icons boton_borrar pull-right'>delete</a>
                                <a class='boton_editar pull-right' data-toggle='modal' data-target='#licenses' onclick='editarItemlicense(this)';><i class='material-icons'>mode_edit</i></a>
                                <p id="namelicenses"></p>                 
                            </div>
