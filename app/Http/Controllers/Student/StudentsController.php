@@ -12,13 +12,15 @@ use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
-
+use View;
 
 class StudentsController extends UsersController
 {
-
-	public function __construct(Request $request)
+      private $datospersonales = array();
+    public function __construct(Request $request)
     {
+        
+
         Parent::__construct($request);
         $this->rules += [
             // Reglas para el estudiante
@@ -181,7 +183,7 @@ class StudentsController extends UsersController
                                 ->where('user_id', $user)
                                 ->get();
 
-       session(['firstName' => $datos[0]->firstName,
+       $datospersonales+=['firstName' => $datos[0]->firstName,
                 'lastName' => $datos[0]->lastName,
                 'dni' => $datos[0]->dni,
                 'nre' => $datos[0]->nre,
@@ -195,10 +197,14 @@ class StudentsController extends UsersController
                 'city' => $datos[0]->city,
                 'postalCode' => $datos[0]->postalCode,
 
-        ]);
+        ];
+       
+       $datosjson = json_encode($datospersonales);
+
        
         // Devuelvo la vista junto con las familias
-        return view('student.profile', compact('profFamilies', 'datos'));
+        return View::make('student.profile')->with('datospersonales',$datosjson);
+        //return $json;
     } // profile()
 
       public function obtenerCityId(){
@@ -210,5 +216,7 @@ class StudentsController extends UsersController
 
     return $city_id;
     }
-
+    public function getInfo(){
+       return $this->$datospersonales;
+    }
 }

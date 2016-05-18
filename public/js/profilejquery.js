@@ -135,6 +135,19 @@ $('#languages').on('show.bs.modal', function(e) {
 
 }); //Fin script cargar Idiomas
 
+//Cargar datos en el modal de info personal
+$('#info').on('show.bs.modal', function(e) {
+    $.ajax({
+        headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
+        url: 'cargaInfo',
+        type: 'post',
+        success: function(data) {
+            console.log(data);
+        }
+    });
+    });
+
+
 //Acciones al salir de los modales
 $('#languages').on('hide.bs.modal', function(e) {
     ocultolanguage = 0;

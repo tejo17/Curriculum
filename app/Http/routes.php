@@ -146,6 +146,7 @@ Route::group(['prefix' => '/estudiante', 'middleware' => ['web','auth']], functi
     Route::post('autolocal','ProfileController@autolocal');
     Route::post('cargaSites','SitesController@getName');
     Route::post('cargaLanguages','LanguagesController@getLanguage');
+    Route::post('cargaInfo','Student\StudentsController@getInfo');
     Route::post('listlanguages','LanguagesController@listlanguagesuser');
     Route::post('listLicenses','DrivingLicensesController@listLicenses');
     Route::resource('sites','SitesController');
