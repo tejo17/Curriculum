@@ -16,44 +16,44 @@ use View;
 
 class StudentsController extends UsersController
 {
-      private $datospersonales = array();
-    public function __construct(Request $request)
-    {
-        
+    public $info = array();
 
-        Parent::__construct($request);
-        $this->rules += [
+   public function __construct(Request $request)
+   {
+
+    Parent::__construct($request);
+    $this->rules += [
             // Reglas para el estudiante
-            'firstName'          => 'required|between:2,45|regex:/^[A-Za-z0-9 ]+$/',
-            'lastName'          => 'required|between:2,75|regex:/^[A-Za-z0-9 ]+$/',
-            'dni'               => 'required',
-            'nre'               => 'digits:7',
-            'phone'             => 'required|digits_between:9,13',
-            'address'           => 'required|between:6,225',
-            'codPostal'         => 'digits:5',
+    'firstName'          => 'required|between:2,45|regex:/^[A-Za-z0-9 ]+$/',
+    'lastName'          => 'required|between:2,75|regex:/^[A-Za-z0-9 ]+$/',
+    'dni'               => 'required',
+    'nre'               => 'digits:7',
+    'phone'             => 'required|digits_between:9,13',
+    'address'           => 'required|between:6,225',
+    'codPostal'         => 'digits:5',
             // El nombre es debido a datepicker
-            'birthdate_submit'  => 'required|date',
-            'nationality'       => '',
+    'birthdate_submit'  => 'required|date',
+    'nationality'       => '',
 
             // Reglas de los ciclos.
-            'family'            => 'required|exists:profFamilies,name',
-            'cycles'            => 'required|exists:cycles,name',
-            'yearFrom'          => 'required|digits:4|cycleYearFrom',
-            'yearTo'            => 'required|digits:4',
-        ];
-        $this->rol = 'estudiante';
-        $this->redirectTo = "/estudiante";
-    }
+    'family'            => 'required|exists:profFamilies,name',
+    'cycles'            => 'required|exists:cycles,name',
+    'yearFrom'          => 'required|digits:4|cycleYearFrom',
+    'yearTo'            => 'required|digits:4',
+    ];
+    $this->rol = 'estudiante';
+    $this->redirectTo = "/estudiante";
+}
 
-    protected function index(){
+protected function index(){
         // Llamo al metodo getAllProfFamilies del controlador de las familias profesionales
-        $profFamilies = app(ProfFamilieController::class)->getAllProfFamilies();
-		$zona = 'Registro de estudiantes';
+    $profFamilies = app(ProfFamilieController::class)->getAllProfFamilies();
+    $zona = 'Registro de estudiantes';
         // Devuelvo la vista junto con las familias
-        return view('student.registerForm', compact('profFamilies', 'zona'));
+    return view('student.registerForm', compact('profFamilies', 'zona'));
     } // index()
 
-     protected function store()
+    protected function store()
     {
 
         // Comenzamos la transaccion.
@@ -67,7 +67,7 @@ class StudentsController extends UsersController
         } else {
 
             // Llamo al metodo para crear el estudiante.
-            
+
             $insert = Self::create();
 
             if($insert !== false){
@@ -77,16 +77,16 @@ class StudentsController extends UsersController
                 $insert = true;
 
                 if ($insert === true){
-                    
+
                     // Llamo al metodo sendEmail del controlador de las familias profesionales
                     //$email = Parent::sendEmail();
 
                     //if($email === true) {
-                        \DB::commit();
-                        return \Redirect::to('login');
+                    \DB::commit();
+                    return \Redirect::to('login');
                     //} else {
-                        \DB::rollBack();
-                        Session::flash('message_Negative', 'En estos momentos no podemos llevar a cabo su registro. Por favor intentelo de nuevo más tarde.');
+                    \DB::rollBack();
+                    Session::flash('message_Negative', 'En estos momentos no podemos llevar a cabo su registro. Por favor intentelo de nuevo más tarde.');
                    // }*/
                 } else {
                     // Aqui debo controlar los errores de inserción de ciclos
@@ -103,30 +103,30 @@ class StudentsController extends UsersController
         return redirect()->route('estudiante..index');
     } // store()
     
-  private function create()
+    private function create()
     {//obtengo los datos
-       $city_id = self::obtenerCityId();
+     $city_id = self::obtenerCityId();
+
+     try {
+        $arrayDatos=$this->request->all();
+
+
+        $arrayDatos["postalCode"] = "";
+
+        $arrayDatos["city_id"] = "$city_id";
         
-        try {
-            $arrayDatos=$this->request->all();
-           
 
-            $arrayDatos["postalCode"] = "";
-           
-            $arrayDatos["city_id"] = "$city_id";
-            var_dump($arrayDatos);
+        $insert = Student::create($arrayDatos);
 
-            $insert = Student::create($arrayDatos);
-            
-        } catch(\PDOException $e){
+    } catch(\PDOException $e){
             //dd($e);
-            abort(500);
-        }
+        abort(500);
+    }
 
-        if(isset($insert)){
-            return $insert;
-        }
-        return false;
+    if(isset($insert)){
+        return $insert;
+    }
+    return false;
     } // create()
 
     // INACABADO
@@ -146,14 +146,14 @@ class StudentsController extends UsersController
                     'dateFrom' => $data['yearFrom'][$posicion],
                     'student_id' => $student['id'],
                     'created_at' => date('YmdHms'),
-                ]);
+                    ]);
 
                 // Comprobamos si la inserción ha sido correcta
                 $insert = $student->cycles()
-                                ->where('cycle_id', '=', $id)
-                                ->select(['studentCycles.id'])
-                                ->get()
-                                ->toArray();
+                ->where('cycle_id', '=', $id)
+                ->select(['studentCycles.id'])
+                ->get()
+                ->toArray();
 
                 if(!empty($insert) && !is_null($insert)){
                     $cuantity++;
@@ -177,46 +177,52 @@ class StudentsController extends UsersController
         $profFamilies = app(ProfFamilieController::class)->getAllProfFamilies();
         $user = Auth::user()->id;
         $datos = \DB::table('students')
-                                ->join('cities','students.city_id', '=' ,'cities.id')
-                                ->join('states','states.id', '=' ,'cities.state_id')
-                                ->select('firstName','lastName','dni','nre','phone','address','curriculum','birthdate','nationality','states.name as state','cities.name as city','postalCode')
-                                ->where('user_id', $user)
-                                ->get();
+        ->join('cities','students.city_id', '=' ,'cities.id')
+        ->join('states','states.id', '=' ,'cities.state_id')
+        ->select('firstName','lastName','dni','nre','phone','address','curriculum','birthdate','nationality','states.name as state','cities.name as city','postalCode')
+        ->where('user_id', $user)
+        ->get();
+     
+       // $this->info = $datos[0]->firstName;
+        
+        array_push($this->info, $datos[0]->firstName, $datos[0]->lastName,$datos[0]->address,$datos[0]->postalCode,$datos[0]->city,$datos[0]->state,$datos[0]->phone, $datos[0]->birthdate,$datos[0]->nationality);
+        $info = $this->info;
+        //dd($info);
+        $GLOBALS['info'] = $info;
 
-       $datospersonales+=['firstName' => $datos[0]->firstName,
-                'lastName' => $datos[0]->lastName,
-                'dni' => $datos[0]->dni,
-                'nre' => $datos[0]->nre,
-                'phone' => $datos[0]->phone,
-                'address' => $datos[0]->address,
-                'curriculum' => $datos[0]->curriculum,
-                'birthdate' => $datos[0]->birthdate,
-                'nationality' => $datos[0]->nationality,
-                'state' => $datos[0]->state,
-                'lastName' => $datos[0]->lastName,
-                'city' => $datos[0]->city,
-                'postalCode' => $datos[0]->postalCode,
+    
+        $datospersonales['firstName'] = $datos[0]->firstName;
+        $datospersonales['lastName'] = $datos[0]->lastName;
+        $datospersonales['address'] = $datos[0]->address;
+        $datospersonales['postalCode'] = $datos[0]->postalCode;
+        $datospersonales['city'] = $datos[0]->city;
+        $datospersonales['state'] = $datos[0]->state;
+        $datospersonales['phone'] = $datos[0]->phone;
+        $datospersonales['birthdate'] = $datos[0]->birthdate;
+        $datospersonales['nationality'] = $datos[0]->nationality;
 
-        ];
        
-       $datosjson = json_encode($datospersonales);
-
-       
+        $datosjson = json_encode($datospersonales);
+        
+      
         // Devuelvo la vista junto con las familias
         return View::make('student.profile')->with('datospersonales',$datosjson);
-        //return $json;
+
     } // profile()
 
-      public function obtenerCityId(){
-    $arrayDatos = $this->request->all();
+    public function obtenerCityId(){
+        $arrayDatos = $this->request->all();
    // var_dump($arrayDatos);
-    $postalCode = $arrayDatos["postalCode"];
+        $postalCode = $arrayDatos["postalCode"];
     //var_dump($postalCode);
-    $city_id = \DB::table('cities')->where('cities.postalCode', '=', $postalCode)->value('id');
+        $city_id = \DB::table('cities')->where('cities.postalCode', '=', $postalCode)->value('id');
 
-    return $city_id;
+        return $city_id;
     }
     public function getInfo(){
-       return $this->$datospersonales;
-    }
+    // $this->info = 'paso2';
+     return $this->info;
+ }
+
+
 }
