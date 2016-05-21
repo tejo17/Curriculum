@@ -14,17 +14,12 @@ public function autolocal(Request $request){
         $postales = array();
         $codPostal = $request->input('ciudad');
       
-        $state = \DB::table('states')->where('name',$codPostal)->value('id');
-       
-        
-        
-            
+        $state = \DB::table('states')->where('name',$codPostal)->value('id');            
        $cities = \DB::table('cities')->where('state_id',$state)->orderBy('name')->distinct()->lists('name');
        foreach ($cities as $title) {
-       array_push($postales, $title);
-            }
-            
         
+       array_push($postales, $title);
+            }        
          return response()->json([           
             'ciudades' => $postales,
         ]);
@@ -32,7 +27,7 @@ public function autolocal(Request $request){
 }
     public function autocomplete(Request $req){
         $term =  $req->input('term');
-    
+        
         $results = array();
         
         $queries = DB::table('states')

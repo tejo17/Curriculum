@@ -26,13 +26,13 @@
                             </div>
                             <div class="input-field col-md-12">
                             <i class="material-icons prefix">location_city</i>
-                                {{ Form::text('state', null,['id' => "state"]) }}
+                                {{ Form::text('state', null,['id' => "stateexp"]) }}
                                 {{ Form::label('state', 'Provincia') }}
                             </div>
 
                             <div class="col-md-12">
                                     {{ Form::label('city', 'Población') }}
-                                    {{ Form::select('city', [], null,['class' => 'form-control ',  'style'=> 'border:solid 1px lightgrey;', 'id' => 'city']) }}
+                                    {{ Form::select('city', [], null,['class' => 'form-control ',  'style'=> 'border:solid 1px lightgrey;', 'id' => 'cityexp']) }}
                             </div>
                              <div class="input-field col-md-12">
                                 <p style="color:#9e9e9e; font-weight:400">Descripción</p>

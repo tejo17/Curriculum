@@ -21,20 +21,21 @@ $('#exp').on('shown.bs.modal', function(e) {
             $('#to').css('display', 'block');
         }
     });
-
+    console.log($('#stateexp').val());
     //Script AutoComplete
-    $('#state').autocomplete({
-        source: "autocompletado"
+    $('#stateexp').autocomplete({
+    source: "autocompletado"
     });
-    $("#state").autocomplete("option", "appendTo", ".eventInsForm");
+    $('#stateexp').autocomplete("option", "appendTo", ".eventInsForm");
     //Fin Script Autocomplete
 
 
     //Script buscar Localidad
-    $('#state').focusout(function(e) {
+    $('#stateexp').focusout(function(e) {
         //hace la búsqueda
+        
         var consulta = {
-            ciudad: $("#state").val()
+            ciudad: $("#stateexp").val()
         };
         $.ajax({
             data: consulta,
@@ -45,10 +46,10 @@ $('#exp').on('shown.bs.modal', function(e) {
 
                 for (var i = 0; i < data.ciudades.length; i++) {
 
-                    $("#city").append('<option "value="' + data.ciudades[i] + '">' + data.ciudades[i] + '</option>');
+                    $("#cityexp").append('<option "value="' + data.ciudades[i] + '">' + data.ciudades[i] + '</option>');
                 }
-                $('#state').focus(function() {
-                    $("#city").empty();
+                $('#stateexp').focus(function() {
+                    $("#cityexp").empty();
                 });
             }
 
@@ -56,6 +57,8 @@ $('#exp').on('shown.bs.modal', function(e) {
     }); //Fin Script buscar localidad
 });
 //Script cargar Tipos de Mensajeria
+
+
 $('#sites').on('show.bs.modal', function(e) {
 
     $.ajax({

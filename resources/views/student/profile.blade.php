@@ -33,11 +33,10 @@
                             <legend style="width:auto;">Información Personal</legend>
                             <div style="text-align: center;">
                              <img src="{{ url('/img/imgUser/' . \Auth::user()->carpeta . '/' .  \Auth::user()->image) }}" class="img-responsive img-circle img-navegador">
-                             <h5 style="text-transform: capitalize">{{json_decode($datospersonales)->lastName}},{{json_decode($datospersonales)->firstName}}</h5>
-                              <h6><i class="material-icons">location_on</i>{{json_decode($datospersonales)->address}},{{json_decode($datospersonales)->postalCode}},{{json_decode($datospersonales)->city}},{{json_decode($datospersonales)->state}}</h6>
-                              
-                              <h6><i class="material-icons">phone</i>{{json_decode($datospersonales)->phone}}</h6>
-                              <h6>Fecha Nacimiento:{{json_decode($datospersonales)->birthdate}} | Nacionalidad: {{json_decode($datospersonales)->nationality}}</h6>
+                             <h5 style="text-transform: capitalize;">{{ session('lastName') }},{{ session('firstName') }}<h5>
+                              <h6><i class="material-icons">location_on</i>{{ session('address') }},{{ session('postalCode') }},{{ session('city') }},({{ session('state') }})</h6>
+                              <h6><i class="material-icons">phone</i>{{ session('phone') }}</h6>
+                              <h6>Fecha Nacimiento:{{session ('birthdate') }} | Nacionalidad: {{session ('nationality') }}</h6>
                           </div>   
                           @include('student.partials.personalInformation')
                       </fieldset>

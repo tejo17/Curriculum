@@ -183,30 +183,24 @@ protected function index(){
         ->where('user_id', $user)
         ->get();
      
-       // $this->info = $datos[0]->firstName;
-        
-        array_push($this->info, $datos[0]->firstName, $datos[0]->lastName,$datos[0]->address,$datos[0]->postalCode,$datos[0]->city,$datos[0]->state,$datos[0]->phone, $datos[0]->birthdate,$datos[0]->nationality);
-        $info = $this->info;
-        //dd($info);
-        $GLOBALS['info'] = $info;
+         session(['firstName' => $datos[0]->firstName,
+                'lastName' => $datos[0]->lastName,
+                'dni' => $datos[0]->dni,
+                'nre' => $datos[0]->nre,
+                'phone' => $datos[0]->phone,
+                'address' => $datos[0]->address,
+                'curriculum' => $datos[0]->curriculum,
+                'birthdate' => $datos[0]->birthdate,
+                'nationality' => $datos[0]->nationality,
+                'state' => $datos[0]->state,
+                'lastName' => $datos[0]->lastName,
+                'city' => $datos[0]->city,
+                'postalCode' => $datos[0]->postalCode,
 
-    
-        $datospersonales['firstName'] = $datos[0]->firstName;
-        $datospersonales['lastName'] = $datos[0]->lastName;
-        $datospersonales['address'] = $datos[0]->address;
-        $datospersonales['postalCode'] = $datos[0]->postalCode;
-        $datospersonales['city'] = $datos[0]->city;
-        $datospersonales['state'] = $datos[0]->state;
-        $datospersonales['phone'] = $datos[0]->phone;
-        $datospersonales['birthdate'] = $datos[0]->birthdate;
-        $datospersonales['nationality'] = $datos[0]->nationality;
-
+        ]);
        
-        $datosjson = json_encode($datospersonales);
-        
-      
         // Devuelvo la vista junto con las familias
-        return View::make('student.profile')->with('datospersonales',$datosjson);
+        return view('student.profile', compact('profFamilies', 'datos'));
 
     } // profile()
 
