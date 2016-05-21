@@ -215,7 +215,8 @@ protected function index(){
     }
     public function getInfo(){
     // $this->info = 'paso2';
-     return $this->info;
+     return session()->all();
+    
  }
 
 

@@ -43,9 +43,9 @@ $('#exp').on('shown.bs.modal', function(e) {
             url: 'autolocal',
             type: 'post',
             success: function(data) {
-
+                
                 for (var i = 0; i < data.ciudades.length; i++) {
-
+                    
                     $("#cityexp").append('<option "value="' + data.ciudades[i] + '">' + data.ciudades[i] + '</option>');
                 }
                 $('#stateexp').focus(function() {
@@ -143,9 +143,26 @@ $('#info').on('show.bs.modal', function(e) {
     $.ajax({
         headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
         url: 'cargaInfo',
-        type: 'post',
+        type: 'POST',
         success: function(data) {
-            console.log(data);
+            $('#firstName').focus();
+            $('#firstName').val((data['firstName']));
+            $('#lastName').focus();
+            $('#lastName').val((data['lastName']));
+            $('#nationality').focus();
+            $('#nationality').val((data['nationality']));
+            $('#dni').focus();
+            $('#dni').val((data['dni']));
+            $('#nre').focus();
+            $('#nre').val((data['nre']));
+            $('#phone').focus();
+            $('#phone').val((data['phone']));
+            $('#picker').val((data['birthdate']));
+            $('#picker').focus();
+            $('#address').focus();
+            $('#address').val((data['address']));
+            $('#postalCode').val((data['postalCode']));
+            $('#postalCode').focus();
         }
     });
     });

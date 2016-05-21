@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
     //comprobamos si se pulsa una tecla
-    $("#postalCode").keyup(function(e) {
+    $('#postalCode').on('input',function(e) {
         e.preventDefault();
         //obtenemos el texto introducido en el campo de búsqueda
         consulta = $("#postalCode").val();

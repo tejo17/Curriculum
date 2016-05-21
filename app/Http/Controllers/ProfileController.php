@@ -11,17 +11,18 @@ class ProfileController extends Controller
 {
 
 public function autolocal(Request $request){  
-        $postales = array();
-        $codPostal = $request->input('ciudad');
+        $ciudades = array();
+        $provincia = $request->input('ciudad');
       
-        $state = \DB::table('states')->where('name',$codPostal)->value('id');            
+        $state = \DB::table('states')->where('name',$provincia)->value('id');            
        $cities = \DB::table('cities')->where('state_id',$state)->orderBy('name')->distinct()->lists('name');
-       foreach ($cities as $title) {
-        
-       array_push($postales, $title);
-            }        
+       foreach ($cities as $title) {  
+
+       array_push($ciudades, $title);
+            }    
+       
          return response()->json([           
-            'ciudades' => $postales,
+            'ciudades' => $ciudades,
         ]);
     
 }

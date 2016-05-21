@@ -11,7 +11,7 @@
                         <span class="fa fa-file-image-o" aria-hidden="true"></span>
                     </div>
                 </div>
-            <a>
+            </a>
 
 
             <span class="alert alert-info hidden" id="file-info">No hay archivo aún</span>
