@@ -15,7 +15,7 @@
  				@if(Session::has('message'))
  				<p class="alert alert-success">{{Session::get('message')}}</p>
  				@endif
- 				{{ Form::open(['url' => 'estudiante/perfil', 'method' => 'POST', 'files' => 'true', 'id' => 'student-register-form']) }}
+ 				{{ Form::open(['route' => 'estudiante/update', 'method' => 'PUT', 'files' => 'true', 'id' => 'student-register-form']) }}
  				{!! csrf_field() !!}
  				<fieldset>
  					<legend style="width:auto;">Estudiante</legend>

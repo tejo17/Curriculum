@@ -41,6 +41,9 @@ public function autolocal(Request $request){
         }
         return Response::json($results);
     }
+    public function update(Request $req){
+
+    }
 
 }
 

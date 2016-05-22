@@ -9,6 +9,8 @@
 <script>notification('{{session("insert")}}', '{{session("type")}}');</script>
 <script src="/js/datepicker/datepickerConfig.js"></script> 
 <script src="/js/buscadorCP.js" charset="utf-8"></script>
+<script src="/js/dragDrop.js"></script>
+
 @endsection
 @section('content')
 @include('partials.nav.navEstudiante')
