@@ -157,6 +157,7 @@ Route::group(['prefix' => '/estudiante', 'middleware' => ['web','auth']], functi
     Route::resource('aptitudes','AptitudesController');
     Route::resource('drivingLicenses','DrivingLicensesController');
     Route::post('updateInfo','ProfileController@update');
+    Route::resource('professionalExperiences','ProfessionalExperiencesController');
 });
 
 Route::get('pdf', 'PdfController@invoice');

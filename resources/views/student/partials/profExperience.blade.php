@@ -7,6 +7,7 @@
     <div class="modal fade" id="exp" role="dialog">
         <div class="modal-dialog">
 
+
             <!-- Modal content-->
             <div class="modal-content" >
                 <div class="modal-header">
@@ -15,10 +16,14 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <form class="col-md-12">
-                                                    
-  
+                        <form class="col-md-12" method="POST" action="professionalExperiences">
+                            <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
                             <br>
+                            <div class="input-field col-md-12">
+                            <i class="material-icons prefix">business center</i>
+                                {{ Form::text('job', null,['id' => "job"]) }}
+                                {{ Form::label('job', 'Oficio') }}
+                            </div>
                             <div class="input-field col-md-12">
                             <i class="material-icons prefix">business center</i>
                                 {{ Form::text('enterprise', null,['id' => "enterprise"]) }}
@@ -45,12 +50,12 @@
                             <div class="input-field col-md-6">
                                 <i class="material-icons prefix">today</i>
                                     {{ Form::label('from', 'Desde', ['class' => 'labelpicker']) }}
-                                    {{ Form::text('from',null, ['class' => 'datepicker', 'id' => 'picker1']) }}
+                                    {{ Form::text('from',null, ['class' => 'datepicker', 'id' => 'datepicker']) }}
                             </div>
                             <div class="input-field col-md-6" id="to">
                                 <i class="material-icons prefix">today</i>
-                                    {{ Form::label('to', 'Hasta', ['class' => 'labelpicker']) }}
-                                    {{ Form::text('to',null, ['class' => 'datepicker', 'id' => 'picker2']) }}
+                                    {{ Form::label('to', 'Hasta', ['class' => 'otrolabelpicker']) }}
+                                    {{ Form::text('to',null, ['class' => 'otrodatepicker', 'id' => 'otrodatepicker']) }}
                             </div>
                             <div class="input-field col-md-12" id="to" style="margin-bottom:20px">
                             {{ Form::checkbox('now', '', false, ['id' => 'now', 'class' => 'filled-in']) }}
@@ -58,7 +63,7 @@
                             </div>
 
                             <div class="text-center" style="clear:both;">
-                            <button type="button" class="btn btn-success btn-lg waves-effect waves-light">Guardar</button>
+                            <button type="submit" class="btn btn-success btn-lg waves-effect waves-light">Guardar</button>
                             </div>
                         </form>
                        
