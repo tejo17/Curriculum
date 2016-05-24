@@ -12,10 +12,8 @@
  			</div>
 
  			<div class="panel-body ancho">
- 				@if(Session::has('message'))
- 				<p class="alert alert-success">{{Session::get('message')}}</p>
- 				@endif
- 				{{ Form::open(['route' => 'estudiante/update', 'method' => 'PUT', 'files' => 'true', 'id' => 'student-register-form']) }}
+ 				
+ 				{{ Form::open(['action' => 'ProfileController@update', 'method' => 'POST', 'files' => 'true']) }}
  				{!! csrf_field() !!}
  				<fieldset>
  					<legend style="width:auto;">Estudiante</legend>
@@ -23,7 +21,7 @@
  				</fieldset>
  				<div class="form-group">
  					<div class="col-md-12 text-center">
- 						<button type="submit" class="btn btn-primary btn-login-media waves-effect waves-light" id="submit" >
+ 						<button  type="submit" class="btn btn-primary btn-login-media waves-effect waves-light" id="submit" >
  							<div class="show-responsive">
  								<i class="fa fa-user-plus" aria-hidden="true"></i>
  							</div>

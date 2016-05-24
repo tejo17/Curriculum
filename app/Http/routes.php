@@ -116,7 +116,7 @@ Route::group(['prefix' => 'estudiante', 'middleware' => ['web'], 'namespace' => 
     Route::resource(config('routes.index'), 'StudentsController');
 
     // Modificacion de la imagen de perfil de los estudiantes
-    Route::get(config('routes.perfil'), 'StudentsController@imagenPerfil');
+    Route::get(config('routes.perfil'), 'StudentsController@editarPerfil');
     Route::post(config('routes.UploadImg'), 'StudentsController@uploadImage');
 
 });
@@ -128,7 +128,7 @@ Route::group(['prefix' => 'empresa', 'middleware' => ['web', 'auth'], 'namespace
     Route::resource(config('routes.index'), 'EnterprisesController');
 
     // Modificacion de la imagen de perfil de las empresas
-    Route::get(config('routes.perfil'), 'EnterprisesController@imagenPerfil');
+    Route::get(config('routes.perfil'), 'EnterprisesController@editarPerfil');
     Route::post(config('routes.UploadImg'), 'EnterprisesController@uploadImage');
 
 });
@@ -142,20 +142,21 @@ Route::group(['prefix' => 'uso', 'middleware' => 'web', 'namespace' => 'Uso'], f
 Route::post('buscarCodPostal','Student\StudentsController@buscarCodPostal');
 
 Route::group(['prefix' => '/estudiante', 'middleware' => ['web','auth']], function(){
-    Route::get('autocompletado','ProfileController@autocomplete');
+    Route::post('autocompletado','ProfileController@autocomplete');
     Route::post('autolocal','ProfileController@autolocal');
     Route::post('cargaSites','SitesController@getName');
-    Route::put('update','ProfileController@update');
     Route::post('cargaLanguages','LanguagesController@getLanguage');
     Route::post('cargaInfo','Student\StudentsController@getInfo');
     Route::post('listlanguages','LanguagesController@listlanguagesuser');
     Route::post('listLicenses','DrivingLicensesController@listLicenses');
     Route::resource('sites','SitesController');
+    Route::resource('profile','ProfileController');
     Route::resource('languages','LanguagesController');
     Route::resource('certifications','CertificationsController');
     Route::resource('otherGrades','OtherGradesController');
     Route::resource('aptitudes','AptitudesController');
     Route::resource('drivingLicenses','DrivingLicensesController');
+    Route::post('updateInfo','ProfileController@update');
 });
 
 Route::get('pdf', 'PdfController@invoice');

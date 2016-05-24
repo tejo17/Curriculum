@@ -16,9 +16,6 @@ $(document).ready(function() {
             data: consulta,
             url: '/buscarCodPostal',
             type: 'post',
-            beforeSend: function() {
-                $("#resultado").html("Procesando, espere por favor...");
-            },
             success: function(data) {
 
 

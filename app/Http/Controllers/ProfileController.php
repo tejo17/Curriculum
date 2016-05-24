@@ -7,6 +7,7 @@ use App\Http\Requests;
 use DB;
 use Response;
 
+
 class ProfileController extends Controller
 {
 
@@ -42,7 +43,40 @@ public function autolocal(Request $request){
         return Response::json($results);
     }
     public function update(Request $req){
+        
+        if ($req->input('birthdate') == null) {
+                
+        session(['firstName' => $req->input('firstName'),
+                'lastName' => $req->input('lastName'),
+                'dni' => $req->input('dni'),
+                'nre' => $req->input('nre'),
+                'phone' => $req->input('phone'),
+                'address' => $req->input('address'),
+                'nationality' => $req->input('nationality'),
+                'state' => $req->input('state'),
+                'city' => $req->input('city'),
+                'postalCode' => $req->input('postalCode'),
+                'carpeta' => \Request::file('file')->getRealPath(),
+        ]);
+        
+    }else{
+session(['firstName' => $req->input('firstName'),
+                'lastName' => $req->input('lastName'),
+                'dni' => $req->input('dni'),
+                'nre' => $req->input('nre'),
+                'phone' => $req->input('phone'),
+                'address' => $req->input('address'),
+                'nationality' => $req->input('nationality'),
+                'birthdate' => $req->input('birthdate'),
+                'state' => $req->input('state'),
+                'city' => $req->input('city'),
+                'postalCode' => $req->input('postalCode'),
+                
+        ]);
 
+    }
+  
+       return view('student.profile'); 
     }
 
 }

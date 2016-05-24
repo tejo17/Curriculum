@@ -21,7 +21,7 @@ $('#exp').on('shown.bs.modal', function(e) {
             $('#to').css('display', 'block');
         }
     });
-    console.log($('#stateexp').val());
+  
     //Script AutoComplete
     $('#stateexp').autocomplete({
     source: "autocompletado"
@@ -145,27 +145,32 @@ $('#info').on('show.bs.modal', function(e) {
         url: 'cargaInfo',
         type: 'POST',
         success: function(data) {
+            $('#picker').val(data['birthdate']);
             $('#firstName').focus();
-            $('#firstName').val((data['firstName']));
+            $('#firstName').val(data['firstName']);
             $('#lastName').focus();
-            $('#lastName').val((data['lastName']));
+            $('#lastName').val(data['lastName']);
             $('#nationality').focus();
-            $('#nationality').val((data['nationality']));
+            $('#nationality').val(data['nationality']);
             $('#dni').focus();
-            $('#dni').val((data['dni']));
+            $('#dni').val(data['dni']);
             $('#nre').focus();
-            $('#nre').val((data['nre']));
+            $('#nre').val(data['nre']);
             $('#phone').focus();
-            $('#phone').val((data['phone']));
-            $('#picker').val((data['birthdate']));
+            $('#phone').val(data['phone']);
             $('#picker').focus();
             $('#address').focus();
-            $('#address').val((data['address']));
-            $('#postalCode').val((data['postalCode']));
+            $('#address').val(data['address']);
+            $('#postalCode').val(data['postalCode']);
             $('#postalCode').focus();
+            cargarPostalAuto(data['postalCode']);
+            $('#state').val(data['state']);
+            $('#state').focus();
+            
         }
     });
-    });
+
+});
 
 
 //Acciones al salir de los modales
@@ -318,3 +323,35 @@ function borrarItemLicense(item) {
         }
     });
 }
+
+function cargarPostalAuto(data){
+    var consulta = {
+            codPostal: data
+        };
+
+        $.ajax({
+            data: consulta,
+            url: '/buscarCodPostal',
+            type: 'post',
+          
+            success: function(data) {
+
+
+                $("#state").val(data.provincia);
+                if (($("#postalCode").val()).length == 5) {
+
+                    for (var i = 0; i < data.ciudades.length; i++) {
+
+                        $("#city").append('<option "value="' + data.ciudades[i] + '"selected>' + data.ciudades[i] + '</option>');
+                    }
+                    $("#postalCode").keyup(function() {
+                        $("#city").empty();
+                    });
+
+                }
+            }
+
+        });
+       
+}
+

@@ -11,6 +11,7 @@
 <script src="/js/buscadorCP.js" charset="utf-8"></script>
 <script src="/js/dragDrop.js"></script>
 
+
 @endsection
 @section('content')
 @include('partials.nav.navEstudiante')
@@ -28,17 +29,17 @@
                         @if(Session::has('fail'))
                         <p class="alert alert-danger">{{Session::get('fail')}}</p>
                         @endif
-                        {{ Form::open(['url' => 'estudiante/perfil', 'method' => 'POST','class'=>'form-horizontal','id' => 'student-register-form']) }}
+                       
                         {{ csrf_field() }}
                         
                         <fieldset>
                             <legend style="width:auto;">Información Personal</legend>
                             <div style="text-align: center;">
-                             <img src="{{ url('/img/imgUser/' . \Auth::user()->carpeta . '/' .  \Auth::user()->image) }}" class="img-responsive img-circle img-navegador">
+                             <img id="imgcur" src="{{ session('carpeta') }}" class="img-responsive img-circle img-navegador">
                              <h5 style="text-transform: capitalize;">{{ session('lastName') }},{{ session('firstName') }}<h5>
                               <h6><i class="material-icons">location_on</i>{{ session('address') }},{{ session('postalCode') }},{{ session('city') }},({{ session('state') }})</h6>
                               <h6><i class="material-icons">phone</i>{{ session('phone') }}</h6>
-                              <h6>Fecha Nacimiento:{{session ('birthdate') }} | Nacionalidad: {{session ('nationality') }}</h6>
+                              <h6>Fecha Nacimiento: {{session ('birthdate') }} | Nacionalidad: {{session ('nationality') }}</h6>
                           </div>   
                           @include('student.partials.personalInformation')
                       </fieldset>
@@ -96,7 +97,7 @@
                             </button>
                         </div>
                     </div>
-                    {{ Form::close() }}
+                    
                 </div>
             </div>
         </div>

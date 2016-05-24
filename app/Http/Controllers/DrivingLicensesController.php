@@ -32,17 +32,17 @@ public function index(){
                    'student_id' => $this->student_id,
                    'created_at' => date('YmdHms'),
                    ]);      
-                   Session::put('type',"success");
-     Session::put('insert', "Registro permiso de conducir insertado"); 
+                   Session::flash('type',"success");
+     Session::flash('insert', "Registro permiso de conducir insertado"); 
       
     }else{
-    Session::put('type',"danger");
-     Session::put('insert', "Este estudiante ya tiene un registro de permisos");
+    Session::flash('type',"danger");
+     Session::flash('insert', "Este estudiante ya tiene un registro de permisos");
     }
   }else{
    
-    Session::put('type',"danger");
-     Session::put('insert', "Debes marcar un permiso de conducir");
+    Session::flash('type',"danger");
+     Session::flash('insert', "Debes marcar un permiso de conducir");
   }
 
 }else{
@@ -54,8 +54,8 @@ public function index(){
           ->update(['drivingLicense' => $licenses,
                    'student_id' => $this->student_id,
                    ]);
-          Session::put('type',"success");
-     Session::put('insert', "Registro permiso de conducir actualizado");
+          Session::flash('type',"success");
+     Session::flash('insert', "Registro permiso de conducir actualizado");
   }
 return view('student.profile');
 }
@@ -81,8 +81,8 @@ public function listLicenses(){
      $queries = \DB::table('studentDrivingLicenses')
      ->where('student_id',$this->student_id)
      ->delete();
-      Session::put('type',"warning");
-     Session::put('insert', "Registro permiso de conducir eliminado");
+      Session::flash('type',"warning");
+     Session::flash('insert', "Registro permiso de conducir eliminado");
       //DELETE $drivingLicense
      return $drivingLicense;
    } 

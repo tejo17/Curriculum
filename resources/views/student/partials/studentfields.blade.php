@@ -133,8 +133,8 @@
         <div class="row">
             
             <div class="input-field col-md-12">
-          <input placeholder="" id="state" type="text" class="validate" readonly>
-          <label for="state">Provincia</label>
+         <input id="state" type="text" class="validate" name="state" readonly>
+          {{ Form::label('state', 'Provincia') }}
         </div>
         </div>
 

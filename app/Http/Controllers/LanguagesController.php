@@ -55,18 +55,18 @@ class LanguagesController extends Controller
                'language_id' => $language_id,
                'student_id' => $student_id,
                'created_at' => date('YmdHms')]);  
-      Session::put('type',"success");
-         Session::put("insert","Registro de lenguaje insertado");
+      Session::flash('type',"success");
+         Session::flash("insert","Registro de lenguaje insertado");
 
 
 
      }
    catch(\PDOException $e) {
     if($e->getCode() == 2002) {
-     Session::put('type',"danger");
-     Session::put('insert', "No se ha podido insertar un lenguaje.");
+     Session::flash('type',"danger");
+     Session::flash('insert', "No se ha podido insertar un lenguaje.");
     } else {
-     Session::put("insert","");
+     Session::flash("insert","");
 
     }
    }
@@ -83,15 +83,15 @@ class LanguagesController extends Controller
                'oralExpression' => $language['oralExpression'],
                'language_id' => $language_id,
                'student_id' => $student_id]);
-Session::put('type',"success");
-     Session::put('insert', "Modificado el registro de permisos");
+Session::flash('type',"success");
+     Session::flash('insert', "Modificado el registro de permisos");
 
  }   catch(\PDOException $e) {
     if($e->getCode() == 2002) {
-     Session::put('type',"danger");
-     Session::put('insert', "No se ha podido insertar un lenguaje debido a un problema de comunicación.");
+     Session::flash('type',"danger");
+     Session::flash('insert', "No se ha podido insertar un lenguaje debido a un problema de comunicación.");
     } else {
-     Session::put("insert","");
+     Session::flash("insert","");
 
     }
    }
@@ -127,8 +127,8 @@ Session::put('type',"success");
      $student_id = \DB::table('students')->where('user_id' , $user_id)->value('id');
      $language_id = \DB::table('languages')->where('language',$lang)->value('id');
       $queries = \DB::table('studentlanguages')->where('language_id',$language_id)->where('student_id',$student_id)->delete();   
-   Session::put('type',"success");
-     Session::put('insert', "Registro Lenguaje eliminado.");
+   Session::flash('type',"success");
+     Session::flash('insert', "Registro Lenguaje eliminado.");
       return view('student.profile');  
     } 
 }

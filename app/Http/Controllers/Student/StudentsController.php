@@ -172,17 +172,19 @@ protected function index(){
         return false; // devuelvo false (temporal) debo devolver los errores
     } // createStudentCycle()
 
-    protected function imagenPerfil(){
+    protected function editarPerfil(){
         // Llamo al metodo getAllProfFamilies del controlador de las familias profesionales
         $profFamilies = app(ProfFamilieController::class)->getAllProfFamilies();
         $user = Auth::user()->id;
         $datos = \DB::table('students')
         ->join('cities','students.city_id', '=' ,'cities.id')
         ->join('states','states.id', '=' ,'cities.state_id')
-        ->select('firstName','lastName','dni','nre','phone','address','curriculum','birthdate','nationality','states.name as state','cities.name as city','postalCode')
+        ->join('users','users.id','=','user_id')
+        ->select('firstName','lastName','dni','nre','phone','address','curriculum','birthdate','nationality','states.name as state','cities.name as city','postalCode','carpeta')
         ->where('user_id', $user)
         ->get();
      
+      
          session(['firstName' => $datos[0]->firstName,
                 'lastName' => $datos[0]->lastName,
                 'dni' => $datos[0]->dni,
@@ -196,9 +198,9 @@ protected function index(){
                 'lastName' => $datos[0]->lastName,
                 'city' => $datos[0]->city,
                 'postalCode' => $datos[0]->postalCode,
+                'carpeta' => '/img/imgUser/' . \Auth::user()->carpeta . '/' .  \Auth::user()->image,
 
         ]);
-       
         // Devuelvo la vista junto con las familias
         return view('student.profile', compact('profFamilies', 'datos'));
 
