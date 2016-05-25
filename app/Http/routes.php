@@ -145,6 +145,7 @@ Route::group(['prefix' => '/estudiante', 'middleware' => ['web','auth']], functi
     Route::post('autocompletado','ProfileController@autocomplete');
     Route::post('autolocal','ProfileController@autolocal');
     Route::post('cargaSites','SitesController@getName');
+    Route::post('listSites','SitesController@listSitesUsers');
     Route::post('cargaLanguages','LanguagesController@getLanguage');
     Route::post('cargaInfo','Student\StudentsController@getInfo');
     Route::post('listlanguages','LanguagesController@listlanguagesuser');
@@ -157,7 +158,6 @@ Route::group(['prefix' => '/estudiante', 'middleware' => ['web','auth']], functi
     Route::resource('aptitudes','AptitudesController');
     Route::resource('drivingLicenses','DrivingLicensesController');
     Route::post('updateInfo','ProfileController@update');
-    Route::resource('professionalExperiences','ProfessionalExperiencesController');
 });
 
 Route::get('pdf', 'PdfController@invoice');

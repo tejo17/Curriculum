@@ -5,6 +5,7 @@ var campo3;
 var campo4;
 var ocultolanguage = 0;
 var ocultolicense = 0;
+var ocultosite = 0;
 var licencias;
 var listalicencias = ([AM,A1,A2,A,B1,B,BE,BTP,C1,C,C1E,CE,D1,D,D1E,DE]);
 var checkboxs = new Array();
@@ -60,7 +61,7 @@ $('#exp').on('shown.bs.modal', function(e) {
 
 
 $('#sites').on('show.bs.modal', function(e) {
-
+    $('#ocultosite').val(ocultosite);
     $.ajax({
         headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
         url: 'cargaSites',
@@ -77,6 +78,7 @@ $('#sites').on('show.bs.modal', function(e) {
         }
 
     });
+
 });
 
 //Script cargar Idiomas
@@ -185,6 +187,10 @@ $('#licenses').on('hide.bs.modal', function(e) {
    for (var i = 0; i < listalicencias.length; i++) {
         $(listalicencias[i]).prop("checked","");    }
 
+});
+$('#sites').on('hide.bs.modal', function(e) {
+    ocultosite = 0;
+    $('#ocultosite').val(ocultosite);
 });//Fin acciones salir de los modales
 
 
@@ -262,6 +268,19 @@ $(function() {
         }
 
     });
+
+     $.ajax({
+
+        headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
+        url: 'listSites',
+        type: 'post',
+        success: function(data) {
+               for (var i = 0; i < data.length; i++) {                
+                $('#divsite').append("<div class='selector '><input id=id_site /*type='hidden'*/ value=" + data[i].id + "></input><a href='/estudiante/sites' data-method='DELETE' onclick='borrarItemSite(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#sites' onclick='editarItemsite(this)';><i class='material-icons'>mode_edit</i></a><h6 style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Sitio Personal: <span style='color:black; font-weight:normal'>"+ data[i].site+"</span></h6><h6 style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Dirección: <span style='color:black; font-weight:normal'>"+ data[i].personalSite+"</span></h6></div>");
+            }       
+        }
+
+    });
 });
 
 function editarItem(item) {
@@ -291,14 +310,29 @@ function editarItem(item) {
 function editarItemlicense(item) {
     ocultolicense = $(item).parent().children('input')[0].value;
     $('#ocultolicense').val(ocultolicense);
-    licencias = $('#namelicenses').text();
-    console.log(licencias);
+    licencias = $('#namelicenses').span();
     checkboxs = licencias.split(',');
 
     for (var i = 0; i < checkboxs.length; i++) {
         $("#"+checkboxs[i]+"").prop("checked","checked");
     }
 }
+
+function editarItemsite(item) {
+    ocultosite = $(item).parent().children('input')[0].value;
+  $('#ocultosite').val(ocultosite);
+
+    var sitio =  $ ($(item).siblings('h6').children('span')[0] ).text();
+    var direccion =  $( $(item).siblings('h6').children('span')[1] ).text();
+   $('#sites').on('shown.bs.modal', function (e) {
+   $("#site option:contains('" + sitio + "')").prop('selected', true);
+   $('#personalsite').focus();
+  });
+
+   $('#personalsite').val(direccion);
+   console.log(sitio);
+  }
+
 
 function borrarItem(item) {
     var table = $(item).parent().children('table');
@@ -320,6 +354,18 @@ function borrarItemLicense(item) {
         type: 'delete',
         success: function(result) {
            $('#divlicenses').children().remove();
+        }
+    });
+}
+
+function borrarItemSite(item) {
+    var siteid = $('#id_site').val();
+    $.ajax({
+        headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
+        url: '/estudiante/sites/' + siteid,
+        type: 'delete',
+        success: function(result) {
+           
         }
     });
 }

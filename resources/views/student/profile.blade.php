@@ -35,7 +35,7 @@
                         <fieldset>
                             <legend style="width:auto;">Información Personal</legend>
                             <div style="text-align: center;">
-                             <img id="imgcur" src="{{ session('carpeta') }}" class="img-responsive img-circle img-navegador">
+                             <img id="imgcur" src="{{ session('carpeta') }}" width="100" height="100" >
                              <h5 style="text-transform: capitalize;">{{ session('lastName') }},{{ session('firstName') }}<h5>
                               <h6><i class="material-icons">location_on</i>{{ session('address') }},{{ session('postalCode') }},{{ session('city') }},({{ session('state') }})</h6>
                               <h6><i class="material-icons">phone</i>{{ session('phone') }}</h6>
@@ -68,6 +68,8 @@
                         </fieldset>
                         <fieldset>
                          <legend style="width:auto;">Mensajeria Instantanea</legend>
+                         <div id="divsite" class="col-md-12">                   
+                         </div>
                          @include('student.partials.personalSites')
                      </fieldset>
                      <fieldset>
