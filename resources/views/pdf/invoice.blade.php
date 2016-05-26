@@ -3,24 +3,14 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Example 2</title>
-
+    
     <style type="text/css">
 @page {
             margin-top: 0.2em;
             margin-left: 0.0em;
 
         }
-        table{
-          border:1px black solid;
-        }
-        tr{
-          border:1px black solid;
-           height: 10px;
-        }
-        td{
-          border:1px black solid;
-          height: 10px;
-        }
+      
 .clearfix:after {
   content: "";
   display: table;
@@ -122,92 +112,176 @@ footer {
 }
 
 </style>
-  </head>
-  <body>
+
+</head>
+<body>
 
 
-      <div id="details" class="clearfix">
-        <div id="invoice">
-          <h1 style="text-align:center">Currículum Vitae</h1>
+  <div id="details" class="clearfix">
+    <div id="invoice" style="margin-left:-40px">
+      <h1 style="text-align:center">Currículum Vitae</h1>
 
-          <!-- Tabla información personal -->
-            <table style="margin-left:5px; margin-top:50px">
-            <tr>
-            <td colspan="2" style="width:300px;"><span style="color:darkblue; margin-left:100px; text-transform:uppercase">Información Personal</span></td>
-            <td style="width:475px;"><span style="text-transform:capitalize; font-size:80%"></span></td> 
-            </tr>
-             <tr>
-            <td rowspan="5" style="width:300px;"><img style="margin-left:145px" src="img/icon.png" alt="" width="70" height="70"></td>
-            <td style="width:475px;"><span style="text-transform:capitalize">nombre y apellidos</span></td>
-            </tr>
-             <tr>
-            <td style="width:475px;"><span style="text-transform:capitalize">dirección, código postal,población,provincia</span></td>
-            </tr>
-             <tr>
-            <td style="width:475px;"><span style="text-transform:capitalize">teléfono</span></td>
-            </tr>
-             <tr>
-            <td style="width:475px;"><span>email</span></td>
-            </tr>
-             <tr>
-            <td style="width:475px;"><span style="margin-right;10px" >Redes sociales, Nombre red social :  nombre cuenta.</span></td>
-            </tr>
-             <tr>
-            <td rowspan="5" style="width:300px;"></td>
-            <td style="width:475px;"><span style="text-transform:capitalize">Fecha de nacimiento y nacionalidad</span></td>   
-            </tr>
-          </table>
+      <!-- Tabla información personal -->
+      <table style="margin-left:5px; margin-top:20px; width:730px">
+        <tr>
+          <td style="text-align:right"><span class="" style="text-aling:right; color:darkblue; margin-left:105px;">Información Personal</span></td>
+          <td style="width:475px;"></td> 
+        </tr>
+        <tr>
+          <td rowspan="5" style="width:265px;"><img style="margin-left:180px" src="img/icon.png" alt="" width="70" height="70"></td>
+          <td style="width:475px;"><span style="padding-left:15px;">nombre y apellidos</span></td>
+        </tr>
+        <tr>
+          <td style="width:475px;"><span style="padding-left:15px;">dirección, código postal,población,provincia</span></td>
+        </tr>
+        <tr>
+          <td style="width:475px;"><span style="padding-left:15px">teléfono</span></td>
+        </tr>
+        <tr>
+          <td style="width:475px;"><span style="padding-left:15px;">email</span></td>
+        </tr>
+        <tr>
+          <td style="width:475px;"><span style="padding-left:15px; margin-right;10px" >Redes sociales, Nombre red social :  nombre cuenta.</span></td>
+        </tr>
+        <tr>
+          <td rowspan="5" style="width:265px;"></td>
+          <td style="width:475px;"><span style="padding-left:15px;">Fecha de nacimiento y nacionalidad</span></td>   
+        </tr>
+      </table>
 
-          <!-- Tabla experiencia profesional -->
-          <table style="margin-left:5px; margin-top:20px">
-            <tr>
-            <td style="width:300px;"><span style="color:darkblue; margin-left:100px; text-transform:uppercase">Experiencia Profesional</span></td>
-            <td style="width:475px;"><span style="text-transform:capitalize"></span></td>            
-            </tr>
-             <tr>
-            <td style="width:300px;"><span style="margin-left:113px">(01-10-2006 –01- 04-2010)</span></td>
-            <td style="width:475px;"><span style="text-transform:capitalize">Nombre del empleo</span></td>         
-            </tr>
-             <tr>
-            <td style="width:300px;"></td>
-            <td style="width:475px;"><span style="text-transform:capitalize">Empresa en la que trabajó/a. Ciudad y Provincia</span></td>         
-            </tr>
-             <tr>
-            <td style="width:300px;"></td>
-            <td style="width:475px;"><span style="text-transform:capitalize">Descripción</span></td>
-            </tr>  
-          </table>
+      <!-- Tabla experiencia profesional -->
+      <table style="margin-left:5px; margin-top:20px; width:730px">
+        <tr>
+          <td style="width:265px; text-align:right"><span style="color:darkblue; margin-left:97px;">Experiencia Profesional</span></td>
+          <td style="width:475px;"></td>            
+        </tr>
+        <tr>
+          <td style="width:265px; text-align:right"><span style="margin-left:125px">(01-10-2006 –01- 04-2010)</span></td>
+          <td style="width:475px;"><span style="padding-left:15px;">Nombre del empleo</span></td>         
+        </tr>
+        <tr>
+          <td style="width:265px;"></td>
+          <td style="width:475px;"><span style="padding-left:15px;">Empresa en la que trabajó/a. Ciudad y Provincia</span></td>         
+        </tr>
+        <tr>
+          <td style="width:265px;"></td>
+          <td style="width:475px;"><span style="padding-left:15px;">Descripción</span></td>
+        </tr>  
+        <tr>
+          <td style="width:265px;"></td>
+          <td style="width:475px;"></td>
+        </tr>  
+      </table>
 
-          <!-- Tabla educación y formación -->
-          <table style="margin-left:5px; margin-top:20px">
-            <tr>
-            <td style="width:300px;"><span style="color:darkblue; margin-left:100px; text-transform:uppercase">Educación y Formación</span></td>
-            <td style="width:475px;"><span style="text-transform:capitalize"></span></td>
-            
-            </tr>
-             <tr>
-            <td style="width:300px;"><span style="margin-left:113px">(2006–2010) ó (2015-cursando)</span></td>
-            <td style="width:475px;"><span style="text-transform:capitalize">Nombre del título</span></td>
-            
-            </tr>
-             <tr>
-            <td style="width:300px;"></td>
-            <td style="width:475px;"><span style="text-transform:capitalize">Centro en el que se obtuvo el título. Localidad y Provincia</span></td>
-            
-            </tr>
-             <tr>
-            <td style="width:300px;"></td>
-            <td style="width:475px;"><span style="text-transform:capitalize">Ciudad y provincia</span></td>
-            
-            </tr>
-             <tr>
-            <td style="width:300px;"></td>
-            <td style="width:475px;"><span style="text-transform:capitalize">Descripción</span></td>
-            
-            </tr>
-            
-        </div>
-      </div>
-      
-  </body>
+      <!-- Tabla educación y formación -->
+      <table style="margin-left:5px; margin-top:20px; width:730px">
+        <tr>
+          <td style="width:265px; text-align:right"><span style="color:darkblue; margin-left:100px; text-transform:uppercase">Educación y Formación</span></td>
+          <td style="width:475px;"></td>
+        </tr>
+        <tr>
+          <td style="width:265px; text-align:right"><span style="margin-left:105px">(2006–2010) ó (2015-cursando)</span></td>
+          <td style="width:475px;"><span style="padding-left:15px;">Nombre del título</span></td>
+        </tr>
+        <tr>
+          <td style="width:265px;"></td>
+          <td style="width:475px;"><span style="padding-left:15px;">Centro en el que se obtuvo el título. Localidad y Provincia</span></td>
+        </tr>
+        <tr>
+          <td style="width:265px;"></td>
+          <td style="width:475px; margin-left:15px"><span style="padding-left:15px; text-transform:capitalize">Descripción</span></td>
+        </tr>
+         <tr>
+          <td style="width:265px;"></td>
+          <td style="width:475px;"></td>
+        </tr>  
+      </table>
+
+      <!-- Tabla Certificaciones -->
+      <table style="margin-left:5px; margin-top:20px; width:730px">
+        <tr>
+          <td style="width:265px; text-align:right"><span style="color:darkblue; margin-left:100px; text-transform:uppercase">Certificaciones</span></td>
+          <td style="width:475px;"></td>
+        </tr>
+        <tr>
+          <td style="width:265px; text-align:right"></td>
+          <td style="width:475px;"><span style="padding-left:15px;">Certificación</span></td>
+        </tr>
+        <tr>
+          <td style="width:265px;"></td>
+          <td style="width:475px;"><span style="padding-left:15px;">Institución</span></td>
+        </tr>
+        <tr>
+          <td style="width:265px;"></td>
+          <td style="width:475px; margin-left:15px"><span style="padding-left:15px;">Descripción</span></td>
+        </tr>
+         <tr>
+          <td style="width:265px;"></td>
+          <td style="width:475px;"></td>
+        </tr>  
+      </table>
+
+      <!-- Otros Cursos -->
+      <table style="margin-left:5px; margin-top:20px; width:730px">
+        <tr>
+          <td style="width:265px; text-align:right"><span style="color:darkblue; margin-left:100px; text-transform:uppercase">Otros Cursos</span></td>
+          <td style="width:475px;"></td>
+        </tr>
+        <tr>
+          <td style="width:265px; text-align:right"></td>
+          <td style="width:475px;"><span style="padding-left:15px;">Curso</span></td>
+        </tr>
+        <tr>
+          <td style="width:265px;"></td>
+          <td style="width:475px;"><span style="padding-left:15px; text-transform:">Institución</span></td>
+        </tr>
+        <tr>
+          <td style="width:265px;"></td>
+          <td style="width:475px; margin-left:15px"><span style="padding-left:15px;">Duración: ...</span></td>
+        </tr>  
+        <tr>
+          <td style="width:265px;"></td>
+          <td style="width:475px; margin-left:15px; text-align:justify"><span style="align:justify; padding-left:15px;">Descripción Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur nemo, vel vero minima maiores assumenda aspernatur neque, eum quam adipisci doloribus labore inventore dolorem magnam, error ab quas ea suscipit.</span></td>
+        </tr>
+        <tr>
+          <td style="width:265px;"></td>
+          <td style="width:475px;"></td>
+        </tr>
+      </table>
+
+      <!-- Tabla de idiomas -->
+      <table style="margin-left:5px; margin-top:20px; width:730px">
+       <tr>
+        <td style="width:265px; text-align:right"><span style="color:darkblue; margin-left:205px; text-transform:uppercase">Idiomas</span></td>
+        <td style="width:115px;"></td>
+        <td style="width:115px;"></td>
+        <td style="width:115px;"></td>
+        <td style="width:115px;"></td>
+      </tr>
+      <tr>
+        <td style="width:265px;"><span style="margin-left:105px"></span></td>
+        <td style="width:115px; text-align:center;"><span style="text-transform:capitalize; font-weight:bold">Comprensión de lectura</span></td>
+        <td style="width:115px; text-align:center;"><span style="text-transform:capitalize; font-weight:bold">Comprensión auditiva</span></td>
+        <td style="width:115px; text-align:center; padding-bottom:14px"><span style="text-transform:capitalize; font-weight:bold">Expresión oral</span></td>
+        <td style="width:115px; text-align:center; padding-bottom:14px"><span style="text-transform:capitalize; font-weight:bold">Expresión escrita</span></td>
+      </tr>
+      <tr>
+        <td style="width:265px; text-align:right">Idioma</td>
+        <td style="width:115px; text-align:center;"><span style="text-transform:capitalize">Bajo</span></td>
+        <td style="width:115px; text-align:center;"><span style="text-transform:capitalize">Bajo</span></td>
+        <td style="width:115px; text-align:center;"><span style="text-transform:capitalize">Bajo</span></td>
+        <td style="width:115px; text-align:center;"><span style="text-transform:capitalize">Bajo</span></td> 
+      </tr>
+       <tr>
+        <td style="width:265px;"></td>
+        <td style="width:115px;"></td>
+        <td style="width:115px;"></td>
+        <td style="width:115px;"></td>
+        <td style="width:115px;"></td> 
+      </tr>
+    </table>
+
+  </div>
+</div>
+</body>
 </html>
