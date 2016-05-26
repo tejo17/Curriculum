@@ -26,15 +26,19 @@ class SitesController extends Controller
         }
         return Response::json($results);
    }
+
+
    public function store(Request $request)
    {
           $account = $request->input('personalsite');
           $site = $request->input('site');
           $site_id = \DB::table('personalsites')->where('site' , $site)->value('id');
 
-      if($request->input('id')==0)
-      {
-    try {
+      
+      
+    if($request->input('id')==0)
+    {
+      try {
             $queries = \DB::table('studentPersonalSites')
     ->join('personalSites','studentPersonalSites.site_id','=','personalSites.id')
     ->join('students','studentPersonalSites.student_id','=','students.id')
@@ -44,13 +48,13 @@ class SitesController extends Controller
              'student_id' => $this->student_id,
              'created_at' => date('YmdHms'),
              ]);
-    } catch (\Exception $e) {
     
-    }
+      } catch (\Exception $e) {
+        
+      }
+ 
+          
     }else{
-
-       
-     //dd($this->student_id);    
        $queries = \DB::table('studentPersonalSites')
     ->join('personalSites','studentPersonalSites.site_id','=','personalSites.id')
     ->join('students','studentPersonalSites.student_id','=','students.id')
@@ -59,9 +63,9 @@ class SitesController extends Controller
              'site_id' => $site_id,
              'student_id' => $this->student_id,
              ]);
-    }
+    }   
     
-      
+    
     return view('student.profile');
    }
 
@@ -85,8 +89,7 @@ class SitesController extends Controller
 
     public function destroy($site)
     {
-
-       $queries = \DB::table('studentpersonalSites')
+      $queries = \DB::table('studentpersonalSites')
        ->where('id',$site)
        ->delete();
 

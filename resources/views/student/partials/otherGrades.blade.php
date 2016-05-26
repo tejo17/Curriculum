@@ -18,6 +18,7 @@
                         <form action="otherGrades" method="POST" class="col-md-12">
                             <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
                    			 <br>
+                             {{ Form::text('id', null,['id' => "ocultogrado"]) }}
                              <div class="input-field col-md-12">
                             <i class="material-icons prefix">library_books</i>
                                 {{ Form::text('grade', null,['id' => "grade"]) }}

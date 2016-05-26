@@ -9,7 +9,9 @@ use Auth;
 
 class OtherGradesController extends Controller
 {
-
+public function index(){
+  return view('student.profile');
+}
      
    public function store(Request $request)
    {
@@ -38,7 +40,7 @@ class OtherGradesController extends Controller
      
      $queries = \DB::table('otherGrades')
     ->join('students','otherGrades.student_id','=','students.id')
-    ->select('grade','description','duration','institution')
+    ->select('otherGrades.id','grade','description','duration','institution')
     ->where('student_id',$this->student_id)
     ->get();
 
@@ -52,9 +54,9 @@ class OtherGradesController extends Controller
 
     public function destroy($grade)
     {
-
+      
        $queries = \DB::table('otherGrades')
-       ->where('student_id',$this->student_id)
+       ->where('id',$grade)
        ->delete();
 
       //DELETE $grade

@@ -13,12 +13,22 @@ class CertificationsController extends Controller
      *
      * @return void
      */
-   
+   public function index(){
+    return view('student.profile');
+   }
    public function store(Request $request)
    {
        $certification = $request->input();
-           
+
+        $exist =  \DB::table('certifications')
+        ->where('certification',$certification['certification'])
+        ->where('institution',$certification['institution'])
+        ->where('description',$certification['description'])
+        ->where('student_id',$this->student_id)
+        ->first();
+       
     try {
+      if ($exist == null && $certification['id'] == 0) {
       $queries = \DB::table('certifications')
       ->join('students','certifications.student_id','=','students.id')
       ->where('student_id',$this->student_id)
@@ -27,6 +37,16 @@ class CertificationsController extends Controller
                'institution' => $certification['institution'],
                'student_id' => $this->student_id,
                'created_at' => date('YmdHms')]);
+      }else{
+        $queries = \DB::table('certifications')
+      ->join('students','certifications.student_id','=','students.id')
+      ->where('student_id',$this->student_id)
+      ->where('certifications.id',$certification['id'])
+      ->update(['certification' => $certification['certification'],
+               'description' => $certification['description'],
+               'institution' => $certification['institution'],
+               'student_id' => $this->student_id]);
+      }
      
      }
    catch(\PDOException $e) {
@@ -38,8 +58,8 @@ class CertificationsController extends Controller
    public function listCerificationsUsers(){
      
      $queries = \DB::table('certifications')
-    ->join('students','studentlanguages.student_id','=','students.id')
-    ->select('certification','description','institution')
+    ->join('students','student_id','=','students.id')
+    ->select('certifications.id','certification','description','institution')
     ->where('student_id',$this->student_id)
     ->get();
 
@@ -53,7 +73,7 @@ class CertificationsController extends Controller
 
     public function destroy($certification) {
 
-       $queries = \DB::table('certifications')->where('student_id',$this->student_id)->delete();
+       $queries = \DB::table('certifications')->where('id',$certification)->delete();
 
       //DELETE $certification
       return $certification;

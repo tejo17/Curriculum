@@ -31,7 +31,7 @@
                         @endif
                        
                         {{ csrf_field() }}
-                        
+                 
                         <fieldset>
                             <legend style="width:auto;">Información Personal</legend>
                             <div style="text-align: center;">
@@ -74,10 +74,12 @@
                      </fieldset>
                      <fieldset>
                          <legend style="width:auto;">Certificaciones</legend>
+                         <div id="divcertification" class="col-md-12"> </div>
                          @include('student.partials.certifications')
                      </fieldset>
                      <fieldset>
                          <legend style="width:auto;">Otros Cursos</legend>
+                         <div id="divother" class="col-md-12"> </div>
                          @include('student.partials.otherGrades')
                      </fieldset>
                      <fieldset>

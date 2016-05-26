@@ -6,6 +6,8 @@ var campo4;
 var ocultolanguage = 0;
 var ocultolicense = 0;
 var ocultosite = 0;
+var ocultocertif = 0;
+var ocultoOther = 0;
 var licencias;
 var listalicencias = ([AM,A1,A2,A,B1,B,BE,BTP,C1,C,C1E,CE,D1,D,D1E,DE]);
 var checkboxs = new Array();
@@ -174,8 +176,18 @@ $('#info').on('show.bs.modal', function(e) {
 
 });
 
+//Cargar datos en el modal de certificaciones
+$('#certif').on('show.bs.modal', function(e) {
+$('#ocultocertification').val(ocultocertif);
+ });
 
-//Acciones al salir de los modales
+
+/***************************************
+
+ Acciones al cerrar las ventanas modales
+
+ **************************************/
+
 $('#languages').on('hide.bs.modal', function(e) {
     ocultolanguage = 0;
 });
@@ -191,6 +203,11 @@ $('#licenses').on('hide.bs.modal', function(e) {
 $('#sites').on('hide.bs.modal', function(e) {
     ocultosite = 0;
     $('#ocultosite').val(ocultosite);
+});
+
+$('#certif').on('hide.bs.modal', function(e) {
+    ocultocertif = 0;
+    $('#ocultocertification').val(ocultocertif);
 });//Fin acciones salir de los modales
 
 
@@ -269,6 +286,8 @@ $(function() {
 
     });
 
+    //Carga por ajax el listado de Personal Sites
+
      $.ajax({
 
         headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
@@ -276,8 +295,37 @@ $(function() {
         type: 'post',
         success: function(data) {
                for (var i = 0; i < data.length; i++) {                
-                $('#divsite').append("<div class='selector '><input id=id_site /*type='hidden'*/ value=" + data[i].id + "></input><a href='/estudiante/sites' data-method='DELETE' onclick='borrarItemSite(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#sites' onclick='editarItemsite(this)';><i class='material-icons'>mode_edit</i></a><h6 style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Sitio Personal: <span style='color:black; font-weight:normal'>"+ data[i].site+"</span></h6><h6 style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Dirección: <span style='color:black; font-weight:normal'>"+ data[i].personalSite+"</span></h6></div>");
+                $('#divsite').append("<div class='selector '><input id=id_site type='hidden' value=" + data[i].id + "></input><a href='/estudiante/sites' data-method='DELETE' onclick='borrarItemSite(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#sites' onclick='editarItemsite(this)';><i class='material-icons'>mode_edit</i></a><h6 style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Sitio Personal: <span style='color:black; font-weight:normal'>"+ data[i].site+"</span></h6><h6 style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Dirección: <span style='color:black; font-weight:normal'>"+ data[i].personalSite+"</span></h6></div>");
             }       
+        }
+
+    });
+
+     //Carla lista de certificaciones
+       $.ajax({
+
+        headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
+        url: 'listCertifications',
+        type: 'post',
+        success: function(data) {
+               for (var i = 0; i < data.length; i++) {                
+                $('#divcertification').append("<div class='selector table-container'><input id=id_certification type='hidden' value=" + data[i].id + "></input><a href='/estudiante/certifications' data-method='DELETE' onclick='borrarItemCertification(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#certif' onclick='editarItemCertification(this)';><i class='material-icons'>mode_edit</i></a><table class='table table-striped'><h5 style='text-align:center;font-weight:bold;'></h5><thead><tr><th>Certificación</th><th>Institución</th><th>Descripcion</th></tr></thead><tbody><tr><td class='campo1'>" + data[i].certification + "</td><td class='campo2'>" + data[i].institution + "</td><td class='campo3'>" + data[i].description + "</td></tr></tbody></table></div>");
+            }
+                
+        }
+
+    });
+
+            //Carla lista de otros grados
+       $.ajax({
+
+        headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
+        url: 'listOtherGrades',
+        type: 'post',
+        success: function(data) {
+             for (var i = 0; i < data.length; i++) {                
+                $('#divother').append("<div class='selector table-container'><input id=id_certification type='hidden' value=" + data[i].id + "></input><a href='/estudiante/otherGrades' data-method='DELETE' onclick='borrarItemOther(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#cursos' onclick='editarItemOther(this)';><i class='material-icons'>mode_edit</i></a><table class='table table-striped'><h5 style='text-align:center;font-weight:bold;'></h5><thead><tr><th>Curso</th><th>Institución</th><th>Descripcion</th><th>Duración</th></tr></thead><tbody><tr><td class='campo1'>" + data[i].grade + "</td><td class='campo2'>" + data[i].institution + "</td><td class='campo3'>" + data[i].description + "</td><td class='campo4'>" + data[i].duration + "</td></tr></tbody></table></div>");
+            } 
         }
 
     });
@@ -330,9 +378,46 @@ function editarItemsite(item) {
   });
 
    $('#personalsite').val(direccion);
-   console.log(sitio);
-  }
+}
 
+function editarItemCertification(item) {
+    ocultocertif = $(item).parent().children('input')[0].value;
+  $('#ocultocertification').val(ocultocertif);
+    var certificacion = $(item).siblings('table').children('tbody').children('tr').children('.campo1').text();
+    var institucion = $(item).siblings('table').children('tbody').children('tr').children('.campo2').text();
+    var descripcion = $(item).siblings('table').children('tbody').children('tr').children('.campo3').text();
+ 
+
+   $('#certif').on('shown.bs.modal', function (e) {
+   $('#certification').val(certificacion);
+   $('#certification').focus();
+   $('#institution').val(institucion);
+   $('#institution').focus();
+   $('textarea#description').val(descripcion);
+  });
+}
+
+function editarItemOther(item) {
+    ocultoOther = $(item).parent().children('input')[0].value;
+  $('#ocultocertification').val(ocultocertif);
+    var certificacion = $(item).siblings('table').children('tbody').children('tr').children('.campo1').text();
+    var institucion = $(item).siblings('table').children('tbody').children('tr').children('.campo2').text();
+    var descripcion = $(item).siblings('table').children('tbody').children('tr').children('.campo3').text();
+ 
+
+   $('#certif').on('shown.bs.modal', function (e) {
+   $('#certification').val(certificacion);
+   $('#certification').focus();
+   $('#institution').val(institucion);
+   $('#institution').focus();
+   $('textarea#description').val(descripcion);
+  });
+}
+/**********************************
+
+Funciones para borrar los elementos
+
+**********************************/
 
 function borrarItem(item) {
     var table = $(item).parent().children('table');
@@ -359,7 +444,7 @@ function borrarItemLicense(item) {
 }
 
 function borrarItemSite(item) {
-    var siteid = $('#id_site').val();
+    var siteid = $(item).parent().children('input')[0].value;
     $.ajax({
         headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
         url: '/estudiante/sites/' + siteid,
@@ -367,7 +452,33 @@ function borrarItemSite(item) {
         success: function(result) {
            
         }
-    });
+    });   
+}
+
+function borrarItemCertification(item) {
+    var certificationid = $(item).parent().children('input')[0].value;
+
+   $.ajax({
+        headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
+        url: '/estudiante/certifications/' + certificationid,
+        type: 'delete',
+        success: function(result) {
+           
+        }
+    }); 
+}
+
+function borrarItemOther(item) {
+    var Otherid = $(item).parent().children('input')[0].value;
+
+   $.ajax({
+        headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
+        url: '/estudiante/otherGrades/' + Otherid,
+        type: 'delete',
+        success: function(result) {
+           
+        }
+    }); 
 }
 
 function cargarPostalAuto(data){
