@@ -17,6 +17,7 @@
                         <form class="col-md-12" action="aptitudes" method="POST">	
                              <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
 							 <div class="input-field col-md-12">
+                                {{ Form::text('id', null,['id' => "ocultoaptitude"]) }}
                                 <span class="pull-right">Máximo 250 caracteres.</span>
                                 {{ Form::textarea('aptitude', null, ['class' => 'form-control', 'id' => 'aptitude', 'maxlength' => '250', 'style' => 'border:1px lightgrey solid; padding-left:10px; padding-top:10px;', 'rows' => '5']) }}
                                 
@@ -25,7 +26,7 @@
                             <br>
                             <!--Footer-->
                              <div class="text-center">
-                                <button type="submit" class="btn btn-success btn-lg waves-effect waves-light">Sign up</button>
+                                <button type="submit" class="btn btn-success btn-lg waves-effect waves-light">Guardar</button>
                              </div>
                             
                              <!--/.Footer-->

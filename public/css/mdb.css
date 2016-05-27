@@ -14261,12 +14261,23 @@ caption {
 
 .selector:hover {
     border: solid 1px orange;
+
 }
+
+.sep {
+        background-color:  #5A95f5;
+        height: 1px;
+
+    }
+
+.sep:last-child{
+    display: none;
+   } 
+
 
 .boton_borrar,
 .boton_editar {
     visibility: hidden;
-   /*  float: right; */
     color: orange;
 }
 
@@ -14281,13 +14292,19 @@ caption {
     visibility: visible;
 }
 
-
-
 .subirtexto {
     position: relative;
     top: -5px;
     padding: 0;
 }
+
+
+.tituloli{
+    font-size: 1.2rem;
+    color:#5A95f5;
+    font-weight: bold;   
+}
+
 @media 
 only screen and (max-width: 760px),
 (min-device-width: 768px) and (max-device-width: 1024px)  {
@@ -14296,7 +14313,7 @@ only screen and (max-width: 760px),
         display: none;
     }
     /* Force table to not be like tables anymore */
-    table, thead, tbody, th, td, tr { 
+    table, thead, tbody, th, td, tr,li { 
         display: block; 
     }
     
@@ -14337,5 +14354,9 @@ only screen and (max-width: 760px),
     td:nth-of-type(2):before { content: "Comprensión auditiva"; }
     td:nth-of-type(3):before { content: "Expresión Oral"; }
     td:nth-of-type(4):before { content: "Expresión Escrita"; }
-}
 
+}
+    
+
+
+        

@@ -8,6 +8,7 @@ var ocultolicense = 0;
 var ocultosite = 0;
 var ocultocertif = 0;
 var ocultoOther = 0;
+var ocultoAptitude = 0;
 var licencias;
 var listalicencias = ([AM,A1,A2,A,B1,B,BE,BTP,C1,C,C1E,CE,D1,D,D1E,DE]);
 var checkboxs = new Array();
@@ -181,6 +182,15 @@ $('#certif').on('show.bs.modal', function(e) {
 $('#ocultocertification').val(ocultocertif);
  });
 
+//Cargar datos en el modal de Otros Cursos
+$('#cursos').on('show.bs.modal', function(e) {
+$('#ocultogrado').val(ocultoOther);
+ });
+
+//Cargar datos en el modal de Aptitudes
+$('#aptitudes').on('show.bs.modal', function(e) {
+$('#ocultoaptitude').val(ocultoAptitude);
+ });
 
 /***************************************
 
@@ -208,7 +218,19 @@ $('#sites').on('hide.bs.modal', function(e) {
 $('#certif').on('hide.bs.modal', function(e) {
     ocultocertif = 0;
     $('#ocultocertification').val(ocultocertif);
-});//Fin acciones salir de los modales
+});
+
+$('#cursos').on('hide.bs.modal', function(e) {
+    ocultoOther = 0;
+    $('#ocultogrado').val(ocultoOther);
+});
+
+
+$('#aptitudes').on('hide.bs.modal', function(e) {
+    ocultoAptitude = 0;
+    $('#ocultoaptitude').val(ocultoAptitude);
+});
+//Fin acciones salir de los modales
 
 
 function notification(message, type) {
@@ -301,7 +323,7 @@ $(function() {
 
     });
 
-     //Carla lista de certificaciones
+     //Carga lista de certificaciones
        $.ajax({
 
         headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
@@ -309,14 +331,14 @@ $(function() {
         type: 'post',
         success: function(data) {
                for (var i = 0; i < data.length; i++) {                
-                $('#divcertification').append("<div class='selector table-container'><input id=id_certification type='hidden' value=" + data[i].id + "></input><a href='/estudiante/certifications' data-method='DELETE' onclick='borrarItemCertification(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#certif' onclick='editarItemCertification(this)';><i class='material-icons'>mode_edit</i></a><table class='table table-striped'><h5 style='text-align:center;font-weight:bold;'></h5><thead><tr><th>Certificación</th><th>Institución</th><th>Descripcion</th></tr></thead><tbody><tr><td class='campo1'>" + data[i].certification + "</td><td class='campo2'>" + data[i].institution + "</td><td class='campo3'>" + data[i].description + "</td></tr></tbody></table></div>");
-            }
+                $('#divcertification').append(("<div class='selector'><input id=id_certification type='hidden' value=" + data[i].id + "></input><a href='/estudiante/certifications' data-method='DELETE' onclick='borrarItemCertification(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#certif' onclick='editarItemCertification(this)';><i class='material-icons'>mode_edit</i></a><ul><li class=' tituloli'>Certificación:</li><li class='campo1 '>" + data[i].certification + "</li></ul><ul><li class=' tituloli'>Institución:</li><li class='campo2 '>" + data[i].institution + "</li></ul><ul><li class=' tituloli'>Descripcion:</li><li class='campo3 '>" + data[i].description + "</li></ul></div><hr class='sep'>"));
+         }
                 
         }
 
     });
 
-            //Carla lista de otros grados
+    //Carga lista de otros grados
        $.ajax({
 
         headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
@@ -324,12 +346,41 @@ $(function() {
         type: 'post',
         success: function(data) {
              for (var i = 0; i < data.length; i++) {                
-                $('#divother').append("<div class='selector table-container'><input id=id_certification type='hidden' value=" + data[i].id + "></input><a href='/estudiante/otherGrades' data-method='DELETE' onclick='borrarItemOther(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#cursos' onclick='editarItemOther(this)';><i class='material-icons'>mode_edit</i></a><table class='table table-striped'><h5 style='text-align:center;font-weight:bold;'></h5><thead><tr><th>Curso</th><th>Institución</th><th>Descripcion</th><th>Duración</th></tr></thead><tbody><tr><td class='campo1'>" + data[i].grade + "</td><td class='campo2'>" + data[i].institution + "</td><td class='campo3'>" + data[i].description + "</td><td class='campo4'>" + data[i].duration + "</td></tr></tbody></table></div>");
+                $('#divother').append("<div class='selector'><input id=id_certification type='hidden' value=" + data[i].id + "></input><a href='/estudiante/otherGrades' data-method='DELETE' onclick='borrarItemOther(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#cursos' onclick='editarItemOther(this)';><i class='material-icons'>mode_edit</i></a><ul><li class=' tituloli'>Curso:</li><li class='campo1 '>" + data[i].grade + "</li></ul><ul><li class=' tituloli'>Institución:</li><li class='campo2 '>" + data[i].institution + "</li></ul><ul><li class=' tituloli'>Descripcion:</li><li class='campo3 '>" + data[i].description + "</li></ul><ul><li class=' tituloli'>Duración:</li><li class='campo4 '>" + data[i].duration + "</li></ul></div><hr class='sep'>");
             } 
         }
-
     });
+
+    //Carga lista de Aptitudes
+       $.ajax({
+
+        headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
+        url: 'listAptitudes',
+        type: 'post',
+        success: function(data) {
+             for (var i = 0; i < data.length; i++) {                
+                $('#divaptitude').append("<div class='switch'><label>Off<input type='checkbox'><span class='lever'></span>On</label></div> <div class='selector'><input id=id_certification type='hidden' value=" + data[i].id + "></input><a href='/estudiante/aptitudes' data-method='DELETE' onclick='borrarItemAptitude(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#aptitudes' onclick='editarItemAptitude(this)';><i class='material-icons'>mode_edit</i></a><ul><li class=' tituloli'>Aptitud</li><li class='campo1 '>" + data[i].aptitude + "</li></ul></div><hr class='sep'>");
+            } 
+        }
+    });
+
 });
+
+// Fin carga de las listas
+
+
+
+
+  
+
+ 
+
+
+/*********************
+
+Funciones Editar Items
+
+**********************/
 
 function editarItem(item) {
     ocultolanguage = $(item).parent().children('input')[0].value;
@@ -383,36 +434,54 @@ function editarItemsite(item) {
 function editarItemCertification(item) {
     ocultocertif = $(item).parent().children('input')[0].value;
   $('#ocultocertification').val(ocultocertif);
-    var certificacion = $(item).siblings('table').children('tbody').children('tr').children('.campo1').text();
-    var institucion = $(item).siblings('table').children('tbody').children('tr').children('.campo2').text();
-    var descripcion = $(item).siblings('table').children('tbody').children('tr').children('.campo3').text();
- 
+    var certificacion = $(item).siblings('ul').children('.campo1').text();
+    var institucion = $(item).siblings('ul').children('.campo2').text();
+    var descripcion = $(item).siblings('ul').children('.campo3').text();
+
 
    $('#certif').on('shown.bs.modal', function (e) {
-   $('#certification').val(certificacion);
-   $('#certification').focus();
-   $('#institution').val(institucion);
-   $('#institution').focus();
-   $('textarea#description').val(descripcion);
+        $('#certification').val(certificacion);
+        $('#certification').focus();
+        $('#institution').val(institucion);
+        $('#institution').focus();
+        $('textarea#description').val(descripcion);
   });
 }
 
 function editarItemOther(item) {
     ocultoOther = $(item).parent().children('input')[0].value;
-  $('#ocultocertification').val(ocultocertif);
-    var certificacion = $(item).siblings('table').children('tbody').children('tr').children('.campo1').text();
-    var institucion = $(item).siblings('table').children('tbody').children('tr').children('.campo2').text();
-    var descripcion = $(item).siblings('table').children('tbody').children('tr').children('.campo3').text();
- 
+  $('#ocultogrado').val(ocultoOther);
+    var curso = $(item).siblings('ul').children('.campo1').text();
+    var institucion = $(item).siblings('ul').children('.campo2').text();
+    var descripcion = $(item).siblings('ul').children('.campo3').text();
+    var duracion = $(item).siblings('ul').children('.campo4').text();
 
-   $('#certif').on('shown.bs.modal', function (e) {
-   $('#certification').val(certificacion);
-   $('#certification').focus();
-   $('#institution').val(institucion);
-   $('#institution').focus();
-   $('textarea#description').val(descripcion);
-  });
+
+    $('#cursos').on('shown.bs.modal', function (e) {
+        $('#grade').val(curso);
+        $('#grade').focus();
+        $('#studyCenter').val(institucion);
+        $('#studyCenter').focus();
+        $('#duration').val(duracion);
+        $('#duration').focus();
+        $('textarea#description').val(descripcion);
+     });
 }
+
+function editarItemAptitude(item) {
+    ocultoAptitude = $(item).parent().children('input')[0].value;
+  $('#ocultoaptitude').val(ocultoAptitude);
+    var aptitud = $(item).siblings('ul').children('.campo1').text();
+console.log(aptitud);
+    
+    $('#aptitudes').on('shown.bs.modal', function (e) {
+        $('textarea#aptitude').val(aptitud);
+       
+     });
+
+   }
+
+
 /**********************************
 
 Funciones para borrar los elementos
@@ -481,34 +550,48 @@ function borrarItemOther(item) {
     }); 
 }
 
+function borrarItemAptitude(item) {
+    var Aptitudid = $(item).parent().children('input')[0].value;
+   
+   $.ajax({
+        headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
+        url: '/estudiante/aptitudes/' + Aptitudid,
+        type: 'delete',
+        success: function(result) {
+           
+        }
+    });
+}
+
+
 function cargarPostalAuto(data){
     var consulta = {
             codPostal: data
         };
 
-        $.ajax({
-            data: consulta,
-            url: '/buscarCodPostal',
-            type: 'post',
-          
-            success: function(data) {
+    $.ajax({
+        data: consulta,
+        url: '/buscarCodPostal',
+        type: 'post',
+      
+        success: function(data) {
 
 
-                $("#state").val(data.provincia);
-                if (($("#postalCode").val()).length == 5) {
+            $("#state").val(data.provincia);
+            if (($("#postalCode").val()).length == 5) {
 
-                    for (var i = 0; i < data.ciudades.length; i++) {
+                for (var i = 0; i < data.ciudades.length; i++) {
 
-                        $("#city").append('<option "value="' + data.ciudades[i] + '"selected>' + data.ciudades[i] + '</option>');
-                    }
-                    $("#postalCode").keyup(function() {
-                        $("#city").empty();
-                    });
-
+                    $("#city").append('<option "value="' + data.ciudades[i] + '"selected>' + data.ciudades[i] + '</option>');
                 }
-            }
+                $("#postalCode").keyup(function() {
+                    $("#city").empty();
+                });
 
-        });
-       
+            }
+        }
+
+    });
 }
+
 

@@ -13,30 +13,36 @@ class AptitudesController extends Controller
      *
      * @return void
      */
-    public function getAptitude()
-    {
-        $queries = \DB::table('aptitudes')
-        	->orderBy('aptitude')
-          ->get();
-                   
-        foreach ($queries as $query)
-        {
-            $results[] = [ 'id' => $query->id, 'value' => $query->aptitude];
-        }
-        return Response::json($results);
+    public function index(){
+      return view('student.profile');
     }
-   
+
    public function store(Request $request){
           $aptitude = $request->input();
-           
+          $exist = \DB::table('aptitudes')
+          ->where('aptitude',$aptitude['aptitude'])
+          ->where('student_id',$this->student_id)
+          ->first();
+
     try {
-      $queries = \DB::table('aptitudes')
+      if ($aptitude['id'] == 0 && $exist == null) {
+        if ($aptitude['aptitude'] !== "") {
+           $queries = \DB::table('aptitudes')
       ->join('students','aptitudes.student_id','=','students.id')
       ->where('student_id',$this->student_id)
       ->insert(['aptitude' => $aptitude['aptitude'],
                'student_id' => $this->student_id,
-               'created_at' => date('YmdHms')]);     
-     }
+               'created_at' => date('YmdHms')]);  
+        }
+       
+      }else{
+        $queries = \DB::table('aptitudes')
+      ->join('students','aptitudes.student_id','=','students.id')
+      ->where('student_id',$this->student_id)
+      ->where('aptitudes.id',$aptitude['id'])
+      ->update(['aptitude' => $aptitude['aptitude']]);   
+      }
+      }
    catch(\PDOException $e) {
     
    }
@@ -49,7 +55,7 @@ class AptitudesController extends Controller
    {
      $queries = \DB::table('aptitudes')
     ->join('students','aptitudes.student_id','=','students.id')
-    ->select('aptitude')
+    ->select('aptitudes.id','aptitude')
     ->where('student_id',$this->student_id)
     ->get();
 
@@ -61,31 +67,16 @@ class AptitudesController extends Controller
      * @param  String $aptitude 
      */
 
-    public function destroy($lang)
+    public function destroy($apt)
     {
       
       $queries = \DB::table('aptitudes')
-      ->where('language_id',$language_id)
+      ->where('id',$apt)
       ->where('student_id',$this->student_id)
       ->delete();
 
       //DELETE $aptitude
-      return $lang;
+      return $apt;
     } 
 
-
-    /*public function update($lang){
-        $user_id = \Auth::user()->id;
-     $student_id = \DB::table('students')->where('user_id' , $user_id)->value('id');
-     $language_id = \DB::table('languages')->where('language',$lang)->value('id');
-
-     $update = \DB::table('studentlanguages')
-      ->join('languages','studentlanguages.language_id','=','languages.id')
-      ->join('students','studentlanguages.student_id','=','students.id')
-      ->where('student_id',$student_id)
-      ->where('language_id',$language_id)
-      ->select('language','WrittedExpression','listeningComprehension','oralExpression','readingComprehension')
-      ->get();
-    return Response::json($update);
-    }*/
 }

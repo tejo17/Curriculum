@@ -84,6 +84,7 @@
                      </fieldset>
                      <fieldset>
                          <legend style="width:auto;">Aptitudes</legend>
+                         <div id="divaptitude" class="col-md-12"> </div>
                          @include('student.partials.aptitudes')
                      </fieldset>
 
