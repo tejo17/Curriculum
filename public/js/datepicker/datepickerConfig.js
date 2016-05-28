@@ -34,9 +34,3 @@
         $('div.picker').addClass('picker--opened');
 
     });
-
-    // Cuando se haga click en el campo input se abra el datepicker
-    $('.labelpicker').on('click', function() {
-        $('div.picker').addClass('picker--opened');
-
-    });

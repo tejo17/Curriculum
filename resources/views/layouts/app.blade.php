@@ -38,10 +38,10 @@
     <link href="{{ url('css/normalize.css') }}" rel="stylesheet">
 
     <!-- Font Awsome Icons -->
-    <link title="estilo-personalizado" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="{{ url('css/font-awesome.min.css') }}" rel="stylesheet">
 
     <!-- Material Design Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="{{ url('css/material-icons.css') }}" rel="stylesheet">
 
     <!-- Bootstrap core CSS -->
     <link href="{{ url('css/bootstrap.min.css') }}" rel="stylesheet">
@@ -73,7 +73,7 @@
     <script type="text/javascript" src="{{ url('js/jquery.min.js') }}"></script>
 
     <!-- jQuery Validation -->
-    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="{{ url('js/jquery.validate.min.js') }}"></script>
 
     <!-- Script TagBox -->
     <script src="{{ url('js/tagging.min.js') }}"></script>

@@ -268,6 +268,22 @@ function notification(message, type) {
 
 //Funciones a cargar cuando se cargue la pagina
 $(function() {
+$.datepicker.setDefaults($.datepicker.regional["es"]);
+    $('#datetimepicker6').datetimepicker({
+
+
+        
+    });
+        $('#datetimepicker7').datetimepicker({
+            useCurrent: false, //Important! See issue #1075
+        });
+        $("#datetimepicker6").on("dp.change", function (e) {
+            $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+        });
+        $("#datetimepicker7").on("dp.change", function (e) {
+            $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+        });
+
 
     //Carga por ajax listado modal lenguajes
     $.ajax({
@@ -369,11 +385,6 @@ $(function() {
 // Fin carga de las listas
 
 
-
-
-  
-
- 
 
 
 /*********************
@@ -568,7 +579,6 @@ function cargarPostalAuto(data){
     var consulta = {
             codPostal: data
         };
-
     $.ajax({
         data: consulta,
         url: '/buscarCodPostal',
@@ -576,6 +586,7 @@ function cargarPostalAuto(data){
       
         success: function(data) {
 
+console.log(data);
 
             $("#state").val(data.provincia);
             if (($("#postalCode").val()).length == 5) {
@@ -587,10 +598,8 @@ function cargarPostalAuto(data){
                 $("#postalCode").keyup(function() {
                     $("#city").empty();
                 });
-
             }
         }
-
     });
 }
 

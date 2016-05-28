@@ -4,13 +4,17 @@
 @endsection
 @section('scripts')
 <script src="/js/jquery-ui.js"></script>
+<script src="/js/moment.js"></script>
+<script src="/js/transition.js"></script>
+<script src="/js/collapse.js"></script>
 <script src="/js/bootstrap-notify.min.js"></script>  
 <script src="/js/profilejquery.js"></script>  
 <script>notification('{{session("insert")}}', '{{session("type")}}');</script>
 <script src="/js/datepicker/datepickerConfig.js"></script> 
 <script src="/js/buscadorCP.js" charset="utf-8"></script>
 <script src="/js/dragDrop.js"></script>
-
+<script src="/js/es.js"></script>
+<script src="/js/bootstrap-datetimepicker.min.js"></script>
 
 @endsection
 @section('content')
