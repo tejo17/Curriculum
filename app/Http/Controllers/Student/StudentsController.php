@@ -183,8 +183,13 @@ protected function index(){
         ->select('firstName','lastName','dni','nre','phone','address','curriculum','birthdate','nationality','states.name as state','cities.name as city','postalCode','carpeta')
         ->where('user_id', $user)
         ->get();
+        $postal = $datos[0]->postalCode;
      
-      
+
+        if (strlen($postal) == 4) {
+            $postal = "0".$postal;
+        }
+       
          session(['firstName' => $datos[0]->firstName,
                 'lastName' => $datos[0]->lastName,
                 'dni' => $datos[0]->dni,
@@ -197,7 +202,7 @@ protected function index(){
                 'state' => $datos[0]->state,
                 'lastName' => $datos[0]->lastName,
                 'city' => $datos[0]->city,
-                'postalCode' => $datos[0]->postalCode,
+                'postalCode' => $postal,
                 'carpeta' => '/img/imgUser/' . \Auth::user()->carpeta . '/' .  \Auth::user()->image,
 
         ]);

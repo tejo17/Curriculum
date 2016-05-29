@@ -10,7 +10,7 @@ var ocultocertif = 0;
 var ocultoOther = 0;
 var ocultoAptitude = 0;
 var licencias;
-var listalicencias = ([AM,A1,A2,A,B1,B,BE,BTP,C1,C,C1E,CE,D1,D,D1E,DE]);
+var listalicencias = ([AM, A1, A2, A, B1, B, BE, BTP, C1, C, C1E, CE, D1, D, D1E, DE]);
 var checkboxs = new Array();
 
 $('#exp').on('shown.bs.modal', function(e) {
@@ -25,10 +25,10 @@ $('#exp').on('shown.bs.modal', function(e) {
             $('#to').css('display', 'block');
         }
     });
-  
+
     //Script AutoComplete
     $('#stateexp').autocomplete({
-    source: "autocompletado"
+        source: "autocompletado"
     });
     $('#stateexp').autocomplete("option", "appendTo", ".eventInsForm");
     //Fin Script Autocomplete
@@ -37,7 +37,7 @@ $('#exp').on('shown.bs.modal', function(e) {
     //Script buscar Localidad
     $('#stateexp').focusout(function(e) {
         //hace la búsqueda
-        
+
         var consulta = {
             ciudad: $("#stateexp").val()
         };
@@ -47,9 +47,9 @@ $('#exp').on('shown.bs.modal', function(e) {
             url: 'autolocal',
             type: 'post',
             success: function(data) {
-                
+
                 for (var i = 0; i < data.ciudades.length; i++) {
-                    
+
                     $("#cityexp").append('<option "value="' + data.ciudades[i] + '">' + data.ciudades[i] + '</option>');
                 }
                 $('#stateexp').focus(function() {
@@ -110,7 +110,7 @@ $('#languages').on('show.bs.modal', function(e) {
             $("#listeningComprehension option:contains('" + campo3 + "')").prop('selected', true);
             $("#oralExpression option:contains('" + campo4 + "')").prop('selected', true);
             $("#ocultolanguage").val(ocultolanguage);
-            
+
             if (lang.length == 0) {
                 $("#language option:contains('Español')").prop('selected', true);
             }
@@ -171,7 +171,7 @@ $('#info').on('show.bs.modal', function(e) {
             cargarPostalAuto(data['postalCode']);
             $('#state').val(data['state']);
             $('#state').focus();
-            
+
         }
     });
 
@@ -179,18 +179,18 @@ $('#info').on('show.bs.modal', function(e) {
 
 //Cargar datos en el modal de certificaciones
 $('#certif').on('show.bs.modal', function(e) {
-$('#ocultocertification').val(ocultocertif);
- });
+    $('#ocultocertification').val(ocultocertif);
+});
 
 //Cargar datos en el modal de Otros Cursos
 $('#cursos').on('show.bs.modal', function(e) {
-$('#ocultogrado').val(ocultoOther);
- });
+    $('#ocultogrado').val(ocultoOther);
+});
 
 //Cargar datos en el modal de Aptitudes
 $('#aptitudes').on('show.bs.modal', function(e) {
-$('#ocultoaptitude').val(ocultoAptitude);
- });
+    $('#ocultoaptitude').val(ocultoAptitude);
+});
 
 /***************************************
 
@@ -205,9 +205,10 @@ $('#languages').on('hide.bs.modal', function(e) {
 $('#licenses').on('hide.bs.modal', function(e) {
     ocultolicense = 0;
     $('#ocultolicense').val(ocultolicense);
-    
-   for (var i = 0; i < listalicencias.length; i++) {
-        $(listalicencias[i]).prop("checked","");    }
+
+    for (var i = 0; i < listalicencias.length; i++) {
+        $(listalicencias[i]).prop("checked", "");
+    }
 
 });
 $('#sites').on('hide.bs.modal', function(e) {
@@ -237,53 +238,37 @@ function notification(message, type) {
     var icon;
     var message;
     var type;
-    if(type == "success") {
-        icon= 'glyphicon glyphicon-ok';
-        message= message;
-    } 
-    if (type == "warning"){
-         icon= 'glyphicon glyphicon-trash';
-         message=message;
+    if (type == "success") {
+        icon = 'glyphicon glyphicon-ok';
+        message = message;
     }
-    if(type == "danger"){
-        icon="glyphicon glyphicon-warning-sign";
+    if (type == "warning") {
+        icon = 'glyphicon glyphicon-trash';
+        message = message;
+    }
+    if (type == "danger") {
+        icon = "glyphicon glyphicon-warning-sign";
         message = message;
     }
     if (message != "") {
-        
-   $.notify({
-    // options
-    icon:icon,
-    message: message 
-},{
-    // settings
-    type: type,
-    placement: {
-        from: "top",
-        align: "center"
-    },
-});
+
+        $.notify({
+            // options
+            icon: icon,
+            message: message
+        }, {
+            // settings
+            type: type,
+            placement: {
+                from: "top",
+                align: "center"
+            },
+        });
     }
 }
 
 //Funciones a cargar cuando se cargue la pagina
 $(function() {
-$.datepicker.setDefaults($.datepicker.regional["es"]);
-    $('#datetimepicker6').datetimepicker({
-
-
-        
-    });
-        $('#datetimepicker7').datetimepicker({
-            useCurrent: false, //Important! See issue #1075
-        });
-        $("#datetimepicker6").on("dp.change", function (e) {
-            $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
-        });
-        $("#datetimepicker7").on("dp.change", function (e) {
-            $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
-        });
-
 
     //Carga por ajax listado modal lenguajes
     $.ajax({
@@ -308,8 +293,8 @@ $.datepicker.setDefaults($.datepicker.regional["es"]);
         url: 'listLicenses',
         type: 'post',
         success: function(data) {
-           
-                licencias = data.drivingLicense;
+
+            licencias = data.drivingLicense;
             for (var i = 0; i < data.length; i++) {
                 $('#namelicenses').append(data[i].drivingLicense);
                 if (i < data.length - 1) {
@@ -319,64 +304,64 @@ $.datepicker.setDefaults($.datepicker.regional["es"]);
                 $('#ocultolicense').val(ocultolicense);
 
             }
-            
+
         }
 
     });
 
     //Carga por ajax el listado de Personal Sites
 
-     $.ajax({
+    $.ajax({
 
         headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
         url: 'listSites',
         type: 'post',
         success: function(data) {
-               for (var i = 0; i < data.length; i++) {                
-                $('#divsite').append("<div class='selector '><input id=id_site type='hidden' value=" + data[i].id + "></input><a href='/estudiante/sites' data-method='DELETE' onclick='borrarItemSite(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#sites' onclick='editarItemsite(this)';><i class='material-icons'>mode_edit</i></a><h6 style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Sitio Personal: <span style='color:black; font-weight:normal'>"+ data[i].site+"</span></h6><h6 style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Dirección: <span style='color:black; font-weight:normal'>"+ data[i].personalSite+"</span></h6></div>");
-            }       
+            for (var i = 0; i < data.length; i++) {
+                $('#divsite').append("<div class='selector '><input id=id_site type='hidden' value=" + data[i].id + "></input><a href='/estudiante/sites' data-method='DELETE' onclick='borrarItemSite(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#sites' onclick='editarItemsite(this)';><i class='material-icons'>mode_edit</i></a><h6 style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Sitio Personal: <span style='color:black; font-weight:normal'>" + data[i].site + "</span></h6><h6 style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Dirección: <span style='color:black; font-weight:normal'>" + data[i].personalSite + "</span></h6></div>");
+            }
         }
 
     });
 
-     //Carga lista de certificaciones
-       $.ajax({
+    //Carga lista de certificaciones
+    $.ajax({
 
         headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
         url: 'listCertifications',
         type: 'post',
         success: function(data) {
-               for (var i = 0; i < data.length; i++) {                
+            for (var i = 0; i < data.length; i++) {
                 $('#divcertification').append(("<div class='selector'><input id=id_certification type='hidden' value=" + data[i].id + "></input><a href='/estudiante/certifications' data-method='DELETE' onclick='borrarItemCertification(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#certif' onclick='editarItemCertification(this)';><i class='material-icons'>mode_edit</i></a><ul><li class=' tituloli'>Certificación:</li><li class='campo1 '>" + data[i].certification + "</li></ul><ul><li class=' tituloli'>Institución:</li><li class='campo2 '>" + data[i].institution + "</li></ul><ul><li class=' tituloli'>Descripcion:</li><li class='campo3 '>" + data[i].description + "</li></ul></div><hr class='sep'>"));
-         }
-                
+            }
+
         }
 
     });
 
     //Carga lista de otros grados
-       $.ajax({
+    $.ajax({
 
         headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
         url: 'listOtherGrades',
         type: 'post',
         success: function(data) {
-             for (var i = 0; i < data.length; i++) {                
+            for (var i = 0; i < data.length; i++) {
                 $('#divother').append("<div class='selector'><input id=id_certification type='hidden' value=" + data[i].id + "></input><a href='/estudiante/otherGrades' data-method='DELETE' onclick='borrarItemOther(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#cursos' onclick='editarItemOther(this)';><i class='material-icons'>mode_edit</i></a><ul><li class=' tituloli'>Curso:</li><li class='campo1 '>" + data[i].grade + "</li></ul><ul><li class=' tituloli'>Institución:</li><li class='campo2 '>" + data[i].institution + "</li></ul><ul><li class=' tituloli'>Descripcion:</li><li class='campo3 '>" + data[i].description + "</li></ul><ul><li class=' tituloli'>Duración:</li><li class='campo4 '>" + data[i].duration + "</li></ul></div><hr class='sep'>");
-            } 
+            }
         }
     });
 
     //Carga lista de Aptitudes
-       $.ajax({
+    $.ajax({
 
         headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
         url: 'listAptitudes',
         type: 'post',
         success: function(data) {
-             for (var i = 0; i < data.length; i++) {                
+            for (var i = 0; i < data.length; i++) {
                 $('#divaptitude').append("<div class='switch'><label>Off<input type='checkbox'><span class='lever'></span>On</label></div> <div class='selector'><input id=id_certification type='hidden' value=" + data[i].id + "></input><a href='/estudiante/aptitudes' data-method='DELETE' onclick='borrarItemAptitude(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#aptitudes' onclick='editarItemAptitude(this)';><i class='material-icons'>mode_edit</i></a><ul><li class=' tituloli'>Aptitud</li><li class='campo1 '>" + data[i].aptitude + "</li></ul></div><hr class='sep'>");
-            } 
+            }
         }
     });
 
@@ -424,51 +409,51 @@ function editarItemlicense(item) {
     checkboxs = licencias.split(',');
 
     for (var i = 0; i < checkboxs.length; i++) {
-        $("#"+checkboxs[i]+"").prop("checked","checked");
+        $("#" + checkboxs[i] + "").prop("checked", "checked");
     }
 }
 
 function editarItemsite(item) {
     ocultosite = $(item).parent().children('input')[0].value;
-  $('#ocultosite').val(ocultosite);
+    $('#ocultosite').val(ocultosite);
 
-    var sitio =  $ ($(item).siblings('h6').children('span')[0] ).text();
-    var direccion =  $( $(item).siblings('h6').children('span')[1] ).text();
-   $('#sites').on('shown.bs.modal', function (e) {
-   $("#site option:contains('" + sitio + "')").prop('selected', true);
-   $('#personalsite').focus();
-  });
+    var sitio = $($(item).siblings('h6').children('span')[0]).text();
+    var direccion = $($(item).siblings('h6').children('span')[1]).text();
+    $('#sites').on('shown.bs.modal', function(e) {
+        $("#site option:contains('" + sitio + "')").prop('selected', true);
+        $('#personalsite').focus();
+    });
 
-   $('#personalsite').val(direccion);
+    $('#personalsite').val(direccion);
 }
 
 function editarItemCertification(item) {
     ocultocertif = $(item).parent().children('input')[0].value;
-  $('#ocultocertification').val(ocultocertif);
+    $('#ocultocertification').val(ocultocertif);
     var certificacion = $(item).siblings('ul').children('.campo1').text();
     var institucion = $(item).siblings('ul').children('.campo2').text();
     var descripcion = $(item).siblings('ul').children('.campo3').text();
 
 
-   $('#certif').on('shown.bs.modal', function (e) {
+    $('#certif').on('shown.bs.modal', function(e) {
         $('#certification').val(certificacion);
         $('#certification').focus();
         $('#institution').val(institucion);
         $('#institution').focus();
         $('textarea#description').val(descripcion);
-  });
+    });
 }
 
 function editarItemOther(item) {
     ocultoOther = $(item).parent().children('input')[0].value;
-  $('#ocultogrado').val(ocultoOther);
+    $('#ocultogrado').val(ocultoOther);
     var curso = $(item).siblings('ul').children('.campo1').text();
     var institucion = $(item).siblings('ul').children('.campo2').text();
     var descripcion = $(item).siblings('ul').children('.campo3').text();
     var duracion = $(item).siblings('ul').children('.campo4').text();
 
 
-    $('#cursos').on('shown.bs.modal', function (e) {
+    $('#cursos').on('shown.bs.modal', function(e) {
         $('#grade').val(curso);
         $('#grade').focus();
         $('#studyCenter').val(institucion);
@@ -476,21 +461,21 @@ function editarItemOther(item) {
         $('#duration').val(duracion);
         $('#duration').focus();
         $('textarea#description').val(descripcion);
-     });
+    });
 }
 
 function editarItemAptitude(item) {
     ocultoAptitude = $(item).parent().children('input')[0].value;
-  $('#ocultoaptitude').val(ocultoAptitude);
+    $('#ocultoaptitude').val(ocultoAptitude);
     var aptitud = $(item).siblings('ul').children('.campo1').text();
-console.log(aptitud);
-    
-    $('#aptitudes').on('shown.bs.modal', function (e) {
-        $('textarea#aptitude').val(aptitud);
-       
-     });
+    console.log(aptitud);
 
-   }
+    $('#aptitudes').on('shown.bs.modal', function(e) {
+        $('textarea#aptitude').val(aptitud);
+
+    });
+
+}
 
 
 /**********************************
@@ -507,10 +492,11 @@ function borrarItem(item) {
         url: '/estudiante/languages/' + lang,
         type: 'DELETE',
         success: function(result) {
-           table.parent().remove();
+            table.parent().remove();
         }
     });
 }
+
 function borrarItemLicense(item) {
     var licenseid = $('#license_id').val();
     $.ajax({
@@ -518,7 +504,7 @@ function borrarItemLicense(item) {
         url: '/estudiante/drivingLicenses/' + licenseid,
         type: 'delete',
         success: function(result) {
-           $('#divlicenses').children().remove();
+            $('#divlicenses').children().remove();
         }
     });
 }
@@ -530,63 +516,63 @@ function borrarItemSite(item) {
         url: '/estudiante/sites/' + siteid,
         type: 'delete',
         success: function(result) {
-           
+
         }
-    });   
+    });
 }
 
 function borrarItemCertification(item) {
     var certificationid = $(item).parent().children('input')[0].value;
 
-   $.ajax({
+    $.ajax({
         headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
         url: '/estudiante/certifications/' + certificationid,
         type: 'delete',
         success: function(result) {
-           
+
         }
-    }); 
+    });
 }
 
 function borrarItemOther(item) {
     var Otherid = $(item).parent().children('input')[0].value;
 
-   $.ajax({
+    $.ajax({
         headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
         url: '/estudiante/otherGrades/' + Otherid,
         type: 'delete',
         success: function(result) {
-           
+
         }
-    }); 
+    });
 }
 
 function borrarItemAptitude(item) {
     var Aptitudid = $(item).parent().children('input')[0].value;
-   
-   $.ajax({
+
+    $.ajax({
         headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
         url: '/estudiante/aptitudes/' + Aptitudid,
         type: 'delete',
         success: function(result) {
-           
+
         }
     });
 }
 
 
-function cargarPostalAuto(data){
+function cargarPostalAuto(data) {
     var consulta = {
-            codPostal: data
-        };
+        codPostal: data
+    };
     $.ajax({
         data: consulta,
         url: '/buscarCodPostal',
         type: 'post',
-      
+
         success: function(data) {
 
-console.log(data);
+            console.log(data);
 
             $("#state").val(data.provincia);
             if (($("#postalCode").val()).length == 5) {
@@ -602,5 +588,3 @@ console.log(data);
         }
     });
 }
-
-

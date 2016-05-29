@@ -47,44 +47,17 @@
                                 <br>
                                 
                         
-
-
-
-    <div class='col-md-6'>
-        <div class="form-group">
-            <div class='input-group date' id='datetimepicker6'>
-                <input type='text' class="form-control" />
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
-        </div>
-    </div>
-    <div class='col-md-6'>
-        <div class="form-group">
-            <div class='input-group date' id='datetimepicker7'>
-                <input type='text' class="form-control" />
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
-        </div>
-    </div>
-
-
-
-
-                            <!-- <div class="input-field col-md-6">
+                            <div class="input-field col-md-6">
                                 <i class="material-icons prefix">today</i>
                                     {{ Form::label('from', 'Desde', ['class' => 'labelpicker']) }}
                                     {{ Form::text('from',null, ['class' => 'datepicker', 'id' => 'datepicker']) }}
                             </div>
-                            <div class="input-field col-md-6" id="to">
+                            <div class="input-field col-md-6" >
                                 <i class="material-icons prefix">today</i>
-                                    {{ Form::label('to', 'Hasta', ['class' => 'labelpicker']) }}
-                                    {{ Form::text('to',null, ['class' => 'datepickers', 'id' => 'otrodatepicker']) }}
-                            </div> -->
-                            <div class="input-field-md-12" id="to" style="margin-bottom:20px">
+                                    {{ Form::label('to', 'Hasta', ['class' => 'otrolabelpicker']) }}
+                                    {{ Form::text('to',null, ['class' => 'datepicker', 'id' => 'otrodatepicker']) }}
+                            </div>
+                            <div class="input-field col-md-12"  style="margin-bottom:20px">
                             {{ Form::checkbox('now', '', false, ['id' => 'now', 'class' => 'filled-in']) }}
                             {{ Form::label('now', 'Cursando actualmente', ['for' => 'now']) }}
                             </div>

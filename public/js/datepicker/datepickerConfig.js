@@ -19,7 +19,7 @@
 
         // Formato en el que recibimos la fecha
         formatSubmit: 'yyyy-mm-dd',
-        hiddenName: true,
+        hiddenName: false,
 
         // Rango de años que se mostraran
         selectYears: 1000,
@@ -29,8 +29,14 @@
     });
 
     // Cuando se haga click en el campo input se abra el datepicker
-    $('.datepicker').on('click', function() {
+    $('#datepicker').on('click', function() {
 
         $('div.picker').addClass('picker--opened');
 
+    });
+
+    $('#otrodatepicker').on('click', function() {
+
+        $('div.pickero').addClass('picker--opened');
+        
     });
