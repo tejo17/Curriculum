@@ -6,12 +6,13 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use Response;
 use Auth;
+use Session;
 
 class OtherGradesController extends Controller
 {
-public function index(){
-  return view('student.profile');
-}
+  public function index(){
+    return view('student.profile');
+  }
      
    public function store(Request $request)
    {
@@ -23,37 +24,36 @@ public function index(){
           ->where('institution',$grade['studyCenter'])
           ->where('student_id',$this->student_id)
           ->first();
-
          
     try {
       if($exist == null && $grade['id'] == 0 )
       {
         if ($grade['grade'] != "" && $grade['studyCenter'] != "" && $grade['duration'] != "" ) {
             $queries = \DB::table('otherGrades')
-    ->join('students','otherGrades.student_id','=','students.id')
-    ->where('student_id',$this->student_id)
-    ->insert(['grade' => $grade['grade'],
-          'description' => $grade['description'],
-          'duration' => $grade['duration'],
-          'institution' => $grade['studyCenter'],
-              'student_id' => $this->student_id,
-              'created_at' => date('YmdHms'),
-             ]);
+            ->join('students','otherGrades.student_id','=','students.id')
+            ->where('student_id',$this->student_id)
+            ->insert(['grade' => $grade['grade'],
+                      'description' => $grade['description'],
+                      'duration' => $grade['duration'],
+                      'institution' => $grade['studyCenter'],
+                      'student_id' => $this->student_id,
+                      'created_at' => date('YmdHms'),
+                      ]);
             
         }
   } else{
 
             $queries = \DB::table('otherGrades')
-    ->join('students','otherGrades.student_id','=','students.id')
-    ->where('student_id',$this->student_id)
-    ->where('otherGrades.id',$grade['id'])
-    ->update(['grade' => $grade['grade'],
-          'description' => $grade['description'],
-          'duration' => $grade['duration'],
-          'institution' => $grade['studyCenter'],
-              'student_id' => $this->student_id,
-              
-             ]);
+            ->join('students','otherGrades.student_id','=','students.id')
+            ->where('student_id',$this->student_id)
+            ->where('otherGrades.id',$grade['id'])
+            ->update(['grade' => $grade['grade'],
+                      'description' => $grade['description'],
+                      'duration' => $grade['duration'],
+                      'institution' => $grade['studyCenter'],
+                      'student_id' => $this->student_id,
+                      
+                     ]);
   }   
     
     } catch (\Exception $e) {
@@ -62,6 +62,7 @@ public function index(){
     return view('student.profile');
    }
 
+   /*Listar otros cursos del usuario*/
    public function listOtherGrades()
    {
      
@@ -77,6 +78,7 @@ public function index(){
 
    /**
      * @param  String $grade 
+     * Eliminar
      */
 
     public function destroy($grade)

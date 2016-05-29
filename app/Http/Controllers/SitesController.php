@@ -6,6 +6,7 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use Response;
 use Auth;
+use Session;
 
 class SitesController extends Controller
 {
@@ -15,6 +16,7 @@ class SitesController extends Controller
     return view('student.profile');
   }
 
+    /*Obtener los sitios personales.*/
     public function getName()
     {
         $queries = \DB::table('personalsites')
@@ -27,63 +29,82 @@ class SitesController extends Controller
         return Response::json($results);
    }
 
-
+   /*Store y Update*/
    public function store(Request $request)
    {
-          $account = $request->input('personalsite');
-          $site = $request->input('site');
-          $site_id = \DB::table('personalsites')->where('site' , $site)->value('id');
+      $account = $request->input('personalsite');
+      $site = $request->input('site');
+      $site_id = \DB::table('personalsites')->where('site' , $site)->value('id');
+      
 
-      
-      
-    if($request->input('id')==0)
-    {
-      try {
-            $queries = \DB::table('studentPersonalSites')
-    ->join('personalSites','studentPersonalSites.site_id','=','personalSites.id')
-    ->join('students','studentPersonalSites.student_id','=','students.id')
-    ->where('student_id',$this->student_id)
-    ->insert(['personalSite' => $account,
-             'site_id' => $site_id,
-             'student_id' => $this->student_id,
-             'created_at' => date('YmdHms'),
-             ]);
-    
-      } catch (\Exception $e) {
+      if($request->input('id') == 0)
+        {
+          try {
+             $queries = \DB::table('studentPersonalSites')
+            ->join('personalSites','studentPersonalSites.site_id','=','personalSites.id')
+            ->join('students','studentPersonalSites.student_id','=','students.id')
+            ->where('student_id',$this->student_id)
+            ->insert(['personalSite' => $account,
+                     'site_id' => $site_id,
+                     'student_id' => $this->student_id,
+                     'created_at' => date('YmdHms'),
+                     ]);
+            Session::flash('type',"success");
+            Session::flash("insert","Sitio personal guardado.");
         
-      }
- 
-          
-    }else{
-       $queries = \DB::table('studentPersonalSites')
-    ->join('personalSites','studentPersonalSites.site_id','=','personalSites.id')
-    ->join('students','studentPersonalSites.student_id','=','students.id')
-    ->where('studentpersonalsites.id',$request->input('id'))
-    ->update(['personalSite' => $account,
-             'site_id' => $site_id,
-             'student_id' => $this->student_id,
-             ]);
-    }   
-    
+          } catch (\Exception $e) {
+              if($e->getCode() == 2002) {
+                 Session::flash('type',"danger");
+                 Session::flash('insert', "No se ha podido guardar el sitio personal.");
+              } else {
+                 Session::flash('type',"danger");
+                 Session::flash("insert","Ya tienes guardado ese sitio personal");
+              }
+           }
+     
+              
+      }else{
+
+        try {
+           $queries = \DB::table('studentPersonalSites')
+          ->join('personalSites','studentPersonalSites.site_id','=','personalSites.id')
+          ->join('students','studentPersonalSites.student_id','=','students.id')
+          ->where('studentpersonalsites.id',$request->input('id'))
+          ->update(['personalSite' => $account,
+                   'site_id' => $site_id,
+                   'student_id' => $this->student_id,
+                   ]);
+           Session::flash('type',"success");
+           Session::flash('insert', "Sitio personal modificado");
+         }catch(\PDOException $e) {
+          if($e->getCode() == 2002) {
+             Session::flash('type',"danger");
+             Session::flash('insert', "No se ha podido guardar el debido a un problema de comunicación.");
+            } 
+        }
+
+      }   
+      
     
     return view('student.profile');
    }
 
-
+   /*Listar los sitios personales del usuario*/
     public function listSitesUsers(){
     
-     $queries = \DB::table('studentPersonalSites')
-    ->join('personalSites','studentPersonalSites.site_id','=','personalSites.id')
-    ->join('students','studentPersonalSites.student_id','=','students.id')
-    ->select('site','personalSite','studentPersonalSites.id')
-    ->where('student_id',$this->student_id)
-    ->get();
+       $queries = \DB::table('studentPersonalSites')
+      ->join('personalSites','studentPersonalSites.site_id','=','personalSites.id')
+      ->join('students','studentPersonalSites.student_id','=','students.id')
+      ->select('site','personalSite','studentPersonalSites.id')
+      ->where('student_id',$this->student_id)
+      ->get();
 
-    return Response::json($queries);
+      return Response::json($queries);
     
    }
 
     /**
+     * Eliminar sitio personal del usuario
      * @param  String $site 
      */
 
@@ -93,6 +114,9 @@ class SitesController extends Controller
        ->where('id',$site)
        ->delete();
 
+        Session::flash('type',"warning");
+        Session::flash('insert', "Sitio personal borrado.");
+      
       //DELETE $site
       return $site;
     } 
