@@ -137,6 +137,10 @@ return [
         'time'                  => 'hora',
         'subject'               => 'asunto',
         'message'               => 'mensaje',
+        'postalCode'            => 'código postal',
+        'state'                 => 'provincia',
+        'nationality'           => 'nacionalidad',
+        'birthdate'             => 'fecha de nacimiento',
     ],
 
 ];

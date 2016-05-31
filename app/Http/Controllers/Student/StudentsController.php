@@ -24,22 +24,23 @@ class StudentsController extends UsersController
     Parent::__construct($request);
     $this->rules += [
             // Reglas para el estudiante
-    'firstName'          => 'required|between:2,45|regex:/^[A-Za-z0-9 ]+$/',
+    'firstName'         => 'required|between:2,45|regex:/^[A-Za-z0-9áéíóúÁÉÍÓÚ ]+$/',
     'lastName'          => 'required|between:2,75|regex:/^[A-Za-z0-9 ]+$/',
-    'dni'               => 'required',
-    'nre'               => 'digits:7',
+    'dni'               => 'required|unique:students',
+    'nre'               => 'digits:7|unique:students',
     'phone'             => 'required|digits_between:9,13',
     'address'           => 'required|between:6,225',
-    'codPostal'         => 'digits:5',
+    'postalCode'        => 'required|digits:5',
             // El nombre es debido a datepicker
-    'birthdate_submit'  => 'required|date',
-    'nationality'       => '',
+    'birthdate'         => 'required|date',
+    'nationality'       => 'required|alpha|between:2,20',
+
 
             // Reglas de los ciclos.
-    'family'            => 'required|exists:profFamilies,name',
+    /*'family'            => 'required|exists:profFamilies,name',
     'cycles'            => 'required|exists:cycles,name',
     'yearFrom'          => 'required|digits:4|cycleYearFrom',
-    'yearTo'            => 'required|digits:4',
+    'yearTo'            => 'required|digits:4',*/
     ];
     $this->rol = 'estudiante';
     $this->redirectTo = "/estudiante";
@@ -58,8 +59,8 @@ protected function index(){
 
         // Comenzamos la transaccion.
         \DB::beginTransaction();
-
-        $user = Parent::store();
+ 
+       $user = Parent::store();
 
         if($user === false){
             \DB::rollBack();
@@ -113,13 +114,13 @@ protected function index(){
 
         $arrayDatos["postalCode"] = "";
 
-        $arrayDatos["city_id"] = "$city_id";
+        $arrayDatos["city_id"] = $city_id;
         
+
 
         $insert = Student::create($arrayDatos);
 
     } catch(\PDOException $e){
-            //dd($e);
         abort(500);
     }
 

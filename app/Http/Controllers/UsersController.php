@@ -64,7 +64,8 @@ class UsersController extends Controller
     protected function store()
     {
         // Valido la peticion.
-        //$this->validate($this->request, $this->rules);
+
+        $this->validate($this->request, $this->rules);
 
         // Añado el rol.
         $this->request['rol'] = $this->rol;
@@ -113,10 +114,7 @@ class UsersController extends Controller
             } else {
 
                 // Imagen por defecto aleatoria
-                $imagen = $faker->randomElement(['default_1.png', 'default_2.png',
-                 'default_3.png', 'default_4.png', 'default_5.png',
-                 'default_6.png', 'default_7.png', 'default_8.png',
-                 'default_9.png', 'default_10.png', 'default_11.png']);
+                $imagen = $faker->randomElement(['a2.png']);
             }
 
             // Añadimos la imagen para insertarla
