@@ -38,18 +38,18 @@ class ProfessionalExperiencesController extends Controller
    public function store(CreateProfessionalExperienceRequest $request)
    {
        $professionalExperience = $request->all();
-  
-         //$city_id = \DB::table('cities')->where('name' , $professionalExperience['city'])->value('id');
-        /* try {
+        //dd($professionalExperience);
+         $city_id = \DB::table('cities')->where('name' , $professionalExperience['city'])->value('id');
+         try {
           $queries = \DB::table('ProfessionalExperiences')
           ->join('students','ProfessionalExperiences.student_id','=','students.id')
           ->where('student_id',$this->student_id)
           ->insert(['enterprise' => $professionalExperience['enterprise'],
                    'description' => $professionalExperience['description'],
                    'job'         => $professionalExperience['job'],
-                   'from'        => "2013-09-09",
-                   'to'          => "2015-06-09",
-                   'city_id'     => 1,
+                   'from'        => $professionalExperience['from'],
+                   'to'          => $professionalExperience['to'],
+                   'city_id'     => $city_id,
                    'student_id'  => $this->student_id,
                    'created_at'  => date('YmdHms')]);
          
@@ -57,7 +57,7 @@ class ProfessionalExperiencesController extends Controller
          catch(\PDOException $e) {
 
          }
-        */
+        
   
 
         return view('student.profile',compact('professionalExperience'));

@@ -160,6 +160,7 @@ Route::group(['prefix' => '/estudiante', 'middleware' => ['web','auth']], functi
     Route::resource('otherGrades','OtherGradesController');
     Route::resource('aptitudes','AptitudesController');
     Route::resource('drivingLicenses','DrivingLicensesController');
+    Route::resource('professionalExperiences','ProfessionalExperiencesController');
     Route::post('updateInfo','ProfileController@update');
 });
 
