@@ -15,14 +15,49 @@ var checkboxs = new Array();
 
 $('#exp').on('shown.bs.modal', function(e) {
 
-    var checkbox = $('#now');
+/*************************************
 
+Parte que comprueba el rango de fechas
+
+*************************************/
+
+        var todayDate = kendo.toString(kendo.parseDate(new Date()), 'yyyy/MM/dd');
+        var minimo;
+$("#from,#to").kendoDatePicker({
+    animation: {
+   close: {
+     effects: "fadeOut zoom:out",
+     duration: 300
+   },
+   open: {
+     effects: "fadeIn zoom:in",
+     duration: 300
+   }
+},
+    format: "yyyy/MM/dd",          
+    max: new Date(todayDate)
+});
+
+var datepicker = $("#from").data("kendoDatePicker");
+
+datepicker.bind("change", function() {
+    minimo = ($('#from').val()); //value is the selected date in the datepicker
+    $("#to").kendoDatePicker({
+            min: new Date(minimo),
+    max: new Date(todayDate),
+            format: "yyyy/MM/dd"          
+        });
+});
+
+//Fin del apartado de los datepicker
+
+    var checkbox = $('#now');
     // modificaciones con el evento click
     checkbox.on('click', function() {
         if (checkbox.is(':checked')) {
-            $('#to').css('display', 'none');
+            $('#divto').css('display', 'none');
         } else {
-            $('#to').css('display', 'block');
+            $('#divto').css('display', 'block');
         }
     });
 
@@ -270,6 +305,23 @@ function notification(message, type) {
 //Funciones a cargar cuando se cargue la pagina
 $(function() {
 
+    angular.module("KendoDemos", [ "kendo.directives" ])
+          .controller("MyCtrl", function($scope){
+            $scope.fromDateString;
+            $scope.fromDateObject = null;
+            $scope.toDateString;
+            $scope.toDateObject = null;
+            $scope.maxDate = new Date();
+            $scope.minDate = new Date(2000, 0, 1, 0, 0, 0);
+            
+            $scope.fromDateChanged = function(){
+              $scope.minDate = new Date($scope.fromDateString);
+            };
+            $scope.toDateChanged = function(){
+              $scope.maxDate = new Date($scope.toDateString);
+            };
+          })
+
     //Carga por ajax listado modal lenguajes
     $.ajax({
         headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
@@ -280,7 +332,7 @@ $(function() {
 
             for (var i = 0; i < data.length; i++) {
 
-                $('#divlanguage').append("<div class='selector table-container'><input id=id_language type='hidden' value=" + data[i].id + "></input><a href='/estudiante/languages' data-method='DELETE' onclick='borrarItem(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#languages' onclick='editarItem(this)';><i class='material-icons'>mode_edit</i></a><table class='table table-striped'><h5 style='text-align:center;font-weight:bold;'>" + data[i].language + "</h5><thead><tr><th>Comprensión de lectura</th><th>Comprensión auditiva</th><th>Expresión Oral</th><th>Expresión Escrita</th></tr></thead><tbody><tr><td class='campo1'>" + data[i].readingComprehension + "</td><td class='campo2'>" + data[i].listeningComprehension + "</td><td class='campo3'>" + data[i].oralExpression + "</td><td class='campo4'>" + data[i].WrittedExpression + "</td></tr></tbody></table></div>");
+                $('#divlanguage').append("<div class='selector table-container'><input id=id_language type='hidden' value=" + data[i].id + "></input><a href='/estudiante/languages' data-method='DELETE' onclick='borrarItem(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#languages' onclick='editarItem(this)';><i class='material-icons'>mode_edit</i></a><table class='table table-striped'><h5 style='text-align:center;font-weight:bold;'>" + data[i].language + "</h5><thead><tr><th>Comprensión de lectura</th><th>Comprensión auditiva</th><th>Expresión Oral</th><th>Expresión Escrita</th></tr></thead><tbody><tr><td class='campo1'>" + data[i].readingComprehension + "</td><td class='campo2'>" + data[i].listeningComprehension + "</td><td class='campo3'>" + data[i].oralExpression + "</td><td class='campo4'>" + data[i].WrittedExpression + "</td></tr></tbody></table></div><hr class='sep'>");
             }
         }
 
@@ -318,7 +370,7 @@ $(function() {
         type: 'post',
         success: function(data) {
             for (var i = 0; i < data.length; i++) {
-                $('#divsite').append("<div class='selector '><input id=id_site type='hidden' value=" + data[i].id + "></input><a href='/estudiante/sites' data-method='DELETE' onclick='borrarItemSite(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#sites' onclick='editarItemsite(this)';><i class='material-icons'>mode_edit</i></a><h6 style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Sitio Personal: <span style='color:black; font-weight:normal'>" + data[i].site + "</span></h6><h6 style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Dirección: <span style='color:black; font-weight:normal'>" + data[i].personalSite + "</span></h6></div>");
+                $('#divsite').append("<div class='selector '><input id=id_site type='hidden' value=" + data[i].id + "></input><a href='/estudiante/sites' data-method='DELETE' onclick='borrarItemSite(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#sites' onclick='editarItemsite(this)';><i class='material-icons'>mode_edit</i></a><h6 style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Sitio Personal: <span style='color:black; font-weight:normal'>" + data[i].site + "</span></h6><h6 style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Dirección: <span style='color:black; font-weight:normal'>" + data[i].personalSite + "</span></h6></div><hr class='sep'>");
             }
         }
 
@@ -405,7 +457,7 @@ function editarItem(item) {
 function editarItemlicense(item) {
     ocultolicense = $(item).parent().children('input')[0].value;
     $('#ocultolicense').val(ocultolicense);
-    licencias = $('#namelicenses').span();
+    licencias = $('#namelicenses').text();
     checkboxs = licencias.split(',');
 
     for (var i = 0; i < checkboxs.length; i++) {

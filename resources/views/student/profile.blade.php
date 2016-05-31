@@ -11,7 +11,8 @@
 <script src="/js/datepicker/datepickerConfig.js"></script> 
 <script src="/js/buscadorCP.js" charset="utf-8"></script>
 <script src="/js/dragDrop.js"></script>
-
+<script src="/js/angular.min.js"></script>
+<script src="/js/kendo.all.min.js"></script>
 
 @endsection
 @section('content')

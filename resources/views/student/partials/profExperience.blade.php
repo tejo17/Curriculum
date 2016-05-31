@@ -44,10 +44,33 @@
                                 {{ Form::textarea('description', null, ['class' => 'form-control', 'id' => 'description', 'maxlength' => '250', 'style' => 'border:1px lightgrey solid; padding-left:10px; padding-top:10px;', 'rows' => '5']) }}
                                 <span class="pull-right">Máximo 250 caracteres.</span>
                             </div>
-                                <br>
+
                                 
-                        
-                            <div class="input-field col-md-6">
+                        <div id="example" ng-app="KendoDemos">
+  <div class="demo-section k-content"ng-controller="MyCtrl">
+    <div class="input-field col-md-6 k-rtl">
+      <h6>Desde:</h6>
+      <input name="from" id="from" kendo-date-picker
+             ng-model="fromDateString"
+             k-ng-model="fromDateObject"
+             k-max = "maxDate"
+             k-rebind="maxDate"
+             k-on-change="fromDateChanged()" />
+      
+    </div>
+    <div class="input-field col-md-6" id='divto'>
+      <h6>Hasta:</h6>
+      <input name="to" id="to" kendo-date-picker
+             ng-model="toDateString"
+             k-ng-model="toDateObject"
+             k-min = "minDate"
+             k-rebind = "minDate"
+             k-on-change="toDateChanged()"/>
+
+    </div>
+  </div>
+</div>
+                            <!-- <div class="input-field col-md-6">
                                 <i class="material-icons prefix">today</i>
                                     {{ Form::label('from', 'Desde', ['class' => 'labelpicker']) }}
                                     {{ Form::text('from',null, ['class' => 'datepicker', 'id' => 'datepicker']) }}
@@ -56,7 +79,7 @@
                                 <i class="material-icons prefix">today</i>
                                     {{ Form::label('to', 'Hasta', ['class' => 'otrolabelpicker']) }}
                                     {{ Form::text('to',null, ['class' => 'datepicker', 'id' => 'otrodatepicker']) }}
-                            </div>
+                            </div> -->
                             <div class="input-field col-md-12"  style="margin-bottom:20px">
                             {{ Form::checkbox('now', '', false, ['id' => 'now', 'class' => 'filled-in']) }}
                             {{ Form::label('now', 'Cursando actualmente', ['for' => 'now']) }}
