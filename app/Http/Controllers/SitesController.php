@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\PersonalSite;
-use App\Http\Requests;
+use App\Http\Requests\PersonalSiteRequest;
 use Illuminate\Http\Request;
 use Response;
 use Auth;
@@ -30,7 +30,7 @@ class SitesController extends Controller
    }
 
    /*Store y Update*/
-   public function store(Request $request)
+   public function store(PersonalSiteRequest $request)
    {
       $account = $request->input('personalsite');
       $site = $request->input('site');
@@ -58,7 +58,7 @@ class SitesController extends Controller
                  Session::flash('insert', "No se ha podido guardar el sitio personal.");
               } else {
                  Session::flash('type',"danger");
-                 Session::flash("insert","Ya tienes guardado ese sitio personal");
+                 Session::flash("insert","No se ha podido guardar el sitio personal.");
               }
            }
      

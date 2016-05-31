@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Certification;
-use App\Http\Requests;
+use App\Http\Requests\CertificationRequest;
 use Illuminate\Http\Request;
 use Response;
 use Session;
@@ -19,14 +19,12 @@ class CertificationsController extends Controller
    }
 
    /*Store o Update*/
-   public function store(Request $request)
+   public function store(CertificationRequest $request)
    {
        $certification = $request->input();
 
         $exist =  \DB::table('certifications')
         ->where('certification',$certification['certification'])
-        ->where('institution',$certification['institution'])
-        ->where('description',$certification['description'])
         ->where('student_id',$this->student_id)
         ->first();
 

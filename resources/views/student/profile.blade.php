@@ -53,6 +53,7 @@
                          <div id="divlanguage" class="col-md-12">                   
                          </div>
                          @include('student.partials.languages')
+                         @include('validations.language')
                      </fieldset>
                      <fieldset>
                          <legend style="width:auto;">Permiso de Conducir</legend>
@@ -72,11 +73,13 @@
                          <div id="divsite" class="col-md-12">                   
                          </div>
                          @include('student.partials.personalSites')
+                         @include('validations.personalSite')
                      </fieldset>
                      <fieldset>
                          <legend style="width:auto;">Certificaciones</legend>
                          <div id="divcertification" class="col-md-12"> </div>
                          @include('student.partials.certifications')
+                         @include('validations.certification')
                      </fieldset>
                      <fieldset>
                          <legend style="width:auto;">Otros Cursos</legend>

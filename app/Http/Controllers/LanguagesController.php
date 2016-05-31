@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Language;
-use App\Http\Requests;
+use App\Http\Requests\LanguageRequest;
 use Illuminate\Http\Request;
 use Response;
 use Session;
@@ -35,8 +35,8 @@ class LanguagesController extends Controller
     return Response::json($results);
   }
 
-  /*Almacenar el idioma de un usuario*/
-   public function store(Request $request)
+  /*Almacenar o actualizar el idioma de un usuario*/
+   public function store(LanguageRequest $request)
    {
       /*Input oculto para distinguir entre store y update*/
       $id_query = $request->input('id');

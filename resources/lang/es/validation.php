@@ -137,10 +137,21 @@ return [
         'time'                  => 'hora',
         'subject'               => 'asunto',
         'message'               => 'mensaje',
+
+        //Custom attributes
         'postalCode'            => 'código postal',
         'state'                 => 'provincia',
         'nationality'           => 'nacionalidad',
         'birthdate'             => 'fecha de nacimiento',
+        'language'              => 'idioma',
+        'readingComprehension'  => 'comprensión de lectura',
+        'listeningComprehension'=> 'comprensión auditiva',
+        'WrittedExpression'     => 'expresión escrita',
+        'oralExpression'        => 'expresión oral',
+        'site'                  => 'mensajería',
+        'personalsite'          => 'sitio personal',
+        'certification'         => 'certificación',
+        'institution'           => 'institución',
     ],
 
 ];
