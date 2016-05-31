@@ -24,8 +24,9 @@ class CertificationRequest extends Request
     public function rules()
     {
         return [
-         'certification' 	   => 'required',
-         'institution'         => 'required',
+         'certification' 	   => 'required|between:2,200',
+         'institution'         => 'required|between:2,200',
+         'description'         => 'between:5,250',
 
          ];
     }

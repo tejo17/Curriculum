@@ -85,6 +85,7 @@
                          <legend style="width:auto;">Otros Cursos</legend>
                          <div id="divother" class="col-md-12"> </div>
                          @include('student.partials.otherGrades')
+                         @include('validations.otherGrade')
                      </fieldset>
                      <fieldset>
                          <legend style="width:auto;">Aptitudes</legend>

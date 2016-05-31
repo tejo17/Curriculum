@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class PersonalSiteRequest extends Request
+class OtherGradesRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,10 @@ class PersonalSiteRequest extends Request
     public function rules()
     {
         return [
-         'site' 		  => 'required',
-         'personalsite'   => 'required|between:5,250',
+         'grade' 		  	  => 'required|between:2,200',
+         'duration'		  	  => 'between:1,10',
+         'institution'	  	  => 'between:2,200',
+         'descriptionGrade'	  => 'between:5,250',
 
          ];
     }

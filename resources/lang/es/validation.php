@@ -152,6 +152,9 @@ return [
         'personalsite'          => 'sitio personal',
         'certification'         => 'certificación',
         'institution'           => 'institución',
+        'grade'                 => 'curso',
+        'duration'              => 'duración',
+        'descriptionGrade'      => 'descripcion',
     ],
 
 ];

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\OtherGrade;
-use App\Http\Requests;
+use App\Http\Requests\OtherGradesRequest;
 use Illuminate\Http\Request;
 use Response;
 use Auth;
@@ -14,51 +14,73 @@ class OtherGradesController extends Controller
     return view('student.profile');
   }
      
-   public function store(Request $request)
+    /*Guardar o actualizar*/
+   public function store(OtherGradesRequest $request)
    {
           $grade = $request->input();
           $exist = \DB::table('otherGrades')
           ->where('grade',$grade['grade'])
-          ->where('description',$grade['description'])
-          ->where('duration',$grade['duration'])
-          ->where('institution',$grade['studyCenter'])
           ->where('student_id',$this->student_id)
           ->first();
          
-    try {
-      if($exist == null && $grade['id'] == 0 )
-      {
-        if ($grade['grade'] != "" && $grade['studyCenter'] != "" && $grade['duration'] != "" ) {
-            $queries = \DB::table('otherGrades')
-            ->join('students','otherGrades.student_id','=','students.id')
-            ->where('student_id',$this->student_id)
-            ->insert(['grade' => $grade['grade'],
-                      'description' => $grade['description'],
-                      'duration' => $grade['duration'],
-                      'institution' => $grade['studyCenter'],
-                      'student_id' => $this->student_id,
-                      'created_at' => date('YmdHms'),
-                      ]);
-            
-        }
-  } else{
 
-            $queries = \DB::table('otherGrades')
-            ->join('students','otherGrades.student_id','=','students.id')
-            ->where('student_id',$this->student_id)
-            ->where('otherGrades.id',$grade['id'])
-            ->update(['grade' => $grade['grade'],
-                      'description' => $grade['description'],
-                      'duration' => $grade['duration'],
-                      'institution' => $grade['studyCenter'],
-                      'student_id' => $this->student_id,
-                      
-                     ]);
-  }   
-    
-    } catch (\Exception $e) {
-      echo "Registro duplicado";
-    }
+        if($exist == null){
+
+            if ($grade['id'] == 0) {
+
+                  try {
+                    $queries = \DB::table('otherGrades')
+                    ->join('students','otherGrades.student_id','=','students.id')
+                    ->where('student_id',$this->student_id)
+                    ->insert(['grade' => $grade['grade'],
+                              'description' => $grade['descriptionGrade'],
+                              'duration' => $grade['duration'],
+                              'institution' => $grade['studyCenter'],
+                              'student_id' => $this->student_id,
+                              'created_at' => date('YmdHms'),
+                              ]);
+                    Session::flash('type',"success");
+                    Session::flash('insert', "Curso guardado.");
+
+                 }catch (\Exception $e) {
+                     if($e->getCode() == 2002) {
+                         Session::flash('type',"danger");
+                         Session::flash('insert', "No se ha podido guardar.");
+                     } 
+                 }
+              
+        
+            } else{
+
+                try {
+
+                    $queries = \DB::table('otherGrades')
+                    ->join('students','otherGrades.student_id','=','students.id')
+                    ->where('student_id',$this->student_id)
+                    ->where('otherGrades.id',$grade['id'])
+                    ->update(['grade' => $grade['grade'],
+                              'description' => $grade['descriptionGrade'],
+                              'duration' => $grade['duration'],
+                              'institution' => $grade['studyCenter'],
+                              'student_id' => $this->student_id,
+                              
+                             ]);
+                    Session::flash('type',"success");
+                    Session::flash('insert', "Curso actualizado.");
+
+              }catch (\Exception $e) {
+                    if($e->getCode() == 2002) {
+                     Session::flash('type',"danger");
+                     Session::flash('insert', "No se ha podido actualizar.");
+                   } 
+               }  
+            }
+        }else{
+            Session::flash('type',"danger");
+            Session::flash("insert","Ya tienes guardado ese curso.");
+        }
+
+      
     return view('student.profile');
    }
 
