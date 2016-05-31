@@ -114,7 +114,11 @@ class UsersController extends Controller
             } else {
 
                 // Imagen por defecto aleatoria
-                $imagen = $faker->randomElement(['a2.png']);
+               $imagen = $faker->randomElement(['default_1.png', 'default_2.png',
+                    'default_3.png', 'default_4.png', 'default_5.png',
+                    'default_6.png', 'default_7.png', 'default_8.png',
+                    'default_9.png', 'default_10.png', 'default_11.png']);
+
             }
 
             // Añadimos la imagen para insertarla
