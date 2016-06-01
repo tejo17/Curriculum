@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Session;
 
 class PdfController extends Controller
 {
@@ -21,12 +22,14 @@ class PdfController extends Controller
 
     public function getData() 
     {
+
         $data =  [
-            'quantity'      => '1' ,
+            'quantity'      => '100',
             'description'   => 'some ramdom text',
             'price'   => '500',
             'total'     => '500'
         ];
+        dd($data);
         return $data;
     }
 }

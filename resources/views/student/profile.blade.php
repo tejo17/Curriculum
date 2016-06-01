@@ -47,6 +47,8 @@
                       </fieldset>
                       <fieldset>
                          <legend style="width:auto;">Experiencia Profesional</legend>
+                         <div id="divexppro" class="col-md-12">          
+                         </div>
                          @include('student.partials.profExperience')
                          @include('validations.professionalExperience')
                      </fieldset>
