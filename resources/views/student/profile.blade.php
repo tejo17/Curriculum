@@ -48,6 +48,7 @@
                       <fieldset>
                          <legend style="width:auto;">Experiencia Profesional</legend>
                          @include('student.partials.profExperience')
+                         @include('validations.professionalExperience')
                      </fieldset>
                      <fieldset>
                          <legend style="width:auto;">Idiomas</legend>
@@ -92,6 +93,7 @@
                          <legend style="width:auto;">Aptitudes</legend>
                          <div id="divaptitude" class="col-md-12"> </div>
                          @include('student.partials.aptitudes')
+                         @include('validations.aptitude')
                      </fieldset>
 
 

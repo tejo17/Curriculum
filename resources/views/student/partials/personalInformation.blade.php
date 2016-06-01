@@ -15,10 +15,15 @@
  				
  				{{ Form::open(['action' => 'ProfileController@update', 'method' => 'POST', 'files' => 'true']) }}
  				{!! csrf_field() !!}
+
  				<fieldset>
  					<legend style="width:auto;">Estudiante</legend>
  					@include('student.partials.studentfields')
  				</fieldset>
+ 				<div style="margin-top:15px">
+ 					<span style="color:red">Aviso:</span> tus datos personales solo se modificarán durante la sesión actual, para que puedas modificar tu información personal del currículum que estás creando. No modificarán tus datos personales del registro. 
+ 				</div>
+ 				
  				<div class="form-group">
  					<div class="col-md-12 text-center">
  						<button  type="submit" class="btn btn-primary btn-login-media waves-effect waves-light" id="submit" >

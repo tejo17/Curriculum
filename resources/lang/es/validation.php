@@ -155,6 +155,11 @@ return [
         'grade'                 => 'curso',
         'duration'              => 'duración',
         'descriptionGrade'      => 'descripcion',
+        'aptitude'              => 'aptitud',
+        'from'                  => 'desde',
+        'to'                    => 'hasta',
+        'job'                   => 'trabajo',
+        'enterprise'            => 'empresa',
     ],
 
 ];

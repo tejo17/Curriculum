@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Aptitude;
-use App\Http\Requests;
+use App\Http\Requests\AptitudeRequest;
 use Illuminate\Http\Request;
 use Response;
 use Session;
@@ -18,7 +18,7 @@ class AptitudesController extends Controller
       return view('student.profile');
     }
     /*Store y Update*/
-   public function store(Request $request){
+   public function store(AptitudeRequest $request){
 
         $aptitude = $request->input();
         $exist = \DB::table('aptitudes')
@@ -27,52 +27,51 @@ class AptitudesController extends Controller
         ->first();
 
         /*Comprobar si es insert o update y evitar duplicados*/
-        if ($aptitude['id'] == 0 && $exist == null) {
+        if ($exist == null) {
 
-            /*Comprobar que no está vacío.*/
-            if ($aptitude['aptitude'] !== "") {
+            if($aptitude['id'] == 0 ){
+                /*Comprobar que no está vacío.*/
 
-                try {
-                   $queries = \DB::table('aptitudes')
+                    try {
+                       $queries = \DB::table('aptitudes')
+                        ->join('students','aptitudes.student_id','=','students.id')
+                        ->where('student_id',$this->student_id)
+                        ->insert(['aptitude' => $aptitude['aptitude'],
+                                 'student_id' => $this->student_id,
+                                 'created_at' => date('YmdHms')]);  
+                        Session::flash('type',"success");
+                        Session::flash('insert', "Conjunto de aptitudes guardado.");
+                        
+                    }catch (\Exception $e) {
+                        if($e->getCode() == 2002) {
+                           Session::flash('type',"danger");
+                           Session::flash('insert', "No se ha podido guardar.");
+                        } else {
+                           Session::flash('type',"danger");
+                           Session::flash("insert","Ya tienes guardado ese conjunto de aptitudes.");
+                        }
+                       }
+              }else{
+
+                  try {
+                    $queries = \DB::table('aptitudes')
                     ->join('students','aptitudes.student_id','=','students.id')
                     ->where('student_id',$this->student_id)
-                    ->insert(['aptitude' => $aptitude['aptitude'],
-                             'student_id' => $this->student_id,
-                             'created_at' => date('YmdHms')]);  
-                    Session::flash('type',"success");
-                    Session::flash('insert', "Conjunto de aptitudes guardado.");
-                    
-                }catch (\Exception $e) {
-                    if($e->getCode() == 2002) {
+                    ->where('aptitudes.id',$aptitude['id'])
+                    ->update(['aptitude' => $aptitude['aptitude']]); 
+                     Session::flash('type',"success");
+                     Session::flash('insert', "Conjunto de aptitudes actualizado.");
+
+                  }catch (\Exception $e) {
+                      if($e->getCode() == 2002) {
                        Session::flash('type',"danger");
-                       Session::flash('insert', "No se ha podido guardar.");
-                    } else {
-                       Session::flash('type',"danger");
-                       Session::flash("insert","Ya tienes guardado ese conjunto de aptitudes.");
-                    }
-                 }
-            }else{
-               Session::flash('type',"danger");
-               Session::flash("insert","No has escrito nada.");
-            }
-       
+                       Session::flash('insert', "No se ha podido actualizar.");
+                     } 
+                  }  
+              }
         }else{
-
-            try {
-              $queries = \DB::table('aptitudes')
-              ->join('students','aptitudes.student_id','=','students.id')
-              ->where('student_id',$this->student_id)
-              ->where('aptitudes.id',$aptitude['id'])
-              ->update(['aptitude' => $aptitude['aptitude']]); 
-               Session::flash('type',"success");
-               Session::flash('insert', "Conjunto de aptitudes actualizado.");
-
-            }catch (\Exception $e) {
-                if($e->getCode() == 2002) {
-                 Session::flash('type',"danger");
-                 Session::flash('insert', "No se ha podido actualizar.");
-               } 
-            }  
+            Session::flash('type',"danger");
+            Session::flash("insert","Ya tienes guardado ese conjutno de aptitudes.");
         }
    
     return view('student.profile');
