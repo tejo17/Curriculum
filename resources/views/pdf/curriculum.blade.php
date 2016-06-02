@@ -4,6 +4,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Currículum Vitae</title>
       {!! Html::style('/css/estilo-pdf-curriculum.css') !!}
+
+ 
+     {{ $datos['imagen'] }}
 </head>
 <body>
   <div id="details" class="clearfix">
@@ -13,28 +16,28 @@
       <!-- Tabla información personal -->
       <table>
         <tr>
-          <td style="text-align:right"><span style="color:darkblue;">IFNORMACIÓN PERSONAL</span></td>
+          <td style="text-align:right"><span style="color:darkblue;">INFORMACIÓN PERSONAL</span></td>
           <td style="width:475px;"></td> 
         </tr>
         <tr>
-          <td rowspan="5" class="tds-left"><img style="margin-left:155px" src="img/icon.png" alt="" width="70" height="70"></td>
-          <td class="tds-right border-top-darkblue"><span style="padding-left:15px;">nombre y apellidos</span></td>
+          <td rowspan="5" class="tds-left"><img style="margin-left:155px" src="/img/imgUser/a8ab40cc083f0d68dbc9c982296548c7/d432f22ad476231664f52160801eae1a.png" alt="" width="70" height="70"></td>
+          <td class="tds-right border-top-darkblue"><span style="padding-left:15px; text-transform:capitalize">{{ $datos['lastName'] }}, {{ $datos['firstName'] }}</span></td>
         </tr>
         <tr>
-          <td style="width:475px;"><span style="padding-left:15px;">dirección, código postal,población,provincia</span></td>
+          <td style="width:475px;"><span style="padding-left:15px;">{{ $datos['address'] }}, {{ $datos['postalCode'] }} , {{ $datos['city'] }}, {{ $datos['state'] }}</span></td>
         </tr>
         <tr>
-          <td style="width:475px;"><span style="padding-left:15px">teléfono</span></td>
+          <td style="width:475px;"><span style="padding-left:15px">{{ $datos['phone'] }}</span></td>
         </tr>
         <tr>
-          <td style="width:475px;"><span style="padding-left:15px;">email</span></td>
+          <td style="width:475px;"><span style="padding-left:15px;">{{ $datos['email'] }}</span></td>
         </tr>
         <tr>
           <td style="width:475px;"><span style="padding-left:15px; margin-right;10px" >Redes sociales, Nombre red social :  nombre cuenta.</span></td>
         </tr>
         <tr>
           <td rowspan="5" style="width:265px;"></td>
-          <td style="width:475px;"><span style="padding-left:15px;">Fecha de nacimiento y nacionalidad</span></td>   
+          <td style="width:475px;"><span style="padding-left:15px;">{{ $datos['birthdate'] }} , Nacionalidad: {{ $datos['nationality'] }}</span></td>   
         </tr>
       </table>
 
