@@ -18,8 +18,9 @@
 
  				<fieldset>
  					<legend style="width:auto;">Estudiante</legend>
- 					@include('student.partials.studentfields')
+ 					@include('student.partials.personalInformationFields')
  				</fieldset>
+ 				
  				<div style="margin-top:15px">
  					<span style="color:red">Aviso:</span> tus datos personales solo se modificarán durante la sesión actual, para que puedas modificar tu información personal del currículum que estás creando. No modificarán tus datos personales del registro. 
  				</div>

@@ -213,6 +213,8 @@ $('#info').on('show.bs.modal', function(e) {
             $('#address').val(data['address']);
             $('#postalCode').val(data['postalCode']);
             $('#postalCode').focus();
+            $('#email').val(data['email']);
+            $('#email').focus();
             cargarPostalAuto(data['postalCode']);
             $('#state').val(data['state']);
             $('#state').focus();

@@ -43,7 +43,6 @@
                     <div class="input-field col-md-12">
                         <p style="color:#9e9e9e; font-weight:400">Descripción</p>
                         {{ Form::textarea('description', null, ['class' => 'form-control', 'id' => 'description', 'maxlength' => '250', 'style' => 'border:1px lightgrey solid; padding-left:10px; padding-top:10px;', 'rows' => '5']) }}
-                        <span class="pull-right">Máximo 250 caracteres.</span>
                     </div>
 
                     

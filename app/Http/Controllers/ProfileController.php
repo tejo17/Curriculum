@@ -60,17 +60,18 @@ public function update(Request $req){
 
     }
 
-    session(['firstName' => $req->input('firstName'),
-        'lastName' => $req->input('lastName'),
-        'dni' => $req->input('dni'),
-        'nre' => $req->input('nre'),
-        'phone' => $req->input('phone'),
-        'address' => $req->input('address'),
-        'nationality' => $req->input('nationality'),
-        'state' => $req->input('state'),
-        'city' => $req->input('city'),
-        'postalCode' => $req->input('postalCode'),
-        ]);
+    session(['firstName'    => $req->input('firstName'),
+            'lastName'      => $req->input('lastName'),
+            'dni'           => $req->input('dni'),
+            'nre'           => $req->input('nre'),
+            'phone'         => $req->input('phone'),
+            'address'       => $req->input('address'),
+            'nationality'   => $req->input('nationality'),
+            'state'         => $req->input('state'),
+            'city'          => $req->input('city'),
+            'postalCode'    => $req->input('postalCode'),
+            'email'         => $req->input('email'),
+            ]);
 
 
     return view('student.profile'); 

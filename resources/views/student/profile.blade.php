@@ -40,7 +40,7 @@
                              <img id="imgcur" src="{{ session('carpeta') }}" width="100" height="100" >
                              <h5 style="text-transform: capitalize;">{{ session('lastName') }},{{ session('firstName') }}<h5>
                               <h6><i class="material-icons">location_on</i>{{ session('address') }},{{ session('postalCode') }},{{ session('city') }},({{ session('state') }})</h6>
-                              <h6><i class="material-icons">phone</i>{{ session('phone') }}</h6>
+                              <h6><i class="material-icons">phone</i>{{ session('phone') }}&nbsp;&nbsp;&nbsp;&nbsp;<i class="material-icons">mail</i>{{ session('email') }}</h6>
                               <h6>Fecha Nacimiento: {{session ('birthdate') }} | Nacionalidad: {{session ('nationality') }}</h6>
                           </div>   
                           @include('student.partials.personalInformation')
