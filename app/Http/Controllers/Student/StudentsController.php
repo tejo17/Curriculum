@@ -214,6 +214,7 @@ protected function index(){
                 'postalCode' => $postal,
                 'carpeta' => '/img/imgUser/' . \Auth::user()->carpeta . '/' .  \Auth::user()->image,
                 'email'   => $user_email,
+                'rutaSinBarra' => 'img/imgUser/' . \Auth::user()->carpeta . '/' . \Auth::user()->image,
 
         ]);
         // Devuelvo la vista junto con las familias

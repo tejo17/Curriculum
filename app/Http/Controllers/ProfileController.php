@@ -47,8 +47,9 @@ class ProfileController extends Controller
 public function update(Request $req){
 
     if(\Request::file('file') != null){
-        $ruta = \Request::file('file')->move(public_path('img/cv/'), \Request::file('file')->getClientOriginalName());
-        session(['carpeta' => '../img/cv/' . \Request::file('file')->getClientOriginalName()]);
+        $ruta = \Request::file('file')->move(public_path( '/img/imgUser/' . \Auth::user()->carpeta . '/'), \Request::file('file')->getClientOriginalName());
+        session(['carpeta' => '/img/imgUser/' . \Auth::user()->carpeta . '/' . \Request::file('file')->getClientOriginalName(),
+        'rutaSinBarra' => 'img/imgUser/' . \Auth::user()->carpeta . '/' . \Request::file('file')->getClientOriginalName()]);
     }
         
     if ($req->input('birthdate') != null) {
@@ -68,7 +69,7 @@ public function update(Request $req){
         'nationality' => $req->input('nationality'),
         'state' => $req->input('state'),
         'city' => $req->input('city'),
-        'postalCode' => $req->input('postalCode')
+        'postalCode' => $req->input('postalCode'),
         ]);
 
 

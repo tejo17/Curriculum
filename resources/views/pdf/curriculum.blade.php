@@ -20,7 +20,7 @@
           <td style="width:475px;"></td> 
         </tr>
         <tr>
-          <td rowspan="5" class="tds-left"><img style="margin-left:155px" src="/img/imgUser/a8ab40cc083f0d68dbc9c982296548c7/d432f22ad476231664f52160801eae1a.png" alt="" width="70" height="70"></td>
+          <td rowspan="5" class="tds-left"><img style="margin-left:155px" src="{{ $datos['imagen'] }}" alt="" width="70" height="70"></td>
           <td class="tds-right border-top-darkblue"><span style="padding-left:15px; text-transform:capitalize">{{ $datos['lastName'] }}, {{ $datos['firstName'] }}</span></td>
         </tr>
         <tr>

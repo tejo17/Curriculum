@@ -105,7 +105,7 @@
                         {{ Form::hidden('firstName', session('firstName')) }}
                         {{ Form::hidden('firstName', session('firstName')) }}
                         {{ Form::hidden('lastName', session('lastName')) }}
-                        {{ Form::hidden('imagen', session('carpeta')) }}
+                        {{ Form::hidden('imagen', session('rutaSinBarra')) }}
                         {{ Form::hidden('address', session('address')) }}
                         {{ Form::hidden('postalCode', session('postalCode')) }}
                         {{ Form::hidden('city', session('city')) }}
