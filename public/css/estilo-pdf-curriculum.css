@@ -6,19 +6,15 @@
 
     table{
       border-collapse: collapse;
-      border:1px black solid;
+      /* border:1px black solid; */
       margin-left:5px; 
       margin-top:20px; 
       width:730px;
     }
-    tr{
-      border:1px black solid;
-      height: 10px;
-    }
-    td{
-      border:1px black solid;
-      height: 10px;
-    }
+table,tr,td{
+  border:1px black solid;
+  height: 10px;
+}
         
 .clearfix:after {
   content: "";

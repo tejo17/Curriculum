@@ -47,6 +47,7 @@
           <td style="width:265px; text-align:right "><span style="color:darkbluE;">EXPERIENCIA PROFESIONAL</span></td>
           <td style="width:475px;"></td>            
         </tr>
+        <div id="curexp"></div>
         <tr>
           <td class="tds-left align-right"><span style="margin-left:125px">(01-10-2006 –01- 04-2010)</span></td>
           <td class="tds-right border-top-darkblue"><span style="padding-left:15px;">Nombre del empleo</span></td>         
@@ -62,7 +63,7 @@
         <tr>
           <td style="width:265px;"></td>
           <td style="width:475px;"></td>
-        </tr>  
+        </tr>
       </table>
 
       <!-- Tabla educación y formación -->
@@ -195,10 +196,13 @@
           <td style="width:265px; text-align:right"><span style="color:darkblue;">APTITUDES</span></td>
           <td style="width:475px;"></td>
         </tr>
-        <tr>
+        <?php foreach ($aptitudes as $aptitud): ?>     
+          <tr>
           <td class"align-right" class="tds-left "></td>
-          <td class="tds-right border-top-darkblue"><span style="padding-left:15px;">Aptitud</span></td>
+          <td class="tds-right border-top-darkblue"><span style="padding-left:15px;">{{ $aptitud }}</span></td>
         </tr>
+        <?php endforeach ?>
+
         <tr>
           <td style="width:265px;"></td>
           <td style="width:475px;"></td>

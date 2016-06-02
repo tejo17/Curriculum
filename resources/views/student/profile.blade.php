@@ -121,19 +121,19 @@
                         {{ Form::hidden('birthdate', session('birthdate')) }}
                         {{ Form::hidden('nationality', session('nationality')) }}
                         {{ Form::hidden('email', session('email')) }}
+                         {{ Form::hidden('checkboxaptitudes', null,['id' => "checkboxaptitudes"]) }}
                         {{ session('carpeta') }}
 
                      <div class="form-group">
                         <div class="col-md-12 text-center">
-                            <button type="submit" class="btn btn-primary btn-login-media waves-effect waves-light" id="guardar">
+                            <button  type="submit" class="btn btn-primary btn-login-media waves-effect waves-light" id="generatePDF">
                                 <div class="show-responsive">
                                     <i class="fa fa-user-plus" aria-hidden="true"></i>
                                 </div>
                                 <div class="hidden-media">
-                                    <i class="fa fa-btn fa-user"></i> <span class="hidden-media">Guardar</span>
+                                    <i class="fa fa-btn fa-user"></i> <span class="hidden-media">Generar PDF</span>
                                 </div>
                             </button>
-                          </form>
                         </div>
                     </div>
                     

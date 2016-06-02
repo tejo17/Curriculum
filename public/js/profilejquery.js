@@ -568,7 +568,8 @@ $(function() {
         type: 'post',
         success: function(data) {
             for (var i = 0; i < data.length; i++) {
-                $('#divaptitude').append("<div class='switch'><label>Off<input type='checkbox'><span class='lever'></span>On</label></div> <div class='selector'><input id=id_certification type='hidden' value=" + data[i].id + "></input><a href='/estudiante/aptitudes' data-method='DELETE' onclick='borrarItemAptitude(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#aptitudes' onclick='editarItemAptitude(this)';><i class='material-icons'>mode_edit</i></a><ul><li class=' tituloli'>Aptitud</li><li class='campo1 '>" + data[i].aptitude + "</li></ul></div><hr class='sep'>");
+                $('#divaptitude').append("<div class='selector'><input id=id_certification type='hidden' value=" + data[i].id + "><div class='switch'><label>Off<input type='checkbox' id='checkapt' name='checkapt'><span class='lever'></span>On</label></div></input><a href='/estudiante/aptitudes' data-method='DELETE' onclick='borrarItemAptitude(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#aptitudes' onclick='editarItemAptitude(this)';><i class='material-icons'>mode_edit</i></a><ul><li class=' tituloli'>Aptitud</li><li class='campo1 '>" + data[i].aptitude + "</li></ul></div><hr class='sep'>");
+
             }
         }
     });
@@ -836,3 +837,26 @@ function cargarPostalAuto(data) {
         }
     });
 }
+$('#generatePDF').click(function() {
+
+    var aptitudes = new Array();
+
+    $("input:checkbox:checked").each(function() {
+        //cada elemento seleccionado
+        aptitudes.push($(this).parent().parent().siblings('ul').children('.campo1').text() + " {}");
+    });
+        $('#checkboxaptitudes').val(aptitudes);
+        var consulta = {
+            aptitud: aptitudes
+        };
+
+        $.ajax({
+            headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
+            data: consulta,
+            url: '/estudiante/pdf',
+            type: 'post',
+
+            success: function(data) {}
+        });
+    
+});

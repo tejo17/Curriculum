@@ -169,8 +169,3 @@ Route::group(['prefix' => '/estudiante', 'middleware' => ['web','auth']], functi
     Route::post('pdf', 'PdfController@invoice');
 });
 
-Route::group(['prefix' => '/', 'middleware' => ['web','auth']], function(){
-
-
-
-});
