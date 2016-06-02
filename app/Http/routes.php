@@ -144,6 +144,8 @@ Route::post('buscarCodPostal','Student\StudentsController@buscarCodPostal');
 Route::group(['prefix' => '/estudiante', 'middleware' => ['web','auth']], function(){
     Route::get('autocompletado','ProfileController@autocomplete');
     Route::post('autolocal','ProfileController@autolocal');
+    Route::get('autocompletadoFamilias','ProfileController@autocompleteFamily');
+    Route::post('autolocalCiclos','ProfileController@autolocalCycles');
     Route::post('cargaSites','SitesController@getName');
     Route::post('cargaLanguages','LanguagesController@getLanguage');
     Route::post('cargaInfo','Student\StudentsController@getInfo');
@@ -162,6 +164,7 @@ Route::group(['prefix' => '/estudiante', 'middleware' => ['web','auth']], functi
     Route::resource('aptitudes','AptitudesController');
     Route::resource('drivingLicenses','DrivingLicensesController');
     Route::resource('professionalExperiences','ProfessionalExperiencesController');
+    Route::resource('educationsFormations','StudentCyclesController');
     Route::post('updateInfo','ProfileController@update');
     Route::post('pdf', 'PdfController@invoice');
 });

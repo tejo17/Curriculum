@@ -46,6 +46,13 @@
                           @include('student.partials.personalInformation')
                       </fieldset>
                       <fieldset>
+                         <legend style="width:auto;">Educación y formación</legend>
+                         <div id="" class="col-md-12">          
+                         </div>
+                         @include('student.partials.educationsFormations')
+                         @include('validations.professionalExperience')
+                     </fieldset>
+                      <fieldset>
                          <legend style="width:auto;">Experiencia Profesional</legend>
                          <div id="divexppro" class="col-md-12">          
                          </div>

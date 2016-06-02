@@ -74,7 +74,7 @@ protected function index(){
             if($insert !== false){
 
                 // Llamo al metodo para almacenar sus grados.
-                //$insert = self::createStudentCycle($insert);
+                $insert = self::createStudentCycle($insert);
                 $insert = true;
 
                 if ($insert === true){
@@ -134,7 +134,7 @@ protected function index(){
     private function createStudentCycle($student)
     {
         $data = $this->request->all();
-        $cuantity = 0;
+        $quantity = 0;
         $cycles = count($data['cycles']);
 
         try {
@@ -157,7 +157,7 @@ protected function index(){
                 ->toArray();
 
                 if(!empty($insert) && !is_null($insert)){
-                    $cuantity++;
+                    $quantity++;
                 } else {
                     // Añado los errores para devolverlos sacar en la consulta el nombre del ciclo tambien para devolverlo en el error
                 }
@@ -167,7 +167,7 @@ protected function index(){
             abort(500);
         }
 
-        if($cuantity == $cycles){
+        if($quantity == $cycles){
             return true;
         }
         return false; // devuelvo false (temporal) debo devolver los errores

@@ -28,20 +28,53 @@ class ProfileController extends Controller
 
    }
    public function autocomplete(Request $req){
-    $term =  $req->input('term');
+        $term =  $req->input('term');
 
-    $results = array();
+        $results = array();
 
-    $queries = DB::table('states')
-    ->where('name', 'LIKE', '%'.$term.'%')
-    ->get();
+        $queries = DB::table('states')
+        ->where('name', 'LIKE', '%'.$term.'%')
+        ->get();
 
-    foreach ($queries as $query)
-    {
-        $results[] = [ 'id' => $query->id, 'value' => $query->name];
+        foreach ($queries as $query)
+        {
+            $results[] = [ 'id' => $query->id, 'value' => $query->name];
+        }
+        return Response::json($results);
     }
-    return Response::json($results);
-}
+
+       public function autolocalCycles(Request $request){  
+        $ciclos = array();
+        $family = $request->input('family');
+
+        $family = \DB::table('proffamilies')->where('name',$family)->value('id');            
+        $cycles = \DB::table('cycles')->where('profFamily_id',$family)->orderBy('name')->distinct()->lists('name');
+        foreach ($cities as $title) {  
+
+           array_push($ciclos, $title);
+       }    
+
+       return response()->json([           
+        'ciclos' => $ciclos,
+        ]);
+
+   }
+   public function autocompleteFamily(Request $req){
+        $term =  $req->input('term');
+
+        $results = array();
+
+        $queries = DB::table('proffamilies')
+        ->where('name', 'LIKE', '%'.$term.'%')
+        ->get();
+
+        foreach ($queries as $query)
+        {
+            $results[] = [ 'id' => $query->id, 'value' => $query->name];
+        }
+        return Response::json($results);
+    }
+
 
 
 public function update(Request $req){

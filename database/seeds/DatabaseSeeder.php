@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(OurUsersSeeder::class);
         $this->call(WorkCentersSeeder::class);
         $this->call(CyclesProfFamiliesSeeder::class);
-        $this->call(InformaticaSeeder::class);
+        //$this->call(InformaticaSeeder::class);
         $this->call(TagsSeeder::class);
         $this->call(JobOffersSeeder::class);
         $this->call(OfferTagsSeeder::class);
