@@ -46,14 +46,18 @@ class ProfileController extends Controller
 
 public function update(Request $req){
 
+    if(\Request::file('file') != null){
         $ruta = \Request::file('file')->move(public_path('img/cv/'), \Request::file('file')->getClientOriginalName());
         session(['carpeta' => '../img/cv/' . \Request::file('file')->getClientOriginalName()]);
-    
+    }
+        
     if ($req->input('birthdate') != null) {
-        session(['birthdate' => $req->input('birthdate')]);
+
+        $birthdateFormat = explode('-',$req->input('birthdate'));
+        $birthdateFormat = $birthdateFormat[2]."-".$birthdateFormat[1]."-".$birthdateFormat[0];
+        session(['birthdate' => $birthdateFormat]);
 
     }
-
 
     session(['firstName' => $req->input('firstName'),
         'lastName' => $req->input('lastName'),

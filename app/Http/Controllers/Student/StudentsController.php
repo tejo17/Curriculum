@@ -176,7 +176,9 @@ protected function index(){
     protected function editarPerfil(){
         // Llamo al metodo getAllProfFamilies del controlador de las familias profesionales
         $profFamilies = app(ProfFamilieController::class)->getAllProfFamilies();
+
         $user = Auth::user()->id;
+
         $datos = \DB::table('students')
         ->join('cities','students.city_id', '=' ,'cities.id')
         ->join('states','states.id', '=' ,'cities.state_id')
@@ -184,13 +186,19 @@ protected function index(){
         ->select('firstName','lastName','dni','nre','phone','address','curriculum','birthdate','nationality','states.name as state','cities.name as city','postalCode','carpeta')
         ->where('user_id', $user)
         ->get();
-        $postal = $datos[0]->postalCode;
-     
 
+        /*Por un problema con los registros de la base de datos, los códigos postales aunque sean de 4 digitos, deben llevar el 0 delante*/
+        $postal = $datos[0]->postalCode;
+        
         if (strlen($postal) == 4) {
             $postal = "0".$postal;
         }
-       
+
+        $user_email = $user_email = \DB::table('users')->where('id' , $user)->value('email');
+
+        $birthdateFormat = explode('-',$datos[0]->birthdate);
+        $birthdateFormat = $birthdateFormat[2]."-".$birthdateFormat[1]."-".$birthdateFormat[0];
+
          session(['firstName' => $datos[0]->firstName,
                 'lastName' => $datos[0]->lastName,
                 'dni' => $datos[0]->dni,
@@ -198,13 +206,14 @@ protected function index(){
                 'phone' => $datos[0]->phone,
                 'address' => $datos[0]->address,
                 'curriculum' => $datos[0]->curriculum,
-                'birthdate' => $datos[0]->birthdate,
+                'birthdate' => $birthdateFormat,
                 'nationality' => $datos[0]->nationality,
                 'state' => $datos[0]->state,
                 'lastName' => $datos[0]->lastName,
                 'city' => $datos[0]->city,
                 'postalCode' => $postal,
                 'carpeta' => '/img/imgUser/' . \Auth::user()->carpeta . '/' .  \Auth::user()->image,
+                'email'   => $user_email,
 
         ]);
         // Devuelvo la vista junto con las familias

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\ProfessionalExperience;
-use App\Http\Requests\CreateProfessionalExperienceRequest;
+use App\Http\Requests\ProfessionalExperienceRequest;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Response;
@@ -35,7 +35,7 @@ class ProfessionalExperiencesController extends Controller
     }
 
    }
-   public function store(CreateProfessionalExperienceRequest $request)
+   public function store(ProfessionalExperienceRequest $request)
    {
        $professionalExperience = $request->all();
         $city_id = \DB::table('cities')->where('name' , $professionalExperience['city'])->value('id');

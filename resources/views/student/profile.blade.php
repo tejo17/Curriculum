@@ -97,8 +97,24 @@
                          @include('student.partials.aptitudes')
                          @include('validations.aptitude')
                      </fieldset>
+                    
+                    <form class="col-md-12" method="POST" action="/estudiante/pdf">
 
-
+                        <!-- Información personal -->
+                        {{ Form::hidden('_token', csrf_token()) }}
+                        {{ Form::hidden('firstName', session('firstName')) }}
+                        {{ Form::hidden('firstName', session('firstName')) }}
+                        {{ Form::hidden('lastName', session('lastName')) }}
+                        {{ Form::hidden('imagen', session('carpeta')) }}
+                        {{ Form::hidden('address', session('address')) }}
+                        {{ Form::hidden('postalCode', session('postalCode')) }}
+                        {{ Form::hidden('city', session('city')) }}
+                        {{ Form::hidden('state', session('state')) }}
+                        {{ Form::hidden('phone', session('phone')) }}
+                        {{ Form::hidden('birthdate', session('birthdate')) }}
+                        {{ Form::hidden('nationality', session('nationality')) }}
+                        {{ Form::hidden('email', session('email')) }}
+                        {{ session('carpeta') }}
 
                      <div class="form-group">
                         <div class="col-md-12 text-center">
@@ -110,6 +126,7 @@
                                     <i class="fa fa-btn fa-user"></i> <span class="hidden-media">Guardar</span>
                                 </div>
                             </button>
+                          </form>
                         </div>
                     </div>
                     

@@ -163,6 +163,11 @@ Route::group(['prefix' => '/estudiante', 'middleware' => ['web','auth']], functi
     Route::resource('drivingLicenses','DrivingLicensesController');
     Route::resource('professionalExperiences','ProfessionalExperiencesController');
     Route::post('updateInfo','ProfileController@update');
+    Route::post('pdf', 'PdfController@invoice');
 });
 
-Route::get('pdf', 'PdfController@invoice');
+Route::group(['prefix' => '/', 'middleware' => ['web','auth']], function(){
+
+
+
+});
