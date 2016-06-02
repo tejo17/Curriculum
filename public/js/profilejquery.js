@@ -10,6 +10,7 @@ var ocultosite = 0;
 var ocultocertif = 0;
 var ocultoOther = 0;
 var ocultoAptitude = 0;
+var ocultoEducation = 0;
 var licencias;
 var cargado = "";
 var listalicencias = ([AM, A1, A2, A, B1, B, BE, BTP, C1, C, C1E, CE, D1, D, D1E, DE]);
@@ -106,7 +107,128 @@ $('#actual').val('cursando');
 
         });
     }); //Fin Script buscar localidad
+
+
 });
+
+/*ciudades y familias de educación y formación
+$('#education').on('shown.bs.modal', function(e) {
+    
+
+    $('#ocultoEducation').val(ocultoEducation);
+
+    var checkbox = $('#now');
+            $('#actual').val('');
+    // modificaciones con el evento click
+    checkbox.on('click', function() {
+        if (checkbox.is(':checked')) {
+            $('#divto').css('display', 'none');
+$('#actual').val('cursando');
+            $('#to').val('');
+        } else {
+            $('#divto').css('display', 'block');
+            $('#actual').val('');
+        }
+    });
+
+    //Script AutoComplete
+    $('#stateform').autocomplete({
+        source: "autocompletado"
+    });
+    $('#stateform').autocomplete("option", "appendTo", ".eventInsForm");
+    //Fin Script Autocomplete
+
+
+    //Script buscar Localidad
+    $('#stateform').focusout(function(e) {
+        //hace la búsqueda
+
+        var consulta = {
+            ciudad: $("#stateform").val()
+        };
+        $.ajax({
+            data: consulta,
+            headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
+            url: 'autolocal',
+            type: 'post',
+            success: function(data) {
+
+                for (var i = 0; i < data.ciudades.length; i++) {
+
+                    $("#cityform").append('<option "value="' + data.ciudades[i] + '">' + data.ciudades[i] + '</option>');
+
+                }
+                cargado = 'Cargado';
+                $('#stateform').focus(function() {
+                    $("#cityform").empty();
+                });
+            }
+
+        });
+    }); //Fin Script buscar localidad
+
+
+});*/
+
+/*familias y ciclos*/
+$('#education').on('shown.bs.modal', function(e) {
+    
+
+    $('#ocultoEducation').val(ocultoEducation);
+
+    var checkbox = $('#now');
+            $('#actual').val('');
+    // modificaciones con el evento click
+    checkbox.on('click', function() {
+        if (checkbox.is(':checked')) {
+            $('#divto').css('display', 'none');
+$('#actual').val('cursando');
+            $('#to').val('');
+        } else {
+            $('#divto').css('display', 'block');
+            $('#actual').val('');
+        }
+    });
+
+    //Script AutoComplete
+    $('#stateform').autocomplete({
+        source: "autocompletado"
+    });
+    $('#stateform').autocomplete("option", "appendTo", ".eventInsForm");
+    //Fin Script Autocomplete
+
+
+    //Script buscar Localidad
+    $('#stateform').focusout(function(e) {
+        //hace la búsqueda
+
+        var consulta = {
+            ciudad: $("#stateform").val()
+        };
+        $.ajax({
+            data: consulta,
+            headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
+            url: 'autolocal',
+            type: 'post',
+            success: function(data) {
+
+                for (var i = 0; i < data.ciudades.length; i++) {
+
+                    $("#cityform").append('<option "value="' + data.ciudades[i] + '">' + data.ciudades[i] + '</option>');
+
+                }
+                cargado = 'Cargado';
+                $('#stateform').focus(function() {
+                    $("#cityform").empty();
+                });
+            }
+
+        });
+    }); //Fin Script buscar localidad
+
+
+});
+
 //Script cargar Tipos de Mensajeria
 $('#sites').on('show.bs.modal', function(e) {
     $('#ocultosite').val(ocultosite);
@@ -244,6 +366,10 @@ $('#aptitudes').on('show.bs.modal', function(e) {
  Acciones al cerrar las ventanas modales
 
  **************************************/
+ $('#education').on('hide.bs.modal', function(e) {
+    ocultoEducation = 0;
+});
+
  $('#exp').on('hide.bs.modal', function(e) {
     ocultoexp = 0;
 });
