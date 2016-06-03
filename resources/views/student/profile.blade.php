@@ -50,7 +50,7 @@
                          <div id="" class="col-md-12">          
                          </div>
                          @include('student.partials.cycles')
-                         @include('validations.professionalExperience')
+                         @include('validations.cycle')
                      </fieldset>
                       <fieldset>
                          <legend style="width:auto;">Experiencia Profesional</legend>
