@@ -18,7 +18,6 @@ class StudentCyclesSeeder extends Seeder
 
     	\DB::table('studentCycles')->insert([
     		'center' => 'I.E.S. Ingeniero de la Cierva',
-    		'otherFormations' => null,
             'dateFrom' => '2014',
             'dateTo' => null,
             'city_id' => 40634,
@@ -29,7 +28,6 @@ class StudentCyclesSeeder extends Seeder
 
 		\DB::table('studentCycles')->insert([
     		'center' => 'Universidad de Espinardo',
-    		'otherFormations' => 'Ingeniero Aeroespacial',
             'dateFrom' => '2010',
             'dateTo' => '2015',
             'city_id' => 40634,
@@ -44,7 +42,6 @@ class StudentCyclesSeeder extends Seeder
 
     	\DB::table('studentCycles')->insert([
     		'center' => 'I.E.S. Ingeniero de la Cierva',
-    		'otherFormations' => null,
             'dateFrom' => '2014',
             'dateTo' => null,
             'city_id' => 40634,
@@ -55,7 +52,6 @@ class StudentCyclesSeeder extends Seeder
 
 		\DB::table('studentCycles')->insert([
     		'center' => 'Universidad de Murcia',
-    		'otherFormations' => 'Administración y Finanzas',
             'dateFrom' => '2010',
             'dateTo' => '2015',
             'city_id' => 40634,
