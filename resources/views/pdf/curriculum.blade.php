@@ -5,8 +5,6 @@
     <title>Currículum Vitae</title>
       {!! Html::style('/css/estilo-pdf-curriculum.css') !!}
 
- 
-     {{ $datos['imagen'] }}
 </head>
 <body>
   <div id="details" class="clearfix">
@@ -89,58 +87,66 @@
           <td style="width:475px;"></td>
         </tr>  
       </table>
-
+      
       <!-- Tabla Certificaciones -->
+        <?php if ($certificaciones[0] != "vacio"): ?>
       <table>
         <tr>
           <td style="width:265px; text-align:right"><span style="color:darkblue;">CERTIFICACIONES</span></td>
           <td style="width:475px;"></td>
         </tr>
-        <tr>
+       <?php foreach ($certificaciones as $key => $certificacion): ?>
+          <tr>
           <td class="tds-left align-right"></td>
-          <td class="tds-right border-top-darkblue"><span style="padding-left:15px;">Certificación</span></td>
+          <td class="tds-right border-top-darkblue"><span style="padding-left:15px;">{{$certificacion[0]}}</span></td>
         </tr>
         <tr>
           <td style="width:265px;"></td>
-          <td style="width:475px;"><span style="padding-left:15px;">Institución</span></td>
+          <td style="width:475px;"><span style="padding-left:15px;">{{$certificacion[1]}}</span></td>
         </tr>
         <tr>
           <td style="width:265px;"></td>
-          <td style="width:475px; margin-left:15px"><span style="padding-left:15px;">Descripción</span></td>
+          <td style="width:475px; margin-left:15px"><span style="padding-left:15px;">{{$certificacion[2]}}</span></td>
         </tr>
          <tr>
           <td style="width:265px;"></td>
           <td style="width:475px;"></td>
         </tr>  
+       <?php endforeach ?>
       </table>
+        <?php endif ?>
 
       <!-- Otros Cursos -->
+        <?php if ($otros[0] != "vacio"): ?>
       <table>
         <tr>
           <td style="width:265px; text-align:right"><span style="color:darkblue;">OTROS CURSOS</span></td>
           <td style="width:475px;"></td>
         </tr>
-        <tr>
+       <?php foreach ($otros as $key => $otro): ?>
+          <tr>
           <td class="tds-left align-right"></td>
-          <td class="tds-right border-top-darkblue"><span style="padding-left:15px;">Curso</span></td>
+          <td class="tds-right border-top-darkblue"><span style="padding-left:15px;">{{ $otro[0]}}</span></td>
         </tr>
         <tr>
           <td style="width:265px;"></td>
-          <td style="width:475px;"><span style="padding-left:15px; text-transform:">Institución</span></td>
+          <td style="width:475px;"><span style="padding-left:15px; text-transform:">{{ $otro[1]}}</span></td>
         </tr>
         <tr>
           <td style="width:265px;"></td>
-          <td style="width:475px; margin-left:15px"><span style="padding-left:15px;">Duración: ...</span></td>
+          <td style="width:475px; margin-left:15px"><span style="padding-left:15px;">{{ $otro[3]}}</span></td>
         </tr>  
         <tr>
           <td style="width:265px;"></td>
-          <td class"align-justify" style="width:457px; margin-left:15px; padding-left:15px;"><span style="align:justify;">Descripción Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur nemo, vel vero minima maiores assumenda aspernatur neque, eum quam adipisci doloribus labore inventore dolorem magnam, error ab quas ea suscipit.</span></td>
+          <td class"align-justify" style="width:457px; margin-left:15px; padding-left:15px;"><span style="align:justify;">{{ $otro[2]}}</span></td>
         </tr>
         <tr>
           <td style="width:265px;"></td>
           <td style="width:475px;"></td>
         </tr>
+       <?php endforeach ?>
       </table>
+     <?php endif ?>
 
       <!-- Tabla de idiomas -->
       <table>

@@ -70,6 +70,7 @@
                          <legend style="width:auto;">Permiso de Conducir</legend>
                          <div id="divlicenses" class="col-md-12"> 
                             <div class='selector'>
+                            <div class='switch'><label>Off<input type='checkbox' id='checklice' name='checklice'><span class='lever'></span>On</label></div>
                             Permiso de Conducir
                                <input id=id_license  value="" type="hidden"></input>
                                <a href="/estudiante/drivingLicenses" onclick='borrarItemLicense(this)'; class='material-icons boton_borrar pull-right'>delete</a>
@@ -121,7 +122,9 @@
                         {{ Form::hidden('birthdate', session('birthdate')) }}
                         {{ Form::hidden('nationality', session('nationality')) }}
                         {{ Form::hidden('email', session('email')) }}
-                         {{ Form::hidden('checkboxaptitudes', null,['id' => "checkboxaptitudes"]) }}
+                        {{ Form::hidden('checkboxCertificaciones', null,['id' => "checkboxCertificaciones"]) }}
+                        {{ Form::hidden('checkboxotrosCursos', null,['id' => "checkboxotrosCursos"]) }}
+                        {{ Form::hidden('checkboxaptitudes', null,['id' => "checkboxaptitudes"]) }}
                         {{ session('carpeta') }}
 
                      <div class="form-group">
@@ -136,7 +139,7 @@
                             </button>
                         </div>
                     </div>
-                    
+                    </form>
                 </div>
             </div>
         </div>

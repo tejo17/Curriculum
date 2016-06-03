@@ -29,10 +29,21 @@ class PdfController extends Controller
 
         $datos = $request->all();
         $aptitudes = self::cut($datos['checkboxaptitudes']);
-        dd($datos);
         
+        $otros = self::cut($datos['checkboxotrosCursos']);
+        $otros = array_chunk($otros, 4);
     
-        $view =  \View::make('pdf.curriculum', compact('datos','aptitudes'))->render();
+        $certificaciones = self::cut($datos['checkboxCertificaciones']);
+        $certificaciones = array_chunk($certificaciones, 3);
+        if($certificaciones[0][0] == false){
+            $certificaciones[0] = 'vacio';
+        };
+        if($otros[0][0] == false){
+            $otros[0] = 'vacio';
+        };
+        //dd($certificaciones);
+       //dd(compact('datos','aptitudes','otros','certificaciones'));
+       $view =  \View::make('pdf.curriculum', compact('datos','aptitudes','otros','certificaciones'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
         return $pdf->stream('invoice');

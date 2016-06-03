@@ -177,7 +177,8 @@ protected function index(){
         // Llamo al metodo getAllProfFamilies del controlador de las familias profesionales
         $profFamilies = app(ProfFamilieController::class)->getAllProfFamilies();
 
-        $user = Auth::user()->id;
+       if (isset(Auth::user()->id)) {
+            $user = Auth::user()->id;
 
         $datos = \DB::table('students')
         ->join('cities','students.city_id', '=' ,'cities.id')
@@ -217,6 +218,12 @@ protected function index(){
                 'rutaSinBarra' => 'img/imgUser/' . \Auth::user()->carpeta . '/' . \Auth::user()->image,
 
         ]);
+        }else{
+         return \Redirect::to('/');
+             Session::flash('type',"danger");
+         Session::flash("insert","Ha expirado la sessión");
+        }
+        
         // Devuelvo la vista junto con las familias
         return view('student.profile', compact('profFamilies', 'datos'));
 

@@ -519,7 +519,7 @@ $(function() {
         type: 'post',
         success: function(data) {
             for (var i = 0; i < data.length; i++) {
-                $('#divcertification').append(("<div class='selector'><input id=id_certification type='hidden' value=" + data[i].id + "></input><a href='/estudiante/certifications' data-method='DELETE' onclick='borrarItemCertification(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#certif' onclick='editarItemCertification(this)';><i class='material-icons'>mode_edit</i></a><ul><li class=' tituloli'>Certificación:</li><li class='campo1 '>" + data[i].certification + "</li></ul><ul><li class=' tituloli'>Institución:</li><li class='campo2 '>" + data[i].institution + "</li></ul><ul><li class=' tituloli'>Descripcion:</li><li class='campo3 '>" + data[i].description + "</li></ul></div><hr class='sep'>"));
+                $('#divcertification').append(("<div class='selector'><input id=id_certification type='hidden' value=" + data[i].id + "><div class='switch'><label>Off<input type='checkbox' class='checkcertf' name='checkcertf'><span class='lever'></span>On</label></div></input><a href='/estudiante/certifications' data-method='DELETE' onclick='borrarItemCertification(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#certif' onclick='editarItemCertification(this)';><i class='material-icons'>mode_edit</i></a><ul><li class=' tituloli'>Certificación:</li><li class='certf1'>" + data[i].certification + "</li></ul><ul><li class=' tituloli'>Institución:</li><li class='certf2'>" + data[i].institution + "</li></ul><ul><li class=' tituloli'>Descripcion:</li><li class='certf3'>" + data[i].description + "</li></ul></div><hr class='sep'>"));
             }
 
         }
@@ -534,7 +534,7 @@ $(function() {
         type: 'post',
         success: function(data) {
             for (var i = 0; i < data.length; i++) {
-                $('#divother').append("<div class='selector'><input id=id_certification type='hidden' value=" + data[i].id + "></input><a href='/estudiante/otherGrades' data-method='DELETE' onclick='borrarItemOther(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#cursos' onclick='editarItemOther(this)';><i class='material-icons'>mode_edit</i></a><ul><li class=' tituloli'>Curso:</li><li class='campo1 '>" + data[i].grade + "</li></ul><ul><li class=' tituloli'>Institución:</li><li class='campo2 '>" + data[i].institution + "</li></ul><ul><li class=' tituloli'>Descripcion:</li><li class='campo3 '>" + data[i].description + "</li></ul><ul><li class=' tituloli'>Duración:</li><li class='campo4 '>" + data[i].duration + "</li></ul></div><hr class='sep'>");
+                $('#divother').append("<div class='selector'><input id=id_certification type='hidden' value=" + data[i].id + "><div class='switch'><label>Off<input type='checkbox' class='checkother' name='checkother'><span class='lever'></span>On</label></div></input><a href='/estudiante/otherGrades' data-method='DELETE' onclick='borrarItemOther(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#cursos' onclick='editarItemOther(this)';><i class='material-icons'>mode_edit</i></a><ul><li class=' tituloli'>Curso:</li><li class='campootro1 '>" + data[i].grade + "</li></ul><ul><li class=' tituloli'>Institución:</li><li class='campootro2 '>" + data[i].institution + "</li></ul><ul><li class=' tituloli'>Descripcion:</li><li class='campootro3 '>" + data[i].description + "</li></ul><ul><li class=' tituloli'>Duración:</li><li class='campootro4 '>" + data[i].duration + "</li></ul></div><hr class='sep'>");
             }
         }
     });
@@ -547,7 +547,7 @@ $(function() {
         type: 'post',
         success: function(data) {
             for (var i = 0; i < data.length; i++) {
-                $('#divaptitude').append("<div class='selector'><input id=id_certification type='hidden' value=" + data[i].id + "><div class='switch'><label>Off<input type='checkbox' id='checkapt' name='checkapt'><span class='lever'></span>On</label></div></input><a href='/estudiante/aptitudes' data-method='DELETE' onclick='borrarItemAptitude(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#aptitudes' onclick='editarItemAptitude(this)';><i class='material-icons'>mode_edit</i></a><ul><li class=' tituloli'>Aptitud</li><li class='campo1 '>" + data[i].aptitude + "</li></ul></div><hr class='sep'>");
+                $('#divaptitude').append("<div class='selector'><input id=id_certification type='hidden' value=" + data[i].id + "><div class='switch'><label>Off<input type='checkbox' class='checkapt' name='checkapt'><span class='lever'></span>On</label></div></input><a href='/estudiante/aptitudes' data-method='DELETE' onclick='borrarItemAptitude(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#aptitudes' onclick='editarItemAptitude(this)';><i class='material-icons'>mode_edit</i></a><ul><li class=' tituloli'>Aptitud</li><li class='campoapt1 '>" + data[i].aptitude + "</li></ul></div><hr class='sep'>");
 
             }
         }
@@ -576,7 +576,7 @@ function editarItemExp(item) {
     var city = $(item).siblings('#exp5').children('span').text();
     var from = $(item).siblings('#exp6').children('span').text();
     var to = $(item).siblings('#exp7').children('span').text();
-    
+
 
     $('#exp').on('shown.bs.modal', function(e) {
         $('#stateexp').val(state);
@@ -592,7 +592,7 @@ function editarItemExp(item) {
         $('#to').val(to);
         $('#to').focus();
         //$('[name=city]').val('ARANJUEZ');
-        
+
     });
 }
 
@@ -665,10 +665,10 @@ function editarItemCertification(item) {
 function editarItemOther(item) {
     ocultoOther = $(item).parent().children('input')[0].value;
     $('#ocultogrado').val(ocultoOther);
-    var curso = $(item).siblings('ul').children('.campo1').text();
-    var institucion = $(item).siblings('ul').children('.campo2').text();
-    var descripcion = $(item).siblings('ul').children('.campo3').text();
-    var duracion = $(item).siblings('ul').children('.campo4').text();
+    var curso = $(item).siblings('ul').children('.campootro1').text();
+    var institucion = $(item).siblings('ul').children('.campootro2').text();
+    var descripcion = $(item).siblings('ul').children('.campootro3').text();
+    var duracion = $(item).siblings('ul').children('.campootro4').text();
 
 
     $('#cursos').on('shown.bs.modal', function(e) {
@@ -685,7 +685,7 @@ function editarItemOther(item) {
 function editarItemAptitude(item) {
     ocultoAptitude = $(item).parent().children('input')[0].value;
     $('#ocultoaptitude').val(ocultoAptitude);
-    var aptitud = $(item).siblings('ul').children('.campo1').text(); 
+    var aptitud = $(item).siblings('ul').children('.campoapt1').text();
 
     $('#aptitudes').on('shown.bs.modal', function(e) {
         $('textarea#aptitude').val(aptitud);
@@ -703,13 +703,13 @@ Funciones para borrar los elementos
 
 function borrarItemExp(item) {
     var expid = $(item).parent().children('input')[0].value;
-    
+
     $.ajax({
         headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
         url: '/estudiante/professionalExperiences/' + expid,
         type: 'delete',
         success: function(result) {
-           
+
         }
     });
 }
@@ -817,25 +817,33 @@ function cargarPostalAuto(data) {
     });
 }
 $('#generatePDF').click(function() {
-
+    var otrosCursos = new Array();
     var aptitudes = new Array();
+    var certificaciones = new Array();
 
-    $("input:checkbox:checked").each(function() {
-        //cada elemento seleccionado
-        aptitudes.push($(this).parent().parent().siblings('ul').children('.campo1').text() + " {}");
-    });
-        $('#checkboxaptitudes').val(aptitudes);
-        var consulta = {
-            aptitud: aptitudes
-        };
 
-        $.ajax({
-            headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
-            data: consulta,
-            url: '/estudiante/pdf',
-            type: 'post',
-
-            success: function(data) {}
+         // Si el checkbox es del apartado Certificaciones
+        $(".checkcertf:checked").each(function() {
+            certificaciones.push($(this).parent().parent().siblings('ul').children('.certf1').text() + "{}");
+            certificaciones.push($(this).parent().parent().siblings('ul').children('.certf2').text() + "{}");
+            certificaciones.push($(this).parent().parent().siblings('ul').children('.certf3').text() + "{}");
         });
-    
+
+        // Si el checkbox es del apartado Otros Cursos
+        $(".checkother:checked").each(function() {
+            otrosCursos.push($(this).parent().parent().siblings('ul').children('.campootro1').text() + "{}");
+            otrosCursos.push($(this).parent().parent().siblings('ul').children('.campootro2').text() + "{}");
+            otrosCursos.push($(this).parent().parent().siblings('ul').children('.campootro3').text() + "{}");
+            otrosCursos.push($(this).parent().parent().siblings('ul').children('.campootro4').text() + "{}");
+        });
+
+        // Si el checkbox es del apartado aptitudes
+        $(".checkapt:checked").each(function() { 
+            aptitudes.push($(this).parent().parent().siblings('ul').children('.campoapt1').text() + "{}");
+        });
+
+    $('#checkboxCertificaciones').val(certificaciones);
+    $('#checkboxotrosCursos').val(otrosCursos);
+    $('#checkboxaptitudes').val(aptitudes);
+    console.log($('#checkboxCertificaciones').val(),$('#checkboxotrosCursos').val(),$('#checkboxaptitudes').val());
 });
