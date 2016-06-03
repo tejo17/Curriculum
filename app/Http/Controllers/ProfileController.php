@@ -45,11 +45,13 @@ class ProfileController extends Controller
 
        public function autolocalCycles(Request $request){  
         $ciclos = array();
-        $family = $request->input('family');
+        $family_input = $request->input('familia');
 
-        $family = \DB::table('proffamilies')->where('name',$family)->value('id');            
-        $cycles = \DB::table('cycles')->where('profFamily_id',$family)->orderBy('name')->distinct()->lists('name');
-        foreach ($cities as $title) {  
+        $family = \DB::table('proffamilies')->where('name',$family_input)->value('id');   
+                 
+        $cycles = \DB::table('cycles')->where('profFamilie_id',$family)->orderBy('name')->distinct()->lists('name');
+
+        foreach ($cycles as $title) {  
 
            array_push($ciclos, $title);
        }    
@@ -59,6 +61,7 @@ class ProfileController extends Controller
         ]);
 
    }
+
    public function autocompleteFamily(Request $req){
         $term =  $req->input('term');
 
