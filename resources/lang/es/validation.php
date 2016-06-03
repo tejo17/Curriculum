@@ -160,6 +160,13 @@ return [
         'to'                    => 'hasta',
         'job'                   => 'trabajo',
         'enterprise'            => 'empresa',
+        'family'                => 'familia',
+        'cycle'                 => 'ciclo',
+        'cityCycle'             => 'ciudad',
+        'stateCycle'            => 'provincia',
+        'dateTo'                => 'desde',
+        'dateFrom'              => 'hasta',
+        'center'                => 'centro',
     ],
 
 ];

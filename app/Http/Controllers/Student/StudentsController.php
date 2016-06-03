@@ -36,7 +36,7 @@ class StudentsController extends UsersController
     'nationality'       => 'required|alpha|between:2,20',
 
 
-            // Reglas de los ciclos.
+            // Reglas de los ciclos. Versión anterior
     /*'family'            => 'required|exists:profFamilies,name',
     'cycles'            => 'required|exists:cycles,name',
     'yearFrom'          => 'required|digits:4|cycleYearFrom',
@@ -48,7 +48,7 @@ class StudentsController extends UsersController
 
 protected function index(){
         // Llamo al metodo getAllProfFamilies del controlador de las familias profesionales
-    $profFamilies = app(ProfFamilieController::class)->getAllProfFamilies();
+    //$profFamilies = app(ProfFamilieController::class)->getAllProfFamilies();
     $zona = 'Registro de estudiantes';
         // Devuelvo la vista junto con las familias
     return view('student.registerForm', compact('profFamilies', 'zona'));
@@ -130,8 +130,8 @@ protected function index(){
     return false;
     } // create()
 
-    // INACABADO
-    private function createStudentCycle($student)
+    // INACABADO Sin usar.Versión antigua.
+   /* private function createStudentCycle($student)
     {
         $data = $this->request->all();
         $quantity = 0;
@@ -171,7 +171,7 @@ protected function index(){
             return true;
         }
         return false; // devuelvo false (temporal) debo devolver los errores
-    } // createStudentCycle()
+    } // createStudentCycle()*/
 
     protected function editarPerfil(){
         // Llamo al metodo getAllProfFamilies del controlador de las familias profesionales
