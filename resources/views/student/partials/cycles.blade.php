@@ -53,6 +53,7 @@
 					@for ($i = 1960; $i <= 2016; $i++)
 					  <?php $array[$i] = $i ?>
 					@endfor
+					
 
 					<div class="col-md-6" style="margin-top:10px">
                         {{ Form::label('dateFrom', 'Desde') }}

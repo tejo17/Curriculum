@@ -113,23 +113,23 @@ $('#actual').val('cursando');
 
 
 
-/*familias y ciclos*/
+ /*familias y ciclos*/
 $('#education').on('shown.bs.modal', function(e) {
     
 
     $('#ocultoEducation').val(ocultoEducation);
 
-    var checkbox = $('#now');
-            $('#actual').val('');
+    var checkbox = $('#nowForm');
+            $('#actualForm').val('');
     // modificaciones con el evento click
     checkbox.on('click', function() {
         if (checkbox.is(':checked')) {
-            $('#divto').css('display', 'none');
-$('#actual').val('cursando');
-            $('#to').val('');
+            $('#divToForm').css('display', 'none');
+$('#actualForm').val('cursando');
+            $('#dateToForm').val('');
         } else {
-            $('#divto').css('display', 'block');
-            $('#actual').val('');
+            $('#divToForm').css('display', 'block');
+            $('#actualForm').val('');
         }
     });
 

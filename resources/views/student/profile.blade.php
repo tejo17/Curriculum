@@ -49,7 +49,7 @@
                          <legend style="width:auto;">Educación y formación</legend>
                          <div id="" class="col-md-12">          
                          </div>
-                         @include('student.partials.educationsFormations')
+                         @include('student.partials.cycles')
                          @include('validations.professionalExperience')
                      </fieldset>
                       <fieldset>
