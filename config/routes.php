@@ -44,7 +44,7 @@ return [
             'curriculum'    => storage_path( 'app/curriculum'),
         ],
     'index'         => '/',
-    'perfil'        => '/perfil',
+    'curriculum'    => '/curriculum',
     'UploadImg'     => '/UploadImg',
 	'uso'		    => '/uso',
     'authLogin'     => '/authLogin',
@@ -54,9 +54,11 @@ return [
 	'pruebas'		=> '/pruebas',
 	'authors'		=> '/autores',
 		[
-			'manu'			=> '/autores/emmanuel',
-			'edu'			=> '/autores/eduardo',
-			'pedro'			=> '/autores/pedro',
+			'manu'			                           => '/autores/emmanuel',
+			'edu'			                           => '/autores/eduardo',
+			'pedro'			                           => '/autores/pedro',
+            'Muy bien, aquí solo trabajan ellos.'      => '/autores/emmanuel',
+            
 		],
 
 ];
