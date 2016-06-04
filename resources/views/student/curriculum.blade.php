@@ -26,7 +26,8 @@
             <div class="panel panel-default">
                 <div class="modal-content">
                     <div class="modal-header text-center">
-                        <h4><i class="fa fa-graduation-cap"></i>Datos Personales</h4>
+                        <h4><i class="fa fa-graduation-cap"></i>Currículum Vitae</h4>
+                        <p>Este currículum está basado en el currículum europass de <a href="https://europass.cedefop.europa.eu/es/documents/curriculum-vitae">europass</a></p>
                     </div>
 
                     <div class="panel-body ancho">
@@ -127,7 +128,6 @@
                         {{ Form::hidden('checkboxCertificaciones', null,['id' => "checkboxCertificaciones"]) }}
                         {{ Form::hidden('checkboxotrosCursos', null,['id' => "checkboxotrosCursos"]) }}
                         {{ Form::hidden('checkboxaptitudes', null,['id' => "checkboxaptitudes"]) }}
-                        {{ session('carpeta') }}
 
                      <div class="form-group">
                         <div class="col-md-12 text-center">

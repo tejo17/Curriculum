@@ -86,7 +86,7 @@ class ProfessionalExperiencesController extends Controller
                        'ProfessionalExperiences.city_id'     => $city_id
                        ]);
               Session::flash('type',"success");
-              Session::flash('insert', "Sitio personal modificado");
+              Session::flash('insert', "Trabajo modificado");
           } catch (Exception $e) {
             if($e->getCode() == 2002) {
                Session::flash('type',"danger");
