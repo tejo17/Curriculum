@@ -19,7 +19,7 @@
                 <form class="col-md-12" method="POST" action="educationsFormations">
                     <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
                     <br>
-                    {{ Form::hidden('id', null, ['id' => 'ocultoEducation']) }}
+                    {{ Form::text('id', null, ['id' => 'ocultoEducation']) }}
                    
                     
                     <div class="input-field col-md-12">

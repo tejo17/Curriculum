@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 use App\ProfessionalExperience;
 use App\Http\Requests\ProfessionalExperienceRequest;
-use App\Http\Requests;
 use Illuminate\Http\Request;
 use Response;
 use Session;
