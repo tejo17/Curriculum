@@ -106,8 +106,7 @@ class StudentCyclesController extends Controller
     ->join('states','cities.state_id','=','states.id')
     ->join('cycles','studentCycles.cycle_id','=','cycles.id')
     ->join('proffamilies','cycles.profFamilie_id','=','proffamilies.id')
-    ->select('studentCycles.id','center','dateTo','dateForm','cycle.name as Cycle','state.name as State','city.name as City')
-    ->where('student_id',$this->student_id)
+    ->select('studentCycles.id','center','dateTo','dateFrom','cycles.name as Cycle','states.name as State','cities.name as City')    ->where('student_id',$this->student_id)
     ->get();
 
     return Response::json($queries);

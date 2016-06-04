@@ -29,53 +29,57 @@ class CertificationsController extends Controller
         ->first();
 
         /*Evitar duplicidad y comprobar si es store o update*/
-        if($exist == null){
 
-            if ($certification['id'] == 0) {
+                 if ($certification['id'] == 0) {
+        
+                      if($exist == null){
 
-                try {
+                              try {
 
-                    $queries = \DB::table('certifications')
-                    ->join('students','certifications.student_id','=','students.id')
-                    ->where('student_id',$this->student_id)
-                    ->insert(['certification' => $certification['certification'],
-                             'description' => $certification['description'],
-                             'institution' => $certification['institution'],
-                             'student_id' => $this->student_id,
-                             'created_at' => date('YmdHms')]);
-                    Session::flash('type',"success");
-                    Session::flash('insert', "Certificación guardada.");
-                }catch (\Exception $e) {
-                     if($e->getCode() == 2002) {
-                         Session::flash('type',"danger");
-                         Session::flash('insert', "No se ha podido guardar.");
-                     } 
-                }
-            }else{
-               try {
-                  $queries = \DB::table('certifications')
-                  ->join('students','certifications.student_id','=','students.id')
-                  ->where('student_id',$this->student_id)
-                  ->where('certifications.id',$certification['id'])
-                  ->update(['certification' => $certification['certification'],
-                           'description' => $certification['description'],
-                           'institution' => $certification['institution'],
-                           'student_id' => $this->student_id]);
-                  Session::flash('type',"success");
-                  Session::flash('insert', "Certificación actualizada.");
+                                  $queries = \DB::table('certifications')
+                                  ->join('students','certifications.student_id','=','students.id')
+                                  ->where('student_id',$this->student_id)
+                                  ->insert(['certification' => $certification['certification'],
+                                           'description' => $certification['description'],
+                                           'institution' => $certification['institution'],
+                                           'student_id' => $this->student_id,
+                                           'created_at' => date('YmdHms')]);
+                                  Session::flash('type',"success");
+                                  Session::flash('insert', "Certificación guardada.");
+                              }catch (\Exception $e) {
+                                   if($e->getCode() == 2002) {
+                                       Session::flash('type',"danger");
+                                       Session::flash('insert', "No se ha podido guardar.");
+                                   } 
+                              }
 
-              }catch (\Exception $e) {
-                    if($e->getCode() == 2002) {
-                     Session::flash('type',"danger");
-                     Session::flash('insert', "No se ha podido actualizar.");
-                   } 
-               }  
-            }
+                       }else{
+                            Session::flash('type',"danger");
+                            Session::flash("insert","Ya tienes guardado ese certificado.");
+                        }
+                    }else{
+                       try {
+                        
+                          $queries = \DB::table('certifications')
+                          ->join('students','certifications.student_id','=','students.id')
+                          ->where('student_id',$this->student_id)
+                          ->where('certifications.id',$certification['id'])
+                          ->update(['certification' => $certification['certification'],
+                                   'description' => $certification['description'],
+                                   'institution' => $certification['institution'],
+                                   'student_id' => $this->student_id]);
+                          Session::flash('type',"success");
+                          Session::flash('insert', "Certificación actualizada.");
+
+                      }catch (\Exception $e) {
+                            if($e->getCode() == 2002) {
+                             Session::flash('type',"danger");
+                             Session::flash('insert', "No se ha podido actualizar.");
+                           } 
+                       }  
+                    }
            
-        }else{
-            Session::flash('type',"danger");
-            Session::flash("insert","Ya tienes guardado ese certificado.");
-        }
+       
                
     return view('student.curriculum');
    }

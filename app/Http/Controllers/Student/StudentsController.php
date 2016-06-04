@@ -176,7 +176,7 @@ protected function index(){
     /*Función que llama a la vista de editar el curriculum*/
     protected function editarCurriculum(){
         // Llamo al metodo getAllProfFamilies del controlador de las familias profesionales
-        //$profFamilies = app(ProfFamilieController::class)->getAllProfFamilies();
+        //$profFamilies = app(ProfFamilieControllereditarCurriculum(){::class)->getAllProfFamilies();
 
         /*Recuperar el id del usuario*/
        if (isset(Auth::user()->id)) {

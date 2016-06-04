@@ -16,7 +16,7 @@
            </div>
            <div class="modal-body">
             <div class="row">
-                <form class="col-md-12" method="POST" action="professionalExperiences">
+                {{ Form::open(['action' => 'ProfessionalExperiencesController@store', 'method' => 'POST', 'class' => 'col-md-12']) }}
                     <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
                     <br>
                     {{ Form::hidden('id', null, ['id' => 'ocultoExp']) }}
@@ -80,7 +80,7 @@
             <div class="text-center" style="clear:both;">
                 <button type="submit" class="btn btn-success btn-lg waves-effect waves-light">Guardar</button>
             </div>
-        </form>
+        {{ Form::close() }}
         
 
         
