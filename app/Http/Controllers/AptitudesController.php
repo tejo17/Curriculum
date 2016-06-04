@@ -48,14 +48,11 @@ class AptitudesController extends Controller
                             if($e->getCode() == 2002) {
                                Session::flash('type',"danger");
                                Session::flash('insert', "No se ha podido guardar.");
-                            } else {
-                               Session::flash('type',"danger");
-                               Session::flash("insert","Ya tienes guardado ese conjunto de aptitudes.");
-                            }
+                            } 
                          }
                    }else{
                         Session::flash('type',"danger");
-                        Session::flash("insert","Ya tienes guardado ese conjutno de aptitudes.");
+                        Session::flash("insert","Ya tienes guardado ese conjunto de aptitudes.");
                   }
 
               }else{

@@ -8,7 +8,8 @@
  		<!-- Modal content-->
  		<div class="modal-content" >
  			<div class="modal-header text-center">
- 				<h4><i class="fa fa-graduation-cap"></i>Formulario Información Personal</h4>
+ 				<button type="button" class="btn btn-default btn-danger pull-right" data-dismiss="modal">X</button>
+ 				<h4><i class="fa fa-user"></i>Información Personal</h4>
  			</div>
 
  			<div class="panel-body ancho">
