@@ -24,8 +24,8 @@ class StudentsController extends UsersController
     Parent::__construct($request);
     $this->rules += [
             // Reglas para el estudiante
-    'firstName'         => 'required|between:2,45|regex:/^[A-Za-z0-9áéíóúÁÉÍÓÚ ]+$/',
-    'lastName'          => 'required|between:2,75|regex:/^[A-Za-z0-9 ]+$/',
+    'firstName'         => 'required|between:2,45|regex:/^[A-Za-z0-9çÇàèìòùÀÈÌÒÙáéíóúÁÉÍÓÚüÜñÑ -]+$/',
+    'lastName'          => 'required|between:2,75|regex:/^[A-Za-z0-9ÇàèìòùÀÈÌÒÙáéíóúÁÉÍÓÚüÜñÑ -]+$/',
     'dni'               => 'required|unique:students',
     'nre'               => 'digits:7|unique:students',
     'phone'             => 'required|digits_between:9,13',
@@ -74,7 +74,7 @@ protected function index(){
             if($insert !== false){
 
                 // Llamo al metodo para almacenar sus grados.
-                $insert = self::createStudentCycle($insert);
+                //$insert = self::createStudentCycle($insert);
                 $insert = true;
 
                 if ($insert === true){

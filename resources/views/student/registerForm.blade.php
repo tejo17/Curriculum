@@ -38,18 +38,7 @@
                             <fieldset>
                                 <legend style="width:auto;">Estudiante</legend>
                                 @include('student.partials.studentfields')
-                              <section class="family-cycle">
-                                  <fieldset>
-                                      <legend style="width: auto;">Familia Profesional</legend>
-                                      @include('generic.profFamiliesfields')
-                                  </fieldset>
-                                  <fieldset id="fieldCycles" class="hidden">
-                                      <legend style="width: auto;">Ciclos</legend>
-                                  </fieldset>
-                              <div id="divAddFamilyCycle" class="text-center">
-                                  @include('student.partials.btnAddFamilyCycle')
-                              </div>
-                              </section>
+                              
                             </fieldset>
                             
                             <fieldset>
