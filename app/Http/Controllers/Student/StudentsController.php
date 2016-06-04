@@ -173,13 +173,16 @@ protected function index(){
         return false; // devuelvo false (temporal) debo devolver los errores
     } // createStudentCycle()*/
 
-    protected function editarPerfil(){
+    /*Función que llama a la vista de editar el curriculum*/
+    protected function editarCurriculum(){
         // Llamo al metodo getAllProfFamilies del controlador de las familias profesionales
-        $profFamilies = app(ProfFamilieController::class)->getAllProfFamilies();
+        //$profFamilies = app(ProfFamilieController::class)->getAllProfFamilies();
 
+        /*Recuperar el id del usuario*/
        if (isset(Auth::user()->id)) {
             $user = Auth::user()->id;
 
+        /*Recuperar sus datos personales*/
         $datos = \DB::table('students')
         ->join('cities','students.city_id', '=' ,'cities.id')
         ->join('states','states.id', '=' ,'cities.state_id')
@@ -195,11 +198,14 @@ protected function index(){
             $postal = "0".$postal;
         }
 
+        /*Recuperar el email del usuario*/
         $user_email = $user_email = \DB::table('users')->where('id' , $user)->value('email');
 
+        /*Dar formato a la fecha*/
         $birthdateFormat = explode('-',$datos[0]->birthdate);
         $birthdateFormat = $birthdateFormat[2]."-".$birthdateFormat[1]."-".$birthdateFormat[0];
 
+        /*Almacenar en sesión los datos personales a mostrar*/
          session(['firstName' => $datos[0]->firstName,
                 'lastName' => $datos[0]->lastName,
                 'dni' => $datos[0]->dni,
@@ -229,11 +235,13 @@ protected function index(){
 
     } // curriculum()
 
+    /*Obtener el id de la ciudad a partir del cp*/
     public function obtenerCityId(){
+
         $arrayDatos = $this->request->all();
-   // var_dump($arrayDatos);
+  
         $postalCode = $arrayDatos["postalCode"];
-    //var_dump($postalCode);
+
         $city_id = \DB::table('cities')->where('cities.postalCode', '=', $postalCode)->value('id');
 
         return $city_id;

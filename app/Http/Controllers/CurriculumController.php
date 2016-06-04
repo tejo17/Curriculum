@@ -11,6 +11,10 @@ use Response;
 class CurriculumController extends Controller
 {
 
+    public function index(){
+        return view('student.curriculum');
+    }
+    
     /*Función para obtener las localidades de una provincia*/
     public function autolocal(Request $request){  
         $ciudades = array();

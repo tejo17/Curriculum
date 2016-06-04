@@ -73,6 +73,7 @@ Route::group(['middleware' => 'web'], function () {
 
 });
 
+/*
 // Rutas de peticiones Ajax  JSON
 // NO SE UTILIZA NAMESPACES SINO SE ENCUENTRA EN LA CARPETA CON EL MISMO NOMBRE
 Route::group(['prefix' => 'json', 'middleware' => 'web'], function () {
@@ -84,7 +85,8 @@ Route::group(['prefix' => 'json', 'middleware' => 'web'], function () {
     Route::get('profFamilies', 'ProfFamilieController@getAllProfFamiliesJSON');
 
 });
-
+*/
+/*
 // Grupo de rutas para los administradores
 Route::group(['prefix' => 'admin', 'middleware' => 'web', 'namespace' => 'Admin'], function(){
 
@@ -96,7 +98,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'web', 'namespace' => 'Admin'
     Route::post(config('routes.UploadImg'), 'AdminsController@uploadImage');
 
 });
-
+*/
+/*
 // Grupo de rutas para los profesores
 Route::group(['prefix' => 'profesor', 'middleware' => ['web'], 'namespace' => 'Teacher'], function(){
 
@@ -108,7 +111,7 @@ Route::group(['prefix' => 'profesor', 'middleware' => ['web'], 'namespace' => 'T
     Route::post(config('routes.UploadImg'), 'TeachersController@uploadImage');
 
 });
-
+*/
 // Grupo de rutas para los estudiantes
 Route::group(['prefix' => 'estudiante', 'middleware' => ['web'], 'namespace' => 'Student'], function(){
 
@@ -116,11 +119,11 @@ Route::group(['prefix' => 'estudiante', 'middleware' => ['web'], 'namespace' => 
     Route::resource(config('routes.index'), 'StudentsController');
 
     // Modificacion de la imagen de perfil de los estudiantes
-    Route::get(config('routes.perfil'), 'StudentsController@editarPerfil');
+    Route::get(config('routes.curriculum'), 'StudentsController@editarCurriculum');
     Route::post(config('routes.UploadImg'), 'StudentsController@uploadImage');
 
 });
-
+/*
 // Grupo de rutas para las empresas
 Route::group(['prefix' => 'empresa', 'middleware' => ['web', 'auth'], 'namespace' => 'Enterprise'], function(){
 
@@ -132,7 +135,7 @@ Route::group(['prefix' => 'empresa', 'middleware' => ['web', 'auth'], 'namespace
     Route::post(config('routes.UploadImg'), 'EnterprisesController@uploadImage');
 
 });
-
+*/
 
 Route::group(['prefix' => 'uso', 'middleware' => 'web', 'namespace' => 'Uso'], function(){
 

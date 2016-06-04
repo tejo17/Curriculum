@@ -49,7 +49,7 @@
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{ url(\Auth::user()->rol . config('routes.perfil')) }}">Crear Curriculum</a></li>
+                                <li><a href="{{ url(\Auth::user()->rol . config('routes.curriculum')) }}">Crear Curriculum</a></li>
                                 <li><a href="#">Cambiar contraseña</a></li>
                                 <li><a href="{{ url('/logout') }}">Logout</a></li>
                             </ul>
