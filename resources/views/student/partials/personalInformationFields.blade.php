@@ -167,5 +167,5 @@
 
     <br>
     @include('partials.upload.dragDrop')
-    @include('student.partials.email')
+    @include('student.partials.emailField')
 </div>

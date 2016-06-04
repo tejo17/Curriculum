@@ -12,7 +12,7 @@
         <div class="modal-content" >
             <div class="modal-header">
                <button type="submit" class="btn btn-default btn-danger pull-right" data-dismiss="modal">X</button>
-               <h4 class="modal-title h4,responsive" style="text-align:center; clear:both"><i class="material-icons prefix">account_circle</i>Educación y Formación</h4>
+               <h4 class="modal-title h4,responsive" style="text-align:center; clear:both"><i class="material-icons prefix">account_circle</i>Ciclo</h4>
            </div>
            <div class="modal-body">
             <div class="row">
