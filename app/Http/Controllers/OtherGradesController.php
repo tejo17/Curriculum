@@ -22,34 +22,36 @@ class OtherGradesController extends Controller
           ->where('grade',$grade['grade'])
           ->where('student_id',$this->student_id)
           ->first();
-         
-
-        if($exist == null){
+        
 
             if ($grade['id'] == 0) {
 
-                  try {
-                    $queries = \DB::table('otherGrades')
-                    ->join('students','otherGrades.student_id','=','students.id')
-                    ->where('student_id',$this->student_id)
-                    ->insert(['grade' => $grade['grade'],
-                              'description' => $grade['descriptionGrade'],
-                              'duration' => $grade['duration'],
-                              'institution' => $grade['studyCenter'],
-                              'student_id' => $this->student_id,
-                              'created_at' => date('YmdHms'),
-                              ]);
-                    Session::flash('type',"success");
-                    Session::flash('insert', "Curso guardado.");
+                 if($exist == null){
 
-                 }catch (\Exception $e) {
-                     if($e->getCode() == 2002) {
-                         Session::flash('type',"danger");
-                         Session::flash('insert', "No se ha podido guardar.");
-                     } 
-                 }
-              
-        
+                        try {
+                          $queries = \DB::table('otherGrades')
+                          ->join('students','otherGrades.student_id','=','students.id')
+                          ->where('student_id',$this->student_id)
+                          ->insert(['grade' => $grade['grade'],
+                                    'description' => $grade['descriptionGrade'],
+                                    'duration' => $grade['duration'],
+                                    'institution' => $grade['studyCenter'],
+                                    'student_id' => $this->student_id,
+                                    'created_at' => date('YmdHms'),
+                                    ]);
+                          Session::flash('type',"success");
+                          Session::flash('insert', "Curso guardado.");
+
+                       }catch (\Exception $e) {
+                           if($e->getCode() == 2002) {
+                               Session::flash('type',"danger");
+                               Session::flash('insert', "No se ha podido guardar.");
+                           } 
+                       }
+                }else{
+                    Session::flash('type',"danger");
+                    Session::flash("insert","Ya tienes guardado ese curso.");
+                }
             } else{
 
                 try {
@@ -75,12 +77,7 @@ class OtherGradesController extends Controller
                    } 
                }  
             }
-        }else{
-            Session::flash('type',"danger");
-            Session::flash("insert","Ya tienes guardado ese curso.");
-        }
-
-      
+        
     return view('student.curriculum');
    }
 

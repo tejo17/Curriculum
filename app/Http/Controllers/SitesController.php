@@ -36,32 +36,40 @@ class SitesController extends Controller
       $site = $request->input('site');
       $site_id = \DB::table('personalsites')->where('site' , $site)->value('id');
       
+       /*Se comprueba si ya tiene insertado ese sitio personal*/
+       $exist = \DB::table('studentPersonalSites')
+       ->where('personalsite',$account)
+       ->where('student_id',$this->student_id)
+       ->first();
 
-      if($request->input('id') == 0)
-        {
-          try {
-             $queries = \DB::table('studentPersonalSites')
-            ->join('personalSites','studentPersonalSites.site_id','=','personalSites.id')
-            ->join('students','studentPersonalSites.student_id','=','students.id')
-            ->where('student_id',$this->student_id)
-            ->insert(['personalSite' => $account,
-                     'site_id' => $site_id,
-                     'student_id' => $this->student_id,
-                     'created_at' => date('YmdHms'),
-                     ]);
-            Session::flash('type',"success");
-            Session::flash("insert","Sitio personal guardado.");
-        
-          } catch (\Exception $e) {
-              if($e->getCode() == 2002) {
-                 Session::flash('type',"danger");
-                 Session::flash('insert', "No se ha podido guardar el sitio personal.");
-              } else {
-                 Session::flash('type',"danger");
-                 Session::flash("insert","No se ha podido guardar el sitio personal.");
-              }
-           }
-     
+      if($request->input('id') == 0){
+
+          if($exist == null){
+
+              try {
+                 $queries = \DB::table('studentPersonalSites')
+                ->join('personalSites','studentPersonalSites.site_id','=','personalSites.id')
+                ->join('students','studentPersonalSites.student_id','=','students.id')
+                ->where('student_id',$this->student_id)
+                ->insert(['personalSite' => $account,
+                         'site_id' => $site_id,
+                         'student_id' => $this->student_id,
+                         'created_at' => date('YmdHms'),
+                         ]);
+                Session::flash('type',"success");
+                Session::flash("insert","Sitio personal guardado.");
+            
+              } catch (\Exception $e) {
+                  if($e->getCode() == 2002) {
+                     Session::flash('type',"danger");
+                     Session::flash('insert', "No se ha podido guardar el sitio personal.");
+                  } 
+               }
+
+          }else{
+                Session::flash('type',"danger");
+                Session::flash("insert","Ya tienes guardada esa cuenta.");
+          }
               
       }else{
 
@@ -84,7 +92,6 @@ class SitesController extends Controller
         }
 
       }   
-      
     
     return view('student.curriculum');
    }

@@ -33,34 +33,40 @@ class StudentCyclesController extends Controller
        ->where('student_id',$this->student_id)
        ->first();
 
-       if($exist == null){
+              /*Store*/
+               if ($cycle['id'] == 0) {
 
-                /*Store*/
-                if ($cycle['id'] == 0) {
+                  if($exist == null){
                     
-        	         try {
-           
-          	          $queries = \DB::table('studentCycles')
-          	          ->join('students','studentCycles.student_id','=','students.id')
-          	          ->where('student_id',$this->student_id)
-          	          ->insert(['center'         => $cycle['center'],
-          	                   'dateFrom'        => $cycle['dateFrom'],
-          	                   'dateTo'          => $cycle['dateTo'],
-          	                   'city_id'         => $city_id,
-          	                   'student_id'      => $this->student_id,
-          	                   'cycle_id'	       => $cycle_id,
-          	                   'created_at'      => date('YmdHms'),
-                               ]);
+              	         try {
+                 
+                	          $queries = \DB::table('studentCycles')
+                	          ->join('students','studentCycles.student_id','=','students.id')
+                	          ->where('student_id',$this->student_id)
+                	          ->insert(['center'         => $cycle['center'],
+                	                   'dateFrom'        => $cycle['dateFrom'],
+                	                   'dateTo'          => $cycle['dateTo'],
+                	                   'city_id'         => $city_id,
+                	                   'student_id'      => $this->student_id,
+                	                   'cycle_id'	       => $cycle_id,
+                	                   'created_at'      => date('YmdHms'),
+                                     ]);
 
-                      Session::flash('type',"success");
-                      Session::flash('insert', "Ciclo guardado.");
-        	         
-        	         }catch (\Exception $e) {
-                     
-                         Session::flash('type',"danger");
-                         Session::flash('insert', "No se ha podido guardar.");
-                     
-                  }
+                            Session::flash('type',"success");
+                            Session::flash('insert', "Ciclo guardado.");
+              	         
+              	         }catch (\Exception $e) {
+                           
+                               Session::flash('type',"danger");
+                               Session::flash('insert', "No se ha podido guardar.");
+                           
+                        }
+
+                    }else{
+                        Session::flash('type',"danger");
+                        Session::flash("insert","Ya tienes guardado ese ciclo.");
+                    }
+
                 /*Update*/
                 }else{
 
@@ -89,11 +95,7 @@ class StudentCyclesController extends Controller
                     }  
                 }
                 
-        }else{
-            Session::flash('type',"danger");
-            Session::flash("insert","Ya tienes guardado ese ciclo.");
-        }
-
+        
       return view('student.curriculum',compact('cycle'));       
    }
 

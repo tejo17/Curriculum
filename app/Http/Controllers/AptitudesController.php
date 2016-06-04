@@ -27,30 +27,37 @@ class AptitudesController extends Controller
         ->first();
 
         /*Comprobar si es insert o update y evitar duplicados*/
-        if ($exist == null) {
+        
 
             if($aptitude['id'] == 0 ){
-                /*Comprobar que no está vacío.*/
 
-                    try {
-                       $queries = \DB::table('aptitudes')
-                        ->join('students','aptitudes.student_id','=','students.id')
-                        ->where('student_id',$this->student_id)
-                        ->insert(['aptitude' => $aptitude['aptitude'],
-                                 'student_id' => $this->student_id,
-                                 'created_at' => date('YmdHms')]);  
-                        Session::flash('type',"success");
-                        Session::flash('insert', "Conjunto de aptitudes guardado.");
-                        
-                    }catch (\Exception $e) {
-                        if($e->getCode() == 2002) {
-                           Session::flash('type',"danger");
-                           Session::flash('insert', "No se ha podido guardar.");
-                        } else {
-                           Session::flash('type',"danger");
-                           Session::flash("insert","Ya tienes guardado ese conjunto de aptitudes.");
-                        }
-                       }
+                  if ($exist == null) {
+                    /*Comprobar que no está vacío.*/
+
+                        try {
+                           $queries = \DB::table('aptitudes')
+                            ->join('students','aptitudes.student_id','=','students.id')
+                            ->where('student_id',$this->student_id)
+                            ->insert(['aptitude' => $aptitude['aptitude'],
+                                     'student_id' => $this->student_id,
+                                     'created_at' => date('YmdHms')]);  
+                            Session::flash('type',"success");
+                            Session::flash('insert', "Conjunto de aptitudes guardado.");
+                            
+                        }catch (\Exception $e) {
+                            if($e->getCode() == 2002) {
+                               Session::flash('type',"danger");
+                               Session::flash('insert', "No se ha podido guardar.");
+                            } else {
+                               Session::flash('type',"danger");
+                               Session::flash("insert","Ya tienes guardado ese conjunto de aptitudes.");
+                            }
+                         }
+                   }else{
+                        Session::flash('type',"danger");
+                        Session::flash("insert","Ya tienes guardado ese conjutno de aptitudes.");
+                  }
+
               }else{
 
                   try {
@@ -69,10 +76,6 @@ class AptitudesController extends Controller
                      } 
                   }  
               }
-        }else{
-            Session::flash('type',"danger");
-            Session::flash("insert","Ya tienes guardado ese conjutno de aptitudes.");
-        }
    
     return view('student.curriculum');
   }
