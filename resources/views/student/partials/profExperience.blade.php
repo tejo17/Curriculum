@@ -47,7 +47,7 @@
 
                     
                     <div id="example" ng-app="KendoDemos">
-                      <div class="demo-section k-content"ng-controller="MyCtrl">
+                      <div class="demo-section k-content" ng-controller="MyCtrl">
                         <div class="input-field col-md-6 k-rtl">
                           <h6>Desde:</h6>
                           <input name="from" id="from" kendo-date-picker

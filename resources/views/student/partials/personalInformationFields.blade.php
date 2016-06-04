@@ -116,7 +116,7 @@
             </span>
         @endif
     </div>
-    <div class="col-md-4 control-group{{ $errors->has('postalCode') ? ' has-error' : '' }}"style="margin-left:-15px;">
+    <div class="col-md-4 control-group{{ $errors->has('postalCode') ? ' has-error' : '' }}" style="margin-left:-15px;">
         <div class="row">
             <div class="input-field col-md-12">
                 <i class="material-icons prefix">person_pin_circle</i>

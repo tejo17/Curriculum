@@ -40,7 +40,7 @@
                             <legend style="width:auto;">Información Personal</legend>
                             <div style="text-align: center;">
                              <img id="imgcur" src="{{ session('carpeta') }}" width="100" height="100" >
-                             <h5 style="text-transform: capitalize;">{{ session('lastName') }},{{ session('firstName') }}<h5>
+                             <h5 style="text-transform: capitalize;">{{ session('lastName') }},{{ session('firstName') }}</h5>
                               <h6><i class="material-icons">location_on</i>{{ session('address') }},{{ session('postalCode') }},{{ session('city') }},({{ session('state') }})</h6>
                               <h6><i class="material-icons">phone</i>{{ session('phone') }}&nbsp;&nbsp;&nbsp;&nbsp;<i class="material-icons">mail</i>{{ session('email') }}</h6>
                               <h6>Fecha Nacimiento: {{session ('birthdate') }} | Nacionalidad: {{session ('nationality') }}</h6>
@@ -74,9 +74,9 @@
                             <div class='selector'>
                             <div class='switch'><label>Off<input type='checkbox' id='checklice' name='checklice'><span class='lever'></span>On</label></div>
                             Permiso de Conducir
-                               <input id=id_license  value="" type="hidden"></input>
-                               <a href="/estudiante/drivingLicenses" onclick='borrarItemLicense(this)'; class='material-icons boton_borrar pull-right'>delete</a>
-                               <a class='boton_editar pull-right' data-toggle='modal' data-target='#licenses' onclick='editarItemlicense(this)';><i class='material-icons'>mode_edit</i></a>
+                               <input id=id_license  value="" type="hidden">
+                               <a href="/estudiante/drivingLicenses" onclick='borrarItemLicense(this)' class='material-icons boton_borrar pull-right'>delete</a>
+                               <a class='boton_editar pull-right' data-toggle='modal' data-target='#licenses' onclick='editarItemlicense(this)'><i class='material-icons'>mode_edit</i></a>
                                <p id="namelicenses"></p>                 
                            </div>
                         </div> 
