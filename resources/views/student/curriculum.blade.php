@@ -13,6 +13,8 @@
 <script src="/js/dragDrop.js"></script>
 <script src="/js/angular.min.js"></script>
 <script src="/js/kendo.all.min.js"></script>
+<script src="/js/Curriculum/cycles.js"></script>
+
 
 @endsection
 @section('content')
@@ -47,7 +49,7 @@
                       </fieldset>
                       <fieldset>
                          <legend style="width:auto;">Educación y formación</legend>
-                         <div id="" class="col-md-12">          
+                         <div id="diveduc" class="col-md-12">          
                          </div>
                          @include('student.partials.cycles')
                          @include('validations.cycle')

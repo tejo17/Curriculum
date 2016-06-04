@@ -19,6 +19,8 @@
  				<fieldset>
  					<legend style="width:auto;">Estudiante</legend>
  					@include('student.partials.personalInformationFields')
+ 					@include('partials.upload.dragDrop')
+   					
  				</fieldset>
  				
  				<div style="margin-top:15px">
