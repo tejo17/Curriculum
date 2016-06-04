@@ -13,7 +13,7 @@ class SitesController extends Controller
 
   public function index()
   {
-    return view('student.profile');
+    return view('student.curriculum');
   }
 
     /*Obtener los sitios personales.*/
@@ -86,7 +86,7 @@ class SitesController extends Controller
       }   
       
     
-    return view('student.profile');
+    return view('student.curriculum');
    }
 
    /*Listar los sitios personales del usuario*/

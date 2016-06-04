@@ -16,7 +16,7 @@ class StudentCyclesController extends Controller
      * @return void
      */
    public function index(){
-    return view('student.profile');
+    return view('student.curriculum');
    }
    
    /*Insertar o actualizar ciclo del estudiante*/
@@ -94,7 +94,7 @@ class StudentCyclesController extends Controller
             Session::flash("insert","Ya tienes guardado ese ciclo.");
         }
 
-      return view('student.profile',compact('cycle'));       
+      return view('student.curriculum',compact('cycle'));       
    }
 
    /*Listar los ciclos del estudiante*/

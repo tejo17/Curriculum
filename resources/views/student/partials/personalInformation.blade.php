@@ -13,7 +13,7 @@
 
  			<div class="panel-body ancho">
  				
- 				{{ Form::open(['action' => 'ProfileController@update', 'method' => 'POST', 'files' => 'true']) }}
+ 				{{ Form::open(['action' => 'CurriculumController@update', 'method' => 'POST', 'files' => 'true']) }}
  				{!! csrf_field() !!}
 
  				<fieldset>

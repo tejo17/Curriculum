@@ -225,9 +225,9 @@ protected function index(){
         }
         
         // Devuelvo la vista junto con las familias
-        return view('student.profile', compact('profFamilies', 'datos'));
+        return view('student.curriculum', compact('profFamilies', 'datos'));
 
-    } // profile()
+    } // curriculum()
 
     public function obtenerCityId(){
         $arrayDatos = $this->request->all();

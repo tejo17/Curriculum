@@ -11,7 +11,7 @@ use Session;
 class OtherGradesController extends Controller
 {
   public function index(){
-    return view('student.profile');
+    return view('student.curriculum');
   }
      
     /*Guardar o actualizar*/
@@ -81,7 +81,7 @@ class OtherGradesController extends Controller
         }
 
       
-    return view('student.profile');
+    return view('student.curriculum');
    }
 
    /*Listar otros cursos del usuario*/

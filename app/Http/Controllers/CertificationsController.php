@@ -15,7 +15,7 @@ class CertificationsController extends Controller
      * @return void
      */
    public function index(){
-      return view('student.profile');
+      return view('student.curriculum');
    }
 
    /*Store o Update*/
@@ -77,7 +77,7 @@ class CertificationsController extends Controller
             Session::flash("insert","Ya tienes guardado ese certificado.");
         }
                
-    return view('student.profile');
+    return view('student.curriculum');
    }
 
    /*Listar certificaciones del usuario*/

@@ -13,7 +13,7 @@ class DrivingLicensesController extends Controller
 
   public function index(){
 
-      return view('student.profile');   
+      return view('student.curriculum');   
   }
 
    /*Store y Update*/
@@ -81,7 +81,7 @@ class DrivingLicensesController extends Controller
 
       }
 
-     return view('student.profile');
+     return view('student.curriculum');
   }
 
   /*Listar licencias del usuario*/

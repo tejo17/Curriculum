@@ -142,10 +142,10 @@ Route::group(['prefix' => 'uso', 'middleware' => 'web', 'namespace' => 'Uso'], f
 Route::post('buscarCodPostal','Student\StudentsController@buscarCodPostal');
 
 Route::group(['prefix' => '/estudiante', 'middleware' => ['web','auth']], function(){
-    Route::get('autocompletado','ProfileController@autocomplete');
-    Route::post('autolocal','ProfileController@autolocal');
-    Route::get('autocompletadoFamilias','ProfileController@autocompleteFamily');
-    Route::post('autolocalCiclos','ProfileController@autolocalCycles');
+    Route::get('autocompletado','CurriculumController@autocomplete');
+    Route::post('autolocal','CurriculumController@autolocal');
+    Route::get('autocompletadoFamilias','CurriculumController@autocompleteFamily');
+    Route::post('autolocalCiclos','CurriculumController@autolocalCycles');
     Route::post('cargaSites','SitesController@getName');
     Route::post('cargaLanguages','LanguagesController@getLanguage');
     Route::post('cargaInfo','Student\StudentsController@getInfo');
@@ -157,7 +157,7 @@ Route::group(['prefix' => '/estudiante', 'middleware' => ['web','auth']], functi
     Route::post('listOtherGrades','OtherGradesController@listOtherGrades');
     Route::post('listAptitudes','AptitudesController@listAptitudesUser');
     Route::resource('sites','SitesController');
-    Route::resource('profile','ProfileController');
+    Route::resource('curriculum','CurriculumController');
     Route::resource('languages','LanguagesController');
     Route::resource('certifications','CertificationsController');
     Route::resource('otherGrades','OtherGradesController');
@@ -165,7 +165,7 @@ Route::group(['prefix' => '/estudiante', 'middleware' => ['web','auth']], functi
     Route::resource('drivingLicenses','DrivingLicensesController');
     Route::resource('professionalExperiences','ProfessionalExperiencesController');
     Route::resource('educationsFormations','StudentCyclesController');
-    Route::post('updateInfo','ProfileController@update');
+    Route::post('updateInfo','CurriculumController@update');
     Route::post('pdf', 'PdfController@invoice');
 });
 

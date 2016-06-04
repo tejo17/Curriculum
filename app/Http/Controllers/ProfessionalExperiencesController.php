@@ -16,7 +16,7 @@ class ProfessionalExperiencesController extends Controller
      * @return void
      */
    public function index(){
-    return view('student.profile');
+    return view('student.curriculum');
    }
    public function validateEmptyForm($arrayForm)
    {
@@ -78,7 +78,7 @@ class ProfessionalExperiencesController extends Controller
         
   
 
-        return view('student.profile',compact('professionalExperience'));
+        return view('student.curriculum',compact('professionalExperience'));
      
         
    }

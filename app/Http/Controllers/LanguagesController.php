@@ -16,10 +16,10 @@ class LanguagesController extends Controller
      */
     
    public function index(){
-     return view('student.profile');   
+     return view('student.curriculum');   
    }
    public function show(){
-     return view('student.profile');   
+     return view('student.curriculum');   
    }
    /*Obtener los idiomas de la base de datos*/
    public function getLanguage()
@@ -93,7 +93,7 @@ class LanguagesController extends Controller
           } 
       }
    }
-   return view('student.profile');   
+   return view('student.curriculum');   
 }
 
   /*Función para recuperar los idiomas del usuario*/
@@ -120,6 +120,6 @@ class LanguagesController extends Controller
       $queries = \DB::table('studentlanguages')->where('language_id',$language_id)->where('student_id',$this->student_id)->delete();   
       Session::flash('type',"warning");
       Session::flash('insert', "Idioma eliminado.");
-      return view('student.profile');  
+      return view('student.curriculum');  
     } 
 }

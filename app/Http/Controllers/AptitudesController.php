@@ -15,7 +15,7 @@ class AptitudesController extends Controller
      * @return void
      */
     public function index(){
-      return view('student.profile');
+      return view('student.curriculum');
     }
     /*Store y Update*/
    public function store(AptitudeRequest $request){
@@ -74,7 +74,7 @@ class AptitudesController extends Controller
             Session::flash("insert","Ya tienes guardado ese conjutno de aptitudes.");
         }
    
-    return view('student.profile');
+    return view('student.curriculum');
   }
 
     /*Listar aptitudes del usuario*/
