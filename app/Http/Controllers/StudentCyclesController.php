@@ -82,7 +82,6 @@ class StudentCyclesController extends Controller
                                  'city_id'         => $city_id,
                                  'student_id'      => $this->student_id,
                                  'cycle_id'	       => $cycle_id,
-                                 'created_at'      => date('YmdHms'),
                                  ]);
                         Session::flash('type',"success");
                         Session::flash('insert', "Ciclo actualizado.");
