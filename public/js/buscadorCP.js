@@ -22,7 +22,7 @@ $(document).ready(function() {
                 $("#state").val(data.provincia);
                 if (($("#postalCode").val()).length == 5) {
 
-$("#state").focus();
+                $("#state").focus();
                     for (var i = 0; i < data.ciudades.length; i++) {
 
                         $("#city").append('<option "value="' + data.ciudades[i] + '"selected>' + data.ciudades[i] + '</option>');

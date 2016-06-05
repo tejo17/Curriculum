@@ -10,6 +10,11 @@ var ocultosite = 0;
 var ocultocertif = 0;
 var ocultoOther = 0;
 var ocultoAptitude = 0;
+$('#sites').on('hidden.bs.modal', function (e) {
+
+        $("#personalsite").val('');
+      
+})
 
 var licencias;
 var cargado = "";
@@ -90,7 +95,7 @@ $('#actual').val('cursando');
         $.ajax({
             data: consulta,
             headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
-            url: '/curriculum/autolocal',
+            url: 'autolocal',
             type: 'post',
             success: function(data) {
 
@@ -120,7 +125,7 @@ $('#sites').on('show.bs.modal', function(e) {
     $('#ocultosite').val(ocultosite);
     $.ajax({
         headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
-        url: '/curriculum/cargaSites',
+        url: 'cargaSites',
         type: 'post',
         success: function(data) {
 
@@ -142,7 +147,7 @@ $('#languages').on('show.bs.modal', function(e) {
 
     $.ajax({
         headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
-        url: '/curriculum/cargaLanguages',
+        url: 'cargaLanguages',
         type: 'post',
         success: function(data) {
             for (var i = 0; i < data.length; i++) {
@@ -200,7 +205,7 @@ $('#languages').on('show.bs.modal', function(e) {
 $('#info').on('show.bs.modal', function(e) {
     $.ajax({
         headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
-        url: '/curriculum/cargaInfo',
+        url: 'cargaInfo',
         type: 'POST',
         success: function(data) {
             $('#picker').val(data['birthdate']);
@@ -350,13 +355,13 @@ $(function() {
     //Carga por ajax listado de experiencias profesionales
      $.ajax({
         headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
-        url: '/curriculum/listExperiences',
+        url: 'listExperiences',
         type: 'post',
         success: function(data) {
 
             for (var i = 0; i < data.length; i++) {
 
-                $('#divexppro').append("<div class='selector '><input id=id_site type='hidden' value=" + data[i].id + "></input><a href='/estudiante/curriculum/professionalExperiences/' data-method='DELETE' onclick='borrarItemExp(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#exp' onclick='editarItemExp(this)';><i class='material-icons'>mode_edit</i></a><h6 id='exp1' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Puesto de trabajo: <span style='color:black; font-weight:normal'>" + data[i].job + "</span></h6><h6 id='exp2' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Empresa: <span style='color:black; font-weight:normal'>" + data[i].enterprise + "</span></h6><h6 id='exp3' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Descripción: <span style='color:black; font-weight:normal'>" + data[i].description + "</span></h6><h6 id='exp4' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Ciudad: <span style='color:black; font-weight:normal'>" + data[i].State + "</span></h6><h6 id='exp5' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Localidad: <span style='color:black; font-weight:normal'>" + data[i].City + "</span></h6><h6 id='exp6' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Inicio: <span style='color:black; font-weight:normal'>" + data[i].from + "</span></h6><h6 id='exp7' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Fin: <span style='color:black; font-weight:normal'>" + data[i].to + "</span></h6></div><hr class='sep'>");
+                $('#divexppro').append("<div class='selector '><input id=id_site type='hidden' value=" + data[i].id + "></input><a href='/estudiante/professionalExperiences/' data-method='DELETE' onclick='borrarItemExp(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#exp' onclick='editarItemExp(this)';><i class='material-icons'>mode_edit</i></a><h6 id='exp1' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Puesto de trabajo: <span style='color:black; font-weight:normal'>" + data[i].job + "</span></h6><h6 id='exp2' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Empresa: <span style='color:black; font-weight:normal'>" + data[i].enterprise + "</span></h6><h6 id='exp3' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Descripción: <span style='color:black; font-weight:normal'>" + data[i].description + "</span></h6><h6 id='exp4' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Ciudad: <span style='color:black; font-weight:normal'>" + data[i].State + "</span></h6><h6 id='exp5' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Localidad: <span style='color:black; font-weight:normal'>" + data[i].City + "</span></h6><h6 id='exp6' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Inicio: <span style='color:black; font-weight:normal'>" + data[i].from + "</span></h6><h6 id='exp7' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Fin: <span style='color:black; font-weight:normal'>" + data[i].to + "</span></h6></div><hr class='sep'>");
             }
         }
 
@@ -365,14 +370,14 @@ $(function() {
     //Carga por ajax listado modal lenguajes
     $.ajax({
         headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
-        url: '/curriculum/listlanguages',
+        url: 'listlanguages',
         type: 'post',
         success: function(data) {
 
 
             for (var i = 0; i < data.length; i++) {
 
-                $('#divlanguage').append("<div class='selector table-container'><input id=id_language type='hidden' value=" + data[i].id + "></input><a href='/estudiante/curriculum/languages' data-method='DELETE' onclick='borrarItem(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#languages' onclick='editarItem(this)';><i class='material-icons'>mode_edit</i></a><table class='table table-striped'><h5 style='text-align:center;font-weight:bold;'>" + data[i].language + "</h5><thead><tr><th>Comprensión de lectura</th><th>Comprensión auditiva</th><th>Expresión Oral</th><th>Expresión Escrita</th></tr></thead><tbody><tr><td class='campo1'>" + data[i].readingComprehension + "</td><td class='campo2'>" + data[i].listeningComprehension + "</td><td class='campo3'>" + data[i].oralExpression + "</td><td class='campo4'>" + data[i].WrittedExpression + "</td></tr></tbody></table></div><hr class='sep'>");
+                $('#divlanguage').append("<div class='selector table-container'><input id=id_language type='hidden' value=" + data[i].id + "></input><a href='/estudiante/languages' data-method='DELETE' onclick='borrarItem(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#languages' onclick='editarItem(this)';><i class='material-icons'>mode_edit</i></a><table class='table table-striped'><h5 style='text-align:center;font-weight:bold;'>" + data[i].language + "</h5><thead><tr><th>Comprensión de lectura</th><th>Comprensión auditiva</th><th>Expresión Oral</th><th>Expresión Escrita</th></tr></thead><tbody><tr><td class='campo1'>" + data[i].readingComprehension + "</td><td class='campo2'>" + data[i].listeningComprehension + "</td><td class='campo3'>" + data[i].oralExpression + "</td><td class='campo4'>" + data[i].WrittedExpression + "</td></tr></tbody></table></div><hr class='sep'>");
             }
         }
 
@@ -382,7 +387,7 @@ $(function() {
     $.ajax({
 
         headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
-        url: '/curriculum/listLicenses',
+        url: 'listLicenses',
         type: 'post',
         success: function(data) {
 
@@ -406,11 +411,11 @@ $(function() {
     $.ajax({
 
         headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
-        url: '/curriculum/listSites',
+        url: 'listSites',
         type: 'post',
         success: function(data) {
             for (var i = 0; i < data.length; i++) {
-                $('#divsite').append("<div class='selector '><input id=id_site type='hidden' value=" + data[i].id + "></input><a href='/estudiante/curriculum/sites' data-method='DELETE' onclick='borrarItemSite(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#sites' onclick='editarItemsite(this)';><i class='material-icons'>mode_edit</i></a><h6 style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Sitio Personal: <span style='color:black; font-weight:normal'>" + data[i].site + "</span></h6><h6 style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Dirección: <span style='color:black; font-weight:normal'>" + data[i].personalSite + "</span></h6></div><hr class='sep'>");
+                $('#divsite').append("<div class='selector '><input id=id_site type='hidden' value=" + data[i].id + "></input><a href='/estudiante/sites' data-method='DELETE' onclick='borrarItemSite(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#sites' onclick='editarItemsite(this)';><i class='material-icons'>mode_edit</i></a><h6 style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Sitio Personal: <span style='color:black; font-weight:normal'>" + data[i].site + "</span></h6><h6 style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Dirección: <span style='color:black; font-weight:normal'>" + data[i].personalSite + "</span></h6></div><hr class='sep'>");
             }
         }
 
@@ -420,11 +425,11 @@ $(function() {
     $.ajax({
 
         headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
-        url: '/curriculum/listCertifications',
+        url: 'listCertifications',
         type: 'post',
         success: function(data) {
             for (var i = 0; i < data.length; i++) {
-                $('#divcertification').append(("<div class='selector'><input id=id_certification type='hidden' value=" + data[i].id + "><div class='switch'><label>Off<input type='checkbox' class='checkcertf' name='checkcertf'><span class='lever'></span>On</label></div></input><a href='/estudiante/curriculum/certifications' data-method='DELETE' onclick='borrarItemCertification(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#certif' onclick='editarItemCertification(this)';><i class='material-icons'>mode_edit</i></a><ul><li class=' tituloli'>Certificación:</li><li class='certf1'>" + data[i].certification + "</li></ul><ul><li class=' tituloli'>Institución:</li><li class='certf2'>" + data[i].institution + "</li></ul><ul><li class=' tituloli'>Descripcion:</li><li class='certf3'>" + data[i].description + "</li></ul></div><hr class='sep'>"));
+                $('#divcertification').append(("<div class='selector'><input id=id_certification type='hidden' value=" + data[i].id + "><div class='switch'><label>Off<input type='checkbox' class='checkcertf' name='checkcertf'><span class='lever'></span>On</label></div></input><a href='/estudiante/certifications' data-method='DELETE' onclick='borrarItemCertification(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#certif' onclick='editarItemCertification(this)';><i class='material-icons'>mode_edit</i></a><ul><li class=' tituloli'>Certificación:</li><li class='certf1'>" + data[i].certification + "</li></ul><ul><li class=' tituloli'>Institución:</li><li class='certf2'>" + data[i].institution + "</li></ul><ul><li class=' tituloli'>Descripcion:</li><li class='certf3'>" + data[i].description + "</li></ul></div><hr class='sep'>"));
             }
 
         }
@@ -435,11 +440,11 @@ $(function() {
     $.ajax({
 
         headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
-        url: '/curriculum/listOtherGrades',
+        url: 'listOtherGrades',
         type: 'post',
         success: function(data) {
             for (var i = 0; i < data.length; i++) {
-                $('#divother').append("<div class='selector'><input id=id_certification type='hidden' value=" + data[i].id + "><div class='switch'><label>Off<input type='checkbox' class='checkother' name='checkother'><span class='lever'></span>On</label></div></input><a href='/estudiante/curriculum/otherGrades' data-method='DELETE' onclick='borrarItemOther(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#cursos' onclick='editarItemOther(this)';><i class='material-icons'>mode_edit</i></a><ul><li class=' tituloli'>Curso:</li><li class='campootro1 '>" + data[i].grade + "</li></ul><ul><li class=' tituloli'>Institución:</li><li class='campootro2 '>" + data[i].institution + "</li></ul><ul><li class=' tituloli'>Descripcion:</li><li class='campootro3 '>" + data[i].description + "</li></ul><ul><li class=' tituloli'>Duración:</li><li class='campootro4 '>" + data[i].duration + "</li></ul></div><hr class='sep'>");
+                $('#divother').append("<div class='selector'><input id=id_certification type='hidden' value=" + data[i].id + "><div class='switch'><label>Off<input type='checkbox' class='checkother' name='checkother'><span class='lever'></span>On</label></div></input><a href='/estudiante/otherGrades' data-method='DELETE' onclick='borrarItemOther(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#cursos' onclick='editarItemOther(this)';><i class='material-icons'>mode_edit</i></a><ul><li class=' tituloli'>Curso:</li><li class='campootro1 '>" + data[i].grade + "</li></ul><ul><li class=' tituloli'>Institución:</li><li class='campootro2 '>" + data[i].institution + "</li></ul><ul><li class=' tituloli'>Descripcion:</li><li class='campootro3 '>" + data[i].description + "</li></ul><ul><li class=' tituloli'>Duración:</li><li class='campootro4 '>" + data[i].duration + "</li></ul></div><hr class='sep'>");
             }
         }
     });
@@ -448,11 +453,11 @@ $(function() {
     $.ajax({
 
         headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
-        url: '/curriculum/listAptitudes',
+        url: 'listAptitudes',
         type: 'post',
         success: function(data) {
             for (var i = 0; i < data.length; i++) {
-                $('#divaptitude').append("<div class='selector'><input id=id_certification type='hidden' value=" + data[i].id + "><div class='switch'><label>Off<input type='checkbox' class='checkapt' name='checkapt'><span class='lever'></span>On</label></div></input><a href='/estudiante/curriculum/aptitudes' data-method='DELETE' onclick='borrarItemAptitude(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#aptitudes' onclick='editarItemAptitude(this)';><i class='material-icons'>mode_edit</i></a><ul><li class=' tituloli'>Aptitud</li><li class='campoapt1 '>" + data[i].aptitude + "</li></ul></div><hr class='sep'>");
+                $('#divaptitude').append("<div class='selector'><input id=id_certification type='hidden' value=" + data[i].id + "><div class='switch'><label>Off<input type='checkbox' class='checkapt' name='checkapt'><span class='lever'></span>On</label></div></input><a href='/estudiante/aptitudes' data-method='DELETE' onclick='borrarItemAptitude(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#aptitudes' onclick='editarItemAptitude(this)';><i class='material-icons'>mode_edit</i></a><ul><li class=' tituloli'>Aptitud</li><li class='campoapt1 '>" + data[i].aptitude + "</li></ul></div><hr class='sep'>");
 
             }
         }
@@ -478,7 +483,7 @@ function editarItemExp(item) {
     var enterprise = $(item).siblings('#exp2').children('span').text();
     var description = $(item).siblings('#exp3').children('span').text();
     var state = $(item).siblings('#exp4').children('span').text();
-    var city = $(item).siblings('#exp5').children('span').text();
+
     var from = $(item).siblings('#exp6').children('span').text();
     var to = $(item).siblings('#exp7').children('span').text();
 
@@ -612,7 +617,7 @@ function borrarItemExp(item) {
 
     $.ajax({
         headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
-        url: '/estudiante/curriculum/professionalExperiences/' + expid,
+        url: '/estudiante/professionalExperiences/' + expid,
         type: 'delete',
         success: function(result) {
 
@@ -625,7 +630,7 @@ function borrarItem(item) {
     var lang = table.parent().children('h5').text();
     $.ajax({
         headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
-        url: '/estudiante/curriculum/languages/' + lang,
+        url: '/estudiante/languages/' + lang,
         type: 'DELETE',
         success: function(result) {
             table.parent().remove();
@@ -637,7 +642,7 @@ function borrarItemLicense(item) {
     var licenseid = $('#license_id').val();
     $.ajax({
         headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
-        url: '/estudiante/curriculum/drivingLicenses/' + licenseid,
+        url: '/estudiante/drivingLicenses/' + licenseid,
         type: 'delete',
         success: function(result) {
             $('#divlicenses').children().remove();
@@ -649,7 +654,7 @@ function borrarItemSite(item) {
     var siteid = $(item).parent().children('input')[0].value;
     $.ajax({
         headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
-        url: '/estudiante/curriculum/sites/' + siteid,
+        url: '/estudiante/sites/' + siteid,
         type: 'delete',
         success: function(result) {
 
@@ -662,7 +667,7 @@ function borrarItemCertification(item) {
 
     $.ajax({
         headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
-        url: '/estudiante/curriculum/certifications/' + certificationid,
+        url: '/estudiante/certifications/' + certificationid,
         type: 'delete',
         success: function(result) {
 
@@ -675,7 +680,7 @@ function borrarItemOther(item) {
 
     $.ajax({
         headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
-        url: '/estudiante/curriculum/otherGrades/' + Otherid,
+        url: '/estudiante/otherGrades/' + Otherid,
         type: 'delete',
         success: function(result) {
 
@@ -688,7 +693,7 @@ function borrarItemAptitude(item) {
 
     $.ajax({
         headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
-        url: '/estudiante/curriculum/aptitudes/' + Aptitudid,
+        url: '/estudiante/aptitudes/' + Aptitudid,
         type: 'delete',
         success: function(result) {
 
@@ -703,7 +708,7 @@ function cargarPostalAuto(data) {
     };
     $.ajax({
         data: consulta,
-        url: '/curriculum/buscarCodPostal',
+        url: '/buscarCodPostal',
         type: 'post',
 
         success: function(data) {

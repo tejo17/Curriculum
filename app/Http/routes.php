@@ -144,7 +144,7 @@ Route::group(['prefix' => 'uso', 'middleware' => 'web', 'namespace' => 'Uso'], f
 });
 Route::post('buscarCodPostal','Student\StudentsController@buscarCodPostal');
 
-Route::group(['prefix' => 'curriculum', 'middleware' => ['web','auth']], function(){
+Route::group(['prefix' => 'estudiante', 'middleware' => ['web','auth']], function(){
     Route::get('autocompletado','CurriculumController@autocomplete');
     Route::post('autolocal','CurriculumController@autolocal');
     Route::get('autocompletadoFamilias','CurriculumController@autocompleteFamily');
@@ -171,5 +171,6 @@ Route::group(['prefix' => 'curriculum', 'middleware' => ['web','auth']], functio
     Route::resource('educationsFormations','StudentCyclesController');
     Route::post('updateInfo','CurriculumController@update');
     Route::post('pdf', 'PdfController@invoice');
+    
 });
 

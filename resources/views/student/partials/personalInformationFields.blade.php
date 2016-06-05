@@ -99,7 +99,7 @@
             </span>
         @endif
     </div>
-@include('student.partials.emailField')
+
      <fieldset style="clear:both">    
     <legend style="width:auto;">Direccion</legend>
     <div class="control-group{{ $errors->has('address') ? ' has-error' : '' }}">
@@ -116,7 +116,7 @@
             </span>
         @endif
     </div>
-    <div class="col-md-4 control-group{{ $errors->has('postalCode') ? ' has-error' : '' }}" style="margin-left:-15px;">
+    <div class="col-md-4 control-group{{ $errors->has('postalCode') ? ' has-error' : '' }}"style="margin-left:-15px;">
         <div class="row">
             <div class="input-field col-md-12">
                 <i class="material-icons prefix">person_pin_circle</i>
@@ -166,5 +166,6 @@
 
 
     <br>
-    
+    @include('partials.upload.dragDrop')
+    @include('student.partials.emailField')
 </div>
