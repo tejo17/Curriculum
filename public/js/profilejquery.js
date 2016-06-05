@@ -521,7 +521,15 @@ function editarItemCertification(item) {
         $('#institution').val(institucion);
         $('#institution').focus();
         $('textarea#description').val(descripcion);
+        console.log(ocultocertif);
+        if(ocultocertif == 0){
+            $('#certification').val("");
+            $('#institution').val("");
+            $('textarea#description').val("");
+        }
+
     });
+    
 }
 
 function editarItemOther(item) {
@@ -541,6 +549,13 @@ function editarItemOther(item) {
         $('#duration').val(duracion);
         $('#duration').focus();
         $('textarea#description').val(descripcion);
+
+        if(ocultoOther == 0){
+            $('#grade').val("");
+            $('#studyCenter').val("");
+            $('#duration').val("");
+            $('textarea#description').val("");
+        }
     });
 }
 
@@ -549,8 +564,15 @@ function editarItemAptitude(item) {
     $('#ocultoaptitude').val(ocultoAptitude);
     var aptitud = $(item).siblings('ul').children('.campoapt1').text();
 
+
     $('#aptitudes').on('shown.bs.modal', function(e) {
-        $('textarea#aptitude').val(aptitud);
+
+            $('textarea#aptitude').val(aptitud);
+
+        if(ocultoAptitude == 0){
+             $('textarea#aptitude').val("");
+        }
+        
 
     });
 
@@ -763,9 +785,11 @@ $('#cursos').on('hide.bs.modal', function(e) {
 });
 
 
-$('#aptitudes').on('hide.bs.modal', function(e) {
+$('#aptitudes').on('hidden.bs.modal', function(e) {
     ocultoAptitude = 0;
     $('#ocultoaptitude').val(ocultoAptitude);
+    $('textarea').val('');
+    $('textarea').empty();
 });
 //Fin acciones salir de los modales
 
