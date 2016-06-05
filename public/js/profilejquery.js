@@ -10,11 +10,6 @@ var ocultosite = 0;
 var ocultocertif = 0;
 var ocultoOther = 0;
 var ocultoAptitude = 0;
-$('#sites').on('hidden.bs.modal', function (e) {
-
-        $("#personalsite").val('');
-      
-})
 
 var licencias;
 var cargado = "";
@@ -252,51 +247,7 @@ $('#aptitudes').on('show.bs.modal', function(e) {
     $('#ocultoaptitude').val(ocultoAptitude);
 });
 
-/***************************************
 
- Acciones al cerrar las ventanas modales
-
- **************************************/
-
-
- $('#exp').on('hide.bs.modal', function(e) {
-    ocultoexp = 0;
-});
-
-$('#languages').on('hide.bs.modal', function(e) {
-    ocultolanguage = 0;
-});
-
-$('#licenses').on('hide.bs.modal', function(e) {
-    ocultolicense = 0;
-    $('#ocultolicense').val(ocultolicense);
-
-    for (var i = 0; i < listalicencias.length; i++) {
-        $(listalicencias[i]).prop("checked", "");
-    }
-
-});
-$('#sites').on('hide.bs.modal', function(e) {
-    ocultosite = 0;
-    $('#ocultosite').val(ocultosite);
-});
-
-$('#certif').on('hide.bs.modal', function(e) {
-    ocultocertif = 0;
-    $('#ocultocertification').val(ocultocertif);
-});
-
-$('#cursos').on('hide.bs.modal', function(e) {
-    ocultoOther = 0;
-    $('#ocultogrado').val(ocultoOther);
-});
-
-
-$('#aptitudes').on('hide.bs.modal', function(e) {
-    ocultoAptitude = 0;
-    $('#ocultoaptitude').val(ocultoAptitude);
-});
-//Fin acciones salir de los modales
 
 
 function notification(message, type) {
@@ -757,4 +708,75 @@ $('#generatePDF').click(function() {
     $('#checkboxotrosCursos').val(otrosCursos);
     $('#checkboxaptitudes').val(aptitudes);
     console.log($('#checkboxCertificaciones').val(),$('#checkboxotrosCursos').val(),$('#checkboxaptitudes').val());
+});
+
+
+/***************************************
+
+ Acciones al cerrar las ventanas modales
+
+ **************************************/
+
+
+ $('#exp').on('hide.bs.modal', function(e) {
+    ocultoexp = 0;
+    $("#job").val('');
+    $("#enterprise").val('');
+    $("#state").val('');
+    $("#city").val('');
+    $("#description").val('');
+    $("#from").val('');
+    $("#to").val('');
+});
+
+$('#languages').on('hide.bs.modal', function(e) {
+    ocultolanguage = 0;
+    $("#oralExpression").val('Bajo');
+    $("#WrittedExpression").val('Bajo');
+    $("#listeningComprehension").val('Bajo');
+    $("#readingComprehension").val('Bajo');
+});
+
+$('#licenses').on('hide.bs.modal', function(e) {
+    ocultolicense = 0;
+    $('#ocultolicense').val(ocultolicense);
+
+    for (var i = 0; i < listalicencias.length; i++) {
+        $(listalicencias[i]).prop("checked", "");
+    }
+
+});
+$('#sites').on('hide.bs.modal', function(e) {
+    ocultosite = 0;
+    $('#ocultosite').val(ocultosite);
+    $("#personalsite").val('');
+});
+
+
+$('#cursos').on('hide.bs.modal', function(e) {
+    ocultoOther = 0;
+    $('#ocultogrado').val(ocultoOther);
+    $('#grade').val(ocultocertif);
+    $("#institution").val('');
+    $("#desctiptionGrade").val('');
+    $("#duration").val('');
+});
+
+
+$('#aptitudes').on('hide.bs.modal', function(e) {
+    ocultoAptitude = 0;
+    $('#ocultoaptitude').val(ocultoAptitude);
+});
+//Fin acciones salir de los modales
+
+
+//Accion AL cerrar el modal
+$('#certif').on('hidden.bs.modal', function(e) {
+    ocultocertification = 0;
+    $('#ocultocertification').val(ocultocertification); 
+    $("#certification").val('');
+    $("#institution").val('');
+    $("#descriptionCertif").val('');
+   
+;
 });

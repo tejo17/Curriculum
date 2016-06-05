@@ -26,7 +26,7 @@ class CertificationRequest extends Request
         return [
          'certification' 	   => 'required|between:2,200',
          'institution'         => 'required|between:2,200',
-         'description'         => 'between:5,250',
+         'descriptionCertif'   => '',
 
          ];
     }

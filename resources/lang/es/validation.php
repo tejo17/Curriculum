@@ -154,7 +154,7 @@ return [
         'institution'           => 'institución',
         'grade'                 => 'curso',
         'duration'              => 'duración',
-        'descriptionGrade'      => 'descripcion',
+        'descriptionGrade'      => 'descripción',
         'aptitude'              => 'aptitud',
         'from'                  => 'desde',
         'to'                    => 'hasta',
@@ -167,6 +167,8 @@ return [
         'dateTo'                => 'desde',
         'dateFrom'              => 'hasta',
         'center'                => 'centro',
+        'descriptionCertif'     => 'descripción',
+        'studyCenter'           => 'centro de estudios',
     ],
 
 ];

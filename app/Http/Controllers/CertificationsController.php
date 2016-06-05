@@ -40,7 +40,7 @@ class CertificationsController extends Controller
                                   ->join('students','certifications.student_id','=','students.id')
                                   ->where('student_id',$this->student_id)
                                   ->insert(['certification' => $certification['certification'],
-                                           'description' => $certification['description'],
+                                           'description' => $certification['descriptionCertif'],
                                            'institution' => $certification['institution'],
                                            'student_id' => $this->student_id,
                                            'created_at' => date('YmdHms')]);
@@ -65,7 +65,7 @@ class CertificationsController extends Controller
                           ->where('student_id',$this->student_id)
                           ->where('certifications.id',$certification['id'])
                           ->update(['certification' => $certification['certification'],
-                                   'description' => $certification['description'],
+                                   'description' => $certification['descriptionCertif'],
                                    'institution' => $certification['institution'],
                                    'student_id' => $this->student_id]);
                           Session::flash('type',"success");

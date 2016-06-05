@@ -4,9 +4,9 @@
 </span>
 @endif
 
-@if ($errors->has('institution'))
+@if ($errors->has('studyCenter'))
 <span class="help-block">
-	<strong>{{ $errors->first('institution') }}</strong>
+	<strong>{{ $errors->first('studyCenter') }}</strong>
 </span>
 @endif
 

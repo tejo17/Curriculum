@@ -26,7 +26,7 @@ class OtherGradesRequest extends Request
         return [
          'grade' 		  	  => 'required|between:2,200',
          'duration'		  	  => 'between:1,10',
-         'institution'	  	  => 'between:2,200',
+         'studyCenter'	  	  => 'between:2,200',
          'descriptionGrade'	  => 'between:5,250',
 
          ];

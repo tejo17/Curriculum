@@ -12,7 +12,7 @@
 
 @if ($errors->has('description'))
 <span class="help-block">
-	<strong>{{ $errors->first('description') }}</strong>
+	<strong>{{ $errors->first('descriptionCertif') }}</strong>
 </span>
 @endif
 
