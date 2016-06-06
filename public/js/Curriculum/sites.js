@@ -12,7 +12,7 @@ $(function() {
         type: 'post',
         success: function(data) {
             for (var i = 0; i < data.length; i++) {
-                $('#divsite').append("<div class='selector '><input id=id_site type='hidden' value=" + data[i].id + "></input><a href='/estudiante/sites' data-method='DELETE' onclick='borrarItemSite(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#sites' onclick='editarItemsite(this)';><i class='material-icons'>mode_edit</i></a><h6 style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Sitio Personal: <span style='color:black; font-weight:normal'>" + data[i].site + "</span></h6><h6 style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Dirección: <span style='color:black; font-weight:normal'>" + data[i].personalSite + "</span></h6></div><hr class='sep'>");
+                $('#divsite').append("<div class='selector '><input id=id_site type='text' value=" + data[i].id + "></input><a href='/estudiante/sites' data-method='DELETE' onclick='borrarItemSite(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#sites' onclick='editarItemsite(this)';><i class='material-icons'>mode_edit</i></a><h6 style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Sitio Personal: <span style='color:black; font-weight:normal'>" + data[i].site + "</span></h6><h6 style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Dirección: <span style='color:black; font-weight:normal'>" + data[i].personalSite + "</span></h6></div><hr class='sep'>");
             }
         }
 
@@ -34,6 +34,8 @@ $('#sites').on('show.bs.modal', function(e) {
         type: 'post',
         success: function(data) {
 
+          if ($("#site option").text() == "") {
+
             for (var i = 0; i < data.length; i++) {
                 $("#site").append('<option "value="' + data[i].value + '">' + data[i].value + '</option>');
             }
@@ -42,6 +44,7 @@ $('#sites').on('show.bs.modal', function(e) {
 
             });
         }
+    }
 
     });
 

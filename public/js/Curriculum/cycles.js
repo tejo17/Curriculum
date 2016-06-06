@@ -16,16 +16,19 @@ $(function() {
             }
         }
 
-    });
-    //Script AutoComplete
 
-    $('#family').autocomplete({
-        source: "autocompletadoFamilias"
     });
-    $('#family').autocomplete("option", "appendTo", ".eventInsForm");
-
-    //Fin Script Autocomplete
 });
+
+//Script AutoComplete
+
+$('#family').autocomplete({
+    source: "autocompletadoFamilias"
+});
+$('#family').autocomplete("option", "appendTo", ".eventInsForm");
+
+//Fin Script Autocomplete
+
 
 
 
@@ -69,14 +72,17 @@ $('#education').on('shown.bs.modal', function(e) {
             url: 'autolocal',
             type: 'post',
             success: function(data) {
-               
-                for (var i = 0; i < data.ciudades.length; i++) {
-                    if (poblacionseleccionado == data.ciudades[i]) {
-                        $("#cityform").append('<option selected value=' + data.ciudades[i] + '>' + data.ciudades[i] + '</option>');
-                    } else {
-                        $("#cityform").append('<option value=' + data.ciudades[i] + '>' + data.ciudades[i] + '</option>');
+
+                if ($("#cityform option").text() == "") {
+                    for (var i = 0; i < data.ciudades.length; i++) {
+                        if (poblacionseleccionado == data.ciudades[i]) {
+                            $("#cityform").append('<option selected value=' + data.ciudades[i] + '>' + data.ciudades[i] + '</option>');
+                        } else {
+                            $("#cityform").append('<option value=' + data.ciudades[i] + '>' + data.ciudades[i] + '</option>');
+                        }
                     }
                 }
+
                 cargado = 'Cargado';
                 $('#stateform').focus(function() {
                     $("#cityform").empty();
@@ -101,16 +107,16 @@ $('#education').on('shown.bs.modal', function(e) {
             url: 'autolocalCiclos',
             type: 'post',
             success: function(data) {
+                if ($("#cycle option").text() == "") {
+                    for (var i = 0; i < data.ciclos.length; i++) {
 
-                for (var i = 0; i < data.ciclos.length; i++) {
-
-                    if (ciclo == data.ciclos[i]) {
-                        $("#cycle").append('<option selected value=' + data.ciclos[i] + '>' + data.ciclos[i] + '</option>');
-                    } else {
-                        $("#cycle").append('<option value=' + data.ciclos[i] + '>' + data.ciclos[i] + '</option>');
+                        if (ciclo == data.ciclos[i]) {
+                            $("#cycle").append('<option selected value=' + data.ciclos[i] + '>' + data.ciclos[i] + '</option>');
+                        } else {
+                            $("#cycle").append('<option value=' + data.ciclos[i] + '>' + data.ciclos[i] + '</option>');
+                        }
                     }
                 }
-
             }
 
         });
@@ -133,7 +139,7 @@ function editarItemEdu(item) {
     var centro = $(item).siblings('h6').children('.educ3').text();
     var provincia = $(item).siblings('h6').children('.educ4').text();
     poblacionseleccionado = $(item).siblings('h6').children('.educ5').text();
-    console.log(poblacionseleccionado);
+
     var desde = $(item).siblings('h6').children('.educ6').text();
     var hasta = $(item).siblings('h6').children('.educ7').text();
 

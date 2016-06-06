@@ -4,7 +4,7 @@ var poblacionseleccionado = "";
 
 $(function() {
     //Carga por ajax listado de experiencias profesionales
-     $.ajax({
+    $.ajax({
         headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
         url: 'listExperiences',
         type: 'post',
@@ -12,7 +12,7 @@ $(function() {
 
             for (var i = 0; i < data.length; i++) {
 
-                $('#divexppro').append("<div class='selector '><input type='text' value=" + data[i].id + "></input><a href='/estudiante/professionalExperiences/' data-method='DELETE' onclick='borrarItemExp(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#exp' onclick='editarItemExp(this)';><i class='material-icons'>mode_edit</i></a><h6 id='exp1' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Puesto de trabajo: <span style='color:black; font-weight:normal'>" + data[i].job + "</span></h6><h6 id='exp2' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Empresa: <span style='color:black; font-weight:normal'>" + data[i].enterprise + "</span></h6><h6 id='exp3' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Descripción: <span style='color:black; font-weight:normal'>" + data[i].description + "</span></h6><h6 id='exp4' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Ciudad: <span style='color:black; font-weight:normal'>" + data[i].State + "</span></h6><h6 id='exp5' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Localidad: <span style='color:black; font-weight:normal'>" + data[i].City + "</span></h6><h6 id='exp6' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Inicio: <span style='color:black; font-weight:normal'>" + data[i].from + "</span></h6><h6 id='exp7' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Fin: <span style='color:black; font-weight:normal'>" + data[i].to + "</span></h6></div><hr class='sep'>");
+                $('#divexppro').append("<div class='selector '><input type='hidden' value=" + data[i].id + "></input><a href='/estudiante/professionalExperiences/' data-method='DELETE' onclick='borrarItemExp(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#exp' onclick='editarItemExp(this)';><i class='material-icons'>mode_edit</i></a><h6 id='exp1' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Puesto de trabajo: <span style='color:black; font-weight:normal'>" + data[i].job + "</span></h6><h6 id='exp2' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Empresa: <span style='color:black; font-weight:normal'>" + data[i].enterprise + "</span></h6><h6 id='exp3' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Descripción: <span style='color:black; font-weight:normal'>" + data[i].description + "</span></h6><h6 id='exp4' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Ciudad: <span style='color:black; font-weight:normal'>" + data[i].State + "</span></h6><h6 id='exp5' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Localidad: <span style='color:black; font-weight:normal'>" + data[i].City + "</span></h6><h6 id='exp6' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Inicio: <span style='color:black; font-weight:normal'>" + data[i].from + "</span></h6><h6 id='exp7' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Fin: <span style='color:black; font-weight:normal'>" + data[i].to + "</span></h6></div><hr class='sep'>");
             }
         }
 
@@ -96,11 +96,13 @@ $('#exp').on('shown.bs.modal', function(e) {
             type: 'post',
             success: function(data) {
 
-                 for (var i = 0; i < data.ciudades.length; i++) {
-                    if (poblacionseleccionado == data.ciudades[i]) {
-                        $("#cityexp").append('<option selected value=' + data.ciudades[i] + '>' + data.ciudades[i] + '</option>');
-                    } else {
-                        $("#cityexp").append('<option value=' + data.ciudades[i] + '>' + data.ciudades[i] + '</option>');
+                if ($("#cityexp option").text() == "") {
+                    for (var i = 0; i < data.ciudades.length; i++) {
+                        if (poblacionseleccionado == data.ciudades[i]) {
+                            $("#cityexp").append('<option selected value=' + data.ciudades[i] + '>' + data.ciudades[i] + '</option>');
+                        } else {
+                            $("#cityexp").append('<option value=' + data.ciudades[i] + '>' + data.ciudades[i] + '</option>');
+                        }
                     }
                 }
                 cargado = 'Cargado';
@@ -120,8 +122,10 @@ Función que se ejecuta al cerrar el modal
 *****************************************/
 
 $('#exp').on('hide.bs.modal', function(e) {
-	$('#stateexp').val("");
-	$("#cityexp").empty();
+    ocultoexp = 0;
+    $('#ocultoExp').val(ocultoexp);
+    $('#job,#enterprise,#description,#stateexp,#from,#to').val("");
+    $("#cityexp").empty();
 });
 
 
@@ -145,20 +149,20 @@ function editarItemExp(item) {
 
 
     $('#exp').on('shown.bs.modal', function(e) {
-    	if (ocultoexp != 0) {
-        $('#job').val(job);
-        $('#job').focus();
-        $('#stateexp').val(state);
-        $('#stateexp').focus();
-        $('#enterprise').val(enterprise);
-        $('#enterprise').focus();
-        $('#stateexp').focus();
-        $('textarea#description').val(description);
-        $('#from').val(from);
-        $('#from').focus();
-        $('#to').val(to);
-        $('#to').focus();
-    	}
+        if (ocultoexp != 0) {
+            $('#job').val(job);
+            $('#job').focus();
+            $('#stateexp').val(state);
+            $('#stateexp').focus();
+            $('#enterprise').val(enterprise);
+            $('#enterprise').focus();
+            $('#stateexp').focus();
+            $('textarea#description').val(description);
+            $('#from').val(from);
+            $('#from').focus();
+            $('#to').val(to);
+            $('#to').focus();
+        }
 
 
     });

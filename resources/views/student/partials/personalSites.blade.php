@@ -15,6 +15,8 @@
                 <div class="modal-body">
                     <div class="row">
                         {{ Form::open(['action' => 'SitesController@store', 'method' => 'POST', 'class' => 'col-md-12']) }}
+                            <input name="ocultosite" type="hidden"/>
+
                             <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
 							<br>
                             

@@ -19,7 +19,7 @@
                 {{ Form::open(['action' => 'ProfessionalExperiencesController@store', 'method' => 'POST', 'class' => 'col-md-12']) }}
                     <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
                     <br>
-                    {{ Form::text('id', null, ['id' => 'ocultoExp']) }}
+                    {{ Form::hidden('id', null, ['id' => 'ocultoExp']) }}
                     <div class="input-field col-md-12">
                         <i class="material-icons prefix">business center</i>
                         {{ Form::text('job', null,['id' => "job"]) }}
