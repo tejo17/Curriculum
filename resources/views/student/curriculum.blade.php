@@ -14,6 +14,14 @@
 <script src="/js/angular.min.js"></script>
 <script src="/js/kendo.all.min.js"></script>
 <script src="/js/Curriculum/cycles.js"></script>
+<script src="/js/Curriculum/experiences.js"></script>
+<script src="/js/Curriculum/language.js"></script>
+<script src="/js/Curriculum/license.js"></script>
+<script src="/js/Curriculum/sites.js"></script>
+<script src="/js/Curriculum/certifications.js"></script>
+<script src="/js/Curriculum/otherGrades.js"></script>
+<script src="/js/Curriculum/aptitude.js"></script>
+<script src="/js/Curriculum/CV.js"></script>
 
 
 @endsection

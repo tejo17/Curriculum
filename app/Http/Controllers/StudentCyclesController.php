@@ -69,17 +69,16 @@ class StudentCyclesController extends Controller
 
                 /*Update*/
                 }else{
-
                     try {
+
                         $queries = \DB::table('studentCycles')
                         ->join('students','studentCycles.student_id','=','students.id')
                         ->where('student_id',$this->student_id)
                         ->where('studentCycles.id',$cycle['id'])
                         ->update(['center' => $cycle['center'],
-                                 'otherFormations' => $cycle['otherFormations'],
-                                 'from'            => $cycle['dateFrom'],
-                                 'to'              => $cycle['dateTo'],
-                                 'city_id'         => $city_id,
+                                 'dateFrom'            => $cycle['dateFrom'],
+                                 'dateTo'              => $cycle['dateTo'],
+                                 'studentCycles.city_id'         => $city_id,
                                  'student_id'      => $this->student_id,
                                  'cycle_id'	       => $cycle_id,
                                  ]);
@@ -94,8 +93,9 @@ class StudentCyclesController extends Controller
                     }  
                 }
                 
-        
-      return view('student.curriculum',compact('cycle'));       
+     
+        // Devuelvo la vista junto con las familias
+        return view('student.curriculum', compact('profFamilies', 'datos'));       
    }
 
    /*Listar los ciclos del estudiante*/

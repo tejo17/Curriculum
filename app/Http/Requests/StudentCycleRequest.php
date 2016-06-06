@@ -28,7 +28,7 @@ class StudentCycleRequest extends Request
          'dateFrom'        => 'required|digits:4',
          'dateTo'          => 'digits:4',
          'family'          => 'required|exists:profFamilies,name',
-         'cycle'           => 'required|exists:cycles,name',
+         /*'cycle'           => 'required|exists:cycles,name',*/
          'cityCycle'       => 'required',
          'stateCycle'      => 'required',
          'otherFormations' => 'between:2,255',

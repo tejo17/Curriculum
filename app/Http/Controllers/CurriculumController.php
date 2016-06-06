@@ -6,13 +6,66 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use DB;
 use Response;
-
+use Auth;
 
 class CurriculumController extends Controller
 {
 
     public function index(){
-        return view('student.curriculum');
+
+              if (isset(Auth::user()->id)) {
+            $user = Auth::user()->id;
+
+        /*Recuperar sus datos personales*/
+        $datos = \DB::table('students')
+        ->join('cities','students.city_id', '=' ,'cities.id')
+        ->join('states','states.id', '=' ,'cities.state_id')
+        ->join('users','users.id','=','user_id')
+        ->select('firstName','lastName','dni','nre','phone','address','curriculum','birthdate','nationality','states.name as state','cities.name as city','postalCode','carpeta')
+        ->where('user_id', $user)
+        ->get();
+
+        /*Por un problema con los registros de la base de datos, los códigos postales aunque sean de 4 digitos, deben llevar el 0 delante*/
+        $postal = $datos[0]->postalCode;
+        
+        if (strlen($postal) == 4) {
+            $postal = "0".$postal;
+        }
+
+        /*Recuperar el email del usuario*/
+        $user_email = $user_email = \DB::table('users')->where('id' , $user)->value('email');
+
+        /*Dar formato a la fecha*/
+        $birthdateFormat = explode('-',$datos[0]->birthdate);
+        $birthdateFormat = $birthdateFormat[2]."-".$birthdateFormat[1]."-".$birthdateFormat[0];
+
+        /*Almacenar en sesión los datos personales a mostrar*/
+         session(['firstName' => $datos[0]->firstName,
+                'lastName' => $datos[0]->lastName,
+                'dni' => $datos[0]->dni,
+                'nre' => $datos[0]->nre,
+                'phone' => $datos[0]->phone,
+                'address' => $datos[0]->address,
+                'curriculum' => $datos[0]->curriculum,
+                'birthdate' => $birthdateFormat,
+                'nationality' => $datos[0]->nationality,
+                'state' => $datos[0]->state,
+                'lastName' => $datos[0]->lastName,
+                'city' => $datos[0]->city,
+                'postalCode' => $postal,
+                'carpeta' => '/img/imgUser/' . \Auth::user()->carpeta . '/' .  \Auth::user()->image,
+                'email'   => $user_email,
+                'rutaSinBarra' => 'img/imgUser/' . \Auth::user()->carpeta . '/' . \Auth::user()->image,
+
+        ]);
+        }else{
+         return \Redirect::to('/');
+             Session::flash('type',"danger");
+         Session::flash("insert","Ha expirado la sessión");
+        }
+         
+        // Devuelvo la vista junto con las familias
+        return view('student.curriculum', compact('profFamilies', 'datos'));
     }
     
     /*Función para obtener las localidades de una provincia*/
