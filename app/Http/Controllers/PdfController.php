@@ -28,6 +28,8 @@ class PdfController extends Controller
     {
 
         $datos = $request->all();
+        //dd($datos);
+        $licencias = $datos['checkboxlicenses'];
         $aptitudes = self::cut($datos['checkboxaptitudes']);
         
         $otros = self::cut($datos['checkboxotrosCursos']);
@@ -35,15 +37,22 @@ class PdfController extends Controller
     
         $certificaciones = self::cut($datos['checkboxCertificaciones']);
         $certificaciones = array_chunk($certificaciones, 3);
-        if($certificaciones[0][0] == false){
-            $certificaciones[0] = 'vacio';
+        
+        if($licencias == ""){
+            $licencias = 'vacio';
         };
         if($otros[0][0] == false){
             $otros[0] = 'vacio';
         };
+        if($certificaciones[0][0] == false){
+            $certificaciones[0] = 'vacio';
+        };
+        if($aptitudes[0][0] == false){
+            $aptitudes[0] = 'vacio';
+        };
         //dd($certificaciones);
-       //dd(compact('datos','aptitudes','otros','certificaciones'));
-       $view =  \View::make('pdf.curriculum', compact('datos','aptitudes','otros','certificaciones'))->render();
+       //dd(compact('datos','aptitudes','otros','certificaciones','licencias'));
+       $view =  \View::make('pdf.curriculum', compact('datos','aptitudes','otros','certificaciones','licencias'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
         return $pdf->stream('invoice');

@@ -22,14 +22,19 @@ class StudentCyclesController extends Controller
    /*Insertar o actualizar ciclo del estudiante*/
    public function store(StudentCycleRequest $request)
    {
-      /*Se obtiene los datos del form, se obtiene el id de la ciudad y del ciclo*/
-       $cycle = $request->all();
-       $city_id = \DB::table('cities')->where('name' , $cycle['cityCycle'])->value('id');
-       $cycle_id = \DB::table('cycles')->where('name' , $cycle['cycle'])->value('id');
 
+      /*Se obtiene los datos del form, se obtiene el id de la ciudad y del ciclo*/
+       $actual = ""; 
+       $cycle = $request->all();
+
+       if ($cycle['actualForm'] == "cursando") {
+         $actual = "0000";
+       }else{
+        $actual = $cycle['dateTo'];
+       }
       /*Se comprueba si ya tiene insertado ese ciclo*/
        $exist = \DB::table('studentCycles')
-       ->where('cycle_id',$cycle_id)
+       ->where('cycle_id',$cycle['cycle'])
        ->where('student_id',$this->student_id)
        ->first();
 
@@ -45,10 +50,10 @@ class StudentCyclesController extends Controller
                 	          ->where('student_id',$this->student_id)
                 	          ->insert(['center'         => $cycle['center'],
                 	                   'dateFrom'        => $cycle['dateFrom'],
-                	                   'dateTo'          => $cycle['dateTo'],
-                	                   'city_id'         => $city_id,
+                	                   'dateTo'          => $actual,
+                	                   'city_id'         => $cycle['cityCycle'],
                 	                   'student_id'      => $this->student_id,
-                	                   'cycle_id'	       => $cycle_id,
+                	                   'cycle_id'	       => $cycle['cycle'],
                 	                   'created_at'      => date('YmdHms'),
                                      ]);
 
@@ -70,18 +75,20 @@ class StudentCyclesController extends Controller
                 /*Update*/
                 }else{
                     try {
-
                         $queries = \DB::table('studentCycles')
                         ->join('students','studentCycles.student_id','=','students.id')
                         ->where('student_id',$this->student_id)
                         ->where('studentCycles.id',$cycle['id'])
-                        ->update(['center' => $cycle['center'],
-                                 'dateFrom'            => $cycle['dateFrom'],
-                                 'dateTo'              => $cycle['dateTo'],
-                                 'studentCycles.city_id'         => $city_id,
-                                 'student_id'      => $this->student_id,
-                                 'cycle_id'	       => $cycle_id,
+                        ->update(['center'                       => $cycle['center'],
+                                 'dateFrom'                      => $cycle['dateFrom'],
+                                 'dateTo'                        => $actual,
+                                 'studentCycles.city_id'         => $cycle['cityCycle'],
+                                 'student_id'                    => $this->student_id,
+                                 'cycle_id'	                     => $cycle['cycle'],
+                                 'studentCycles.updated_at'      => date('YmdHms')
                                  ]);
+
+                                 
                         Session::flash('type',"success");
                         Session::flash('insert', "Ciclo actualizado.");
 

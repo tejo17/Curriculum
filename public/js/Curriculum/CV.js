@@ -1,10 +1,15 @@
 
 $('#generatePDF').click(function() {
+    var licencias = "";
     var otrosCursos = new Array();
-    var aptitudes = new Array();
     var certificaciones = new Array();
+    var aptitudes = new Array();
 
-
+    	//Si el checkbo es de licencias
+    	$(".checklice:checked").each(function() {
+    		licencias = $('#namelicenses').text();
+    	
+    	});
          // Si el checkbox es del apartado Certificaciones
         $(".checkcertf:checked").each(function() {
             certificaciones.push($(this).parent().parent().siblings('ul').children('.certf1').text() + "{}");
@@ -25,12 +30,8 @@ $('#generatePDF').click(function() {
             aptitudes.push($(this).parent().parent().siblings('ul').children('.campoapt1').text() + "{}");
         });
 
+   	$('#checkboxlicenses').val(licencias);
     $('#checkboxCertificaciones').val(certificaciones);
     $('#checkboxotrosCursos').val(otrosCursos);
     $('#checkboxaptitudes').val(aptitudes);
-    console.log($('#checkboxCertificaciones').val(),$('#checkboxotrosCursos').val(),$('#checkboxaptitudes').val());
-});
-
-$(function() {
-
 });

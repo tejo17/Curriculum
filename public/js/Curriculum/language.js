@@ -7,7 +7,7 @@ var ocultolanguage = 0;
 
 $(function() {
 
- //Carga por ajax listado modal lenguajes
+    //Carga por ajax listado modal lenguajes
     $.ajax({
         headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
         url: 'listlanguages',
@@ -39,7 +39,7 @@ $('#languages').on('show.bs.modal', function(e) {
         success: function(data) {
             for (var i = 0; i < data.length; i++) {
                 if (i == 31) {
-                    $("#language").append('<option selected value=' + data[i].value + '>' + data[i].value + '</option>');
+                    $("#language").append('<option selected value="' + data[i].value + '">' + data[i].value + '</option>');
                 } else {
                     $("#language").append('<option value=' + data[i].value + '>' + data[i].value + '</option>');
                 }
@@ -56,25 +56,13 @@ $('#languages').on('show.bs.modal', function(e) {
             $("#oralExpression option:contains('" + campo4 + "')").prop('selected', true);
             $("#ocultolanguage").val(ocultolanguage);
 
-            if (lang.length == 0) {
-                $("#language option:contains('Español')").prop('selected', true);
-            }
 
-            if (campo1.length == 0) {
-                $("#readingComprehension option:contains('Bajo')").prop('selected', true);
-            }
+            $("#language option:contains('Español')").prop('selected', true);
+            $("#readingComprehension option:contains('Bajo')").prop('selected', true);
+            $("#WrittedExpression option:contains('Bajo')").prop('selected', true);
+            $("#listeningComprehension option:contains('Bajo')").prop('selected', true);
+            $("#oralExpression option:contains('Bajo')").prop('selected', true);
 
-            if (campo2.length == 0) {
-                $("#WrittedExpression option:contains('Bajo')").prop('selected', true);
-            }
-
-            if (campo3.length == 0) {
-                $("#listeningComprehension option:contains('Bajo')").prop('selected', true);
-            }
-
-            if (campo4.length == 0) {
-                $("#oralExpression option:contains('Bajo')").prop('selected', true);
-            }
 
             lang = "";
             campo1 = "";

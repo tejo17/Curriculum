@@ -37,12 +37,10 @@ $('#sites').on('show.bs.modal', function(e) {
           if ($("#site option").text() == "") {
 
             for (var i = 0; i < data.length; i++) {
-                $("#site").append('<option "value="' + data[i].value + '">' + data[i].value + '</option>');
-            }
-            $('#sites').on('hide.bs.modal', function(e) {
-                $("#site").empty();
 
-            });
+               // $("#site").append('<option "value="' + data[i].id + '">' + data[i].value + '</option>');
+            }
+
         }
     }
 
@@ -53,7 +51,7 @@ $('#sites').on('show.bs.modal', function(e) {
 
 /*********************************************
 
-Función al cargar la modal de sitios personales
+Función al cerrar la modal de sitios personales
 
 *********************************************/
 
@@ -61,6 +59,7 @@ $('#sites').on('hide.bs.modal', function(e) {
     ocultosite = 0;
     $('#ocultosite').val(ocultosite);
     $("#personalsite").val('');
+    $("#site").empty();
 });
 
 /*************************************

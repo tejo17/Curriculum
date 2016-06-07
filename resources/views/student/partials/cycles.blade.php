@@ -50,7 +50,7 @@
                         {{ Form::select('cityCycle', [], null,['class' => 'form-control ',  'style'=> 'border:solid 1px lightgrey;', 'id' => 'cityform']) }}
                     </div>
 
-					@for ($i = 1960; $i <= 2016; $i++)
+					@for ($i = 1940; $i <= date('Y'); $i++)
 					  <?php $array[$i] = $i ?>
 					@endfor
 					

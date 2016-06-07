@@ -181,23 +181,26 @@
     </table>
 
     <!-- Tabla licencias de conducir -->
-      <table>
+    <?php if ($licencias != "vacio"): ?>
+     <table>
         <tr>
           <td style="width:265px; text-align:right"><span style="color:darkblue;">LICENCIAS DE CONDUCIR</span></td>
           <td style="width:475px;"></td>
         </tr>
         <tr>
           <td class="tds-left align-right"></td>
-          <td class="tds-right border-top-darkblue"><span style="padding-left:15px;">Licencias</span></td>
+          <td class="tds-right border-top-darkblue"><span style="padding-left:15px;">{{ $licencias }}</span></td>
         </tr>
         <tr>
           <td style="width:265px;"></td>
           <td style="width:475px;"></td>
         </tr>
       </table>
+    <?php endif ?>
 
       <!-- Tabla licencias de conducir -->
-      <table>
+      <?php if ($aptitudes[0] != "vacio"): ?>
+              <table>
         <tr>
           <td style="width:265px; text-align:right"><span style="color:darkblue;">APTITUDES</span></td>
           <td style="width:475px;"></td>
@@ -214,6 +217,7 @@
           <td style="width:475px;"></td>
         </tr>
       </table>
+      <?php endif ?>
   </div>
 </div>
 </body>

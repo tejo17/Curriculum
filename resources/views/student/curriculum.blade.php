@@ -17,7 +17,7 @@
 <script src="/js/Curriculum/experiences.js"></script>
 <script src="/js/Curriculum/language.js"></script>
 <script src="/js/Curriculum/license.js"></script>
-<script src="/js/Curriculum/sites.js"></script>
+<script src="/js/Curriculum/site.js"></script>
 <script src="/js/Curriculum/certifications.js"></script>
 <script src="/js/Curriculum/otherGrades.js"></script>
 <script src="/js/Curriculum/aptitude.js"></script>
@@ -81,7 +81,7 @@
                          <legend style="width:auto;">Permiso de Conducir</legend>
                          <div id="divlicenses" class="col-md-12"> 
                             <div class='selector'>
-                            <div class='switch'><label>Off<input type='checkbox' id='checklice' name='checklice'><span class='lever'></span>On</label></div>
+                            <div class='switch'><label>Off<input type='checkbox' class='checklice' name='checklice'><span class='lever'></span>On</label></div>
                             Permiso de Conducir
                                <input id=id_license  value="" type="hidden">
                                <a href="/estudiante/drivingLicenses" onclick='borrarItemLicense(this)' class='material-icons boton_borrar pull-right'>delete</a>
@@ -136,6 +136,7 @@
                         {{ Form::hidden('checkboxCertificaciones', null,['id' => "checkboxCertificaciones"]) }}
                         {{ Form::hidden('checkboxotrosCursos', null,['id' => "checkboxotrosCursos"]) }}
                         {{ Form::hidden('checkboxaptitudes', null,['id' => "checkboxaptitudes"]) }}
+                        {{ Form::hidden('checkboxlicenses', null,['id' => "checkboxlicenses"]) }}
 
                      <div class="form-group">
                         <div class="col-md-12 text-center">

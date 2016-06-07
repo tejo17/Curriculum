@@ -46,7 +46,6 @@ class ProfessionalExperiencesController extends Controller
    {
         /*Se recuperarn los datos del form y se obtiene el id de la ciudad*/
         $professionalExperience = $request->all();
-        $city_id = \DB::table('cities')->where('name' , $professionalExperience['city'])->value('id');
 
         /*Insertar (Id hidden)*/
         if ($professionalExperience['id'] == 0) {
@@ -59,7 +58,7 @@ class ProfessionalExperiencesController extends Controller
                      'job'         => $professionalExperience['job'],
                      'from'        => $professionalExperience['from'],
                      'to'          => $professionalExperience['to'],
-                     'city_id'     => $city_id,
+                     'city_id'     => $professionalExperience['city'],
                      'student_id'  => $this->student_id,
                      'created_at'  => date('YmdHms')]);
              Session::flash('type',"success");
@@ -78,12 +77,13 @@ class ProfessionalExperiencesController extends Controller
               ->join('students','ProfessionalExperiences.student_id','=','students.id')
               ->where('student_id',$this->student_id)
               ->where('ProfessionalExperiences.id',$professionalExperience['id'])
-              ->update(['enterprise' => $professionalExperience['enterprise'],
-                       'description' => $professionalExperience['description'],
-                       'job'         => $professionalExperience['job'],
-                       'from'        => $professionalExperience['from'],
-                       'to'          => $professionalExperience['to'],
-                       'ProfessionalExperiences.city_id'     => $city_id
+              ->update(['enterprise'                        => $professionalExperience['enterprise'],
+                       'description'                        => $professionalExperience['description'],
+                       'job'                                => $professionalExperience['job'],
+                       'from'                               => $professionalExperience['from'],
+                       'to'                                 => $professionalExperience['to'],
+                       'ProfessionalExperiences.city_id'    => $professionalExperience['city'],
+                       'ProfessionalExperiences.updated_at'                         => date('YmdHms')
                        ]);
               Session::flash('type',"success");
               Session::flash('insert', "Trabajo modificado");

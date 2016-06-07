@@ -19,8 +19,7 @@ class SitesController extends Controller
     /*Obtener los sitios personales.*/
     public function getName()
     {
-        $queries = \DB::table('personalsites')
-            ->get();
+        $queries = \DB::table('personalsites')->get();
         
         foreach ($queries as $query)
         {
@@ -32,10 +31,9 @@ class SitesController extends Controller
    /*Store y Update*/
    public function store(PersonalSiteRequest $request)
    {
-      $account = $request->input('personalsite');
-      $site = $request->input('site');
-      $site_id = \DB::table('personalsites')->where('site' , $site)->value('id');
       
+      $site = $request->input();
+      dd($site);
        /*Se comprueba si ya tiene insertado ese sitio personal*/
        $exist = \DB::table('studentPersonalSites')
        ->where('personalsite',$account)

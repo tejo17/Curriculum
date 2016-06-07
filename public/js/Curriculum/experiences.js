@@ -9,10 +9,14 @@ $(function() {
         url: 'listExperiences',
         type: 'post',
         success: function(data) {
-
+            var hasta;
             for (var i = 0; i < data.length; i++) {
-
-                $('#divexppro').append("<div class='selector '><input type='hidden' value=" + data[i].id + "></input><a href='/estudiante/professionalExperiences/' data-method='DELETE' onclick='borrarItemExp(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#exp' onclick='editarItemExp(this)';><i class='material-icons'>mode_edit</i></a><h6 id='exp1' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Puesto de trabajo: <span style='color:black; font-weight:normal'>" + data[i].job + "</span></h6><h6 id='exp2' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Empresa: <span style='color:black; font-weight:normal'>" + data[i].enterprise + "</span></h6><h6 id='exp3' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Descripción: <span style='color:black; font-weight:normal'>" + data[i].description + "</span></h6><h6 id='exp4' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Ciudad: <span style='color:black; font-weight:normal'>" + data[i].State + "</span></h6><h6 id='exp5' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Localidad: <span style='color:black; font-weight:normal'>" + data[i].City + "</span></h6><h6 id='exp6' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Inicio: <span style='color:black; font-weight:normal'>" + data[i].from + "</span></h6><h6 id='exp7' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Fin: <span style='color:black; font-weight:normal'>" + data[i].to + "</span></h6></div><hr class='sep'>");
+                if (data[i].to == "0000-00-00") {
+                    hasta = "Cursando Actualmente"
+                }else{
+                    hasta = data[i].to;
+                }
+                $('#divexppro').append("<div class='selector '><input type='hidden' value=" + data[i].id + "></input><a href='/estudiante/professionalExperiences/' data-method='DELETE' onclick='borrarItemExp(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#exp' onclick='editarItemExp(this)';><i class='material-icons'>mode_edit</i></a><h6 id='exp1' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Puesto de trabajo: <span style='color:black; font-weight:normal'>" + data[i].job + "</span></h6><h6 id='exp2' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Empresa: <span style='color:black; font-weight:normal'>" + data[i].enterprise + "</span></h6><h6 id='exp3' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Descripción: <span style='color:black; font-weight:normal'>" + data[i].description + "</span></h6><h6 id='exp4' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Ciudad: <span style='color:black; font-weight:normal'>" + data[i].State + "</span></h6><h6 id='exp5' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Localidad: <span style='color:black; font-weight:normal'>" + data[i].City + "</span></h6><h6 id='exp6' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Inicio: <span style='color:black; font-weight:normal'>" + data[i].from + "</span></h6><h6 id='exp7' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Fin: <span style='color:black; font-weight:normal'>" + hasta + "</span></h6></div><hr class='sep'>");
             }
         }
 
@@ -98,10 +102,10 @@ $('#exp').on('shown.bs.modal', function(e) {
 
                 if ($("#cityexp option").text() == "") {
                     for (var i = 0; i < data.ciudades.length; i++) {
-                        if (poblacionseleccionado == data.ciudades[i]) {
-                            $("#cityexp").append('<option selected value=' + data.ciudades[i] + '>' + data.ciudades[i] + '</option>');
+                        if (poblacionseleccionado == data.ciudades[i].nombre) {
+                            $("#cityexp").append('<option selected value="' + data.ciudades[i].id + '">' + data.ciudades[i].nombre + '</option>');
                         } else {
-                            $("#cityexp").append('<option value=' + data.ciudades[i] + '>' + data.ciudades[i] + '</option>');
+                            $("#cityexp").append('<option value="' + data.ciudades[i].id + '">' + data.ciudades[i].nombre + '</option>');
                         }
                     }
                 }

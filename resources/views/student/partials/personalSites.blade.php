@@ -21,7 +21,7 @@
 							<br>
                             
                             <div class="col-md-5">
-                            {{ Form::hidden('id', null,['id' => "ocultosite"]) }}
+                            {{ Form::text('id', null,['id' => "ocultosite"]) }}
                                     {{ Form::label('site', 'Tipo de mensajería') }}
                                     {{ Form::select('site', [], null,['class' => 'form-control ',  'style'=> 'border:solid 1px lightgrey;', 'id' => 'site']) }}
                             </div>

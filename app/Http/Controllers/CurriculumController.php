@@ -74,10 +74,13 @@ class CurriculumController extends Controller
         $provincia = $request->input('ciudad');
 
         $state = \DB::table('states')->where('name',$provincia)->value('id');            
-        $cities = \DB::table('cities')->where('state_id',$state)->orderBy('name')->distinct()->lists('name');
-        foreach ($cities as $title) {  
+        $cities = \DB::table('cities')->where('state_id',$state)->distinct('name')->orderBy('name')->get();
+        foreach ($cities as $city_id => $name) {  
 
-           array_push($ciudades, $title);
+            $cityid = $name->id;
+            $name = $name->name;
+            $ciudades[] = array("id" => $cityid,
+            "nombre" => $name);
        }    
 
        return response()->json([           
@@ -106,17 +109,21 @@ class CurriculumController extends Controller
         /*Obtener ciclos de una familia profesional*/
        public function autolocalCycles(Request $request){  
         $ciclos = array();
+
         $family_input = $request->input('familia');
 
         $family = \DB::table('proffamilies')->where('name',$family_input)->value('id');   
                  
-        $cycles = \DB::table('cycles')->where('profFamilie_id',$family)->orderBy('name')->distinct()->lists('name');
+        $cycles = \DB::table('cycles')->where('profFamilie_id',$family)->distinct('name')->orderBy('name')->get();
+        
+        foreach ($cycles as $cicle_id => $name) {  
 
-        foreach ($cycles as $title) {  
+            $cycleid = $name->id;
+            $name = $name->name;
+            $ciclos[] = array("id" => $cycleid,
+            "nombre" => $name);
 
-           array_push($ciclos, $title);
        }    
-
        return response()->json([           
         'ciclos' => $ciclos,
         ]);
