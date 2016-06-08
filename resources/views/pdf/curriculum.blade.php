@@ -31,62 +31,87 @@
           <td style="width:475px;"><span style="padding-left:15px;">{{ $datos['email'] }}</span></td>
         </tr>
         <tr>
-          <td style="width:475px;"><span style="padding-left:15px; margin-right;10px" >Redes sociales, Nombre red social :  nombre cuenta.</span></td>
-        </tr>
-        <tr>
-          <td rowspan="5" style="width:265px;"></td>
           <td style="width:475px;"><span style="padding-left:15px;">{{ $datos['birthdate'] }} , Nacionalidad: {{ $datos['nationality'] }}</span></td>   
         </tr>
+        <?php if ($sitios[0] != "vacio"): ?>
+          <?php foreach ($sitios as $sitio): ?>
+        <tr>
+          <td colspan="" style="width:265px;"></td>
+          <td style="width:475px;"><span style="padding-left:15px; margin-right:10px" > {{ $sitio[0] }} :  {{ $sitio[1] }}</span></td>
+        </tr>
+          <?php endforeach ?>
+      <?php endif ?>
       </table>
 
       <!-- Tabla experiencia profesional -->
+      <?php if ($experiences[0] != "vacio"): ?>
       <table>
         <tr>
           <td style="width:265px; text-align:right "><span style="color:darkbluE;">EXPERIENCIA PROFESIONAL</span></td>
           <td style="width:475px;"></td>            
         </tr>
-        <div id="curexp"></div>
+        <?php foreach ($experiences as $experience): ?>
+          
         <tr>
-          <td class="tds-left align-right"><span style="margin-left:125px">(01-10-2006 –01- 04-2010)</span></td>
-          <td class="tds-right border-top-darkblue"><span style="padding-left:15px;">Nombre del empleo</span></td>         
+          <td class="tds-left align-right"><span style="margin-left:125px">{{ $experience [5]}} – {{ $experience[6]}}</span></td>
+          <td class="tds-right border-top-darkblue"><span style="padding-left:15px;">{{ $experience [0]}}</span></td>         
         </tr>
         <tr>
           <td style="width:265px;"></td>
-          <td style="width:475px;"><span style="padding-left:15px;">Empresa en la que trabajó/a. Ciudad y Provincia</span></td>         
+          <td style="width:475px;"><span style="padding-left:15px;">{{ $experience [1]}}</span></td>         
         </tr>
         <tr>
           <td style="width:265px;"></td>
-          <td style="width:475px;"><span style="padding-left:15px;">Descripción</span></td>
+          <td style="width:475px;"><span style="padding-left:15px;">{{ $experience [4]}}</span></td>         
+        </tr>
+        <tr>
+          <td style="width:265px;"></td>
+          <td style="width:475px;"><span style="padding-left:15px;">{{ $experience [3]}}</span></td>         
+        </tr>
+        <tr>
+          <td style="width:265px;"></td>
+          <td style="width:475px;"><span style="padding-left:15px;">{{ $experience [2]}}</span></td>
         </tr>  
         <tr>
           <td style="width:265px;"></td>
           <td style="width:475px;"></td>
         </tr>
+        <?php endforeach ?>
       </table>
+      <?php endif ?>
 
       <!-- Tabla educación y formación -->
+      <?php if ($ciclos[0] != "vacio"): ?>
       <table>
         <tr>
           <td style="width:265px; text-align:right"><span style="color:darkblue;">EDUCACIÓN Y FORMACIÓN</span></td>
           <td style="width:475px;"></td>
         </tr>
+        <?php foreach ($ciclos as $ciclo): ?>
+          
         <tr>
-          <td class="tds-left align-right"><span>(2006–2010) ó (2015-cursando)</span></td>
-          <td class="tds-right border-top-darkblue"><span style="padding-left:15px;">Nombre del título</span></td>
+          <td class="tds-left align-right"><span>{{ $ciclo[6] }} - {{ $ciclo[7] }}</span></td>
+          <td class="tds-right border-top-darkblue"><span style="padding-left:15px;">{{ $ciclo[1] }}</span></td>
         </tr>
         <tr>
           <td style="width:265px;"></td>
-          <td style="width:475px;"><span style="padding-left:15px;">Centro en el que se obtuvo el título. Localidad y Provincia</span></td>
+          <td style="width:475px;"><span style="padding-left:15px;">{{ $ciclo[3] }}</span></td>
         </tr>
         <tr>
           <td style="width:265px;"></td>
-          <td style="width:475px; margin-left:15px"><span style="padding-left:15px;">Descripción</span></td>
+          <td style="width:475px; margin-left:15px"><span style="padding-left:15px;">{{ $ciclo[4] }}</span></td>
+        </tr>
+        <tr>
+          <td style="width:265px;"></td>
+          <td style="width:475px; margin-left:15px"><span style="padding-left:15px;">{{ $ciclo[5] }}</span></td>
         </tr>
          <tr>
           <td style="width:265px;"></td>
           <td style="width:475px;"></td>
         </tr>  
+      <?php endforeach ?>
       </table>
+      <?php endif ?>
       
       <!-- Tabla Certificaciones -->
         <?php if ($certificaciones[0] != "vacio"): ?>
@@ -149,6 +174,7 @@
      <?php endif ?>
 
       <!-- Tabla de idiomas -->
+      <?php if ($lenguajes[0] != "vacio"): ?>
       <table>
        <tr>
         <td style="width:265px; text-align:right"><span style="color:darkblue;">IDIOMAS</span></td>
@@ -161,16 +187,18 @@
         <td class="tds-left"><span style="margin-left:105px"></span></td>
         <td class="td-idiomas align-center"><span style="font-weight:bold">Comprensión De Lectura</span></td>
         <td class="td-idiomas align-center"><span style="font-weight:bold">Comprensión Auditiva</span></td>
-        <td class="td-idiomas align-center" style="padding-bottom:14px;"><span style="font-weight:bold">Expresión Oral</span></td>
-        <td class="td-idiomas align-center" style="padding-bottom:14px;"><span style="font-weight:bold; padding-top:5px">Expresión Escrita</span></td>
+        <td class="td-idiomas align-center" style="padding-bottom:14px;"><span style="font-weight:bold">Expresión Escrita</span></td>
+        <td class="td-idiomas align-center" style="padding-bottom:14px;"><span style="font-weight:bold; padding-top:5px">Expresión Oral</span></td>
       </tr>
+      <?php foreach ($lenguajes as $lenguaje): ?>  
       <tr>
-        <td class"align-right" style="width:265px;">Idioma</td>
-        <td class="align-center td-nivel"><span>Bajo</span></td>
-        <td class="align-center td-nivel"><span>Bajo</span></td>
-        <td class="align-center td-nivel"><span>Bajo</span></td>
-        <td class="align-center td-nivel"><span>Bajo</span></td> 
+        <td class="align-right" style="width:265px;font-weight:bold;">{{ $lenguaje[0] }}</td>
+        <td class="align-center td-nivel"><span>{{ $lenguaje[1] }}</span></td>
+        <td class="align-center td-nivel"><span>{{ $lenguaje[2] }}</span></td>
+        <td class="align-center td-nivel"><span>{{ $lenguaje[3] }}</span></td>
+        <td class="align-center td-nivel"><span>{{ $lenguaje[4] }}</span></td> 
       </tr>
+      <?php endforeach ?>
        <tr>
         <td style="width:265px;"></td>
         <td class="td-nivel"></td>
@@ -179,6 +207,7 @@
         <td class="td-nivel"></td> 
       </tr>
     </table>
+      <?php endif ?>
 
     <!-- Tabla licencias de conducir -->
     <?php if ($licencias != "vacio"): ?>

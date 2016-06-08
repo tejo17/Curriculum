@@ -1,8 +1,8 @@
-var lang;
-var campo1;
-var campo2;
-var campo3;
-var campo4;
+var lang = 0;
+var lang1 = 0;
+var lang2 = 0;
+var lang3 = 0;
+var lang4 = 0;
 var ocultolanguage = 0;
 
 $(function() {
@@ -17,7 +17,7 @@ $(function() {
 
             for (var i = 0; i < data.length; i++) {
 
-                $('#divlanguage').append("<div class='selector table-container'><input id=id_language type='hidden' value=" + data[i].id + "></input><a href='/estudiante/languages' data-method='DELETE' onclick='borrarItem(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#languages' onclick='editarItem(this)';><i class='material-icons'>mode_edit</i></a><table class='table table-striped'><h5 style='text-align:center;font-weight:bold;'>" + data[i].language + "</h5><thead><tr><th>Comprensión de lectura</th><th>Comprensión auditiva</th><th>Expresión Oral</th><th>Expresión Escrita</th></tr></thead><tbody><tr><td class='campo1'>" + data[i].readingComprehension + "</td><td class='campo2'>" + data[i].listeningComprehension + "</td><td class='campo3'>" + data[i].oralExpression + "</td><td class='campo4'>" + data[i].WrittedExpression + "</td></tr></tbody></table></div><hr class='sep'>");
+                $('#divlanguage').append("<div class='selector table-container'><input id=id_language type='hidden' value=" + data[i].id + "><div class='switch'><label>Off<input type='checkbox' class='checklang' name='checkapt'><span class='lever'></span>On</label></div></input><input id=id_language type='hidden' value=" + data[i].id + "></input><a href='/estudiante/languages' data-method='DELETE' onclick='borrarItem(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#languages' onclick='editarItem(this)';><i class='material-icons'>mode_edit</i></a><table class='table table-striped'><h5 style='text-align:center;font-weight:bold;'>" + data[i].language + "</h5><thead><tr><th>Comprensión de lectura</th><th>Comprensión auditiva</th><th>Expresión Escrita</th><th>Expresión Oral</th></tr></thead><tbody><tr><td class='lang1'>" + data[i].readingComprehension + "</td><td class='lang2'>" + data[i].listeningComprehension + "</td><td class='lang3'>" + data[i].WrittedExpression + "</td><td class='lang4'>" + data[i].oralExpression + "</td></tr></tbody></table></div><hr class='sep'>");
             }
         }
 
@@ -44,32 +44,46 @@ $('#languages').on('show.bs.modal', function(e) {
                     $("#language").append('<option value=' + data[i].value + '>' + data[i].value + '</option>');
                 }
             }
+
+
+
             $('#languages').on('hide.bs.modal', function(e) {
                 $("#language").empty();
 
             });
 
             $("#language option:contains('" + lang + "')").prop('selected', true);
-            $("#readingComprehension option:contains('" + campo1 + "')").prop('selected', true);
-            $("#WrittedExpression option:contains('" + campo2 + "')").prop('selected', true);
-            $("#listeningComprehension option:contains('" + campo3 + "')").prop('selected', true);
-            $("#oralExpression option:contains('" + campo4 + "')").prop('selected', true);
+            $("#readingComprehension option:contains('" + lang1 + "')").prop('selected', true);
+            $("#WrittedExpression option:contains('" + lang2 + "')").prop('selected', true);
+            $("#listeningComprehension option:contains('" + lang3 + "')").prop('selected', true);
+            $("#oralExpression option:contains('" + lang4 + "')").prop('selected', true);
             $("#ocultolanguage").val(ocultolanguage);
 
 
-            $("#language option:contains('Español')").prop('selected', true);
-            $("#readingComprehension option:contains('Bajo')").prop('selected', true);
-            $("#WrittedExpression option:contains('Bajo')").prop('selected', true);
-            $("#listeningComprehension option:contains('Bajo')").prop('selected', true);
-            $("#oralExpression option:contains('Bajo')").prop('selected', true);
+            if (lang1.length == 0) {
+                 $("#readingComprehension option:contains('Bajo')").prop('selected', true);
+             }
+ 
+             if (lang2.length == 0) {
+                 $("#WrittedExpression option:contains('Bajo')").prop('selected', true);
+             }
+ 
+             if (lang3.length == 0) {
+                 $("#listeningComprehension option:contains('Bajo')").prop('selected', true);
+             }
+ 
+             if (lang4.length == 0) {
+                 $("#oralExpression option:contains('Bajo')").prop('selected', true);
+             }
+
 
 
             lang = "";
-            campo1 = "";
-            campo2 = "";
-            campo3 = "";
-            campo3 = "";
-            campo4 = "";
+            lang1 = "";
+            lang2 = "";
+            lang3 = "";
+            lang3 = "";
+            lang4 = "";
         }
 
     });
@@ -103,21 +117,25 @@ function editarItem(item) {
     var table = $(item).parent().children('table');
     lang = table.parent().children('h5').text();
 
-    campo1 = table.children('tbody').children('tr').children('.campo1').text();
-    campo2 = table.children('tbody').children('tr').children('.campo2').text();
-    campo3 = table.children('tbody').children('tr').children('.campo3').text();
-    campo4 = table.children('tbody').children('tr').children('.campo4').text();
-    if ((campo1 != "Alto") && (campo1 != "Medio") && ("Bajo")) {
-        campo1 = "Bajo";
+    lang1 = table.children('tbody').children('tr').children('.lang1').text();
+    console.log(lang1);
+    lang2 = table.children('tbody').children('tr').children('.lang2').text();
+    console.log(lang2);
+    lang3 = table.children('tbody').children('tr').children('.lang3').text();
+    console.log(lang3);
+    lang4 = table.children('tbody').children('tr').children('.lang4').text();
+    console.log(lang4);
+    if ((lang1 != "Alto") && (lang1 != "Medio") && ("Bajo")) {
+        lang1 = "Bajo";
     }
-    if ((campo2 != "Alto") && (campo2 != "Medio") && ("Bajo")) {
-        campo2 = "Bajo";
+    if ((lang2 != "Alto") && (lang2 != "Medio") && ("Bajo")) {
+        lang2 = "Bajo";
     }
-    if ((campo3 != "Alto") && (campo3 != "Medio") && ("Bajo")) {
-        campo3 = "Bajo";
+    if ((lang3 != "Alto") && (lang3 != "Medio") && ("Bajo")) {
+        lang3 = "Bajo";
     }
-    if ((campo4 != "Alto") && (campo4 != "Medio") && ("Bajo")) {
-        campo4 = "Bajo";
+    if ((lang4 != "Alto") && (lang4 != "Medio") && ("Bajo")) {
+        lang4 = "Bajo";
     }
 }
 

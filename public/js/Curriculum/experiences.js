@@ -16,7 +16,7 @@ $(function() {
                 }else{
                     hasta = data[i].to;
                 }
-                $('#divexppro').append("<div class='selector '><input type='hidden' value=" + data[i].id + "></input><a href='/estudiante/professionalExperiences/' data-method='DELETE' onclick='borrarItemExp(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#exp' onclick='editarItemExp(this)';><i class='material-icons'>mode_edit</i></a><h6 id='exp1' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Puesto de trabajo: <span style='color:black; font-weight:normal'>" + data[i].job + "</span></h6><h6 id='exp2' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Empresa: <span style='color:black; font-weight:normal'>" + data[i].enterprise + "</span></h6><h6 id='exp3' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Descripción: <span style='color:black; font-weight:normal'>" + data[i].description + "</span></h6><h6 id='exp4' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Ciudad: <span style='color:black; font-weight:normal'>" + data[i].State + "</span></h6><h6 id='exp5' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Localidad: <span style='color:black; font-weight:normal'>" + data[i].City + "</span></h6><h6 id='exp6' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Inicio: <span style='color:black; font-weight:normal'>" + data[i].from + "</span></h6><h6 id='exp7' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Fin: <span style='color:black; font-weight:normal'>" + hasta + "</span></h6></div><hr class='sep'>");
+                $('#divexppro').append("<div class='selector'><input id=ocultoprof type='hidden' value=" + data[i].id + "><div class='switch'><label>Off<input type='checkbox' class='checkprof' name='checkcycle'><span class='lever'></span>On</label></div><a href='/estudiante/professionalExperiences/' data-method='DELETE' onclick='borrarItemExp(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#exp' onclick='editarItemExp(this)';><i class='material-icons'>mode_edit</i></a><h6  style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Puesto de trabajo: <span class='exp1' style='color:black; font-weight:normal'>" + data[i].job + "</span></h6><h6  style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Empresa: <span class='exp2' style='color:black; font-weight:normal'>" + data[i].enterprise + "</span></h6><h6  style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Descripción: <span class='exp3' style='color:black; font-weight:normal'>" + data[i].description + "</span></h6><h6  style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Ciudad: <span class='exp4' style='color:black; font-weight:normal'>" + data[i].State + "</span></h6><h6  style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Localclassad: <span class='exp5' style='color:black; font-weight:normal'>" + data[i].City + "</span></h6><h6  style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Inicio: <span class='exp6' style='color:black; font-weight:normal'>" + data[i].from + "</span></h6><h6  style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Fin: <span class='exp7' style='color:black; font-weight:normal'>" + hasta + "</span></h6></div><hr class='sep'>");
             }
         }
 
@@ -140,16 +140,17 @@ Editar Experiencias Profesionales
 ********************************/
 
 function editarItemExp(item) {
+    console.log('test');
     ocultoexp = $(item).parent().children('input')[0].value;
     $('#ocultoExp').val(ocultoexp);
 
-    var job = $(item).siblings('#exp1').children('span').text();
-    var enterprise = $(item).siblings('#exp2').children('span').text();
-    var description = $(item).siblings('#exp3').children('span').text();
-    var state = $(item).siblings('#exp4').children('span').text();
-    poblacionseleccionado = $(item).siblings('#exp5').children('span').text()
-    var from = $(item).siblings('#exp6').children('span').text();
-    var to = $(item).siblings('#exp7').children('span').text();
+    var job = $(item).siblings('h6').children('.exp1').text();
+    var enterprise = $(item).siblings('h6').children('.exp2').text();
+    var description = $(item).siblings('h6').children('.exp3').text();
+    var state = $(item).siblings('h6').children('.exp4').text();
+    poblacionseleccionado = $(item).siblings('h6').children('.exp5').text();
+    var from = $(item).siblings('h6').children('.exp6').text();
+    var to = $(item).siblings('h6').children('.exp7').text();
 
 
     $('#exp').on('shown.bs.modal', function(e) {

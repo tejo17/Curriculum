@@ -104,7 +104,8 @@ class AptitudesController extends Controller
        Session::flash('type',"warning");
        Session::flash('insert', "Conjunto de aptitudes eliminado.");
       //DELETE $aptitude
-      return $apt;
+     return redirect()->route('estudiante.aptitudes.index')->with('fail',"Conjunto de aptitudes eliminado.");
+      //return view('student.curriculum')->with('insert','Registro borrado');
     } 
 
 }

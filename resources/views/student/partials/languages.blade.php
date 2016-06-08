@@ -31,12 +31,12 @@
                                     {{ Form::select('readingComprehension', ['bajo' => 'Bajo', 'medio' => 'Medio', 'alto' => 'Alto'], null,['class' => 'form-control ',  'style'=> 'border:solid 1px lightgrey;', 'id' => 'readingComprehension']) }}
                             </div>
                             <div class="col-md-4" style="margin-top:20px">
-                                    {{ Form::label('WrittedExpression', 'Expresión escrita') }}
-                                    {{ Form::select('WrittedExpression', ['bajo' => 'Bajo', 'medio' => 'Medio', 'alto' => 'Alto'], null,['class' => 'form-control ',  'style'=> 'border:solid 1px lightgrey;', 'id' => 'WrittedExpression']) }}
+                                    {{ Form::label('listeningComprehension', 'Comprensión Auditiva') }}
+                                    {{ Form::select('listeningComprehension', ['bajo' => 'Bajo', 'medio' => 'Medio', 'alto' => 'Alto'], null,['class' => 'form-control ',  'style'=> 'border:solid 1px lightgrey;', 'id' => 'listeningComprehension']) }}
                             </div>
                             <div class="col-md-4" style="clear:both; margin-top:10px">
-                                    {{ Form::label('listeningComprehension', 'Compresión Auditiva') }}
-                                    {{ Form::select('listeningComprehension', ['bajo' => 'Bajo', 'medio' => 'Medio', 'alto' => 'Alto'], null,['class' => 'form-control ',  'style'=> 'border:solid 1px lightgrey;', 'id' => 'listeningComprehension']) }}
+                                    {{ Form::label('WrittedExpression', 'Expresión escrita') }}
+                                    {{ Form::select('WrittedExpression', ['bajo' => 'Bajo', 'medio' => 'Medio', 'alto' => 'Alto'], null,['class' => 'form-control ',  'style'=> 'border:solid 1px lightgrey;', 'id' => 'WrittedExpression']) }}
                             </div>
                             <div class="col-md-4" style="margin-bottom:15px; margin-top:10px">
                                     {{ Form::label('oralExpression', 'Expresión Oral') }}

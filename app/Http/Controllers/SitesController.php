@@ -33,10 +33,10 @@ class SitesController extends Controller
    {
       
       $site = $request->input();
-      dd($site);
+
        /*Se comprueba si ya tiene insertado ese sitio personal*/
        $exist = \DB::table('studentPersonalSites')
-       ->where('personalsite',$account)
+       ->where('personalsite',$site['personalsite'])
        ->where('student_id',$this->student_id)
        ->first();
 
@@ -49,8 +49,8 @@ class SitesController extends Controller
                 ->join('personalSites','studentPersonalSites.site_id','=','personalSites.id')
                 ->join('students','studentPersonalSites.student_id','=','students.id')
                 ->where('student_id',$this->student_id)
-                ->insert(['personalSite' => $account,
-                         'site_id' => $site_id,
+                ->insert(['personalSite' => $site['personalsite'],
+                         'site_id' => $site['site'],
                          'student_id' => $this->student_id,
                          'created_at' => date('YmdHms'),
                          ]);
@@ -76,8 +76,8 @@ class SitesController extends Controller
           ->join('personalSites','studentPersonalSites.site_id','=','personalSites.id')
           ->join('students','studentPersonalSites.student_id','=','students.id')
           ->where('studentpersonalsites.id',$request->input('id'))
-          ->update(['personalSite' => $account,
-                   'site_id' => $site_id,
+          ->update(['personalSite' => $site['personalsite'],
+                   'site_id' => $site['site'],
                    'student_id' => $this->student_id,
                    ]);
            Session::flash('type',"success");

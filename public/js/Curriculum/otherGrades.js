@@ -19,33 +19,6 @@ $(function() {
 
 });
 
-    /*********************************************
-
-    Función al cargar la modal de Otros Cursos
-
-    *********************************************/
-
-    $('#sites').on('show.bs.modal', function(e) {
-        $('#ocultosite').val(ocultosite);
-        $.ajax({
-            headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
-            url: 'cargaSites',
-            type: 'post',
-            success: function(data) {
-
-                for (var i = 0; i < data.length; i++) {
-                    $("#site").append('<option "value="' + data[i].value + '">' + data[i].value + '</option>');
-                }
-                $('#sites').on('hide.bs.modal', function(e) {
-                    $("#site").empty();
-
-                });
-            }
-
-        });
-
-    });
-
 
     /*********************************************
 

@@ -29,30 +29,55 @@ class PdfController extends Controller
 
         $datos = $request->all();
         //dd($datos);
+
+        $experiences = self::cut($datos['checkboxexperiences']);
+        $experiences = array_chunk($experiences, 7);
+ 
+        $ciclos = self::cut($datos['checkboxciclos']);
+        $ciclos = array_chunk($ciclos, 8);
+
+        $lenguajes = self::cut($datos['checkboxlenguajes']);
+        $lenguajes = array_chunk($lenguajes, 5);
+
         $licencias = $datos['checkboxlicenses'];
-        $aptitudes = self::cut($datos['checkboxaptitudes']);
+        
+        $sitios = self::cut($datos['checkboxsites']);
+        $sitios = array_chunk($sitios, 2);
+
+        $certificaciones = self::cut($datos['checkboxCertificaciones']);
+        $certificaciones = array_chunk($certificaciones, 3);
         
         $otros = self::cut($datos['checkboxotrosCursos']);
         $otros = array_chunk($otros, 4);
     
-        $certificaciones = self::cut($datos['checkboxCertificaciones']);
-        $certificaciones = array_chunk($certificaciones, 3);
-        
+        $aptitudes = self::cut($datos['checkboxaptitudes']);
+
+        if($experiences[0][0] == false){
+            $experiences[0] = 'vacio';
+        };
+        if($ciclos[0][0] == false){
+            $ciclos[0] = 'vacio';
+        };
+        if($lenguajes[0][0] == false){
+            $lenguajes[0] = 'vacio';
+        };
         if($licencias == ""){
             $licencias = 'vacio';
         };
-        if($otros[0][0] == false){
-            $otros[0] = 'vacio';
+        if($sitios[0][0] == false){
+            $sitios[0] = 'vacio';
         };
         if($certificaciones[0][0] == false){
             $certificaciones[0] = 'vacio';
         };
+        if($otros[0][0] == false){
+            $otros[0] = 'vacio';
+        };
         if($aptitudes[0][0] == false){
             $aptitudes[0] = 'vacio';
         };
-        //dd($certificaciones);
-       //dd(compact('datos','aptitudes','otros','certificaciones','licencias'));
-       $view =  \View::make('pdf.curriculum', compact('datos','aptitudes','otros','certificaciones','licencias'))->render();
+       //dd(compact('datos','experiences','ciclos','lenguajes','licencias','sitios','certificaciones','otros','aptitudes'));
+       $view =  \View::make('pdf.curriculum', compact('datos','experiences','ciclos','lenguajes','licencias','sitios','certificaciones','otros','aptitudes'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
         return $pdf->stream('invoice');

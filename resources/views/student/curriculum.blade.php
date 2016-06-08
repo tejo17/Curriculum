@@ -17,11 +17,11 @@
 <script src="/js/Curriculum/experiences.js"></script>
 <script src="/js/Curriculum/language.js"></script>
 <script src="/js/Curriculum/license.js"></script>
-<script src="/js/Curriculum/site.js"></script>
 <script src="/js/Curriculum/certifications.js"></script>
 <script src="/js/Curriculum/otherGrades.js"></script>
 <script src="/js/Curriculum/aptitude.js"></script>
 <script src="/js/Curriculum/CV.js"></script>
+<script src="/js/Curriculum/site.js"></script>
 
 
 @endsection
@@ -39,11 +39,11 @@
                     </div>
 
                     <div class="panel-body ancho">
-                        @if(Session::has('fail'))
-                        <p class="alert alert-danger">{{Session::get('fail')}}</p>
+                        @if(Session('fail'))
+                        <p class="alert alert-danger">{{Session('fail')}}</p>
                         @endif
                        
-                        {{ csrf_field() }}
+                      
                  
                         <fieldset>
                             <legend style="width:auto;">Información Personal</legend>
@@ -133,10 +133,16 @@
                         {{ Form::hidden('birthdate', session('birthdate')) }}
                         {{ Form::hidden('nationality', session('nationality')) }}
                         {{ Form::hidden('email', session('email')) }}
+                        
+                        <!-- CheckBoxs -->
+                        {{ Form::hidden('checkboxexperiences', null,['id' => "checkboxexperiences"]) }}
+                        {{ Form::hidden('checkboxsites', null,['id' => "checkboxsites"]) }}
+                        {{ Form::hidden('checkboxciclos', null,['id' => "checkboxciclos"]) }}
+                        {{ Form::hidden('checkboxlenguajes', null,['id' => "checkboxlenguajes"]) }}
+                        {{ Form::hidden('checkboxlicenses', null,['id' => "checkboxlicenses"]) }}
                         {{ Form::hidden('checkboxCertificaciones', null,['id' => "checkboxCertificaciones"]) }}
                         {{ Form::hidden('checkboxotrosCursos', null,['id' => "checkboxotrosCursos"]) }}
                         {{ Form::hidden('checkboxaptitudes', null,['id' => "checkboxaptitudes"]) }}
-                        {{ Form::hidden('checkboxlicenses', null,['id' => "checkboxlicenses"]) }}
 
                      <div class="form-group">
                         <div class="col-md-12 text-center">

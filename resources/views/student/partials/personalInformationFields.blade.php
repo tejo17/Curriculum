@@ -99,7 +99,8 @@
             </span>
         @endif
     </div>
-
+    @include('student.partials.emailField')
+    
      <fieldset style="clear:both">    
     <legend style="width:auto;">Direccion</legend>
     <div class="control-group{{ $errors->has('address') ? ' has-error' : '' }}">
@@ -164,8 +165,4 @@
             
    </fieldset>
 
-
-    <br>
-    @include('partials.upload.dragDrop')
-    @include('student.partials.emailField')
 </div>

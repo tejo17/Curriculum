@@ -74,11 +74,10 @@ class CurriculumController extends Controller
         $provincia = $request->input('ciudad');
 
         $state = \DB::table('states')->where('name',$provincia)->value('id');            
-        $cities = \DB::table('cities')->where('state_id',$state)->distinct('name')->orderBy('name')->get();
-        foreach ($cities as $city_id => $name) {  
+        $cities = \DB::table('cities')->where('state_id',$state)->orderBy('name')->distinct('name')->lists('id','name');
+        foreach ($cities as $name => $cityid) {  
 
-            $cityid = $name->id;
-            $name = $name->name;
+            $name = $name;
             $ciudades[] = array("id" => $cityid,
             "nombre" => $name);
        }    
