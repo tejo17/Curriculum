@@ -81,7 +81,7 @@ class CertificationsController extends Controller
            
        
                
-    return view('student.curriculum');
+    return redirect('estudiante/curriculum'); 
    }
 
    /*Listar certificaciones del usuario*/
@@ -108,6 +108,5 @@ class CertificationsController extends Controller
        Session::flash('type',"warning");
        Session::flash('insert', "Certificación eliminada.");
       //DELETE $certification
-      return $certification;
     } 
 }

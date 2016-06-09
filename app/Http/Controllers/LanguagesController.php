@@ -93,7 +93,7 @@ class LanguagesController extends Controller
           } 
       }
    }
-   return view('student.curriculum');   
+   return redirect('estudiante/curriculum');   
 }
 
   /*Función para recuperar los idiomas del usuario*/

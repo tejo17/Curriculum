@@ -78,7 +78,7 @@ class OtherGradesController extends Controller
                }  
             }
         
-    return view('student.curriculum');
+    return redirect('estudiante/curriculum'); 
    }
 
    /*Listar otros cursos del usuario*/
@@ -107,8 +107,8 @@ class OtherGradesController extends Controller
        ->where('id',$grade)
        ->delete();
 
-      //DELETE $grade
-      return $grade;
+       Session::flash('type',"warning");
+       Session::flash('insert', "Curso eliminado.");
     } 
 
 }

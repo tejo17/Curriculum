@@ -74,7 +74,7 @@ class AptitudesController extends Controller
                   }  
               }
    
-    return view('student.curriculum');
+    return redirect('estudiante/curriculum'); 
   }
 
     /*Listar aptitudes del usuario*/
@@ -101,11 +101,10 @@ class AptitudesController extends Controller
       ->where('id',$apt)
       ->where('student_id',$this->student_id)
       ->delete();
+
        Session::flash('type',"warning");
        Session::flash('insert', "Conjunto de aptitudes eliminado.");
-      //DELETE $aptitude
-     return redirect()->route('estudiante.aptitudes.index')->with('fail',"Conjunto de aptitudes eliminado.");
-      //return view('student.curriculum')->with('insert','Registro borrado');
+      
     } 
 
 }

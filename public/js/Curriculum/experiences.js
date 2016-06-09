@@ -9,14 +9,22 @@ $(function() {
         url: 'listExperiences',
         type: 'post',
         success: function(data) {
+            var desde;
+         
             var hasta;
             for (var i = 0; i < data.length; i++) {
+            desde = data[i].from.split('-');
+            desde = desde[2]+ "-" + desde[1] + "-" + desde[0];
+
+            
                 if (data[i].to == "0000-00-00") {
                     hasta = "Cursando Actualmente"
                 }else{
-                    hasta = data[i].to;
+                   hasta = data[i].to.split('-');
+            hasta = hasta[2]+ "-" + hasta[1] + "-" + hasta[0];
+             
                 }
-                $('#divexppro').append("<div class='selector'><input id=ocultoprof type='hidden' value=" + data[i].id + "><div class='switch'><label>Off<input type='checkbox' class='checkprof' name='checkcycle'><span class='lever'></span>On</label></div><a href='/estudiante/professionalExperiences/' data-method='DELETE' onclick='borrarItemExp(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#exp' onclick='editarItemExp(this)';><i class='material-icons'>mode_edit</i></a><h6  style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Puesto de trabajo: <span class='exp1' style='color:black; font-weight:normal'>" + data[i].job + "</span></h6><h6  style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Empresa: <span class='exp2' style='color:black; font-weight:normal'>" + data[i].enterprise + "</span></h6><h6  style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Descripción: <span class='exp3' style='color:black; font-weight:normal'>" + data[i].description + "</span></h6><h6  style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Ciudad: <span class='exp4' style='color:black; font-weight:normal'>" + data[i].State + "</span></h6><h6  style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Localclassad: <span class='exp5' style='color:black; font-weight:normal'>" + data[i].City + "</span></h6><h6  style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Inicio: <span class='exp6' style='color:black; font-weight:normal'>" + data[i].from + "</span></h6><h6  style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Fin: <span class='exp7' style='color:black; font-weight:normal'>" + hasta + "</span></h6></div><hr class='sep'>");
+                $('#divexppro').append("<div class='selector'><input id=ocultoprof type='hidden' value=" + data[i].id + "><div class='switch'><label>Off<input type='checkbox' class='checkprof' name='checkcycle'><span class='lever'></span>On</label></div><a data-method='DELETE' onclick='borrarItemExp(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#exp' onclick='editarItemExp(this)';><i class='material-icons'>mode_edit</i></a><h6  style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Puesto de trabajo: <span class='exp1' style='color:black; font-weight:normal'>" + data[i].job + "</span></h6><h6  style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Empresa: <span class='exp2' style='color:black; font-weight:normal'>" + data[i].enterprise + "</span></h6><h6  style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Descripción: <span class='exp3' style='color:black; font-weight:normal'>" + data[i].description + "</span></h6><h6  style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Ciudad: <span class='exp4' style='color:black; font-weight:normal'>" + data[i].State + "</span></h6><h6  style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Localidad: <span class='exp5' style='color:black; font-weight:normal'>" + data[i].City + "</span></h6><h6  style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Inicio: <span class='exp6' style='color:black; font-weight:normal'>" + desde + "</span></h6><h6  style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Fin: <span class='exp7' style='color:black; font-weight:normal'>" + hasta + "</span></h6></div><hr class='sep'>");
             }
         }
 
@@ -187,7 +195,7 @@ function borrarItemExp(item) {
         url: '/estudiante/professionalExperiences/' + expid,
         type: 'delete',
         success: function(result) {
-
+        window.location="/estudiante/curriculum";
         }
     });
 }

@@ -83,7 +83,7 @@ class ProfessionalExperiencesController extends Controller
                        'from'                               => $professionalExperience['from'],
                        'to'                                 => $professionalExperience['to'],
                        'ProfessionalExperiences.city_id'    => $professionalExperience['city'],
-                       'ProfessionalExperiences.updated_at'                         => date('YmdHms')
+                       'ProfessionalExperiences.updated_at'  => date('YmdHms')
                        ]);
               Session::flash('type',"success");
               Session::flash('insert', "Trabajo modificado");
@@ -94,8 +94,8 @@ class ProfessionalExperiencesController extends Controller
              }  
           }
         }
-        
-        return view('student.curriculum',compact('professionalExperience'));
+
+         return redirect('estudiante/curriculum'); 
         
    }
 
@@ -123,7 +123,9 @@ class ProfessionalExperiencesController extends Controller
       
       $queries = \DB::table('professionalExperiences')->where('id',$professionalExperience)->delete();
 
+       Session::flash('type',"warning");
+       Session::flash('insert', "Conjunto de experiencia profesional eliminado.");
       //DELETE $certification
-      return $professionalExperience;
+
     } 
 }

@@ -11,10 +11,10 @@
       margin-top:20px; 
       width:730px;
     }
-table,tr,td{
+/* table,tr,td{
   border:1px black solid;
   height: 10px;
-}
+} */
         
 .clearfix:after {
   content: "";

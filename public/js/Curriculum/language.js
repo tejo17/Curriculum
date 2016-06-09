@@ -17,7 +17,7 @@ $(function() {
 
             for (var i = 0; i < data.length; i++) {
 
-                $('#divlanguage').append("<div class='selector table-container'><input id=id_language type='hidden' value=" + data[i].id + "><div class='switch'><label>Off<input type='checkbox' class='checklang' name='checkapt'><span class='lever'></span>On</label></div></input><input id=id_language type='hidden' value=" + data[i].id + "></input><a href='/estudiante/languages' data-method='DELETE' onclick='borrarItem(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#languages' onclick='editarItem(this)';><i class='material-icons'>mode_edit</i></a><table class='table table-striped'><h5 style='text-align:center;font-weight:bold;'>" + data[i].language + "</h5><thead><tr><th>Comprensión de lectura</th><th>Comprensión auditiva</th><th>Expresión Escrita</th><th>Expresión Oral</th></tr></thead><tbody><tr><td class='lang1'>" + data[i].readingComprehension + "</td><td class='lang2'>" + data[i].listeningComprehension + "</td><td class='lang3'>" + data[i].WrittedExpression + "</td><td class='lang4'>" + data[i].oralExpression + "</td></tr></tbody></table></div><hr class='sep'>");
+                $('#divlanguage').append("<div class='selector table-container'><input id=id_language type='hidden' value=" + data[i].id + "><div class='switch'><label>Off<input type='checkbox' class='checklang' name='checkapt'><span class='lever'></span>On</label></div></input><input id=id_language type='hidden' value=" + data[i].id + "></input><a data-method='DELETE' onclick='borrarItem(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#languages' onclick='editarItem(this)';><i class='material-icons'>mode_edit</i></a><table class='table table-striped'><h5 style='text-align:center;font-weight:bold;'>" + data[i].language + "</h5><thead><tr><th>Comprensión de lectura</th><th>Comprensión auditiva</th><th>Expresión Escrita</th><th>Expresión Oral</th></tr></thead><tbody><tr><td class='lang1'>" + data[i].readingComprehension + "</td><td class='lang2'>" + data[i].listeningComprehension + "</td><td class='lang3'>" + data[i].WrittedExpression + "</td><td class='lang4'>" + data[i].oralExpression + "</td></tr></tbody></table></div><hr class='sep'>");
             }
         }
 
@@ -118,13 +118,9 @@ function editarItem(item) {
     lang = table.parent().children('h5').text();
 
     lang1 = table.children('tbody').children('tr').children('.lang1').text();
-    console.log(lang1);
     lang2 = table.children('tbody').children('tr').children('.lang2').text();
-    console.log(lang2);
     lang3 = table.children('tbody').children('tr').children('.lang3').text();
-    console.log(lang3);
     lang4 = table.children('tbody').children('tr').children('.lang4').text();
-    console.log(lang4);
     if ((lang1 != "Alto") && (lang1 != "Medio") && ("Bajo")) {
         lang1 = "Bajo";
     }
@@ -153,7 +149,7 @@ function borrarItem(item) {
         url: '/estudiante/languages/' + lang,
         type: 'DELETE',
         success: function(result) {
-            table.parent().remove();
+        window.location="/estudiante/curriculum";
         }
     });
 }

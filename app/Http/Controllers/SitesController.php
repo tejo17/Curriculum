@@ -91,7 +91,7 @@ class SitesController extends Controller
 
       }   
     
-    return view('student.curriculum');
+    return redirect('estudiante/curriculum'); 
    }
 
    /*Listar los sitios personales del usuario*/

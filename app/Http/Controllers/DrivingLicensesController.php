@@ -81,7 +81,7 @@ class DrivingLicensesController extends Controller
 
       }
 
-     return view('student.curriculum');
+     return redirect('estudiante/curriculum'); 
   }
 
   /*Listar licencias del usuario*/

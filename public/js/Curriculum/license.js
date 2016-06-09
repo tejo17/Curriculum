@@ -80,7 +80,9 @@ function borrarItemLicense(item) {
         url: '/estudiante/drivingLicenses/' + licenseid,
         type: 'delete',
         success: function(result) {
-            $('#divlicenses').children().remove();
+        $('#divlicenses').children().remove();
+        window.location="/estudiante/curriculum";
+
         }
     });
 }

@@ -11,17 +11,13 @@
  				<button type="button" class="btn btn-default btn-danger pull-right" data-dismiss="modal">X</button>
  				<h4><i class="fa fa-user"></i>Información Personal</h4>
  			</div>
-
  			<div class="panel-body ancho">
  				
  				{{ Form::open(['action' => 'CurriculumController@update', 'method' => 'POST', 'files' => 'true']) }}
- 				{!! csrf_field() !!}
-
  				<fieldset>
  					<legend style="width:auto;">Estudiante</legend>
  					@include('student.partials.personalInformationFields')
  					@include('partials.upload.dragDrop')
-   					
  				</fieldset>
  				
  				<div style="margin-top:15px">

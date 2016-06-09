@@ -19,6 +19,7 @@ class CreateProfessionalExperiencesTable extends Migration
             $table->string('job', 100)->comment('Nombre del empleo'); 
             $table->date('from', 'Ymd')->comment('Fecha de inicio del empleo');
             $table->date('to', 'Ymd')->comment('Fecha fin del empleo')->nullable();
+            $table->unique(['from', 'to']);
             $table->integer('city_id')->unsigned()->comment('Identificador de la ciudad en la que obtuvo el curso el usuario'); 
             $table->integer('student_id')->unsigned()->comment('Identificador del usuario');
             $table->foreign('city_id')->references('id')->on('cities')->onUpdate('cascade');
