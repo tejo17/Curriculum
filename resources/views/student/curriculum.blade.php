@@ -13,7 +13,7 @@
                 <div class="modal-content">
                     <div class="modal-header text-center">
                         <h4><i class="fa fa-graduation-cap"></i>Currículum Vitae</h4>
-                        <p>Este currículum está basado en el currículum europass de <a href="https://europass.cedefop.europa.eu/es/documents/curriculum-vitae">europass</a></p>
+                        <p>Este currículum está basado en el currículum europass de <a href="https://europass.cedefop.europa.eu/es/documents/curriculum-vitae">Europass</a></p>
                     </div>
 
                     <div class="panel-body ancho">
@@ -54,15 +54,7 @@
                        </fieldset>
                        <fieldset>
                            <legend style="width:auto;">Permiso de Conducir</legend>
-                           <div id="divlicenses" class="col-md-12"> 
-                            <div class='selector'>
-                                <div class='switch'><label>Off<input type='checkbox' class='checklice' name='checklice'><span class='lever'></span>On</label></div>
-                                Permiso de Conducir
-                                <input id=id_license  value="" type="hidden">
-                                <a href="/estudiante/drivingLicenses" onclick='borrarItemLicense(this)' class='material-icons boton_borrar pull-right'>delete</a>
-                                <a class='boton_editar pull-right' data-toggle='modal' data-target='#licenses' onclick='editarItemlicense(this)'><i class='material-icons'>mode_edit</i></a>
-                                <p id="namelicenses"></p>                 
-                            </div>
+                           <div id="divlicenses" class="col-md-12">                           
                         </div> 
                         @include('student.partials.drivingLicenses')
                     </fieldset>
@@ -119,14 +111,16 @@
                     {{ Form::hidden('checkboxotrosCursos', null,['id' => "checkboxotrosCursos"]) }}
                     {{ Form::hidden('checkboxaptitudes', null,['id' => "checkboxaptitudes"]) }}
 
+                    <br>
                     <div class="form-group">
                         <div class="col-md-12 text-center">
-                            <button  type="submit" class="btn btn-primary btn-login-media waves-effect waves-light" id="generatePDF">
+                            <button  type="submit" class="btn btn-default btn-lg waves-effect waves-light" id="generatePDF">
+                                
                                 <div class="show-responsive">
-                                    <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                    <i class="fa fa-file-text-o" aria-hidden="true"></i> Generar PDF
                                 </div>
                                 <div class="hidden-media">
-                                    <i class="fa fa-btn fa-user"></i> <span class="hidden-media">Generar PDF</span>
+                                    <i class="fa fa-file-text-o"></i> <span class="hidden-media">Generar PDF</span>
                                 </div>
                             </button>
                         </div>

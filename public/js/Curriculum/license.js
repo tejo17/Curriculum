@@ -11,7 +11,10 @@ $.ajax({
         url: 'listLicenses',
         type: 'post',
         success: function(data) {
-
+            if(data != ""){
+                $('#divlicenses').append('<div class="selector"><div class="switch"><label>Off<input type="checkbox" class="checklice" name="checklice"><span class="lever"></span>On</label></div>Permiso de Conducir<input id=id_license  value="" type="hidden"><a onclick="borrarItemLicense(this)" class="material-icons boton_borrar pull-right">delete</a><a class="boton_editar pull-right" data-toggle="modal" data-target="#licenses" onclick="editarItemlicense(this)"><i class="material-icons">mode_edit</i></a><p id="namelicenses"></p></div>');
+                $('#btn-license').remove();
+            }
             licencias = data.drivingLicense;
             for (var i = 0; i < data.length; i++) {
                 $('#namelicenses').append(data[i].drivingLicense);

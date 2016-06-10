@@ -1,7 +1,11 @@
  <!--Modal: subscription form-->
 
  <!--Button-->
- <a href="#" class="btn btn-primary btn-lg waves-effect waves-light" data-toggle="modal" data-target="#info">Editar</a>
+ <div class="text-center" style="clear:both;">
+ <a id="edit" href="#" class="btn-floating btn-large red" data-toggle="modal" data-target="#info" >
+      <i class="large material-icons">mode_edit</i>
+    </a>
+ </div>
  <!-- Modal -->
  <div class="modal fade" id="info" role="dialog">
  	<div class="modal-dialog">

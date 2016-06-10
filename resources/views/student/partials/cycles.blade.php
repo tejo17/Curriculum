@@ -2,7 +2,9 @@
 
 
 <!--Button-->
+<div class="text-center" style="clear:both;">
 <a href="#" class="btn btn-primary btn-lg waves-effect waves-light" data-toggle="modal" data-target="#education"><i class="material-icons left">add</i>Añadir</a>
+</div>
 <!-- Modal -->
 <div class="modal fade" id="education" role="dialog">
     <div class="modal-dialog">

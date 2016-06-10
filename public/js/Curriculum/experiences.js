@@ -41,7 +41,7 @@ $('#exp').on('shown.bs.modal', function(e) {
     Parte que comprueba el rango de fechas
 
     *************************************/
-
+    kendo.culture("es-ES");
     var todayDate = kendo.toString(kendo.parseDate(new Date()), 'yyyy/MM/dd');
     var minimo;
     $("#from,#to").kendoDatePicker({

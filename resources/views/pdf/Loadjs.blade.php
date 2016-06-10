@@ -9,6 +9,7 @@
 <script src="/js/dragDrop.js"></script>
 <script src="/js/angular.min.js"></script>
 <script src="/js/kendo.all.min.js"></script>
+<script src="/js/kendo.culture.es-ES.min.js"></script>
 <script src="/js/Curriculum/cycles.js"></script>
 <script src="/js/Curriculum/experiences.js"></script>
 <script src="/js/Curriculum/language.js"></script>

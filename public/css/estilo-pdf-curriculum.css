@@ -1,5 +1,5 @@
 @page {
-      margin-top: 0.2em;
+      margin-top: 0.5em;
       margin-left: 0.0em;
 
     }
@@ -78,7 +78,10 @@ footer {
   width:475px; 
   padding-top:5px;
 }
-
+.tds-bottom{
+  padding-bottom: 5px;
+  border-bottom:1px darkblue solid; 
+}
 .td-nivel{
   width:115px;
 }
@@ -106,4 +109,16 @@ footer {
   width:115px; 
   border-top:1px darkblue solid; 
   padding-top:5px;
+}
+@media print{
+* {
+    display:inline;
+}
+script, style { 
+    display:none; 
+}
+table {
+    page-break-inside:always;
+}
+
 }

@@ -597,8 +597,9 @@ div.drop:hover {
   }
 
 @media (max-width: 700px) {
-  input[type="text"]{
+  input[type="text"],label{
     padding-left: 30px;
   }
+
 }
   
