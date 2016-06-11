@@ -9,7 +9,8 @@
 <body>
   <div id="details" class="clearfix">
     <div id="invoice" style="margin-left:-45px">
-      <h1 class="align-center">Currículum Vitae</h1>
+
+      <h1 class="align-center"><img id="logo" src="img/cv/europass-logo.png" alt="">     Currículum Vitae</h1>
 
       <!-- Tabla información personal -->
       <table>
@@ -48,13 +49,13 @@
         <table style="page-break-inside: auto">
           <tr>
             <td style="width:265px; text-align:right "><span style="color:darkbluE;">EXPERIENCIA PROFESIONAL</span></td>
-            <td style="width:475px;"></td>            
+            <td style="width:475px; border-bottom:1px blue solid;"></td>            
           </tr>
           <?php foreach ($experiences as $experience): ?>
 
             <tr>
               <td class="tds-left align-right"><span style="margin-left:125px">{{ $experience [5]}} – {{ $experience[6]}}</span></td>
-              <td class="tds-right border-top-darkblue"><span style="padding-left:15px;">{{ $experience [0]}}</span></td>         
+              <td class="tds-right"><span style="padding-left:15px;font-size:1.2rem;">{{ $experience [0]}}</span></td>         
             </tr>
             <tr>
               <td style="width:265px;"></td>
@@ -85,13 +86,13 @@
         <table style="page-break-inside: auto">
           <tr>
             <td style="width:265px; text-align:right"><span style="color:darkblue;">EDUCACIÓN Y FORMACIÓN</span></td>
-            <td style="width:475px;"></td>
+            <td style="width:475px;border-bottom:1px blue solid;"></td>
           </tr>
           <?php foreach ($ciclos as $ciclo): ?>
 
             <tr>
               <td class="tds-left align-right"><span>{{ $ciclo[6] }} - {{ $ciclo[7] }}</span></td>
-              <td class="tds-right border-top-darkblue"><span style="padding-left:15px;">{{ $ciclo[1] }}</span></td>
+              <td class="tds-right"><span style="padding-left:15px;font-size:1.2rem;">{{ $ciclo[1] }}</span></td>
             </tr>
             <tr>
               <td style="width:265px;"></td>
@@ -103,7 +104,7 @@
             </tr>
             <tr>
               <td style="width:265px;"></td>
-              <td style="width:475px; margin-left:15px"><span style="padding-left:15px;">{{ $ciclo[5] }}</span></td>
+              <td style="width:475px; margin-left:15px"><span style="padding-left:15px;">{{ ucwords(strtolower($ciclo[5])) }}</span></td>
             </tr>
             <tr>
               <td style="width:265px;"></td>
@@ -118,12 +119,12 @@
         <table style="page-break-inside: avoid">
           <tr>
             <td style="width:265px; text-align:right"><span style="color:darkblue;">CERTIFICACIONES</span></td>
-            <td style="width:475px;"></td>
+            <td style="width:475px;border-bottom:1px blue solid;"></td>
           </tr>
           <?php foreach ($certificaciones as $key => $certificacion): ?>
             <tr>
               <td class="tds-left align-right"></td>
-              <td class="tds-right border-top-darkblue"><span style="padding-left:15px;">{{$certificacion[0]}}</span></td>
+              <td class="tds-right"><span style="padding-left:15px;font-size:1.2rem;">{{$certificacion[0]}}</span></td>
             </tr>
             <tr>
               <td style="width:265px;"></td>
@@ -146,12 +147,12 @@
         <table style="page-break-inside: avoid">
           <tr>
             <td style="width:265px; text-align:right"><span style="color:darkblue;">OTROS CURSOS</span></td>
-            <td style="width:475px;"></td>
+            <td style="width:475px;border-bottom:1px blue solid;"></td>
           </tr>
           <?php foreach ($otros as $key => $otro): ?>
             <tr>
               <td class="tds-left align-right"></td>
-              <td class="tds-right border-top-darkblue"><span style="padding-left:15px;">{{ $otro[0]}}</span></td>
+              <td class="tds-right"><span style="padding-left:15px;font-size:1.2rem;">{{ $otro[0]}}</span></td>
             </tr>
             <tr>
               <td style="width:265px;"></td>
@@ -215,11 +216,11 @@
      <table style="page-break-inside: avoid">
       <tr>
         <td style="width:265px; text-align:right"><span style="color:darkblue;">LICENCIAS DE CONDUCIR</span></td>
-        <td style="width:475px;"></td>
+        <td style="width:475px;border-bottom:1px blue solid;"></td>
       </tr>
       <tr>
         <td class="tds-left align-right"></td>
-        <td class="tds-right border-top-darkblue"><span style="padding-left:15px;">{{ $licencias }}</span></td>
+        <td class="tds-right"><span style="padding-left:15px;">{{ $licencias }}</span></td>
       </tr>
       <tr>
         <td style="width:265px;"></td>
@@ -235,12 +236,12 @@
     <table style="page-break-inside: avoid">
       <tr>
         <td style="width:265px; text-align:right"><span style="color:darkblue;">APTITUDES</span></td>
-        <td style="width:475px;"></td>
+        <td style="width:475px;border-bottom:1px blue solid;"></td>
       </tr>
       <?php foreach ($aptitudes as $aptitud): ?>     
         <tr>
           <td class"align-right" class="tds-left "></td>
-          <td class="tds-right tds-bottom border-top-darkblue"><span style="padding-left:15px;">{{ $aptitud }}</span></td>
+          <td class="tds-right"><span style="padding-left:15px;">{{ $aptitud }}</span></td>
         </tr>
       <?php endforeach ?>
 

@@ -9,7 +9,7 @@ use Session;
 
 class StudentCyclesController extends Controller
 {
-  
+
     /**
      * Create a new controller instance.
      *
@@ -32,36 +32,48 @@ class StudentCyclesController extends Controller
      }else{
       $actual = $cycle['dateTo'];
     }
-    /*Se comprueba si ya tiene insertado ese ciclo*/
-    $exist = \DB::table('studentCycles')
-    ->where('cycle_id',$cycle['cycle'])
-    ->where('student_id',$this->student_id)
-    ->first();
+    if ($cycle['carrer'] != "") {
+      $cycle['cycle'] = null;
+
+      $exist = \DB::table('studentCycles')
+      ->where('carreer',$cycle['carrer'])
+      ->where('student_id',$this->student_id)
+      ->first();
+
+    }else{
+      /*Se comprueba si ya tiene insertado ese ciclo*/
+      $exist = \DB::table('studentCycles')
+      ->where('cycle_id',$cycle['cycle'])
+      ->where('student_id',$this->student_id)
+      ->first();
+    }
+
 
     /*Store*/
     if ($cycle['id'] == 0) {
 
       if($exist == null){
-        
-        try {
-         
-         $queries = \DB::table('studentCycles')
-         ->join('students','studentCycles.student_id','=','students.id')
-         ->where('student_id',$this->student_id)
-         ->insert(['center'         => $cycle['center'],
-          'dateFrom'        => $cycle['dateFrom'],
-          'dateTo'          => $actual,
-          'city_id'         => $cycle['cityCycle'],
-          'student_id'      => $this->student_id,
-          'cycle_id'	       => $cycle['cycle'],
-          'created_at'      => date('YmdHms'),
-          ]);
+
+       $queries = \DB::table('studentCycles')
+       ->join('students','studentCycles.student_id','=','students.id')
+       ->where('student_id',$this->student_id)
+       ->insert(['center'         => $cycle['center'],
+        'dateFrom'        => $cycle['dateFrom'],
+        'dateTo'          => $actual,
+        'carreer'         => $cycle['carrer'],
+        'city_id'         => $cycle['cityCycle'],
+        'student_id'      => $this->student_id,
+        'cycle_id'	       => $cycle['cycle'],
+        'created_at'      => date('YmdHms'),
+        ]);
+       try {
+
 
          Session::flash('type',"success");
          Session::flash('insert', "Ciclo guardado.");
          
        }catch (\Exception $e) {
-         
+
          Session::flash('type',"danger");
          Session::flash('insert', "No se ha podido guardar.");
          
@@ -79,14 +91,16 @@ class StudentCyclesController extends Controller
       ->join('students','studentCycles.student_id','=','students.id')
       ->where('student_id',$this->student_id)
       ->where('studentCycles.id',$cycle['id'])
-      ->update(['center'                       => $cycle['center'],
-       'dateFrom'                      => $cycle['dateFrom'],
-       'dateTo'                        => $actual,
-       'studentCycles.city_id'         => $cycle['cityCycle'],
-       'student_id'                    => $this->student_id,
-       'cycle_id'	                     => $cycle['cycle'],
-       'studentCycles.updated_at'      => date('YmdHms')
-       ]);
+      ->update([
+        'center'                       => $cycle['center'],
+        'dateFrom'                      => $cycle['dateFrom'],
+        'dateTo'                        => $actual,
+        'carreer'                       => $cycle['carrer'],
+        'studentCycles.city_id'         => $cycle['cityCycle'],
+        'student_id'                    => $this->student_id,
+        'cycle_id'	                     => $cycle['cycle'],
+        'studentCycles.updated_at'      => date('YmdHms')
+        ]);
 
       
       Session::flash('type',"success");
@@ -104,18 +118,29 @@ class StudentCyclesController extends Controller
 
 /*Listar los ciclos del estudiante*/
 public function listStudentCycles(){
- 
- $queries = \DB::table('studentCycles')
- ->join('students','studentCycles.student_id','=','students.id')
- ->join('cities','studentCycles.city_id','=','cities.id')
- ->join('states','cities.state_id','=','states.id')
- ->join('cycles','studentCycles.cycle_id','=','cycles.id')
- ->join('proffamilies','cycles.profFamilie_id','=','proffamilies.id')
- ->select('cycles.level as Nivel','studentCycles.id','center','dateTo','dateFrom','cycles.name as Cycle','states.name as State','cities.name as City','proffamilies.name as Family')    ->where('student_id',$this->student_id)
- ->get();
+  
+  $queries1 = \DB::table('studentCycles')
+  ->join('students','studentCycles.student_id','=','students.id')
+  ->join('cities','studentCycles.city_id','=','cities.id')
+  ->join('states','cities.state_id','=','states.id')
+  ->select('studentCycles.id','center','dateTo','dateFrom','states.name as State','cities.name as City','carreer')->where('student_id',$this->student_id)->where('cycle_id',null)
+  ->get();
 
- return Response::json($queries);
- 
+  $queries = \DB::table('studentCycles')
+  ->join('students','studentCycles.student_id','=','students.id')
+  ->join('cities','studentCycles.city_id','=','cities.id')
+  ->join('states','cities.state_id','=','states.id')
+  ->join('cycles','studentCycles.cycle_id','=','cycles.id')
+  ->join('proffamilies','cycles.profFamilie_id','=','proffamilies.id')
+  ->select('cycles.level as Nivel','studentCycles.id','center','dateTo','dateFrom','cycles.name as Cycle','states.name as State','cities.name as City','proffamilies.name as Family','carreer')->where('student_id',$this->student_id)
+  ->get();
+  $consulta = array(
+    'carrera' => $queries1,
+    'ciclo' => $queries,);
+  
+
+  return Response::json($consulta);
+  
 }
 
    /**
@@ -124,7 +149,7 @@ public function listStudentCycles(){
      */
 
    public function destroy($cycle) {
-    
+
     $queries = \DB::table('studentCycles')->where('id',$cycle)->delete();
 
     Session::flash('type',"warning");

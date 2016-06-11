@@ -13,9 +13,9 @@ class CurriculumController extends Controller
 
     public function index(){
 
-              if (isset(Auth::user()->id)) {
-            $user = Auth::user()->id;
-
+      if (isset(Auth::user()->id)) {
+        $user = Auth::user()->id;
+        
         /*Recuperar sus datos personales*/
         $datos = \DB::table('students')
         ->join('cities','students.city_id', '=' ,'cities.id')
@@ -40,111 +40,114 @@ class CurriculumController extends Controller
         $birthdateFormat = $birthdateFormat[2]."-".$birthdateFormat[1]."-".$birthdateFormat[0];
 
         /*Almacenar en sesión los datos personales a mostrar*/
-         session(['firstName' => $datos[0]->firstName,
-                'lastName' => $datos[0]->lastName,
-                'dni' => $datos[0]->dni,
-                'nre' => $datos[0]->nre,
-                'phone' => $datos[0]->phone,
-                'address' => $datos[0]->address,
-                'curriculum' => $datos[0]->curriculum,
-                'birthdate' => $birthdateFormat,
-                'nationality' => $datos[0]->nationality,
-                'state' => $datos[0]->state,
-                'lastName' => $datos[0]->lastName,
-                'city' => $datos[0]->city,
-                'postalCode' => $postal,
-                'carpeta' => '/img/imgUser/' . \Auth::user()->carpeta . '/' .  \Auth::user()->image,
-                'email'   => $user_email,
-                'rutaSinBarra' => 'img/imgUser/' . \Auth::user()->carpeta . '/' . \Auth::user()->image,
+        session(['firstName' => $datos[0]->firstName,
+            'lastName' => $datos[0]->lastName,
+            'dni' => $datos[0]->dni,
+            'nre' => $datos[0]->nre,
+            'phone' => $datos[0]->phone,
+            'address' => $datos[0]->address,
+            'curriculum' => $datos[0]->curriculum,
+            'birthdate' => $birthdateFormat,
+            'nationality' => $datos[0]->nationality,
+            'state' => $datos[0]->state,
+            'lastName' => $datos[0]->lastName,
+            'city' => $datos[0]->city,
+            'postalCode' => $postal,
+            'carpeta' => '/img/imgUser/' . \Auth::user()->carpeta . '/' .  \Auth::user()->image,
+            'email'   => $user_email,
+            'rutaSinBarra' => 'img/imgUser/' . \Auth::user()->carpeta . '/' . \Auth::user()->image,
 
-        ]);
-        }else{
-         return \Redirect::to('/');
-             Session::flash('type',"danger");
-         Session::flash("insert","Ha expirado la sessión");
-        }
-         
+            ]);
+    }else{
+       return \Redirect::to('/');
+       Session::flash('type',"danger");
+       Session::flash("insert","Ha expirado la sessión");
+   }
+
         // Devuelvo la vista junto con las familias
-        return view('student.curriculum', compact('profFamilies', 'datos'));
-    }
-    
-    /*Función para obtener las localidades de una provincia*/
-    public function autolocal(Request $request){  
-        $ciudades = array();
-        $provincia = $request->input('ciudad');
+   return view('student.curriculum', compact('profFamilies', 'datos'));
+}
 
-        $state = \DB::table('states')->where('name',$provincia)->value('id');            
-        $cities = \DB::table('cities')->where('state_id',$state)->orderBy('name')->distinct('name')->lists('id','name');
-        foreach ($cities as $name => $cityid) {  
+/*Función para obtener las localidades de una provincia*/
+public function autolocal(Request $request){  
+    $ciudades = array();
+    $provincia = $request->input('ciudad');
 
-            $name = $name;
-            $ciudades[] = array("id" => $cityid,
+    $state = \DB::table('states')->where('name',$provincia)->value('id');            
+    $cities = \DB::table('cities')->where('state_id',$state)->orderBy('name')->distinct('name')->lists('id','name');
+    foreach ($cities as $name => $cityid) {  
+
+        $name = $name;
+        $ciudades[] = array("id" => $cityid,
             "nombre" => $name);
-       }    
+    }    
 
-       return response()->json([           
+    return response()->json([           
         'ciudades' => $ciudades,
         ]);
 
-   }
+}
 
-   /*Autocompletado de provincias*/
-   public function autocomplete(Request $req){
-        $term =  $req->input('term');
+/*Autocompletado de provincias*/
+public function autocomplete(Request $req){
+    $term =  $req->input('term');
 
-        $results = array();
+    $results = array();
 
-        $queries = DB::table('states')
-        ->where('name', 'LIKE', '%'.$term.'%')
-        ->get();
+    $queries = DB::table('states')
+    ->where('name', 'LIKE', '%'.$term.'%')
+    ->get();
 
-        foreach ($queries as $query)
-        {
-            $results[] = [ 'id' => $query->id, 'value' => $query->name];
-        }
-        return Response::json($results);
+    foreach ($queries as $query)
+    {
+        $results[] = [ 'id' => $query->id, 'value' => $query->name];
     }
+    return Response::json($results);
+}
 
-        /*Obtener ciclos de una familia profesional*/
-       public function autolocalCycles(Request $request){  
-        $ciclos = array();
+/*Obtener ciclos de una familia profesional*/
+public function autolocalCycles(Request $request){  
+    $ciclos = array();
+    
+    $family_input = $request->input('familia');
 
-        $family_input = $request->input('familia');
+    $family = \DB::table('proffamilies')->where('name',$family_input)->value('id');   
 
-        $family = \DB::table('proffamilies')->where('name',$family_input)->value('id');   
-                 
-        $cycles = \DB::table('cycles')->where('profFamilie_id',$family)->distinct('name')->orderBy('name')->get();
-        
-        foreach ($cycles as $cicle_id => $name) {  
+    $cycles = \DB::table('cycles')->where('profFamilie_id',$family)->distinct('name')->orderBy('level', 'desc')->orderBy('name')->get();
 
-            $cycleid = $name->id;
-            $name = $name->name;
-            $ciclos[] = array("id" => $cycleid,
-            "nombre" => $name);
+    foreach ($cycles as $cycle) {  
 
-       }    
-       return response()->json([           
+        $name = $cycle->name;
+        $cycleid = $cycle->id;
+        $level = $cycle->level;
+        $ciclos[] = array(
+            "id"     => $cycleid,
+            "nombre" => $name,
+            "level"  => $level);
+    } 
+
+    return response()->json([           
         'ciclos' => $ciclos,
         ]);
 
-   }
+}
 
-   /*Autocompletado de familias profesionales*/
-   public function autocompleteFamily(Request $req){
-        $term =  $req->input('term');
+/*Autocompletado de familias profesionales*/
+public function autocompleteFamily(Request $req){
+    $term =  $req->input('term');
 
-        $results = array();
+    $results = array();
 
-        $queries = DB::table('proffamilies')
-        ->where('name', 'LIKE', '%'.$term.'%')
-        ->get();
+    $queries = DB::table('proffamilies')
+    ->where('name', 'LIKE', '%'.$term.'%')
+    ->get();
 
-        foreach ($queries as $query)
-        {
-            $results[] = [ 'id' => $query->id, 'value' => $query->name];
-        }
-        return Response::json($results);
+    foreach ($queries as $query)
+    {
+        $results[] = [ 'id' => $query->id, 'value' => $query->name];
     }
+    return Response::json($results);
+}
 
 
 
@@ -153,9 +156,9 @@ public function update(Request $req){
     if(\Request::file('file') != null){
         $ruta = \Request::file('file')->move(public_path( '/img/imgUser/' . \Auth::user()->carpeta . '/'), \Request::file('file')->getClientOriginalName());
         session(['carpeta' => '/img/imgUser/' . \Auth::user()->carpeta . '/' . \Request::file('file')->getClientOriginalName(),
-        'rutaSinBarra' => 'img/imgUser/' . \Auth::user()->carpeta . '/' . \Request::file('file')->getClientOriginalName()]);
+            'rutaSinBarra' => 'img/imgUser/' . \Auth::user()->carpeta . '/' . \Request::file('file')->getClientOriginalName()]);
     }
-        
+
     if ($req->input('birthdate') != null) {
 
         $birthdateFormat = explode('-',$req->input('birthdate'));
@@ -165,22 +168,22 @@ public function update(Request $req){
     }
 
     session(['firstName'    => $req->input('firstName'),
-            'lastName'      => $req->input('lastName'),
-            'dni'           => $req->input('dni'),
-            'nre'           => $req->input('nre'),
-            'phone'         => $req->input('phone'),
-            'address'       => $req->input('address'),
-            'nationality'   => $req->input('nationality'),
-            'state'         => $req->input('state'),
-            'city'          => $req->input('city'),
-            'postalCode'    => $req->input('postalCode'),
-            'email'         => $req->input('email'),
-            ]);
+        'lastName'      => $req->input('lastName'),
+        'dni'           => $req->input('dni'),
+        'nre'           => $req->input('nre'),
+        'phone'         => $req->input('phone'),
+        'address'       => $req->input('address'),
+        'nationality'   => $req->input('nationality'),
+        'state'         => $req->input('state'),
+        'city'          => $req->input('city'),
+        'postalCode'    => $req->input('postalCode'),
+        'email'         => $req->input('email'),
+        ]);
 
 
     return view('student.curriculum'); 
 
-    }
+}
 }
 
 
