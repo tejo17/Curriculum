@@ -61,6 +61,8 @@
     <!-- Estilos para chosen (select multiple) -->
     <link rel="stylesheet" href="{{ url('plugin/chosen/chosen.css') }}">
 
+    <!-- Estilo para el fondo de la página del currículum -->
+    <link rel="stylesheet" href="{{ url('css/fondo-vista-principal.css') }}">
 
 </head>
 <body id="app-layout">
