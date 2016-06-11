@@ -33,7 +33,19 @@
                        </fieldset>
                        <fieldset>
                            <legend style="width:auto;">Educación y formación</legend>
+                       <div id="divcampocarrera" style="display:none;">
+                            <fieldset>
+                           <legend style="width:auto;">Carrera Universitarias</legend>         
+                           <div id="diveducar" class="col-md-12"> 
+                           </div>
+                           </fieldset>
+                           </div>
+                           <div id="divcampociclo" style="display:none;">
+                            <fieldset>
+                           <legend style="width:auto;">Ciclos Formativos</legend>   
                            <div id="diveduc" class="col-md-12">          
+                           </div>
+                           </fieldset>
                            </div>
                            @include('student.partials.cycles')
                            @include('validations.cycle')

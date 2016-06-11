@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', true),
+    'debug' => env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -183,7 +183,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
 
         // Librerías barra de debug
-        Barryvdh\Debugbar\ServiceProvider::class,
+       // Barryvdh\Debugbar\ServiceProvider::class,
 
         //Librería DOM Pdf
         Barryvdh\DomPDF\ServiceProvider::class,

@@ -28,7 +28,6 @@ class PdfController extends Controller
     {
 
         $datos = $request->all();
-        //dd($datos);
 
         $experiences = self::cut($datos['checkboxexperiences']);
         $experiences = array_chunk($experiences, 7);
@@ -55,7 +54,7 @@ class PdfController extends Controller
         if($experiences[0][0] == false){
             $experiences[0] = 'vacio';
         };
-        if($ciclos[0][0] == false){
+        if($ciclos[0][1] == false){
             $ciclos[0] = 'vacio';
         };
         if($lenguajes[0][0] == false){
