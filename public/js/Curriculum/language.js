@@ -1,4 +1,4 @@
-var lang = 0;
+var lang = "Inglés";
 var lang1 = 0;
 var lang2 = 0;
 var lang3 = 0;
@@ -31,6 +31,7 @@ Funcion al cargar modal de lenguajes
 ***********************************/
 
 $('#languages').on('show.bs.modal', function(e) {
+                 
 
     $.ajax({
         headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
@@ -59,6 +60,9 @@ $('#languages').on('show.bs.modal', function(e) {
             $("#oralExpression option:contains('" + lang4 + "')").prop('selected', true);
             $("#ocultolanguage").val(ocultolanguage);
 
+             if (lang.length == 0) {
+                 $("#language option:contains('Inglés')").prop('selected', true);
+            }
 
             if (lang1.length == 0) {
                  $("#readingComprehension option:contains('Bajo')").prop('selected', true);
