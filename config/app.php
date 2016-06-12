@@ -148,7 +148,6 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        Illuminate\Html\HtmlServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -179,15 +178,21 @@ return [
         // Librerias 'Intervention\Image\ImageServiceProvider'de Laracast
         Collective\Html\HtmlServiceProvider::class,
 
-        // Librería que permite hacer thumnails
-        Intervention\Image\ImageServiceProvider::class,
 
         // Librerías barra de debug
-       // Barryvdh\Debugbar\ServiceProvider::class,
+        // Barryvdh\Debugbar\ServiceProvider::class,
 
         //Librería DOM Pdf
         Barryvdh\DomPDF\ServiceProvider::class,
 
+
+        /****************************************************************
+
+        Estas librerias hay que descomentarlas después de hacer el composer update
+        
+        *****************************************************************/
+        //Illuminate\Html\HtmlServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
     ],
 
     /*

@@ -45,7 +45,8 @@
       </table>
 
 <!-- Tabla educación y formación -->
-      <?php if ($ciclos[0] != "vacio"): ?>
+      
+      <?php if ($ciclos != "vacio"): ?>
         <table style="page-break-inside: auto">
           <tr>
             <td style="width:265px; text-align:right"><span style="color:darkblue;">EDUCACIÓN Y FORMACIÓN</span></td>
