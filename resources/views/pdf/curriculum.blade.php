@@ -79,7 +79,7 @@
 
       <!-- Tabla experiencia profesional -->
       <?php if ($experiences[0] != "vacio"): ?>
-        <table style="page-break-inside: auto">
+        <table style="page-break-inside: auto;">
           <tr>
             <td style="width:265px; text-align:right "><span style="color:darkbluE;">EXPERIENCIA PROFESIONAL</span></td>
             <td style="width:475px; border-bottom:1px blue solid;"></td>            

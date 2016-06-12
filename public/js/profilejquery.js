@@ -1,7 +1,7 @@
 var cargado = "";
 
 //Cargar datos en el modal de info personal
-$('#info').on('show.bs.modal', function(e) {
+$('#info').on('shown.bs.modal', function(e) {
     $.ajax({
         headers: { 'X-CSRF-Token': $('input[name="_token"]').val() },
         url: 'cargaInfo',
