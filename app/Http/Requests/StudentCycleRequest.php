@@ -23,7 +23,8 @@ class StudentCycleRequest extends Request
      */
     public function rules()
     {
-        return [
+        return [    
+         'carreer'         => 'required|between:2,200',
          'center'          => 'required|between:2,200',
          'dateFrom'        => 'required|digits:4',
          'dateTo'          => 'digits:4',

@@ -4,6 +4,12 @@
 </span>
 @endif
 
+@if ($errors->has('carreer'))
+<span class="help-block">
+	<strong>{{ $errors->first('carreer') }}</strong>
+</span>
+@endif
+
 @if ($errors->has('cycle'))
 <span class="help-block">
 	<strong>{{ $errors->first('cycle') }}</strong>

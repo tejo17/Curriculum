@@ -32,22 +32,24 @@ class StudentCyclesController extends Controller
      }else{
       $actual = $cycle['dateTo'];
     }
-    if ($cycle['carrer'] != "") {
+
+    if ($cycle['carreer'] != "ciclo") {
       $cycle['cycle'] = null;
 
       $exist = \DB::table('studentCycles')
-      ->where('carreer',$cycle['carrer'])
+      ->where('carreer',$cycle['carreer'])
       ->where('student_id',$this->student_id)
       ->first();
 
+   // dd($cycle);
     }else{
       /*Se comprueba si ya tiene insertado ese ciclo*/
+      
       $exist = \DB::table('studentCycles')
       ->where('cycle_id',$cycle['cycle'])
       ->where('student_id',$this->student_id)
       ->first();
     }
-
 
     /*Store*/
     if ($cycle['id'] == 0) {
@@ -60,17 +62,17 @@ class StudentCyclesController extends Controller
        ->insert(['center'         => $cycle['center'],
         'dateFrom'        => $cycle['dateFrom'],
         'dateTo'          => $actual,
-        'carreer'         => $cycle['carrer'],
+        'carreer'         => $cycle['carreer'],
         'city_id'         => $cycle['cityCycle'],
         'student_id'      => $this->student_id,
-        'cycle_id'	       => $cycle['cycle'],
+        'cycle_id'         => $cycle['cycle'],
         'created_at'      => date('YmdHms'),
         ]);
        try {
 
 
          Session::flash('type',"success");
-         Session::flash('insert', "Ciclo guardado.");
+         Session::flash('insert', "Ciclo ó Carrera guardado.");
          
        }catch (\Exception $e) {
 
@@ -81,12 +83,12 @@ class StudentCyclesController extends Controller
 
      }else{
       Session::flash('type',"danger");
-      Session::flash("insert","Ya tienes guardado ese ciclo.");
+      Session::flash("insert","Ya tienes guardado ese ciclo o carrera.");
     }
 
     /*Update*/
   }else{
-    try {
+//dd($cycle);
       $queries = \DB::table('studentCycles')
       ->join('students','studentCycles.student_id','=','students.id')
       ->where('student_id',$this->student_id)
@@ -95,16 +97,17 @@ class StudentCyclesController extends Controller
         'center'                       => $cycle['center'],
         'dateFrom'                      => $cycle['dateFrom'],
         'dateTo'                        => $actual,
-        'carreer'                       => $cycle['carrer'],
+        'carreer'                       => $cycle['carreer'],
         'studentCycles.city_id'         => $cycle['cityCycle'],
         'student_id'                    => $this->student_id,
         'cycle_id'	                     => $cycle['cycle'],
         'studentCycles.updated_at'      => date('YmdHms')
         ]);
+    try {
 
       
       Session::flash('type',"success");
-      Session::flash('insert', "Ciclo actualizado.");
+      Session::flash('insert', "Ciclo ó Carrera actualizado.");
 
     }catch (\Exception $e) {
       if($e->getCode() == 2002) {
@@ -118,12 +121,13 @@ class StudentCyclesController extends Controller
 
 /*Listar los ciclos del estudiante*/
 public function listStudentCycles(){
-  
+
   $queries1 = \DB::table('studentCycles')
   ->join('students','studentCycles.student_id','=','students.id')
   ->join('cities','studentCycles.city_id','=','cities.id')
   ->join('states','cities.state_id','=','states.id')
   ->select('studentCycles.id','center','dateTo','dateFrom','states.name as State','cities.name as City','carreer')->where('student_id',$this->student_id)->where('cycle_id',null)
+  ->orderBy('dateFrom')->orderBy('dateTo')
   ->get();
 
   $queries = \DB::table('studentCycles')
@@ -133,7 +137,9 @@ public function listStudentCycles(){
   ->join('cycles','studentCycles.cycle_id','=','cycles.id')
   ->join('proffamilies','cycles.profFamilie_id','=','proffamilies.id')
   ->select('cycles.level as Nivel','studentCycles.id','center','dateTo','dateFrom','cycles.name as Cycle','states.name as State','cities.name as City','proffamilies.name as Family','carreer')->where('student_id',$this->student_id)
+  ->orderBy('dateFrom')->orderBy('dateTo')
   ->get();
+
   $consulta = array(
     'carrera' => $queries1,
     'ciclo' => $queries,);

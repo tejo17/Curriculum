@@ -8,5 +8,5 @@ class StudentCycle extends Model
 {
 	use SoftDeletes;
     protected $table = 'studentcycles';
-    protected $fillable = ['center','dateTo','dateFrom','student_id','cycle_id','city_id'];
+    protected $fillable = ['carreer','center','dateTo','dateFrom','student_id','cycle_id','city_id'];
 }

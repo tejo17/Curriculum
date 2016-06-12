@@ -31,6 +31,7 @@
                            </div>   
                            @include('student.partials.personalInformation')
                        </fieldset>
+                       <p class="text-center">Marca los registros que quieras mostrar en el PDF. Si deseas marcarlos todos haz clic <a id="todos">Aqui.</a></p>
                        <fieldset>
                            <legend style="width:auto;">Educación y formación</legend>
                        <div id="divcampocarrera" style="display:none;">

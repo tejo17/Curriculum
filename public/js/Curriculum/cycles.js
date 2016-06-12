@@ -17,7 +17,7 @@ $(function() {
                     hasta = data.carrera[i].dateTo;
                 }
            
-                if (data.carrera[i].carreer != "") {
+                if (data.carrera[i].carreer != "ciclo") {
                     $('#divcampocarrera').css('display', 'block');
                  
                     $('#diveducar').append("<div class='selector'><input id=ocultoeduid type='hidden' value=" + data.carrera[i].id + "><div class='switch'><label>Off<input type='checkbox' class='checkcycle' name='checkcycle'><span class='lever'></span>On</label></div><a data-method='DELETE' onclick='borrarItemEducation(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#education' onclick='editarItemEdu(this)';><i class='material-icons'>mode_edit</i></a><h6 id='categoria' name='categoria' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Carrera: <span class='educ1' style='color:black; font-weight:normal'>" + data.carrera[i].carreer + "</span></h6><h6 class='educ2' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Centro: <span class='educ3' style='color:black; font-weight:normal'>" + data.carrera[i].center + "</span></h6><h6  style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Ciudad: <span class='educ4' style='color:black; font-weight:normal'>" + data.carrera[i].State + "</span></h6><h6  style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Población: <span class='educ5' style='color:black; font-weight:normal'>" + data.carrera[i].City + "</span></h6><h6 style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Desde: <span class='educ6' style='color:black; font-weight:normal'>" + data.carrera[i].dateFrom + "</span></h6><h6 style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Hasta: <span class='educ7' style='color:black; font-weight:normal'>" + hasta + "</span></h6></div><hr class='sep'>");
@@ -29,7 +29,7 @@ $(function() {
             } else {
                 hasta = data.ciclo[i].dateTo;
             }
-            if (data.ciclo[i].carreer == ""){
+            if (data.ciclo[i].carreer == "ciclo"){
               $('#divcampociclo').css('display', 'block');
                 $('#diveduc').append("<div class='selector'><input id=ocultoeduidci type='hidden' value=" + data.ciclo[i].id + "><div class='switch'><label>Off<input type='checkbox' class='checkcycle' name='checkcycle'><span class='lever'></span>On</label></div><a data-method='DELETE' onclick='borrarItemEducation(this)'; class='material-icons boton_borrar pull-right'>delete</a><a class='boton_editar pull-right' data-toggle='modal' data-target='#education' onclick='editarItemEdu(this)';><i class='material-icons'>mode_edit</i></a><h6 id='categoria' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Familia: <span class='educ0' style='color:black; font-weight:normal'>" + data.ciclo[i].Family + "</span></h6><h6 style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Ciclo: <span class='educ1' style='color:black; font-weight:normal'>" + data.ciclo[i].Cycle + "</span></h6><h6 style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Grado: <span class='educ2' style='color:black; font-weight:normal'>" + data.ciclo[i].Nivel + "</span></h6><h6 class='educ2' style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Centro: <span class='educ3' style='color:black; font-weight:normal'>" + data.ciclo[i].center + "</span></h6><h6  style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Ciudad: <span class='educ4' style='color:black; font-weight:normal'>" + data.ciclo[i].State + "</span></h6><h6  style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Población: <span class='educ5' style='color:black; font-weight:normal'>" + data.ciclo[i].City + "</span></h6><h6 style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Desde: <span class='educ6' style='color:black; font-weight:normal'>" + data.ciclo[i].dateFrom + "</span></h6><h6 style='color:#4A8AF4; font-weight:bold;font-size:1.2rem'>Hasta: <span class='educ7' style='color:black; font-weight:normal'>" + hasta + "</span></h6></div><hr class='sep'>");
             }
@@ -38,6 +38,27 @@ $(function() {
     }
 });
 });
+
+//Script Rango Fechas, aumenta o disminuye en función de lo que se seleccione en el campo dateFrom
+
+$('#dateFrom').on('change', function () {
+     var selectVal = $("#dateFrom option:selected").val();
+     
+     for (var i = 1960; i < selectVal; i++) {
+         $("#dateTo option[value='"+[i]+"']").remove();
+     }
+
+    if (selectVal < $('#dateTo').val()) {
+        var fecha = new Date();
+        var ano = fecha.getFullYear();
+        $('#dateTo').empty();
+        for (var i = selectVal; i <= ano; i++) {
+            
+        $('#dateTo').append('<option value="'+[i]+'">'+[i]+'</option>');
+        }
+     } 
+});
+
 
 //Script AutoComplete
 
@@ -54,19 +75,26 @@ $('#family').autocomplete("option", "appendTo", ".eventInsForm");
 /* Funcion que se ejecuta  cuando se haya cargado el modal*/
 
 $('#education').on('shown.bs.modal', function(e) {
+    
+    $('#family').val("");
     $('#ocultoEducation').val(ocultoeducation);
     var carrera = $('#carrera');
+    if (carrera.not(':checked')) {
+        $('#carreer').val("ciclo");
+    }
     carrera.on('click', function() {
         if (carrera.is(':checked')) {
             $('#camposciclo').css('display', 'none');
             $('#campocarrera').css('display', 'block');
             $('#family').val("Actividades Físicas y Deportivas");
             $('#cycle').val(10);
+            $('#carreer').val("");
         } else {
             $('#camposciclo').css('display', 'block');
             $('#campocarrera').css('display', 'none');
             $('#family').val("");
             $('#cycle').val("");
+            $('#carreer').val("ciclo");
         }
     });
 
@@ -180,9 +208,10 @@ function editarItemEdu(item) {
         $('#campocarrera').css('display', 'block');
         var familia = "Actividades Físicas y Deportivas";
         $('#cycle').val(10);
-        $('#carrer').val(campo[1]);
-        $('#carrer').focus();
+        $('#carreer').val(campo[1]);
+        $('#carreer').focus();
     }else {
+         $('#carreer').val("ciclo");
         $('#carrera').prop('checked', false);
         $('#camposciclo').css('display', 'block');
         $('#campocarrera').css('display', 'none');
@@ -201,7 +230,7 @@ function editarItemEdu(item) {
     $('#education').on('shown.bs.modal', function(e) {
 
         if (ocultoeducation != 0) {
-            $('#carrer').focus();
+            $('#carreer').focus();
             $("#family").val(familia);
             $("#family").focus();
             $("#center").val(centro);
@@ -247,7 +276,7 @@ function borrarItemEducation(item) {
 $('#education').on('hidden.bs.modal', function(e) {
     ocultoeducation = 0;
     $('#ocultoEducation').val(ocultoeducation);
-    $('#carrer').val('');
+    $('#carreer').val('');
     $("#family").val('');
     $("#cycle").empty();
     $("#center").val('');

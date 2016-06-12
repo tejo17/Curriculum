@@ -75,6 +75,9 @@ class PdfController extends Controller
         if($aptitudes[0][0] == false){
             $aptitudes[0] = 'vacio';
         };
+        //Elimino el último elemento del array que esta vacio
+        unset($ciclos[sizeof($ciclos)-1]);
+
        //dd(compact('datos','experiences','ciclos','lenguajes','licencias','sitios','certificaciones','otros','aptitudes'));
        $view =  \View::make('pdf.curriculum', compact('datos','experiences','ciclos','lenguajes','licencias','sitios','certificaciones','otros','aptitudes'))->render();
         $pdf = \App::make('dompdf.wrapper');

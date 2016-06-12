@@ -167,6 +167,7 @@ return [
         'dateTo'                => 'desde',
         'dateFrom'              => 'hasta',
         'center'                => 'centro',
+        'carreer'               => 'carrera universitaria',
         'descriptionCertif'     => 'descripción',
         'studyCenter'           => 'centro de estudios',
     ],

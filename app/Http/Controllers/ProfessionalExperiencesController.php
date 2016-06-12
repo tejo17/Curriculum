@@ -108,6 +108,7 @@ class ProfessionalExperiencesController extends Controller
     ->join('states','cities.state_id','=','states.id')
     ->select('professionalExperiences.id','states.name as State','enterprise','description','job','from','to','cities.name as City')
     ->where('student_id',$this->student_id)
+    ->orderBy('from')
     ->get();
 
     return Response::json($queries);

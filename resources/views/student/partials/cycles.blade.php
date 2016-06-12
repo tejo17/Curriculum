@@ -33,8 +33,8 @@
                     <div id="campocarrera" style="display:none;">
                         <div class="input-field col-md-12">
                            <i class="material-icons prefix">school</i>
-                           {{ Form::text('carrer', null,['id' => "carrer"]) }}
-                           {{ Form::label('carrer', 'Carrera Univeritaria') }}
+                           {{ Form::text('carreer', null,['id' => "carreer"]) }}
+                           {{ Form::label('carreer', 'Carrera Univeritaria') }}
                        </div>
                    </div>
                    <div id="camposciclo">
@@ -66,7 +66,7 @@
                     {{ Form::select('cityCycle', [], null,['class' => 'form-control ',  'style'=> 'border:solid 1px lightgrey;', 'id' => 'cityform']) }}
                 </div>
 
-                @for ($i = 1940; $i <= date('Y'); $i++)
+                @for ($i = 1960; $i <= date('Y'); $i++)
                 <?php $array[$i] = $i ?>
                 @endfor
 

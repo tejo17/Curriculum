@@ -44,44 +44,7 @@
         <?php endif ?>
       </table>
 
-      <!-- Tabla experiencia profesional -->
-      <?php if ($experiences[0] != "vacio"): ?>
-        <table style="page-break-inside: auto">
-          <tr>
-            <td style="width:265px; text-align:right "><span style="color:darkbluE;">EXPERIENCIA PROFESIONAL</span></td>
-            <td style="width:475px; border-bottom:1px blue solid;"></td>            
-          </tr>
-          <?php foreach ($experiences as $experience): ?>
-
-            <tr>
-              <td class="tds-left align-right"><span style="margin-left:125px">{{ $experience [5]}} – {{ $experience[6]}}</span></td>
-              <td class="tds-right"><span style="padding-left:15px;font-size:1.2rem;">{{ $experience [0]}}</span></td>         
-            </tr>
-            <tr>
-              <td style="width:265px;"></td>
-              <td style="width:475px;"><span style="padding-left:15px;">{{ $experience [1]}}</span></td>         
-            </tr>
-            <tr>
-              <td style="width:265px;"></td>
-              <td style="width:475px;"><span style="padding-left:15px;">{{ $experience [4]}}</span></td>         
-            </tr>
-            <tr>
-              <td style="width:265px;"></td>
-              <td style="width:475px;"><span style="padding-left:15px;">{{ $experience [3]}}</span></td>         
-            </tr>
-            <tr>
-              <td style="width:265px;"></td>
-              <td style="width:475px;"><span style="padding-left:15px;">{{ $experience [2]}}</span></td>
-            </tr>  
-            <tr>
-              <td style="width:265px;"></td>
-              <td style="width:475px;"></td>
-            </tr>
-          <?php endforeach ?>
-        </table>
-      <?php endif ?>
-
-      <!-- Tabla educación y formación -->
+<!-- Tabla educación y formación -->
       <?php if ($ciclos[0] != "vacio"): ?>
         <table style="page-break-inside: auto">
           <tr>
@@ -108,11 +71,50 @@
             </tr>
             <tr>
               <td style="width:265px;"></td>
-              <td style="width:475px;padding-bottom:10px"></td>
+              <td style="width:475px;padding-bottom:10px;"></td>
             </tr>  
           <?php endforeach ?>
         </table>
       <?php endif ?>
+
+      <!-- Tabla experiencia profesional -->
+      <?php if ($experiences[0] != "vacio"): ?>
+        <table style="page-break-inside: auto">
+          <tr>
+            <td style="width:265px; text-align:right "><span style="color:darkbluE;">EXPERIENCIA PROFESIONAL</span></td>
+            <td style="width:475px; border-bottom:1px blue solid;"></td>            
+          </tr>
+          <?php foreach ($experiences as $experience): ?>
+
+            <tr>
+              <td class="tds-left align-right"><span style="margin-left:125px">{{ $experience [5]}} – {{ $experience[6]}}</span></td>
+              <td class="tds-right"><span style="padding-left:15px;font-size:1.2rem;">{{ $experience [0]}}</span></td>         
+            </tr>
+            <tr>
+              <td style="width:265px;"></td>
+              <td style="width:475px;"><span style="padding-left:15px;">{{ $experience [1]}}</span></td>         
+            </tr>
+            <tr>
+              <td style="width:265px;"></td>
+              <td style="width:475px;"><span style="padding-left:15px;">{{ ucwords(strtolower($experience [4])) }}</span></td>         
+            </tr>
+            <tr>
+              <td style="width:265px;"></td>
+              <td style="width:475px;"><span style="padding-left:15px;">{{ $experience [3]}}</span></td>         
+            </tr>
+            <tr>
+              <td style="width:265px;"></td>
+              <td style="width:475px;"><span style="padding-left:15px;">{{ $experience [2]}}</span></td>
+            </tr>  
+            <tr>
+              <td style="width:265px;"></td>
+              <td style="width:475px;"></td>
+            </tr>
+          <?php endforeach ?>
+        </table>
+      <?php endif ?>
+
+      
       
       <!-- Tabla Certificaciones -->
       <?php if ($certificaciones[0] != "vacio"): ?>

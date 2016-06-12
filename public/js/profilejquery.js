@@ -72,22 +72,22 @@ function notification(message, type) {
 //Funciones a cargar cuando se cargue la pagina
 $(function() {
 
-    angular.module("KendoDemos", [ "kendo.directives" ])
-          .controller("MyCtrl", function($scope){
+    angular.module("KendoDemos", ["kendo.directives"])
+        .controller("MyCtrl", function($scope) {
             $scope.fromDateString;
             $scope.fromDateObject = null;
             $scope.toDateString;
             $scope.toDateObject = null;
             $scope.maxDate = new Date();
             $scope.minDate = new Date(2000, 0, 1, 0, 0, 0);
-            
-            $scope.fromDateChanged = function(){
-              $scope.minDate = new Date($scope.fromDateString);
+
+            $scope.fromDateChanged = function() {
+                $scope.minDate = new Date($scope.fromDateString);
             };
-            $scope.toDateChanged = function(){
-              $scope.maxDate = new Date($scope.toDateString);
+            $scope.toDateChanged = function() {
+                $scope.maxDate = new Date($scope.toDateString);
             };
-          })
+        })
 
 });
 
@@ -117,6 +117,9 @@ function cargarPostalAuto(data) {
     });
 }
 
-
-
-
+$('#todos').click(function() {
+            $("input:checkbox").each(function() {
+                //cada elemento seleccionado
+                $(this).prop('checked', true);
+            });
+        });
