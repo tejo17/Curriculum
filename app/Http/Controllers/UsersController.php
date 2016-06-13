@@ -76,7 +76,9 @@ class UsersController extends Controller
         if($user === false){
             return false;
         } else {
-
+            $user->active = 1;
+            $user->verifiedEmail = 1;
+            $user->save();
             $this->request['user_id'] = $user['id'];
 
             // Devuelvo los datos de la insercion.

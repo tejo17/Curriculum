@@ -18,7 +18,7 @@ class StudentCyclesSeeder extends Seeder
 
     	\DB::table('studentCycles')->insert([
     		'center' => 'I.E.S. Ingeniero de la Cierva',
-            'carreer' => ''
+            'carreer' => '',
             'dateFrom' => '2014',
             'dateTo' => null,
             'city_id' => 40634,
@@ -29,7 +29,7 @@ class StudentCyclesSeeder extends Seeder
 
 		\DB::table('studentCycles')->insert([
     		'center' => 'Universidad de Espinardo',
-            'carreer' => 'Ingeniería Afeitando Bombillas'            
+            'carreer' => 'Ingeniería Afeitando Bombillas',         
             'dateFrom' => '2010',
             'dateTo' => '2015',
             'city_id' => 40634,
@@ -44,7 +44,7 @@ class StudentCyclesSeeder extends Seeder
 
     	\DB::table('studentCycles')->insert([
     		'center' => 'I.E.S. Ingeniero de la Cierva',
-            'carreer' => ''            
+            'carreer' => '',            
             'dateFrom' => '2014',
             'dateTo' => null,
             'city_id' => 40634,
@@ -55,7 +55,7 @@ class StudentCyclesSeeder extends Seeder
 
 		\DB::table('studentCycles')->insert([
     		'center' => 'Universidad de Murcia',
-            'carreer' => 'Ingeniero Agrónomo'            
+            'carreer' => 'Ingeniero Agrónomo',            
             'dateFrom' => '2010',
             'dateTo' => '2015',
             'city_id' => 40634,
