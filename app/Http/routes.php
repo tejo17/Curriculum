@@ -145,13 +145,18 @@ Route::group(['prefix' => 'uso', 'middleware' => 'web', 'namespace' => 'Uso'], f
 Route::post('buscarCodPostal','Student\StudentsController@buscarCodPostal');
 
 Route::group(['prefix' => 'estudiante', 'middleware' => ['web','auth']], function(){
+    //Rutas para autocompletado
     Route::get('autocompletado','CurriculumController@autocomplete');
     Route::post('autolocal','CurriculumController@autolocal');
     Route::get('autocompletadoFamilias','CurriculumController@autocompleteFamily');
     Route::post('autolocalCiclos','CurriculumController@autolocalCycles');
+
+    //Rutas cargar informaciones varias
     Route::post('cargaSites','SitesController@getName');
     Route::post('cargaLanguages','LanguagesController@getLanguage');
     Route::post('cargaInfo','Student\StudentsController@getInfo');
+    
+    //Rutas para listar cada uno de los registros del formulario
     Route::post('listEducacion','StudentCyclesController@listStudentCycles');
     Route::post('listExperiences','ProfessionalExperiencesController@listProfessionalExperiences');
     Route::post('listlanguages','LanguagesController@listlanguagesuser');
@@ -160,6 +165,8 @@ Route::group(['prefix' => 'estudiante', 'middleware' => ['web','auth']], functio
     Route::post('listCertifications', 'CertificationsController@listCerificationsUsers');
     Route::post('listOtherGrades','OtherGradesController@listOtherGrades');
     Route::post('listAptitudes','AptitudesController@listAptitudesUser');
+    
+    //Acciones CRUD de los formularios modales
     Route::resource('sites','SitesController');
     Route::resource('curriculum','CurriculumController');
     Route::resource('languages','LanguagesController');
