@@ -18,9 +18,11 @@ class LanguagesController extends Controller
    public function index(){
      return view('student.curriculum');   
    }
+   
    public function show(){
      return view('student.curriculum');   
    }
+
    /*Obtener los idiomas de la base de datos*/
    public function getLanguage()
    {

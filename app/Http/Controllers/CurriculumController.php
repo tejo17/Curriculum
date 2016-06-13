@@ -153,15 +153,15 @@ public function autocompleteFamily(Request $req){
 
 public function update(Request $req){
 
-        $size = \Request::file('file')->getSize();
         
         //Compruebo si recibo un fichero y su tamaño es mayor de 0
-    if(\Request::file('file') != null && $size != 0){
-        
-        $ruta = \Request::file('file')->move(public_path( '/img/imgUser/' . \Auth::user()->carpeta . '/'), \Request::file('file')->getClientOriginalName());
+    if(\Request::file('file') != null){
+        $size = \Request::file('file')->getSize();
+        if ($size != 0) {
+            $ruta = \Request::file('file')->move(public_path( '/img/imgUser/' . \Auth::user()->carpeta . '/'), \Request::file('file')->getClientOriginalName());
         session(['carpeta' => '/img/imgUser/' . \Auth::user()->carpeta . '/' . \Request::file('file')->getClientOriginalName(),
             'rutaSinBarra' => 'img/imgUser/' . \Auth::user()->carpeta . '/' . \Request::file('file')->getClientOriginalName()]);
-     
+        }     
     }
 
     if ($req->input('birthdate') != null) {
