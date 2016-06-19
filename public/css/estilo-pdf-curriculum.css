@@ -1,7 +1,7 @@
 @page {
-      margin-top: 0.5em;
+      margin-top: 3.0em;
       margin-left: 0.0em;
-
+      
     }
 
     table{
@@ -124,8 +124,10 @@ table tr td span::first-letter{
 script, style { 
     display:none; 
 }
-table {
-    page-break-inside:always;
+
+
 }
+@page :first {
+      margin-top: 0.5em;
 
 }

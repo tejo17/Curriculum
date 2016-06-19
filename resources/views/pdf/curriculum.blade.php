@@ -47,7 +47,7 @@
 <!-- Tabla educación y formación -->
       
       <?php if ($ciclos != "vacio"): ?>
-        <table style="page-break-inside: auto">
+        <table>
           <tr>
             <td style="width:265px; text-align:right"><span style="color:darkblue;">EDUCACIÓN Y FORMACIÓN</span></td>
             <td style="width:475px;border-bottom:1px blue solid;"></td>
@@ -80,7 +80,7 @@
 
       <!-- Tabla experiencia profesional -->
       <?php if ($experiences[0] != "vacio"): ?>
-        <table style="page-break-inside: auto;">
+        <table>
           <tr>
             <td style="width:265px; text-align:right "><span style="color:darkbluE;">EXPERIENCIA PROFESIONAL</span></td>
             <td style="width:475px; border-bottom:1px blue solid;"></td>            
@@ -119,7 +119,7 @@
       
       <!-- Tabla Certificaciones -->
       <?php if ($certificaciones[0] != "vacio"): ?>
-        <table style="page-break-inside: avoid">
+        <table style="page-break-inside: avoid;">
           <tr>
             <td style="width:265px; text-align:right"><span style="color:darkblue;">CERTIFICACIONES</span></td>
             <td style="width:475px;border-bottom:1px blue solid;"></td>
@@ -147,8 +147,8 @@
 
       <!-- Otros Cursos -->
       <?php if ($otros[0] != "vacio"): ?>
-        <table style="page-break-inside: avoid">
-          <tr>
+        <table style="page-break-inside: avoid;">
+          <tr >
             <td style="width:265px; text-align:right"><span style="color:darkblue;">OTROS CURSOS</span></td>
             <td style="width:475px;border-bottom:1px blue solid;"></td>
           </tr>
@@ -179,7 +179,7 @@
 
       <!-- Tabla de idiomas -->
       <?php if ($lenguajes[0] != "vacio"): ?>
-        <table style="page-break-inside: avoid">
+        <table style="page-break-inside: avoid;">
          <tr>
           <td style="width:265px; text-align:right"><span style="color:darkblue;">IDIOMAS</span></td>
           <td class="td-nivel"></td>
@@ -216,7 +216,7 @@
     <!-- Tabla licencias de conducir -->
     <?php if ($licencias != "vacio"): ?>
 
-     <table style="page-break-inside: avoid">
+     <table style="page-break-inside: avoid;">
       <tr>
         <td style="width:265px; text-align:right"><span style="color:darkblue;">LICENCIAS DE CONDUCIR</span></td>
         <td style="width:475px;border-bottom:1px blue solid;"></td>
@@ -236,7 +236,7 @@
 
   <?php if ($aptitudes[0] != "vacio"): ?>
 
-    <table style="page-break-inside: avoid">
+    <table style="page-break-inside: avoid;">
       <tr>
         <td style="width:265px; text-align:right"><span style="color:darkblue;">APTITUDES</span></td>
         <td style="width:475px;border-bottom:1px blue solid;"></td>
